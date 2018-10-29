@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=5.0.8.1, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,6 +49,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbLink\AccessDrive.cs" />
+    <Compile Include="DbLink\ActiveRecord.cs" />
+    <Compile Include="DbLink\DatabaseDrive.cs" />
+    <Compile Include="DbLink\DateBetweenOpenInterval.cs" />
+    <Compile Include="DbLink\DateDiffLessThanMinutesCondition.cs" />
+    <Compile Include="DbLink\DateEqual.cs" />
+    <Compile Include="DbLink\DateTimeBetweenCloseInterval.cs" />
+    <Compile Include="DbLink\DbLinkFactory.cs" />
+    <Compile Include="DbLink\DbLinkGateway.cs" />
+    <Compile Include="DbLink\DoubleBetween.cs" />
+    <Compile Include="DbLink\IDatabaseDrive.cs" />
+    <Compile Include="DbLink\IDateTimeFormater.cs" />
+    <Compile Include="DbLink\IntBetweenCloseInterval.cs" />
+    <Compile Include="DbLink\IntBetweenOpenInterval.cs" />
+    <Compile Include="DbLink\IntEqual.cs" />
+    <Compile Include="DbLink\ISelectSqlMaker.cs" />
+    <Compile Include="DbLink\MySqlDrive.cs" />
+    <Compile Include="DbLink\SelectCondition.cs" />
+    <Compile Include="DbLink\SelectSqlMaker.cs" />
+    <Compile Include="DbLink\SqlServerDrive.cs" />
+    <Compile Include="DbLink\SqlSyntaxPrinter.cs" />
+    <Compile Include="DbLink\StringEqual.cs" />
+    <Compile Include="DbLink\StringLike.cs" />
+    <Compile Include="DbLink\TableField.cs" />
+    <Compile Include="DbLink\TableFieldPropertyMap.cs" />
+    <Compile Include="DbLink\User.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +104,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EntityPackage\燕亭\" />
+    <Folder Include="EntityPackage\马华\" />
+    <Folder Include="GuiPackage\燕亭\" />
+    <Folder Include="GuiPackage\马华\" />
+    <Folder Include="ServiceLogicPackage\燕亭\" />
+    <Folder Include="ServiceLogicPackage\马华\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MySql.Data.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
