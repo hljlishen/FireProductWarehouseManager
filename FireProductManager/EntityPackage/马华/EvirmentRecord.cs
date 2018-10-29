@@ -15,7 +15,7 @@ namespace FireProductManager.EntityPackage
         public double? Humidity { get; set; }
         public DateTime? TimeStmp { get; set; }
 
-        public EvirmentRecord() : base("EvirmentRecord", "Id", DatabaseType.MySql , "")
+        public EvirmentRecord() : base("EvirmentRecord", "Id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
 
         }

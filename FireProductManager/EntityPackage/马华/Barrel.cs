@@ -13,7 +13,7 @@ namespace FireProductManager.EntityPackage
         public int? Id { get; set; }
         public int? IsRemoved { get; set; }
 
-        public Barrel() : base("Barrel", "Id", DatabaseType.MySql, "")
+        public Barrel() : base("Barrel", "Id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
 
         }

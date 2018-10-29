@@ -16,7 +16,7 @@ namespace FireProductManager.EntityPackage
         public string Direction { get; set; }
         public DateTime? TimeStmp { get; set; }
 
-        public InOutRecord() : base("InOutRecord", "Id", DatabaseType.MySql, "")
+        public InOutRecord() : base("InOutRecord", "Id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
 
         }
