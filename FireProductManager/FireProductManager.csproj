@@ -98,6 +98,7 @@
     </EmbeddedResource>
     <Compile Include="ServiceLogicPackage\马华\BarrelGateway.cs" />
     <Compile Include="ServiceLogicPackage\马华\EvirmentRecordGateway.cs" />
+    <Compile Include="ServiceLogicPackage\马华\IEvirmentDevice.cs" />
     <Compile Include="ServiceLogicPackage\马华\RecordOperationGateway.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -122,10 +123,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EntityPackage\马华\" />
     <Folder Include="GuiPackage\燕廷\" />
     <Folder Include="GuiPackage\马华\" />
-    <Folder Include="ServiceLogicPackage\马华\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MySql.Data.dll" />

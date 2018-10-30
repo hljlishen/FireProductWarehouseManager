@@ -10,12 +10,12 @@ namespace FireProductManager.EntityPackage
     public class EvirmentRecord : ActiveRecord
     {
 
-        public int? Id { get; set; }
-        public double? Temperature { get; set; }
-        public double? Humidity { get; set; }
-        public DateTime? TimeStmp { get; set; }
+        public int? Er_Id { get; set; }
+        public double? Er_Temperature { get; set; }
+        public double? Er_Humidity { get; set; }
+        public DateTime? Er_TimeStmp { get; set; }
 
-        public EvirmentRecord() : base("EvirmentRecord", "Id", DbLinkManager.databaseType, DbLinkManager.connectString)
+        public EvirmentRecord() : base("EvirmentRecord", "Er_Id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
 
         }

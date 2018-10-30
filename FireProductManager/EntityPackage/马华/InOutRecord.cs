@@ -10,13 +10,13 @@ namespace FireProductManager.EntityPackage
     class InOutRecord : ActiveRecord
     {
 
-        public int? Id { get; set; }
-        public int? PackageID { get; set; }
-        public int? EmployeeId { get; set; }
-        public string Direction { get; set; }
-        public DateTime? TimeStmp { get; set; }
+        public int? Ior_Id { get; set; }
+        public int? Ior_PackageID { get; set; }
+        public int? Ior_EmployeeId { get; set; }
+        public string Ior_Direction { get; set; }
+        public DateTime? Ior_TimeStmp { get; set; }
 
-        public InOutRecord() : base("InOutRecord", "Id", DbLinkManager.databaseType, DbLinkManager.connectString)
+        public InOutRecord() : base("InOutRecord", "Ior_Id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
 
         }

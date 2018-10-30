@@ -10,10 +10,10 @@ namespace FireProductManager.EntityPackage
     class Barrel : ActiveRecord
     {
 
-        public int? Id { get; set; }
-        public int? IsRemoved { get; set; }
+        public int? Ba_Id { get; set; }
+        public int? Ba_IsRemoved { get; set; }
 
-        public Barrel() : base("Barrel", "Id", DbLinkManager.databaseType, DbLinkManager.connectString)
+        public Barrel() : base("Barrel", "Ba_Id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
 
         }
