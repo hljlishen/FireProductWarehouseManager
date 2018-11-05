@@ -9,12 +9,13 @@ namespace FireProductManager.EntityPackage
 {
     public class Employee : ActiveRecord
     {
-        public int? Id { get; set; }
-        public string EmployeeNumber { get; set; }
-        public string Name { get; set; }
-        public int? DepartmentId { get; set; }
+        public int? em_id { get; set; }
+        public string em_employeenumber { get; set; }
+        public string em_name { get; set; }
+        public string em_sex { get; set; }
+        public int? em_departmentId { get; set; }
 
-        public Employee() : base("Employee", "Id", DbLinkManager.databaseType, DbLinkManager.connectString)
+        public Employee() : base("employee", "em_id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
         }
 
