@@ -7,14 +7,14 @@ using DbLink;
 
 namespace FireProductManager.EntityPackage
 {
-    class Department : ActiveRecord
+    public class Department : ActiveRecord
     {
-        public int? Id { get; set; }
-        string Name { get; set; }
-        int? BelongId { get; set; }
+        public int? de_id { get; set; }
+        public string de_name { get; set; }
+        public int? de_belongId { get; set; }
         private List<Department> departments;
 
-        protected Department() : base("Department", "Id", DbLinkManager.databaseType, DbLinkManager.connectString)
+        public Department() : base("department", "de_id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
             
         }

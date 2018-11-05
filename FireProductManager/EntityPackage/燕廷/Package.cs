@@ -7,15 +7,16 @@ using DbLink;
 
 namespace FireProductManager.EntityPackage
 {
-    class Package : ActiveRecord
+    public class Package : ActiveRecord
     {
-        public int? Id { get; set; }
-        public string Modle { get; set; }
-        public double Weigth { get; set; }
-        public int? IsInWarehouse { get; set; }
-        public DateTime? PurchaseTime { get; set; }
+        public int? pa_id { get; set; }
+        public string pa_modle { get; set; }
+        public double pa_weigth { get; set; }
+        public int? pa_barrelId { get; set; }
+        public int? pa_isinWarehouse { get; set; }
+        public DateTime? pa_purchaseTime { get; set; }
 
-        protected Package() : base("Package", "Id", DbLinkManager.databaseType, DbLinkManager.connectString)
+        public Package() : base("package", "pa_id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
         }
 
