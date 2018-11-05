@@ -21,7 +21,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //修改员工
-        public static bool UpdateEmployee(Employee employee)
+        public static bool UpdateEmployee(Employee employee)  //？？？？？？形参不能有底层包的类
         {
             employee.Update();
             return true;
@@ -34,7 +34,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //表单验证
-        private static Dictionary<string, string> FormValidation(Employee employee)
+        private static Dictionary<string, string> FormValidation(Employee employee)     //???????????函数的意义？？，返回值代表什么？
         {
             Dictionary<string, string> myDictionary = new Dictionary<string, string>();
             myDictionary.Add("", IdValidation(employee));
@@ -43,8 +43,9 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //em_id验证
-        private static string IdValidation(Employee employee)
+        private static string IdValidation(Employee employee)       //返回值代表什么????????????
         {
+            //???????应该删除工号前后的空格
             if (employee.em_employeenumber.Equals("")) {
                 return "*员工编号不能为空";
             }
@@ -69,7 +70,7 @@ namespace FireProductManager.ServiceLogicPackage
             return "";
         }
 
-        public static void SwitchDepartment(int employeeId,int departmentId)
+        public static void SwitchToDepartment(int employeeId,int departmentId)
         {
             
         }

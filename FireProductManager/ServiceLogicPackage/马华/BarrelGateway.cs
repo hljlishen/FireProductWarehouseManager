@@ -17,17 +17,27 @@ namespace FireProductManager.ServiceLogicPackage
         {
             Barrel barrel = new Barrel();
             List<Barrel> barrels = new List<Barrel>();
-            //var queryresult = Barrel.Select(sql,);
-            return barrels;
+            var queryresult = barrel.Select(sql);
+            List<Barrel> ret = new List<Barrel>();
+
+            foreach(var row in queryresult.Rows)
+            {
+                Barrel b = new Barrel();
+                b.LoadDataRow((DataRow)row);
+                ret.Add(b);
+            }
+
+            return ret;
         }
 
         //记录新桶
-        public static Barrel RecordNewBarrel(int Ba_Id,int Ba_IsRemoved)
+        public static Barrel RecordNewBarrel()
         {
-            SelectSqlMaker maker = new SelectSqlMaker("Barrel");
+            int id = FindAvailableBarrelId();
             Barrel barrel = new Barrel();
-            barrel.Ba_Id = Ba_Id;
-            barrel.Ba_IsRemoved = Ba_IsRemoved;
+            barrel.Ba_Id = id;
+            barrel.Ba_IsRemoved = 0;
+            barrel.Insert();
             return barrel;
         }
 
@@ -36,39 +46,37 @@ namespace FireProductManager.ServiceLogicPackage
         {
             Barrel barrel = new Barrel();
             barrel.Ba_Id = barrelid;
-            string sql = "delete from barrel where ba_id = " + barrel.Ba_Id + "";
+            //string sql = "delete from barrel where ba_id = " + barrel.Ba_Id + "";
+            barrel.Delete();
 
             return true;
         }
 
         //获取全部型号
-        public static List<string> GetAllModels(int id)
+        public static List<string> GetAllModelsInBarrel(int barrelId)
         {
-            SelectSqlMaker maker = new SelectSqlMaker("Package");
-
             List<string> allModel = new List<string>();
             return allModel;
         }
 
         //统计权重
-        public static Dictionary<string, double> StatisticWeights(int id)
+        public static Dictionary<string, double> StatisticWeights(int barrelId)
         {
             Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
             return keyValuePairs;
         }
 
         //权重
-        public static double Weight(int id)
+        public static double TotalWeight(int barrelId)
         {
-            return id;
+
+            return 0;
         }
 
         //找到可用的桶id
-        public static int FindAvailableBarrelId()
+        private static int FindAvailableBarrelId()
         {
-            SelectSqlMaker maker = new SelectSqlMaker("Barrel");
             Barrel barrel = new Barrel();
-            string sql = maker.MakeSelectSql();
             return 1;
         }
     }

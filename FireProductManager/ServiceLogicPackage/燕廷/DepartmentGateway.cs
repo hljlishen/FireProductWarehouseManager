@@ -17,7 +17,7 @@ namespace FireProductManager.ServiceLogicPackage
 
         }
 
-        public static List<Employee> AllEmpolyeesOf(Department department)
+        public static List<Employee> AllEmpolyeesOf(int departmentId)
         {
             List<Employee> list = new List<Employee>();
             return list;
@@ -36,7 +36,7 @@ namespace FireProductManager.ServiceLogicPackage
             return true;
         }
 
-        public static void AddDepartmen(string name, int belongId)
+        public static void AddDepartment(string name, int belongId) //?????函数名称，验证
         {
             Department department = new Department();
             department.de_name = name;
@@ -44,14 +44,15 @@ namespace FireProductManager.ServiceLogicPackage
             department.Insert();
         }
 
-        public static void LoadTreeView(TreeView treeView, int parentId)
+        public static void LoadTreeView(TreeView treeView, int parentId = 0)    //?????parentId??
         {
             Department department = new Department();
             SelectSqlMaker maker = new SelectSqlMaker("t_department");
             maker.AddAndCondition(new IntEqual("de_belongid", parentId));
             DataTable dt = department.Select(maker.MakeSelectSql());
-            if (dt.Rows.Count > 0)
-            {
+
+            if (dt.Rows.Count == 0) return;
+
                 int pId = -1;
                 foreach (DataRow row in dt.Rows)
                 {
@@ -69,7 +70,6 @@ namespace FireProductManager.ServiceLogicPackage
                     }
                     LoadTreeView(treeView, (int)node.Tag);//查找以node为父节点的子节点
                 }
-            }
         }
 
         //处理根节点的子节点

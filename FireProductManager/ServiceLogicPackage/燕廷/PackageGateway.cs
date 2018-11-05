@@ -15,18 +15,18 @@ namespace FireProductManager.ServiceLogicPackage
             return list;
         }
 
-        public static void SwitchDepartment(int packageId, int barrelId)
+        public static void PutPackageToBarrel(int packageId, int barrelId)  //?????
         {
 
         }
 
-        public static List<Package> GetAllModels(int employeeId)
+        public static List<Package> GetAllModelsInWarehouse(int employeeId)     //?????
         {
             List<Package> list = new List<Package>();
             return list;
         }
 
-        public static Dictionary<string,double> StatisticWeights()
+        public static Dictionary<string,double> StatisticAllModelWeights()      //???????????
         {
             Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
             return keyValuePairs;

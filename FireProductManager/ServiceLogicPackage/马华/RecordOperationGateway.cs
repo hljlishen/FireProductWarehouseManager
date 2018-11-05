@@ -16,12 +16,12 @@ namespace FireProductManager.ServiceLogicPackage
             return list;
         }
 
-        public static void BorrowPackage(int pid,int eid)
+        public static void BorrowPackage(int packageId)
         {
 
         }
 
-        public static void ReturnPackage(int Packageid)
+        public static void ReturnPackage(int packageId, int barrelId)
         {
 
         }
