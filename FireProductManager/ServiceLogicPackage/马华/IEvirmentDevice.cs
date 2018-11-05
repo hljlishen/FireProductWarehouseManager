@@ -1,34 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace FireProductManager.ServiceLogicPackage
 {
-    public delegate void DataReceivedHandler(double temp,double hum);
+    //public delegate void DataReceivedHandler(byte[] receiveData);
 
     interface IEvirmentDevice
     {
-        event DataReceivedHandler DataReceived;
+        //event DataReceivedHandler DataReceived;
 
         void Open();
 
         void Close();
     }
 
-    class IEvirmentJoint : IEvirmentDevice
+    class Apem5900 : IEvirmentDevice
     {
-        public event DataReceivedHandler DataReceived;
+        private Thread _readThread;
+        private Socket _socket;
+        //public event DataReceivedHandler DataReceived;
 
-        public void Close()
+        public Apem5900()
         {
-            throw new NotImplementedException();
+            IPEndPoint ip = new IPEndPoint(IPAddress.Any, 13001);
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            _socket.Bind(ip);
         }
 
-        public void Open()
+        void IEvirmentDevice.Open()
         {
-            throw new NotImplementedException();
+            _readThread = new Thread(Read);
+            _readThread.IsBackground = true;
+            _readThread.Start();
+        }
+
+
+        public void Close() => _readThread.Abort();
+
+        public void Read()
+        {
+            while (true)
+            {
+                byte[] receiveData = new byte[100];
+                _socket.Receive(receiveData);
+                //DataReceived?.Invoke(receiveData);
+            }
         }
     }
 }
