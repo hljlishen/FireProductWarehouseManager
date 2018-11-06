@@ -204,9 +204,17 @@ namespace DbLink
                 throw new Exception($"主键{_primaryKeyName}值为null，不能执行delete");
         }
 
-        public static DataTable Select(string selectSql, IDatabaseDrive dbDrive)
+        private DataTable Select(string selectSql, IDatabaseDrive dbDrive)
         {
             DataSet queryResult = dbDrive.ExecuteSelect(selectSql);
+            return queryResult.Tables[0];
+        }
+
+        public static DataTable Select(string selectSql, DatabaseType type, string connectString)
+        {
+            var factory = DbLinkGateway.CreateFactory(type);
+            var databaseDrive = factory.CreateDatabaseDrive(connectString);
+            var queryResult = databaseDrive.ExecuteSelect(selectSql);
             return queryResult.Tables[0];
         }
 
