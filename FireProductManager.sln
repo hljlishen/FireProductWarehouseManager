@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireProductManager", "FireProductManager\FireProductManager.csproj", "{588C5316-89C2-4A4E-8B9D-655EF24EF733}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireProductManagerTests", "FireProductManagerTests\FireProductManagerTests.csproj", "{1721C012-0929-40DF-939F-C9D051B5E961}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{588C5316-89C2-4A4E-8B9D-655EF24EF733}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{588C5316-89C2-4A4E-8B9D-655EF24EF733}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{588C5316-89C2-4A4E-8B9D-655EF24EF733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1721C012-0929-40DF-939F-C9D051B5E961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1721C012-0929-40DF-939F-C9D051B5E961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1721C012-0929-40DF-939F-C9D051B5E961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1721C012-0929-40DF-939F-C9D051B5E961}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

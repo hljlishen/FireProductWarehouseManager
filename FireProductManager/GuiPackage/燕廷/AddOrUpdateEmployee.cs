@@ -2,6 +2,7 @@
 using FireProductManager.EntityPackage;
 using FireProductManager.ServiceLogicPackage;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -71,15 +72,10 @@ namespace cangku_01.view.EmployeesManagement
         //添加员工
         private void Bt_addemployee_Click(object sender, EventArgs e)
         {
-            if (!FormValidation()) return;
+            if (!FormValidation(EmployeeGateway.FormValidation(_employee))) return;
             GetEmployeeInformation();
-            //if (!EmployeeGateway.AddEmployee(_employee))
-            //{
-            //    la_errorexistnumber.Visible = true;
-            //    la_errorexistnumber.ForeColor = Color.Red;
-            //    return;
-            //}
-            //else la_errorexistnumber.Visible = false;
+            EmployeeGateway.AddEmployee(_employee);
+
             getSetImagePath.SaveEmployeeImage(_employee.em_employeenumber);
             AutoClosingMessageBox.Show("员工信息添加成功", "员工信息添加", 1000);
             _index = _employeefrom.dgv_employeeinformation.Rows.Add();
@@ -150,31 +146,13 @@ namespace cangku_01.view.EmployeesManagement
         }
 
         //表单验证
-        private bool FormValidation()
+        private bool FormValidation(Dictionary<string, string> dictionary)
         {
-            bool validation = true;
-            if (tb_employeesid.Text.Trim().Equals(""))
+            foreach (var item in dictionary.Keys)
             {
-                la_errornumber.Visible = true;
-                la_errornumber.ForeColor = Color.Red;
-                validation = false;
+                Console.WriteLine(item);
             }
-            else la_errornumber.Visible = false;
-            if (tb_name.Text.Trim().Equals(""))
-            {
-                la_errorname.Visible = true;
-                la_errorname.ForeColor = Color.Red;
-                validation = false;
-            }
-            else la_errorname.Visible = false;
-            if (la_group.Text.Trim().Equals("员工小组"))
-            {
-                la_errorgroup.Visible = true;
-                la_errorgroup.ForeColor = Color.Red;
-                validation = false;
-            }
-            else la_errorgroup.Visible = false;
-            return validation;
+            return false;
         }
 
         //浏览图片
