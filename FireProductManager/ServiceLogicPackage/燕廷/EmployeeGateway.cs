@@ -9,7 +9,7 @@ using System.Data;
 
 namespace FireProductManager.ServiceLogicPackage
 {
-    class EmployeeGateway
+    public class EmployeeGateway
     {
         //删除员工
         public static bool DeleteEmployee(int employeeId)
@@ -20,21 +20,27 @@ namespace FireProductManager.ServiceLogicPackage
             return true;
         }
 
+
+
         //修改员工
-        public static bool UpdateEmployee(Employee employee)
+        public static void UpdateEmployee(int employeeId, string name,string employeeNumber, int departmentId)
         {
+            Employee employee = new Employee();
+            employee.em_id = employeeId;
+            employee.em_employeenumber = employeeNumber;
+            employee.em_name = name;
+            employee.em_departmentId = departmentId;
             employee.Update();
-            return true;
         }
 
-        //添加员工
+        //添加员工??
         public static void AddEmployee(Employee employee)
         {
             employee.Insert();
         }
 
-        //表单验证
-        private static Dictionary<string, string> FormValidation(Employee employee)
+        //表单验证??
+        public static Dictionary<string, string> FormValidation(Employee employee)
         {
             Dictionary<string, string> myDictionary = new Dictionary<string, string>();
             myDictionary.Add("", IdValidation(employee));
@@ -42,13 +48,13 @@ namespace FireProductManager.ServiceLogicPackage
             return myDictionary;
         }
 
-        //em_id验证
+        //em_id验证??
         private static string IdValidation(Employee employee)
         {
             if (employee.em_employeenumber.Equals("")) {
                 return "*员工编号不能为空";
             }
-            SelectSqlMaker maker = new SelectSqlMaker("t_department");
+            SelectSqlMaker maker = new SelectSqlMaker("employee");
             maker.AddAndCondition(new IntEqual("em_employeenumber", employee.em_employeenumber));
             DataTable dataTable = employee.Select(maker.MakeSelectSql());
             if (dataTable.Rows.Count != 0)
@@ -59,7 +65,7 @@ namespace FireProductManager.ServiceLogicPackage
             return "";
         }
 
-        //em_name验证
+        //em_name验证??
         private static string NameValidation(Employee employee)
         {
             if (employee.em_employeenumber.Equals(""))
@@ -74,13 +80,9 @@ namespace FireProductManager.ServiceLogicPackage
             
         }
 
-        public static List<Employee> Query(string sql)
+        public static DataTable Query(string sql)
         {
-            List<Employee> list = new List<Employee>();
-            return list;
+            return null;
         }
-
-       
-
     }
 }
