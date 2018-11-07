@@ -13,7 +13,7 @@ namespace FireProductManager.EntityPackage
         public int? Ba_Id { get; set; }
         public int? Ba_IsRemoved { get; set; }
 
-        public Barrel() : base("Barrel", "Ba_Id", DbLinkManager.databaseType, DbLinkManager.connectString)
+        public Barrel() : base("barrel", "Ba_Id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
 
         }

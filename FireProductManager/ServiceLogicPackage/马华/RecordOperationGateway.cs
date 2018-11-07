@@ -1,6 +1,7 @@
 ﻿using FireProductManager.EntityPackage;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,18 +11,21 @@ namespace FireProductManager.ServiceLogicPackage
     class RecordOperationGateway
     {
 
-        public static List<InOutRecord> Query(string sql)
+        public static DataTable Query(string sql)
         {
-            List<InOutRecord> list = new List<InOutRecord>();
-            return list;
+            InOutRecord inOutRecord = new InOutRecord();
+            var query = inOutRecord.Select(sql);
+            return query;
         }
 
-        public static void BorrowPackage(int pid,int eid)
+        //借包
+        public static void BorrowPackage(int packageid)
         {
 
         }
 
-        public static void ReturnPackage(int Packageid)
+        //还包
+        public static void ReturnPackage(int packageid,int barrelid)
         {
 
         }

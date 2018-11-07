@@ -84,6 +84,7 @@
     <Compile Include="EntityPackage\燕廷\Department.cs" />
     <Compile Include="EntityPackage\燕廷\Employee.cs" />
     <Compile Include="EntityPackage\燕廷\Package.cs" />
+    <Compile Include="EntityPackage\马华\Account.cs" />
     <Compile Include="EntityPackage\马华\Barrel.cs" />
     <Compile Include="EntityPackage\马华\EvirmentRecord.cs" />
     <Compile Include="EntityPackage\马华\InOutRecord.cs" />
@@ -127,6 +128,7 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="ServiceLogicPackage\马华\AccountManager.cs" />
     <Compile Include="ServiceLogicPackage\马华\BarrelGateway.cs" />
     <Compile Include="ServiceLogicPackage\马华\EvirmentRecordGateway.cs" />
     <Compile Include="ServiceLogicPackage\马华\IEvirmentDevice.cs" />
@@ -160,7 +162,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GuiPackage\燕廷\" />
     <Folder Include="GuiPackage\马华\" />
   </ItemGroup>
   <ItemGroup>

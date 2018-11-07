@@ -1,10 +1,12 @@
 ﻿using FireProductManager.EntityPackage;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
+using System.Windows.Forms;
+
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -14,11 +16,32 @@ namespace FireProductManager.ServiceLogicPackage
 
         public event NewEvirmentDataHandler NewEvirmentData;
 
-        private Timer updateDisplay;
-        private int updateDisplayInterval;
-        private Timer writeDatabase;
-        private int writeDatabaseInterval;
+        private Timer updateDisplay;//更新显示
+        private int updateDisplayInterval; //更新显示的时间间隔 
+        private Timer writeDatabase;//写数据库
+        private int writeDatabaseInterval;//写数据库的时间间隔
         private IEvirmentDevice device;
+        bool shouldRecord = true;
+
+        //初始化函数
+        public EvirmentRecordGateway()
+        {
+            device.DataReceived += DataReceivedHandle;
+            updateDisplayInterval = 1000;
+            updateDisplay = new Timer();
+            updateDisplay.Interval = updateDisplayInterval;
+            updateDisplay.Tick += Timer_Tick;
+            updateDisplay.Start();
+
+            NewEvirmentData += RecordEvirmentData;
+            writeDatabaseInterval = 300000;
+            writeDatabase = new Timer();
+            writeDatabase.Interval = writeDatabaseInterval;
+            writeDatabase.Tick += Timer_Tick;
+            writeDatabase.Start();
+
+        }
+
 
         //数据接收处理
         private void DataReceivedHandle(byte[] receiveData)
@@ -31,17 +54,27 @@ namespace FireProductManager.ServiceLogicPackage
         //记录数据
         private void RecordEvirmentData(double temperature, double humidity)
         {
-            EvirmentRecord evirmentRecord = new EvirmentRecord();
-            evirmentRecord.Er_Temperature = temperature;
-            evirmentRecord.Er_Humidity = humidity;
-            evirmentRecord.Er_TimeStmp = DateTime.Now;
-            evirmentRecord.Insert();
+            if (shouldRecord)
+            {
+                EvirmentRecord evirmentRecord = new EvirmentRecord();
+                evirmentRecord.Er_Temperature = temperature;
+                evirmentRecord.Er_Humidity = humidity;
+                evirmentRecord.Er_TimeStmp = DateTime.Now;
+                evirmentRecord.Insert();
+            }
+            shouldRecord = false;
         }
 
-        public static List<EvirmentRecord> Query(string sql)
+        public static DataTable Query(string sql)
         {
-            List<EvirmentRecord> evirmentRecords = new List<EvirmentRecord>();
-            return evirmentRecords;
+            EvirmentRecord evirmentRecord = new EvirmentRecord();
+            var qer = evirmentRecord.Select(sql);
+            return qer;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            shouldRecord = true;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace FireProductManager.EntityPackage
         public string Ior_Direction { get; set; }
         public DateTime? Ior_TimeStmp { get; set; }
 
-        public InOutRecord() : base("InOutRecord", "Ior_Id", DbLinkManager.databaseType, DbLinkManager.connectString)
+        public InOutRecord() : base("inOutRecord", "Ior_Id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
 
         }
