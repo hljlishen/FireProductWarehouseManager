@@ -10,7 +10,7 @@ namespace FireProductManager.ServiceLogicPackage
 {
     class EvirmentRecordGateway
     {
-        public delegate void NewEvirmentDataHandler(double temp, double hum);
+        public delegate void NewEvirmentDataHandler(double temp, double humi);
 
         public event NewEvirmentDataHandler NewEvirmentData;
 
@@ -20,14 +20,22 @@ namespace FireProductManager.ServiceLogicPackage
         private int writeDatabaseInterval;
         private IEvirmentDevice device;
 
-        private void DataReceivedHandle(byte[] e)
+        //数据接收处理
+        private void DataReceivedHandle(byte[] receiveData)
         {
-
+            double temp = ((double)receiveData[12] * 256 + receiveData[13]) / 10;
+            double humi = ((double)receiveData[14] * 256 + receiveData[15]) / 10;
+            NewEvirmentData?.Invoke(temp, humi);
         }
 
-        private void RecordEvirmentData()
+        //记录数据
+        private void RecordEvirmentData(double temperature, double humidity)
         {
-
+            EvirmentRecord evirmentRecord = new EvirmentRecord();
+            evirmentRecord.Er_Temperature = temperature;
+            evirmentRecord.Er_Humidity = humidity;
+            evirmentRecord.Er_TimeStmp = DateTime.Now;
+            evirmentRecord.Insert();
         }
 
         public static List<EvirmentRecord> Query(string sql)
