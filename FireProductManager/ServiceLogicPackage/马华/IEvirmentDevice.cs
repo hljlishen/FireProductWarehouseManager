@@ -5,11 +5,11 @@ using System.Threading;
 
 namespace FireProductManager.ServiceLogicPackage
 {
-    //public delegate void DataReceivedHandler(byte[] receiveData);
+    public delegate void DataReceivedHandler(byte[] receiveData);
 
     interface IEvirmentDevice
     {
-        //event DataReceivedHandler DataReceived;
+        event DataReceivedHandler DataReceived;
 
         void Open();
 
@@ -20,7 +20,7 @@ namespace FireProductManager.ServiceLogicPackage
     {
         private Thread _readThread;
         private Socket _socket;
-        //public event DataReceivedHandler DataReceived;
+        public event DataReceivedHandler DataReceived;
 
         public Apem5900()
         {
@@ -45,7 +45,7 @@ namespace FireProductManager.ServiceLogicPackage
             {
                 byte[] receiveData = new byte[100];
                 _socket.Receive(receiveData);
-                //DataReceived?.Invoke(receiveData);
+                DataReceived?.Invoke(receiveData);
             }
         }
     }

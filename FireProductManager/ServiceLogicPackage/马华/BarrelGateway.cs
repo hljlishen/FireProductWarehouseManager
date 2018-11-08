@@ -11,23 +11,20 @@ namespace FireProductManager.ServiceLogicPackage
 {
     class BarrelGateway
     {
-        static DbLinkFactory factory;
         //查询桶
-        public static List<Barrel> Query(string sql)
+        public static DataTable Query(string sql)
         {
-            Barrel barrel = new Barrel();
-            List<Barrel> barrels = new List<Barrel>();
-            //var queryresult = Barrel.Select(sql,);
-            return barrels;
+            var queryBarrel = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+            return queryBarrel;
         }
 
         //记录新桶
-        public static Barrel RecordNewBarrel(int Ba_Id,int Ba_IsRemoved)
+        public static Barrel RecordNewBarrel()
         {
-            SelectSqlMaker maker = new SelectSqlMaker("Barrel");
             Barrel barrel = new Barrel();
-            barrel.Ba_Id = Ba_Id;
-            barrel.Ba_IsRemoved = Ba_IsRemoved;
+            barrel.ba_isRemoved = 0; //0为存在，1为不存在
+            barrel.Insert();
+            barrel.ba_id = FindAvailableBarrelId();
             return barrel;
         }
 
@@ -35,41 +32,62 @@ namespace FireProductManager.ServiceLogicPackage
         public static bool RemoveBarrel(int barrelid)
         {
             Barrel barrel = new Barrel();
-            barrel.Ba_Id = barrelid;
-            string sql = "delete from barrel where ba_id = " + barrel.Ba_Id + "";
-
-            return true;
+            barrel.ba_id = barrelid;
+            if (IsBarrelIdValid(barrelid))
+            {
+                barrel.Delete();
+                return true;
+            }
+            return false;
         }
 
-        //获取全部型号
-        public static List<string> GetAllModels(int id)
+        //全重
+        public static double WeightOfBarrel(int barrelid)
         {
-            SelectSqlMaker maker = new SelectSqlMaker("Package");
+            double weigth = 0;
+            SelectSqlMaker maker = new SelectSqlMaker("package");
+            maker.AddAndCondition(new IntEqual("pa_barrelId", barrelid));
+            string sql = maker.MakeSelectSql();
+            DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
 
-            List<string> allModel = new List<string>();
-            return allModel;
-        }
+            foreach (DataRow dr in dt.Rows)
+            {
+                weigth += double.Parse(dr["pa_weight"].ToString());
+            }
 
-        //统计权重
-        public static Dictionary<string, double> StatisticWeights(int id)
-        {
-            Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
-            return keyValuePairs;
-        }
-
-        //权重
-        public static double Weight(int id)
-        {
-            return id;
+            return weigth;
         }
 
         //找到可用的桶id
-        public static int FindAvailableBarrelId()
+        private static int FindAvailableBarrelId()
         {
-            SelectSqlMaker maker = new SelectSqlMaker("Barrel");
-            Barrel barrel = new Barrel();
+            int barrelid = 0;
+            SelectSqlMaker maker = new SelectSqlMaker("barrel");
+            maker.AddAndCondition(new IntEqual("Ba_IsRemoved",0));
             string sql = maker.MakeSelectSql();
-            return 1;
+            DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                for (int i = 0; i<dt.Rows.Count;i++)
+                {
+                    barrelid = int.Parse(row["ba_id"].ToString());
+                }
+            }
+            return barrelid;
+        }
+
+        //判断桶id是否存在
+        private static bool IsBarrelIdValid(int barrelid)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("barrel");
+            maker.AddAndCondition(new IntEqual("ba_Id", barrelid));
+            DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
