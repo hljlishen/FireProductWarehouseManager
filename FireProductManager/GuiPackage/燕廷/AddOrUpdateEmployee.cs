@@ -15,8 +15,12 @@ namespace cangku_01.view.EmployeesManagement
     public partial class AddOrUpdateEmployee : Form
     {
         ImageManager getSetImagePath = new ImageManager();
-        private Employee _employee = new Employee();
         private EmployeeManagement _employeefrom;
+        private int _employeeid;
+        private string _employeenumber;
+        private string _name;
+        private string _sex;
+        private int _departmentid;
         private string _companyname;
         private string _departmentname;
         private string _groupname;
@@ -72,11 +76,9 @@ namespace cangku_01.view.EmployeesManagement
         //添加员工
         private void Bt_addemployee_Click(object sender, EventArgs e)
         {
-            if (!FormValidation(EmployeeGateway.FormValidation(_employee))) return;
             GetEmployeeInformation();
-            EmployeeGateway.AddEmployee(_employee);
-
-            getSetImagePath.SaveEmployeeImage(_employee.em_employeenumber);
+            EmployeeGateway.NewEmployee(_employeenumber,_name,_sex,_departmentid);
+            getSetImagePath.SaveEmployeeImage(_employeenumber);
             AutoClosingMessageBox.Show("员工信息添加成功", "员工信息添加", 1000);
             _index = _employeefrom.dgv_employeeinformation.Rows.Add();
             AddOneEmployeeToTheDataGridView();
@@ -86,10 +88,10 @@ namespace cangku_01.view.EmployeesManagement
         //获取员工信息
         public void GetEmployeeInformation()
         {
-            _employee.em_employeenumber = tb_employeesid.Text.ToString();
-            _employee.em_name = tb_name.Text.ToString();
-            if (Rb_sexman.Checked) _employee.em_sex = "男";
-            else _employee.em_sex = "女";
+            _employeenumber = tb_employeesid.Text.ToString();
+            _name = tb_name.Text.ToString();
+            if (Rb_sexman.Checked) _sex = "男";
+            else _sex = "女";
             _companyname = la_company.Text;
             _departmentname = la_department.Text;
             _groupname = la_group.Text;
@@ -98,9 +100,9 @@ namespace cangku_01.view.EmployeesManagement
         //给DataGridView添加一行数据
         public void AddOneEmployeeToTheDataGridView()
         {
-            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[0].Value = _employee.em_employeenumber;
-            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[1].Value = _employee.em_name;
-            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[2].Value = _employee.em_sex;
+            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[0].Value = _employeenumber;
+            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[1].Value = _name;
+            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[2].Value = _sex;
             _employeefrom.dgv_employeeinformation.Rows[_index].Cells[3].Value = _companyname;
             _employeefrom.dgv_employeeinformation.Rows[_index].Cells[4].Value = _departmentname;
             _employeefrom.dgv_employeeinformation.Rows[_index].Cells[5].Value = _groupname;
@@ -109,26 +111,21 @@ namespace cangku_01.view.EmployeesManagement
         //员工信息修改
         private void bt_alteremployee_Click(object sender, EventArgs e)
         {
-            //if (!FormValidation()) return;
-            //GetEmployeeInformation();
-
-            //if (_employee.em_departmentId == 0)
-            //{
-            //    DataTable dt = _employee.EmployeeNumberFindEmployee();
-            //    DataRow myDr = dt.Rows[0];
-            //    _employee.DepartmentId = (int)myDr["em_departmentid"];
-            //}
-            //_companyname = la_company.Text;
-            //_departmentname = la_department.Text;
-            //_groupname = la_group.Text;
-            //dao.UpdateEmployee(_employee);
-            //pb_employeephoto.Image.Dispose();
-            //getSetImagePath.SaveEmployeeImage(_employee.EmployeeNumber);
-            //AutoClosingMessageBox.Show("员工信息修改成功", "员工信息修改", 1000);
-            //Employee employee = new Employee();
-            //DataTable datatable = employee.QueryAllEmployee();//将全部员工加载
-            //_employeefrom.ShowDataGridView(datatable);
-            //Close();
+            GetEmployeeInformation();
+            if (_departmentid == 0)
+            {
+                DataTable dt = _employee.EmployeeNumberFindEmployee();
+                DataRow myDr = dt.Rows[0];
+                _employee.DepartmentId = (int)myDr["em_departmentid"];
+            }
+            EmployeeGateway.UpdateEmployee(_employeeid,_employeenumber,_name,_sex,_departmentid);
+            pb_employeephoto.Image.Dispose();
+            getSetImagePath.SaveEmployeeImage(_employeenumber);
+            AutoClosingMessageBox.Show("员工信息修改成功", "员工信息修改", 1000);
+            Employee employee = new Employee();
+            DataTable datatable = employee.QueryAllEmployee();//将全部员工加载
+            _employeefrom.ShowDataGridView(datatable);
+            Close();
         }
 
         //选择员工的公司、部门、小组信息
@@ -142,17 +139,7 @@ namespace cangku_01.view.EmployeesManagement
             la_group.Text = tv_departmentshow.SelectedNode.Text;
             la_department.Text = tv_departmentshow.SelectedNode.Parent.Text;
             la_company.Text = tv_departmentshow.SelectedNode.Parent.Parent.Text;
-            _employee.em_departmentId = (int)tv_departmentshow.SelectedNode.Tag;
-        }
-
-        //表单验证
-        private bool FormValidation(Dictionary<string, string> dictionary)
-        {
-            foreach (var item in dictionary.Keys)
-            {
-                Console.WriteLine(item);
-            }
-            return false;
+            _departmentid = (int)tv_departmentshow.SelectedNode.Tag;
         }
 
         //浏览图片

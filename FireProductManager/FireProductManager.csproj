@@ -105,6 +105,12 @@
     <Compile Include="GuiPackage\燕廷\AutoCloseMassageBox.Designer.cs">
       <DependentUpon>AutoCloseMassageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="GuiPackage\燕廷\Confirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\Confirm.Designer.cs">
+      <DependentUpon>Confirm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GuiPackage\燕廷\CreateDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     <EmbeddedResource Include="GuiPackage\燕廷\AddOrUpdateEmployee.resx">
       <DependentUpon>AddOrUpdateEmployee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\燕廷\Confirm.resx">
+      <DependentUpon>Confirm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\燕廷\EmployeeManagement.resx">
       <DependentUpon>EmployeeManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,7 +169,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GuiPackage\燕廷\" />
     <Folder Include="GuiPackage\马华\" />
   </ItemGroup>
   <ItemGroup>

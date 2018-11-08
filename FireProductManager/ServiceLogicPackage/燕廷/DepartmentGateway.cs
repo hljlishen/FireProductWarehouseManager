@@ -65,13 +65,13 @@ namespace FireProductManager.ServiceLogicPackage
         //部门删除验证
         private static void DeleteDepartmentVerification(Department department)
         {
-            Hasdepartment(department);
+            HasDepartment(department);
             HasSonDepartment(department);
             HasEmployee(department);
         }
 
         //该部门是否存在
-        private static void Hasdepartment(Department department)
+        private static void HasDepartment(Department department)
         {
             SelectSqlMaker maker = new SelectSqlMaker("department");
             maker.AddAndCondition(new IntEqual("de_id", department.de_id.Value));
@@ -118,6 +118,17 @@ namespace FireProductManager.ServiceLogicPackage
             department.de_belongId = belongId;
             NodeDuplicateChecking(department);
             department.Insert();
+        }
+
+        //修改部门
+        public static void UpdateDepartment(int id, string name, int belongId)
+        {
+            Department department = new Department();
+            department.de_id = id;
+            department.de_name = name;
+            department.de_belongId = belongId;
+            NodeDuplicateChecking(department);
+            department.Update();
         }
 
         //部门名字查重
