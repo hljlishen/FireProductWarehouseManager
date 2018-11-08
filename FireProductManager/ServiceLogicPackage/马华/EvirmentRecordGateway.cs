@@ -1,4 +1,5 @@
-﻿using FireProductManager.EntityPackage;
+﻿using DbLink;
+using FireProductManager.EntityPackage;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace FireProductManager.ServiceLogicPackage
 {
-    class EvirmentRecordGateway
+    public class EvirmentRecordGateway
     {
         public delegate void NewEvirmentDataHandler(double temp, double humi);
 
@@ -23,7 +24,7 @@ namespace FireProductManager.ServiceLogicPackage
         private IEvirmentDevice device;
         bool shouldRecord = true;
 
-        //初始化函数
+        //初始化函数??
         public EvirmentRecordGateway()
         {
             device.DataReceived += DataReceivedHandle;
@@ -42,7 +43,6 @@ namespace FireProductManager.ServiceLogicPackage
 
         }
 
-
         //数据接收处理
         private void DataReceivedHandle(byte[] receiveData)
         {
@@ -57,9 +57,9 @@ namespace FireProductManager.ServiceLogicPackage
             if (shouldRecord)
             {
                 EvirmentRecord evirmentRecord = new EvirmentRecord();
-                evirmentRecord.Er_Temperature = temperature;
-                evirmentRecord.Er_Humidity = humidity;
-                evirmentRecord.Er_TimeStmp = DateTime.Now;
+                evirmentRecord.er_temperature = temperature;
+                evirmentRecord.er_humidity = humidity;
+                evirmentRecord.er_timeStmp = DateTime.Now;
                 evirmentRecord.Insert();
             }
             shouldRecord = false;
@@ -67,9 +67,8 @@ namespace FireProductManager.ServiceLogicPackage
 
         public static DataTable Query(string sql)
         {
-            EvirmentRecord evirmentRecord = new EvirmentRecord();
-            var qer = evirmentRecord.Select(sql);
-            return qer;
+            var query = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+            return query;
         }
 
         private void Timer_Tick(object sender, EventArgs e)

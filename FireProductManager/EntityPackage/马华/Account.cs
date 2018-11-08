@@ -9,12 +9,12 @@ namespace FireProductManager.EntityPackage
 {
     class Account: ActiveRecord
     {
-        public int? Ac_Id { get; set; }
-        public string Ac_Accounts { get; set; }
-        public string Ac_Password { get; set; }
-        public int? Ac_Authority { get; set; }
+        public int? ac_id { get; set; }
+        public string ac_account { get; set; }
+        public string ac_password { get; set; }
+        public int? ac_authority { get; set; }
 
-        public Account() : base("account", "Id", DbLinkManager.databaseType, DbLinkManager.connectString)
+        public Account() : base("account", "ac_id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
 
         }

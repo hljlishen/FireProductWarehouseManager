@@ -14,8 +14,7 @@ namespace FireProductManager.ServiceLogicPackage
         //查询桶
         public static DataTable Query(string sql)
         {
-            Barrel barrel = new Barrel();
-            var queryBarrel = barrel.Select(sql);
+            var queryBarrel = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
             return queryBarrel;
         }
 
@@ -23,9 +22,9 @@ namespace FireProductManager.ServiceLogicPackage
         public static Barrel RecordNewBarrel()
         {
             Barrel barrel = new Barrel();
-            barrel.Ba_IsRemoved = 0; //0为存在，1为不存在
+            barrel.ba_isRemoved = 0; //0为存在，1为不存在
             barrel.Insert();
-            barrel.Ba_Id = FindAvailableBarrelId();
+            barrel.ba_id = FindAvailableBarrelId();
             return barrel;
         }
 
@@ -33,7 +32,7 @@ namespace FireProductManager.ServiceLogicPackage
         public static bool RemoveBarrel(int barrelid)
         {
             Barrel barrel = new Barrel();
-            barrel.Ba_Id = barrelid;
+            barrel.ba_id = barrelid;
             if (IsBarrelIdValid(barrelid))
             {
                 barrel.Delete();
@@ -47,14 +46,15 @@ namespace FireProductManager.ServiceLogicPackage
         {
             double weigth = 0;
             SelectSqlMaker maker = new SelectSqlMaker("package");
-            Package package = new Package();
-            maker.AddAndCondition(new IntEqual("pa_barrelId",barrelid));
+            maker.AddAndCondition(new IntEqual("pa_barrelId", barrelid));
             string sql = maker.MakeSelectSql();
-            DataTable dt = package.Select(sql);
+            DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+
             foreach (DataRow dr in dt.Rows)
             {
                 weigth += double.Parse(dr["pa_weight"].ToString());
             }
+
             return weigth;
         }
 
@@ -63,10 +63,9 @@ namespace FireProductManager.ServiceLogicPackage
         {
             int barrelid = 0;
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
-            Barrel barrel = new Barrel();
             maker.AddAndCondition(new IntEqual("Ba_IsRemoved",0));
             string sql = maker.MakeSelectSql();
-            DataTable dt = barrel.Select(sql);
+            DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
 
             foreach (DataRow row in dt.Rows)
             {
@@ -83,9 +82,7 @@ namespace FireProductManager.ServiceLogicPackage
         {
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
             maker.AddAndCondition(new IntEqual("ba_Id", barrelid));
-            Barrel barrel = new Barrel();
-            string sql = maker.MakeSelectSql();
-            DataTable dt = barrel.Select(sql);
+            DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dt.Rows.Count > 0)
             {
                 return true;

@@ -9,47 +9,49 @@ using System.Data;
 
 namespace FireProductManager.ServiceLogicPackage
 {
-    class AccountManager
+    public class AccountManager
     {
         private static Account account;
 
         public static bool Login(string accounts,string password)
         {
-            SelectSqlMaker maker = new SelectSqlMaker("account");
-            maker.AddAndCondition(new StringEqual("Ac_Accounts",accounts));
-            maker.AddAndCondition(new StringEqual("Ac_Password",password));
-            string sql = maker.MakeSelectSql();
-            DataTable dt = account.Select(sql);
-            if (dt.Rows.Count > 0)
-            {
-                foreach (DataRow dr in dt.Rows)
-                {
-                    if (int.Parse(dr["Ac_Authority"].ToString()) == 1)//1为超级管理员权限，可写可读，2为普通管理员权限，可读不可写
-                    {
-                        CanReadDatabase();
-                        CanWriteDatabase();
-                    }
-                    else
-                        CanReadDatabase();
-                    return true;
-                }
-            }
+            if (IsAccountValid(accounts, password))
+                return true;
             return false;
         }
 
+        //??
         public static void Logout()
         {
-
+            
         }
 
         public static bool CanReadDatabase()
         {
-            return true;
+            account = new Account();
+            if (account.ac_authority == 1 || account.ac_authority == 2)//1为超级管理员，2为普通管理员
+                return true;
+            return false;
         }
 
         public static bool CanWriteDatabase()
         {
-            return true;
+            account = new Account();
+            if (account.ac_authority == 1)
+                return true;
+            return false;
+        }
+
+        private static bool IsAccountValid(string accounts, string password)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("account");
+            maker.AddAndCondition(new StringEqual("ac_account", accounts));
+            maker.AddAndCondition(new StringEqual("ac_password", password));
+            string sql = maker.MakeSelectSql();
+            DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+            if (dt.Rows.Count > 0)
+                return true;
+            return false;
         }
     }
 }

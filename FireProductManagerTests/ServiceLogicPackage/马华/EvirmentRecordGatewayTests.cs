@@ -10,13 +10,19 @@ using System.Data;
 namespace FireProductManager.ServiceLogicPackage.Tests
 {
     [TestClass()]
-    public class EmployeeGatewayTests
+    public class EvirmentRecordGatewayTests
     {
         [TestMethod()]
         public void QueryTest()
         {
-            string sql = "select * from employee where id = 1";
-            DataTable dt =  EmployeeGateway.Query(sql);
+            string sql = "select * from evirmentrecord where er_id = 1";
+            DataTable dt = EvirmentRecordGateway.Query(sql);
+        }
+
+        [TestMethod()]
+        public void EvirmentRecordGatewayTest()
+        {
+            EvirmentRecordGateway evirmentRecordGateway = new EvirmentRecordGateway();
         }
     }
 }
