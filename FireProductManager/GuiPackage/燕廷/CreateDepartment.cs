@@ -1,5 +1,6 @@
 ﻿using DbLink;
 using FireProductManager.EntityPackage;
+using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Windows.Forms;
 
@@ -37,33 +38,16 @@ namespace cangku_01.view.EmployeesManagement
         //确认
         private void bt_sure_Click(object sender, EventArgs e)
         {
-            Department department = new Department();
-            department.de_name = tb_nodename.Text;
-            department.de_belongId = _parentnodeid;
-            //if (!department.DepartmentFormValidation()) return;
-            //if (department.NodeDuplicateChecking())
-            //{
-            //    AutoClosingMessageBox.Show("已存在该节点！", "存在节点", 1000);
-            //    return;
-            //}
-            //else
-            //{
-            //    department.AddDepartmentNode();
-            //}
+            DepartmentGateway.AddDepartment(tb_nodename.Text, _parentnodeid);
             DialogResult = DialogResult.OK;
         }
 
-        ////修改
-        //private void bt_alter_Click(object sender, EventArgs e)
-        //{
-        //    Department department = new Department(factory);
-        //    department.de_name = tb_nodename.Text;
-        //    department.de_id = _id;
-        //    department.de_belongid = _parentnodeid;
-        //    if (!department.DepartmentFormValidation()) return;
-        //    department.RenameNodes();
-        //    DialogResult = DialogResult.OK;
-        //}
+        //修改
+        private void bt_alter_Click(object sender, EventArgs e)
+        {
+            DepartmentGateway.UpdateDepartment(_id, tb_nodename.Text, _parentnodeid);
+            DialogResult = DialogResult.OK;
+        }
 
         //返回节点名称
         public string nodeName

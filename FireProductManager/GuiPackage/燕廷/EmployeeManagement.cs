@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using FireProductManager.EntityPackage;
 using FireProductManager.ServiceLogicPackage;
+using cangku_01.view.AdminPage;
 
 //员工信息管理页面
 
@@ -29,7 +30,6 @@ namespace cangku_01.view.EmployeesManagement
             Top = 0;
             Left = 0;
             ShowTreeView();  //加载部门树状图
-            Employee employee = new Employee();
             //DataTable dt = employee.QueryAllEmployee();//将全部员工加载
             //ShowDataGridView(dt);
             cb_foundsex.Text = "男/女";
@@ -39,8 +39,7 @@ namespace cangku_01.view.EmployeesManagement
         public void ShowTreeView()
         {
             tv_department.Nodes.Clear();
-            Department department = new Department();
-            //department.GetTreeView(tv_department, 0);
+            DepartmentGateway.LoadTreeView(tv_department);
             tv_department.ExpandAll();
         }
 
@@ -289,21 +288,20 @@ namespace cangku_01.view.EmployeesManagement
             tv_department.ExpandAll();
         }
 
-        ////删除
-        //private void tsm_delete_Click(object sender, EventArgs e)
-        //{
-        //    Confirm cf = new Confirm("确定删除该节点？");
-        //    cf.ShowDialog();
-        //    if (cf.DialogResult == DialogResult.OK)
-        //    {
-        //        Department department = new Department(factory);
-        //        department.de_id = (int)tv_department.SelectedNode.Tag;
-        //        if (department.DeleteNode())
-        //        {
-        //            tv_department.SelectedNode.Remove();
-        //        }
-        //    }
-        //}
+        //删除
+        private void tsm_delete_Click(object sender, EventArgs e)
+        {
+            Confirm cf = new Confirm("确定删除该节点？");
+            cf.ShowDialog();
+            if (cf.DialogResult == DialogResult.OK)
+            {
+                Department node = (Department)tv_department.SelectedNode.Tag;
+                if (DepartmentGateway.DeleteDepartment(node.de_id.Value))
+                {
+                    tv_department.SelectedNode.Remove();
+                }
+            }
+        }
 
         //重命名
         private void tsm_rename_Click(object sender, EventArgs e)
