@@ -23,7 +23,8 @@ namespace FireProductManager.ServiceLogicPackage.Tests
         public void BorrowPackageTest()
         {
             int packageid = 1;
-            RecordOperationGateway.BorrowPackage(packageid);
+            int employeeid = 1;
+            RecordOperationGateway.BorrowPackage(packageid,employeeid);
         }
 
         [TestMethod()]
@@ -31,7 +32,7 @@ namespace FireProductManager.ServiceLogicPackage.Tests
         {
             int packageid = 1;
             int barrelid = 1;
-            RecordOperationGateway.ReturnPackage(packageid,barrelid);
+            RecordOperationGateway.ReturnPackage(packageid, barrelid);
         }
     }
 }

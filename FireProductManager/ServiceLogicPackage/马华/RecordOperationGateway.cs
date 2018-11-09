@@ -18,7 +18,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //借包
-        public static void BorrowPackage(int packageid)
+        public static void BorrowPackage(int packageid,int employeeid)
         {
             if (IsPackageIdValid(packageid))
             {
@@ -26,11 +26,18 @@ namespace FireProductManager.ServiceLogicPackage
                 package.pa_id = packageid;
                 package.pa_isinWarehouse = 1;
                 package.Update();
+
+                InOutRecord inOutRecord = new InOutRecord();
+                inOutRecord.ior_packageId = packageid;
+                inOutRecord.ior_employeeId = employeeid;
+                inOutRecord.ior_direction = "出库";
+                inOutRecord.ior_timeStmp = DateTime.Now;
+                inOutRecord.Insert();
             }    
         }
 
         //还包
-        public static void ReturnPackage(int packageid,int barrelid)
+        public static void ReturnPackage(int packageid,int barrelid,int employeeid)
         {
             if (IsPackageIdValid(packageid))
             {
@@ -39,10 +46,17 @@ namespace FireProductManager.ServiceLogicPackage
                 package.pa_isinWarehouse = 0;
                 package.pa_barrelId = barrelid;
                 package.Update();
+
+                InOutRecord inOutRecord = new InOutRecord();
+                inOutRecord.ior_packageId = packageid;
+                inOutRecord.ior_employeeId = employeeid;
+                inOutRecord.ior_direction = "入库";
+                inOutRecord.ior_timeStmp = DateTime.Now;
+                inOutRecord.Insert();
             }
         }
 
-        //判断包id是否存在
+        //判断packageid是否存在
         private static bool IsPackageIdValid(int packageid)
         {
             SelectSqlMaker maker = new SelectSqlMaker("package");

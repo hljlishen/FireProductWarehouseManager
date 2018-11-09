@@ -1,11 +1,6 @@
 ﻿using DbLink;
 using FireProductManager.EntityPackage;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -54,7 +49,6 @@ namespace FireProductManager.ServiceLogicPackage
             {
                 weigth += double.Parse(dr["pa_weight"].ToString());
             }
-
             return weigth;
         }
 
@@ -63,7 +57,7 @@ namespace FireProductManager.ServiceLogicPackage
         {
             int barrelid = 0;
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
-            maker.AddAndCondition(new IntEqual("Ba_IsRemoved",0));
+            maker.AddAndCondition(new IntEqual("ba_isRemoved",0));
             string sql = maker.MakeSelectSql();
             DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
 
@@ -81,7 +75,7 @@ namespace FireProductManager.ServiceLogicPackage
         private static bool IsBarrelIdValid(int barrelid)
         {
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
-            maker.AddAndCondition(new IntEqual("ba_Id", barrelid));
+            maker.AddAndCondition(new IntEqual("ba_id", barrelid));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dt.Rows.Count > 0)
             {
