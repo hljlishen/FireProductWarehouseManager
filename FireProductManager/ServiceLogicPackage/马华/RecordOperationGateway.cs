@@ -17,43 +17,34 @@ namespace FireProductManager.ServiceLogicPackage
             return query;
         }
 
-        //借包   ？？增加了employeeid
+        //借包
         public static void BorrowPackage(int packageid,int employeeid)
         {
-            if (IsPackageIdValid(packageid))
-            {
-                Package package = new Package();
-                package.pa_id = packageid;
-                package.pa_isinWarehouse = 1;
-                package.Update();
+            if (!IsPackageIdValid(packageid)) return;
 
-                InOutRecord inOutRecord = new InOutRecord();
-                inOutRecord.ior_packageId = packageid;
-                inOutRecord.ior_employeeId = employeeid;
-                inOutRecord.ior_direction = "出库";
-                inOutRecord.ior_timeStmp = DateTime.Now;
-                inOutRecord.Insert();
-            }    
+            PackageGateway.BorrowPackage(packageid);
+
+            InOutRecord inOutRecord = new InOutRecord();
+            inOutRecord.ior_packageId = packageid;
+            inOutRecord.ior_employeeId = employeeid;
+            inOutRecord.ior_direction = "出库";
+            inOutRecord.ior_timeStmp = DateTime.Now;
+            inOutRecord.Insert();
         }
 
-        //还包  ？？增加了employeeid
+        //还包
         public static void ReturnPackage(int packageid,int barrelid,int employeeid)
         {
-            if (IsPackageIdValid(packageid))
-            {
-                Package package = new Package();
-                package.pa_id = packageid;
-                package.pa_isinWarehouse = 0;
-                package.pa_barrelId = barrelid;
-                package.Update();
+            if (!IsPackageIdValid(packageid)) return;
+            
+            PackageGateway.ReturnPackage(packageid, barrelid);
 
-                InOutRecord inOutRecord = new InOutRecord();
-                inOutRecord.ior_packageId = packageid;
-                inOutRecord.ior_employeeId = employeeid;
-                inOutRecord.ior_direction = "入库";
-                inOutRecord.ior_timeStmp = DateTime.Now;
-                inOutRecord.Insert();
-            }
+            InOutRecord inOutRecord = new InOutRecord();
+            inOutRecord.ior_packageId = packageid;
+            inOutRecord.ior_employeeId = employeeid;
+            inOutRecord.ior_direction = "入库";
+            inOutRecord.ior_timeStmp = DateTime.Now;
+            inOutRecord.Insert();  
         }
 
         //判断packageid是否存在
@@ -63,9 +54,7 @@ namespace FireProductManager.ServiceLogicPackage
             maker.AddAndCondition(new IntEqual("pa_id", packageid));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dt.Rows.Count > 0)
-            {
                 return true;
-            }
             return false;
         }
     }
