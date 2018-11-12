@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrUpdateEmployee));
             this.La_addoralter = new System.Windows.Forms.Label();
             this.la_number = new System.Windows.Forms.Label();
             this.la_employeesname = new System.Windows.Forms.Label();
@@ -35,7 +36,7 @@
             this.Rb_sexman = new System.Windows.Forms.RadioButton();
             this.Rb_sexwoman = new System.Windows.Forms.RadioButton();
             this.tb_name = new System.Windows.Forms.TextBox();
-            this.tb_employeesid = new System.Windows.Forms.TextBox();
+            this.tb_employeesnumber = new System.Windows.Forms.TextBox();
             this.Bt_addemployee = new System.Windows.Forms.Button();
             this.Gb_sex = new System.Windows.Forms.GroupBox();
             this.la_companyname = new System.Windows.Forms.Label();
@@ -44,7 +45,7 @@
             this.la_company = new System.Windows.Forms.Label();
             this.la_department = new System.Windows.Forms.Label();
             this.la_group = new System.Windows.Forms.Label();
-            this.bt_alteremployee = new System.Windows.Forms.Button();
+            this.bt_updateemployee = new System.Windows.Forms.Button();
             this.tv_departmentshow = new System.Windows.Forms.TreeView();
             this.la_errornumber = new System.Windows.Forms.Label();
             this.la_errorname = new System.Windows.Forms.Label();
@@ -127,13 +128,13 @@
             this.tb_name.Size = new System.Drawing.Size(106, 26);
             this.tb_name.TabIndex = 10;
             // 
-            // tb_employeesid
+            // tb_employeesnumber
             // 
-            this.tb_employeesid.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_employeesid.Location = new System.Drawing.Point(105, 243);
-            this.tb_employeesid.Name = "tb_employeesid";
-            this.tb_employeesid.Size = new System.Drawing.Size(106, 26);
-            this.tb_employeesid.TabIndex = 11;
+            this.tb_employeesnumber.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_employeesnumber.Location = new System.Drawing.Point(105, 243);
+            this.tb_employeesnumber.Name = "tb_employeesnumber";
+            this.tb_employeesnumber.Size = new System.Drawing.Size(106, 26);
+            this.tb_employeesnumber.TabIndex = 11;
             // 
             // Bt_addemployee
             // 
@@ -216,16 +217,16 @@
             this.la_group.TabIndex = 19;
             this.la_group.Text = "员工小组";
             // 
-            // bt_alteremployee
+            // bt_updateemployee
             // 
-            this.bt_alteremployee.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bt_alteremployee.Location = new System.Drawing.Point(234, 541);
-            this.bt_alteremployee.Name = "bt_alteremployee";
-            this.bt_alteremployee.Size = new System.Drawing.Size(80, 30);
-            this.bt_alteremployee.TabIndex = 21;
-            this.bt_alteremployee.Text = "修改";
-            this.bt_alteremployee.UseVisualStyleBackColor = true;
-            this.bt_alteremployee.Click += new System.EventHandler(this.bt_alteremployee_Click);
+            this.bt_updateemployee.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.bt_updateemployee.Location = new System.Drawing.Point(234, 541);
+            this.bt_updateemployee.Name = "bt_updateemployee";
+            this.bt_updateemployee.Size = new System.Drawing.Size(80, 30);
+            this.bt_updateemployee.TabIndex = 21;
+            this.bt_updateemployee.Text = "修改";
+            this.bt_updateemployee.UseVisualStyleBackColor = true;
+            this.bt_updateemployee.Click += new System.EventHandler(this.bt_alteremployee_Click);
             // 
             // tv_departmentshow
             // 
@@ -305,7 +306,7 @@
             this.Controls.Add(this.la_errorname);
             this.Controls.Add(this.la_errornumber);
             this.Controls.Add(this.tv_departmentshow);
-            this.Controls.Add(this.bt_alteremployee);
+            this.Controls.Add(this.bt_updateemployee);
             this.Controls.Add(this.la_group);
             this.Controls.Add(this.la_department);
             this.Controls.Add(this.la_company);
@@ -314,12 +315,13 @@
             this.Controls.Add(this.la_companyname);
             this.Controls.Add(this.Gb_sex);
             this.Controls.Add(this.Bt_addemployee);
-            this.Controls.Add(this.tb_employeesid);
+            this.Controls.Add(this.tb_employeesnumber);
             this.Controls.Add(this.tb_name);
             this.Controls.Add(this.la_employeessex);
             this.Controls.Add(this.la_employeesname);
             this.Controls.Add(this.la_number);
             this.Controls.Add(this.La_addoralter);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddOrUpdateEmployee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "编辑员工信息";
@@ -342,7 +344,7 @@
         private System.Windows.Forms.RadioButton Rb_sexman;
         private System.Windows.Forms.RadioButton Rb_sexwoman;
         private System.Windows.Forms.TextBox tb_name;
-        private System.Windows.Forms.TextBox tb_employeesid;
+        private System.Windows.Forms.TextBox tb_employeesnumber;
         private System.Windows.Forms.Button Bt_addemployee;
         private System.Windows.Forms.GroupBox Gb_sex;
         private System.Windows.Forms.Label la_companyname;
@@ -351,7 +353,7 @@
         private System.Windows.Forms.Label la_company;
         private System.Windows.Forms.Label la_department;
         private System.Windows.Forms.Label la_group;
-        private System.Windows.Forms.Button bt_alteremployee;
+        private System.Windows.Forms.Button bt_updateemployee;
         private System.Windows.Forms.TreeView tv_departmentshow;
         private System.Windows.Forms.Label la_errornumber;
         private System.Windows.Forms.Label la_errorname;

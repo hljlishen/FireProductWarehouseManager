@@ -74,7 +74,6 @@
             resources.ApplyResources(this.bt_foundnowgroup, "bt_foundnowgroup");
             this.bt_foundnowgroup.Name = "bt_foundnowgroup";
             this.bt_foundnowgroup.UseVisualStyleBackColor = true;
-           // this.bt_foundnowgroup.Click += new System.EventHandler(this.bt_foundnowgroup_Click);
             // 
             // bt_addemployee
             // 
@@ -172,7 +171,6 @@
             // 
             resources.ApplyResources(this.tv_department, "tv_department");
             this.tv_department.Name = "tv_department";
-           // this.tv_department.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_department_AfterSelect);
             this.tv_department.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tv_department_MouseDown);
             // 
             // tb_foundname
@@ -265,7 +263,7 @@
             // 
             this.tsm_delete.Name = "tsm_delete";
             resources.ApplyResources(this.tsm_delete, "tsm_delete");
-            //this.tsm_delete.Click += new System.EventHandler(this.tsm_delete_Click);
+            this.tsm_delete.Click += new System.EventHandler(this.tsm_delete_Click);
             // 
             // tsm_rename
             // 
@@ -289,7 +287,7 @@
             this.Controls.Add(this.tv_department);
             this.Controls.Add(this.bt_addemployee);
             this.Controls.Add(this.dgv_employeeinformation);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "EmployeeManagement";
             this.Load += new System.EventHandler(this.index_employees_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_employeeinformation)).EndInit();

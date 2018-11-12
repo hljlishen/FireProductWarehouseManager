@@ -134,11 +134,11 @@ namespace FireProductManager.ServiceLogicPackage
         //部门名字查重
         private static void NodeDuplicateChecking(Department department)
         {
-            SelectSqlMaker maker = new SelectSqlMaker("t_department");
+            SelectSqlMaker maker = new SelectSqlMaker("department");
             maker.AddAndCondition(new StringEqual("de_name", department.de_name));
             maker.AddAndCondition(new IntEqual("de_belongid", department.de_belongId.Value));
             DataTable departmentDataTable = department.Select(maker.MakeSelectSql());
-            if (departmentDataTable.Rows.Count != 0)
+            if (departmentDataTable.Rows.Count == 0)
             {
                 return;
             }
@@ -149,7 +149,7 @@ namespace FireProductManager.ServiceLogicPackage
         public static void LoadTreeView(TreeView treeView, int parentId = 0)
         {
             Department department = new Department();
-            SelectSqlMaker maker = new SelectSqlMaker("t_department");
+            SelectSqlMaker maker = new SelectSqlMaker("department");
             maker.AddAndCondition(new IntEqual("de_belongid", parentId));
             DataTable dataTable = department.Select(maker.MakeSelectSql());
             if (dataTable.Rows.Count == 0) return;
@@ -166,7 +166,7 @@ namespace FireProductManager.ServiceLogicPackage
                 Department department = new Department();
                 department.LoadDataRow(row);
                 node.Text = row["de_name"].ToString();
-                node.Tag = department;
+                node.Tag = row["de_id"];
                 pId = (int)row["de_belongid"];
                 if (pId == 0)
                 {
@@ -228,6 +228,25 @@ namespace FireProductManager.ServiceLogicPackage
                 list.Add(p);
             }
             return list;
+        }
+
+        //查询节点名字，以及父节点名
+        public static List<string> DepartmentName(int departmentid)
+        {
+            Department department = new Department();
+            department.de_id = departmentid;
+            List<string> mList = new List<string>();
+            while (true)
+            {
+                SelectSqlMaker maker = new SelectSqlMaker("department");
+                maker.AddAndCondition(new IntEqual("de_id", departmentid));
+                DataTable departmentDataTable = department.Select(maker.MakeSelectSql());
+                DataRow myDr = departmentDataTable.Rows[0];
+                mList.Add(myDr["de_name"].ToString());
+                if ((int)myDr["de_belongid"] == 0) break;
+                departmentid = (int)myDr["de_belongid"];
+            }
+            return mList;
         }
     }
 }
