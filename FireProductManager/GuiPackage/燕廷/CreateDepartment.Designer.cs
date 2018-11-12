@@ -45,7 +45,7 @@
             this.bt_alter.TabIndex = 10;
             this.bt_alter.Text = "修改";
             this.bt_alter.UseVisualStyleBackColor = true;
-            //this.bt_alter.Click += new System.EventHandler(this.bt_alter_Click);
+            this.bt_alter.Click += new System.EventHandler(this.bt_alter_Click);
             // 
             // tb_nodename
             // 
@@ -87,7 +87,7 @@
             this.la_nodenametext.TabIndex = 6;
             this.la_nodenametext.Text = "输入节点名称：";
             // 
-            // GetDepartmentNodeName
+            // CreateDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -99,7 +99,7 @@
             this.Controls.Add(this.bt_sure);
             this.Controls.Add(this.la_nodenametext);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "GetDepartmentNodeName";
+            this.Name = "CreateDepartment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "部门编辑";
             this.Load += new System.EventHandler(this.GetDepartmentNodeName_Load);

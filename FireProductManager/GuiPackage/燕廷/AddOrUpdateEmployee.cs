@@ -15,54 +15,31 @@ namespace cangku_01.view.EmployeesManagement
     public partial class AddOrUpdateEmployee : Form
     {
         ImageManager getSetImagePath = new ImageManager();
-        private EmployeeManagement _employeefrom;
         private int _employeeid;
         private string _employeenumber;
         private string _name;
         private string _sex;
-        private int _departmentid;
+        private int _departmentid = -1;
         private string _companyname;
         private string _departmentname;
         private string _groupname;
-        private int _index;
 
         //添加页面状态
-        public AddOrUpdateEmployee(EmployeeManagement form)
+        public AddOrUpdateEmployee()
         {
             InitializeComponent();
-
-            _employeefrom = form;
-
-            bt_alteremployee.Visible = false;
-            
+            bt_updateemployee.Visible = false;
             pb_employeephoto.Image = Image.FromFile(getSetImagePath.DefualtEmployeeImagePath);
         }
 
         //修改页面状态
-        public AddOrUpdateEmployee(EmployeeManagement from , Employee employee, string company, string department, string group ,int index)
+        public AddOrUpdateEmployee(int employeeId)
         {
             InitializeComponent();
-
-            _employeefrom = from;
-            _index = index;
             La_addoralter.Text = "修改员工";
-            tb_employeesid.Text = employee.em_employeenumber.ToString();
-            tb_name.Text = employee.em_name;
-            if (employee.em_sex.Equals("男"))
-            {
-                Rb_sexman.Checked = true;
-            }
-            else
-            {
-                Rb_sexwoman.Checked = true;
-            }
-            la_company.Text = company;
-            la_department.Text = department;
-            la_group.Text = group;
-            pb_employeephoto.Image = Image.FromFile(getSetImagePath.GetEmployeeImagePath(employee.em_employeenumber));
-
+            ShowEmployeeInformation(employeeId);
             Bt_addemployee.Visible = false;
-            tb_employeesid.ReadOnly = true;  
+            tb_employeesnumber.ReadOnly = true;  
         }
 
         //加载部门树状图
@@ -73,6 +50,36 @@ namespace cangku_01.view.EmployeesManagement
             tv_departmentshow.ExpandAll();
         }
 
+        //员工信息展示
+        private void ShowEmployeeInformation(int employeeid)
+        {
+            _employeeid = employeeid;
+            _employeenumber = EmployeeGateway.GetEmployeeInformation(employeeid).em_employeenumber;
+            _name = EmployeeGateway.GetEmployeeInformation(employeeid).em_name;
+            _sex = EmployeeGateway.GetEmployeeInformation(employeeid).em_sex;
+            _departmentid = EmployeeGateway.GetEmployeeInformation(employeeid).em_departmentid.Value;
+            List<string> list = DepartmentGateway.DepartmentName(EmployeeGateway.GetEmployeeInformation(employeeid).em_departmentid.Value);
+            _companyname = list[2];
+            _departmentname = list[1];
+            _groupname = list[0];
+
+            tb_employeesnumber.Text = _employeenumber;
+            tb_name.Text = _name;
+            if (_sex.Equals("男"))
+            {
+                Rb_sexman.Checked = true;
+            }
+            else
+            {
+                Rb_sexwoman.Checked = true;
+            }
+            la_company.Text = list[2];
+            la_department.Text = list[1];
+            la_group.Text = list[0];
+
+            pb_employeephoto.Image = Image.FromFile(getSetImagePath.GetEmployeeImagePath(EmployeeGateway.GetEmployeeInformation(employeeid).em_employeenumber));
+        }
+
         //添加员工
         private void Bt_addemployee_Click(object sender, EventArgs e)
         {
@@ -80,51 +87,26 @@ namespace cangku_01.view.EmployeesManagement
             EmployeeGateway.NewEmployee(_employeenumber,_name,_sex,_departmentid);
             getSetImagePath.SaveEmployeeImage(_employeenumber);
             AutoClosingMessageBox.Show("员工信息添加成功", "员工信息添加", 1000);
-            _index = _employeefrom.dgv_employeeinformation.Rows.Add();
-            AddOneEmployeeToTheDataGridView();
             Close();
         }
 
         //获取员工信息
         public void GetEmployeeInformation()
         {
-            _employeenumber = tb_employeesid.Text.ToString();
+            _employeenumber = tb_employeesnumber.Text.ToString();
             _name = tb_name.Text.ToString();
             if (Rb_sexman.Checked) _sex = "男";
             else _sex = "女";
-            _companyname = la_company.Text;
-            _departmentname = la_department.Text;
-            _groupname = la_group.Text;
-        }
-
-        //给DataGridView添加一行数据
-        public void AddOneEmployeeToTheDataGridView()
-        {
-            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[0].Value = _employeenumber;
-            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[1].Value = _name;
-            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[2].Value = _sex;
-            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[3].Value = _companyname;
-            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[4].Value = _departmentname;
-            _employeefrom.dgv_employeeinformation.Rows[_index].Cells[5].Value = _groupname;
         }
 
         //员工信息修改
         private void bt_alteremployee_Click(object sender, EventArgs e)
         {
             GetEmployeeInformation();
-            if (_departmentid == 0)
-            {
-                DataTable dt = _employee.EmployeeNumberFindEmployee();
-                DataRow myDr = dt.Rows[0];
-                _employee.DepartmentId = (int)myDr["em_departmentid"];
-            }
             EmployeeGateway.UpdateEmployee(_employeeid,_employeenumber,_name,_sex,_departmentid);
             pb_employeephoto.Image.Dispose();
             getSetImagePath.SaveEmployeeImage(_employeenumber);
             AutoClosingMessageBox.Show("员工信息修改成功", "员工信息修改", 1000);
-            Employee employee = new Employee();
-            DataTable datatable = employee.QueryAllEmployee();//将全部员工加载
-            _employeefrom.ShowDataGridView(datatable);
             Close();
         }
 

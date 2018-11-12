@@ -151,6 +151,9 @@
     <EmbeddedResource Include="GuiPackage\燕廷\Confirm.resx">
       <DependentUpon>Confirm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\燕廷\CreateDepartment.resx">
+      <DependentUpon>CreateDepartment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\燕廷\EmployeeManagement.resx">
       <DependentUpon>EmployeeManagement.cs</DependentUpon>
     </EmbeddedResource>

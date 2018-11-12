@@ -13,7 +13,7 @@ namespace FireProductManager.EntityPackage
         public string em_employeenumber { get; set; }
         public string em_name { get; set; }
         public string em_sex { get; set; }
-        public int? em_departmentId { get; set; }
+        public int? em_departmentid { get; set; }
 
         public Employee() : base("employee", "em_id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {

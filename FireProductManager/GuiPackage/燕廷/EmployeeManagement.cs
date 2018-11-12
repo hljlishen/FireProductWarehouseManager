@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
-using FireProductManager.EntityPackage;
 using FireProductManager.ServiceLogicPackage;
-using cangku_01.view.AdminPage;
 
 //员工信息管理页面
 
@@ -69,7 +67,7 @@ namespace cangku_01.view.EmployeesManagement
         //添加员工
         private void bt_addemployee_Click(object sender, EventArgs e)
         {
-            AddOrUpdateEmployee add = new AddOrUpdateEmployee(this);
+            AddOrUpdateEmployee add = new AddOrUpdateEmployee();
             add.Show();
         }
 
@@ -78,33 +76,39 @@ namespace cangku_01.view.EmployeesManagement
         {
             if (e.ColumnIndex == 6)//点击在删除按钮上
             {
-                if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {  
-                    Employee employee = new Employee();
-                    employee.em_employeenumber = dgv_employeeinformation.CurrentRow.Cells[0].Value.ToString();
-                    //if (employee.EmployeeIdDeleteEmployee())
-                    //{
-                    //    ImageManager getSetImagePath = new ImageManager();
-                    //    getSetImagePath.DeleteEmployeeImage(employee.em_employeenumber);
-                    //    dgv_employeeinformation.Rows.RemoveAt(e.RowIndex);//从DGV移除
-                    //}
-                }
+                if(DeleteEmployee()) dgv_employeeinformation.Rows.RemoveAt(e.RowIndex);
+
             }
 
             if (e.ColumnIndex == 7)//点击在修改按钮上
             {
-                if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                UpdateEmployee();
+            }
+        }
+
+        private bool DeleteEmployee()
+        {
+            if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[8].Value;
+                string employeenumber = dgv_employeeinformation.CurrentRow.Cells[0].Value.ToString();
+                if (EmployeeGateway.DeleteEmployee(employeeid))
                 {
-                    Employee em = new Employee();
-                    em.em_employeenumber = dgv_employeeinformation.CurrentRow.Cells[0].Value.ToString();
-                    em.em_name = dgv_employeeinformation.CurrentRow.Cells[1].Value.ToString();
-                    em.em_sex = dgv_employeeinformation.CurrentRow.Cells[2].Value.ToString();
-                    string company = dgv_employeeinformation.CurrentRow.Cells[3].Value.ToString();
-                    string department = dgv_employeeinformation.CurrentRow.Cells[4].Value.ToString();
-                    string group = dgv_employeeinformation.CurrentRow.Cells[5].Value.ToString();
-                    AddOrUpdateEmployee add = new AddOrUpdateEmployee(this,em, company, department, group,e.RowIndex);
-                    add.Show();
-                }
+                    ImageManager getSetImagePath = new ImageManager();
+                    getSetImagePath.DeleteEmployeeImage(employeenumber);
+                    return true;
+                }  
+            }
+            return false;
+        }
+
+        private void UpdateEmployee()
+        {
+            if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+               int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[8].Value;
+                AddOrUpdateEmployee update = new AddOrUpdateEmployee(employeeid);
+                update.Show();
             }
         }
         #endregion
@@ -184,7 +188,7 @@ namespace cangku_01.view.EmployeesManagement
         //    _treenode = e.Node;
         //    ShowDataGridView(dataTable);
 
-            
+
         //}
         #endregion
 
@@ -245,8 +249,8 @@ namespace cangku_01.view.EmployeesManagement
                     tsm_newcompany.Visible = true;
                     tsm_newdepartment.Visible = false;
                     tsm_newgroup.Visible = false;
-                    tsm_delete.Visible = true;
-                    tsm_rename.Visible = true;
+                    tsm_delete.Visible = false;
+                    tsm_rename.Visible = false;
                     cms_employeetreeview.Show(MousePosition);
                     break;
             }
@@ -291,12 +295,10 @@ namespace cangku_01.view.EmployeesManagement
         //删除
         private void tsm_delete_Click(object sender, EventArgs e)
         {
-            Confirm cf = new Confirm("确定删除该节点？");
-            cf.ShowDialog();
-            if (cf.DialogResult == DialogResult.OK)
+            if (MessageBox.Show("确定删除该节点？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Department node = (Department)tv_department.SelectedNode.Tag;
-                if (DepartmentGateway.DeleteDepartment(node.de_id.Value))
+                int nodeid = (int)tv_department.SelectedNode.Tag;
+                if (DepartmentGateway.DeleteDepartment(nodeid))
                 {
                     tv_department.SelectedNode.Remove();
                 }
@@ -354,6 +356,5 @@ namespace cangku_01.view.EmployeesManagement
             ExcelOperator.DataGridViewToExcel(dgv_employeeinformation, true);
         }
         #endregion
-
     }
 }
