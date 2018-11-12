@@ -17,7 +17,7 @@ namespace FireProductManager.ServiceLogicPackage
             return query;
         }
 
-        //借包
+        //借包   ？？增加了employeeid
         public static void BorrowPackage(int packageid,int employeeid)
         {
             if (IsPackageIdValid(packageid))
@@ -36,7 +36,7 @@ namespace FireProductManager.ServiceLogicPackage
             }    
         }
 
-        //还包
+        //还包  ？？增加了employeeid
         public static void ReturnPackage(int packageid,int barrelid,int employeeid)
         {
             if (IsPackageIdValid(packageid))

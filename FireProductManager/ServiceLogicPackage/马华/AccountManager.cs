@@ -16,6 +16,7 @@ namespace FireProductManager.ServiceLogicPackage
             return false;
         }
 
+        //注销的方式
         public static void Logout()
         {
             Form1 form = new Form1();

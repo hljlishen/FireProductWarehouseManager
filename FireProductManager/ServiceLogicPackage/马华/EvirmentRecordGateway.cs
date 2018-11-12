@@ -20,7 +20,7 @@ namespace FireProductManager.ServiceLogicPackage
         private IEvirmentDevice device;
         bool shouldRecord = true;
 
-        //初始化函数??
+        //初始化函数  ？？DataReceived与NewEvirmentData是否可以写在一起
         public EvirmentRecordGateway()
         {
             device.DataReceived += DataReceivedHandle;
