@@ -11,7 +11,7 @@ namespace FireProductManager.ServiceLogicPackage
     {
         public delegate void NewEvirmentDataHandler(double temp, double humi);
 
-        public event NewEvirmentDataHandler NewEvirmentData;
+        public event NewEvirmentDataHandler NewEvirmentData;//向外传的时候
 
         private Timer updateDisplay;//更新显示
         private int updateDisplayInterval; //更新显示的时间间隔 
@@ -20,7 +20,7 @@ namespace FireProductManager.ServiceLogicPackage
         private IEvirmentDevice device;
         bool shouldRecord = true;
 
-        //初始化函数  ？？DataReceived与NewEvirmentData是否可以写在一起
+        //初始化函数     当时间到存储数据时间将最后一组数据传入
         public EvirmentRecordGateway()
         {
             device.DataReceived += DataReceivedHandle;
@@ -30,7 +30,6 @@ namespace FireProductManager.ServiceLogicPackage
             updateDisplay.Tick += Timer_Tick;
             updateDisplay.Start();
 
-            NewEvirmentData += RecordEvirmentData;
             writeDatabaseInterval = 300000;
             writeDatabase = new Timer();
             writeDatabase.Interval = writeDatabaseInterval;
