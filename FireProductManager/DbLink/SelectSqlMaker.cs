@@ -159,5 +159,7 @@ namespace DbLink
                 throw new Exception($"{field}不能重复添加");
             }
         }
+
+        public string MakeSelectMaxSql(string fieldName) => $"select MAX({fieldName}) from {_tableName}";
     }
 }
