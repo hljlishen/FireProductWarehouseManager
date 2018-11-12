@@ -11,9 +11,7 @@ namespace FireProductManager.ServiceLogicPackage
 
         public static bool Login(string accounts,string password)
         {
-            if (IsAccountValid(accounts, password))
-                return true;
-            return false;
+            return IsAccountValid(accounts, password);
         }
 
         //注销的方式
@@ -38,7 +36,7 @@ namespace FireProductManager.ServiceLogicPackage
             return false;
         }
 
-        private static bool IsAccountValid(string accounts, string password)
+        private static bool IsAccountValid(string accounts, string password)    //????????????函数没有意义，应该对account赋值
         {
             SelectSqlMaker maker = new SelectSqlMaker("account");
             maker.AddAndCondition(new StringEqual("ac_account", accounts));
@@ -47,13 +45,15 @@ namespace FireProductManager.ServiceLogicPackage
             DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dt.Rows.Count > 0)
             {
-                GetAdministratorAuthorityLevel(accounts,password);
+                //GetAdministratorAuthorityLevel(accounts,password);
+                account = new Account();
+                account.LoadDataRow(dt.Rows[0]);
                 return true;
             }  
             return false;
         }
 
-        private static void GetAdministratorAuthorityLevel(string accounts, string password)
+        private static void GetAdministratorAuthorityLevel(string accounts, string password)    //不应每次查询数据库
         {
             int authorityLevel = 0;
             SelectSqlMaker maker = new SelectSqlMaker("account");

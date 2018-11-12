@@ -3,6 +3,7 @@ using FireProductManager.EntityPackage;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -33,7 +34,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //该桶是否存在
-        private static void HasBarrel(int barrelId)
+        private static void HasBarrel(int barrelId) //？？？？？？？放在barrel类里
         {
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
             maker.AddAndCondition(new IntEqual("ba_id", barrelId));
@@ -73,19 +74,28 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("Package");
             DataTable dataTable = package.Select(maker.MakeSelectSql());
 
-            foreach (DataRow dr in dataTable.Rows)
+            foreach (DataRow dr in dataTable.Rows)  //dictionary用法不对？？？？？？？？？？，大段重复代码
             {
-                Dictionary<string, double>.KeyCollection keyCol = keyValuePairs.Keys;
-                foreach (string key in keyCol)
+                string key = (string) dr["pa_modle"];
+                if (keyValuePairs.Keys.Contains(key))
                 {
-                    if (key.Equals((string)dr["pa_modle"]))
-                    {
-                        double modelweighs = keyValuePairs[key] + (double)dr["em_weight"];
-                        keyValuePairs.Remove(key);
-                        keyValuePairs.Add(key, modelweighs);
-                    }
+                    keyValuePairs[key] += (double)dr["em_weight"];
                 }
-                keyValuePairs.Add((string)dr["pa_modle"], (double)dr["em_weight"]);
+                else
+                {
+                    keyValuePairs.Add((string) dr["pa_modle"], (double) dr["em_weight"]);
+                }
+                //Dictionary<string, double>.KeyCollection keyCol = keyValuePairs.Keys;
+                //foreach (string key in keyCol)
+                //{
+                //    if (key.Equals((string)dr["pa_modle"]))
+                //    {
+                //        double modelweighs = keyValuePairs[key] + (double)dr["em_weight"];
+                //        keyValuePairs.Remove(key);
+                //        keyValuePairs.Add(key, modelweighs);
+                //    }
+                //}
+                //keyValuePairs.Add((string)dr["pa_modle"], (double)dr["em_weight"]);
             }
             return keyValuePairs;
         }

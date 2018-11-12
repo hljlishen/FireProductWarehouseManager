@@ -15,26 +15,23 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //删除员工
-        public static bool DeleteEmployee(int employeeId)
+        public static void DeleteEmployee(int employeeId)   //？？？？？？返回值不必要
         {
             Employee employee = new Employee();
             employee.em_id = employeeId;
-            HasEmployee(employee);
+            if(!HasEmployee(employee))
+                throw new Exception("12323231");
             employee.Delete();
-            return true;
+            return ;
         }
 
         //员工是否存在
-        private static void HasEmployee(Employee employee)
+        private static bool HasEmployee(Employee employee)  //应返回bool？？？？？？？？
         {
             SelectSqlMaker maker = new SelectSqlMaker("employee");
             maker.AddAndCondition(new IntEqual("em_id", employee.em_id.Value));
             DataTable dataTable = employee.Select(maker.MakeSelectSql());
-            if (dataTable.Rows.Count == 0)
-            {
-                throw new Exception("不存在该员工");
-            }
-            return;
+            return dataTable.Rows.Count != 0;
         }
 
         //修改员工
@@ -73,7 +70,7 @@ namespace FireProductManager.ServiceLogicPackage
         //em_employeenumber验证
         private static void IdValidation(Employee employee, Operation operation)
         {
-            if (employee.em_employeenumber.Equals("")) {
+            if (employee.em_employeenumber.Equals("")) {    
                 throw new Exception("员工编号不能为空");
             }
             switch (operation)
@@ -101,16 +98,14 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //更新EmployeeNumber
-        private static void UpdateEmployeeNumber(Employee employee)
+        private static void UpdateEmployeeNumber(Employee employee)     //？？？？？？
         {
             SelectSqlMaker maker = new SelectSqlMaker("employee");
             maker.AddAndCondition(new IntEqual("em_id", employee.em_id.Value));
             DataTable dataTable = employee.Select(maker.MakeSelectSql());
             Employee em = new Employee();
-            foreach (DataRow dr in dataTable.Rows)
-            {
-                em.LoadDataRow(dr);
-            }
+
+            em.LoadDataRow(dataTable.Rows[0]);
 
             if (em.em_employeenumber == employee.em_employeenumber) return;
 

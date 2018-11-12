@@ -14,26 +14,26 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //记录新桶
-        public static Barrel RecordNewBarrel()
+        public static int RecordNewBarrel()  //？？？？？？？返回值改为int， 返回barrelId，先调用FindAvailableBarrelId
         {
             Barrel barrel = new Barrel();
+            barrel.ba_id = FindAvailableBarrelId();
             barrel.ba_isRemoved = 0; //0为存在，1为不存在
             barrel.Insert();
-            barrel.ba_id = FindAvailableBarrelId();
-            return barrel;
+            
+            return barrel.ba_id.Value;
         }
 
         //删除桶
-        public static bool RemoveBarrel(int barrelid)
+        public static bool RemoveBarrel(int barrelid)       //？？？？？？？？结构可以重构
         {
+            if (!IsBarrelIdValid(barrelid)) return false;
+
             Barrel barrel = new Barrel();
             barrel.ba_id = barrelid;
-            if (IsBarrelIdValid(barrelid))
-            {
-                barrel.Delete();
-                return true;
-            }
-            return false;
+            barrel.Delete();
+
+            return true;
         }
 
         //全重
@@ -53,7 +53,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //找到可用的桶id
-        private static int FindAvailableBarrelId()
+        private static int FindAvailableBarrelId()  //？？？？？？？？？作用？？
         {
             int barrelid = 0;
             SelectSqlMaker maker = new SelectSqlMaker("barrel");

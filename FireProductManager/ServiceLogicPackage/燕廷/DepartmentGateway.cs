@@ -9,16 +9,14 @@ namespace FireProductManager.ServiceLogicPackage
 {
     class DepartmentGateway
     {
-        private static List<int> DepartmentId = new List<int>();
-
         //获取部门下全部员工
-        public static List<Employee> AllEmpolyeesOf(TreeNode treeNode)
+        public static List<Employee> AllEmpolyeesOf(TreeNode treeNode)  //？？？？？？？返回datatable，型参为Id
         {
             List<Employee> list = new List<Employee>();
             Department department = new Department();
-            readNode(treeNode);
+            List<int> DepartmentId = readNode(treeNode);
             DataTable datatable = new DataTable();
-            string sql1 = "select * from t_employee where em_departmentid =";
+            string sql1 = "select * f om t_employee where em_departmentid =";
             string sql2 = " or em_departmentid =";
             string sql = "";
             for (int i = 0; i < DepartmentId.Count; i++)
@@ -35,21 +33,20 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //读取节点的叶子节点ID
-        public static void readNode(TreeNode treeNode)
+        public static List<int> readNode(TreeNode treeNode)      //DepartmentId成员没有意义？？？？
         {
+            List<int> DepartmentId = new List<int>();
             if (treeNode.Nodes.Count == 0)
             {
                 DepartmentId.Add((int)treeNode.Tag);
-                return;
+                return DepartmentId;
             }
             foreach (TreeNode children in treeNode.Nodes)
             {
-                if (children.Nodes.Count == 0)
-                {
-                    DepartmentId.Add((int)children.Tag);
-                }
-                readNode(children);
+                DepartmentId.AddRange(readNode(children));
             }
+
+            return DepartmentId;
         }
 
         //部门删除
@@ -63,7 +60,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //部门删除验证
-        private static void DeleteDepartmentVerification(Department department)
+        private static void DeleteDepartmentVerification(Department department) //？？？？？其实子函数使用的都是Id
         {
             HasDepartment(department);
             HasSonDepartment(department);
@@ -146,14 +143,33 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //加载部门树状图
-        public static void LoadTreeView(TreeView treeView, int parentId = 0)
+        public static void LoadTreeView(TreeView treeView)
         {
             Department department = new Department();
             SelectSqlMaker maker = new SelectSqlMaker("department");
-            maker.AddAndCondition(new IntEqual("de_belongid", parentId));
             DataTable dataTable = department.Select(maker.MakeSelectSql());
             if (dataTable.Rows.Count == 0) return;
-            InitializeNode(treeView, dataTable);
+            TreeNode rootNode = new TreeNode("所有部门");
+            rootNode.Tag = 0;
+            LoadSubNodes(rootNode);
+        }
+
+        private static void LoadSubNodes(TreeNode parentNode)
+        {
+            int parentId = (int)parentNode.Tag;
+            SelectSqlMaker make = new SelectSqlMaker("department");
+            make.AddAndCondition(new IntEqual("de_id", parentId));
+            DataTable dt = ActiveRecord.Select(make.MakeSelectSql(), DbLinkManager.databaseType,
+                DbLinkManager.connectString);
+
+            if (dt.Rows.Count == 0) return;
+
+            foreach (DataRow dataRow in dt.Rows)
+            {
+                TreeNode childNode = new TreeNode((string) dataRow["de_name"]) {Tag = (int) dataRow["de_id"]};
+                parentNode.Nodes.Add(childNode);
+                LoadSubNodes(childNode);
+            }
         }
 
         //Node初始化
@@ -163,8 +179,8 @@ namespace FireProductManager.ServiceLogicPackage
             foreach (DataRow row in dataTable.Rows)
             {
                 TreeNode node = new TreeNode();
-                Department department = new Department();
-                department.LoadDataRow(row);
+                //Department department = new Department();   //？？？？？没有用到department
+                //department.LoadDataRow(row);
                 node.Text = row["de_name"].ToString();
                 node.Tag = row["de_id"];
                 pId = (int)row["de_belongid"];
@@ -231,7 +247,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //查询节点名字，以及父节点名
-        public static List<string> DepartmentName(int departmentid)
+        public static List<string> DepartmentName(int departmentid) //？？？？？函数命名
         {
             Department department = new Department();
             department.de_id = departmentid;

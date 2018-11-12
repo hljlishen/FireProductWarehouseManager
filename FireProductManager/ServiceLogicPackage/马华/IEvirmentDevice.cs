@@ -36,7 +36,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
 
-        public void Close() => _readThread.Abort();
+        public void Close() => _readThread?.Abort();     //？？？？？？？
 
         public void Read()
         {
