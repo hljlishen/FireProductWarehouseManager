@@ -1,17 +1,13 @@
 ﻿using DbLink;
 using FireProductManager.EntityPackage;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
 namespace FireProductManager.ServiceLogicPackage
 {
-    public class EvirmentRecordGateway
+    class EvirmentRecordGateway
     {
         public delegate void NewEvirmentDataHandler(double temp, double humi);
 
@@ -24,7 +20,7 @@ namespace FireProductManager.ServiceLogicPackage
         private IEvirmentDevice device;
         bool shouldRecord = true;
 
-        //初始化函数??
+        //初始化函数  ？？DataReceived与NewEvirmentData是否可以写在一起
         public EvirmentRecordGateway()
         {
             device.DataReceived += DataReceivedHandle;
@@ -46,9 +42,13 @@ namespace FireProductManager.ServiceLogicPackage
         //数据接收处理
         private void DataReceivedHandle(byte[] receiveData)
         {
-            double temp = ((double)receiveData[12] * 256 + receiveData[13]) / 10;
-            double humi = ((double)receiveData[14] * 256 + receiveData[15]) / 10;
-            NewEvirmentData?.Invoke(temp, humi);
+            if (shouldRecord)
+            {
+                double temp = ((double)receiveData[12] * 256 + receiveData[13]) / 10;
+                double humi = ((double)receiveData[14] * 256 + receiveData[15]) / 10;
+                NewEvirmentData?.Invoke(temp, humi);
+            }
+            shouldRecord = false;
         }
 
         //记录数据

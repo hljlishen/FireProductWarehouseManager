@@ -1,11 +1,7 @@
-﻿using FireProductManager.EntityPackage;
-using System;
-using DbLink;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DbLink;
+using FireProductManager.EntityPackage;
 using System.Data;
+using System.Windows.Forms;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -20,15 +16,16 @@ namespace FireProductManager.ServiceLogicPackage
             return false;
         }
 
-        //??
+        //注销的方式
         public static void Logout()
         {
-            
+            Form1 form = new Form1();
+            form.Close();
+            Application.Exit();
         }
 
         public static bool CanReadDatabase()
         {
-            account = new Account();
             if (account.ac_authority == 1 || account.ac_authority == 2)//1为超级管理员，2为普通管理员
                 return true;
             return false;
@@ -36,7 +33,6 @@ namespace FireProductManager.ServiceLogicPackage
 
         public static bool CanWriteDatabase()
         {
-            account = new Account();
             if (account.ac_authority == 1)
                 return true;
             return false;
@@ -50,8 +46,28 @@ namespace FireProductManager.ServiceLogicPackage
             string sql = maker.MakeSelectSql();
             DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dt.Rows.Count > 0)
+            {
+                GetAdministratorAuthorityLevel(accounts,password);
                 return true;
+            }  
             return false;
+        }
+
+        private static void GetAdministratorAuthorityLevel(string accounts, string password)
+        {
+            int authorityLevel = 0;
+            SelectSqlMaker maker = new SelectSqlMaker("account");
+            maker.AddAndCondition(new StringEqual("ac_account", accounts));
+            maker.AddAndCondition(new StringEqual("ac_password", password));
+            string sql = maker.MakeSelectSql();
+            DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                authorityLevel = int.Parse(dr["ac_authority"].ToString());
+                account = new Account();
+                account.ac_authority = authorityLevel;
+            }
         }
     }
 }

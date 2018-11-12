@@ -24,6 +24,13 @@ namespace FireProductManager.ServiceLogicPackage.Tests
         {
             AccountManager.CanWriteDatabase();
         }
+
+        [TestMethod()]
+        public void LogoutTest()
+        {
+            AccountManager.Logout();
+        }
+
     }
 }
 
@@ -32,12 +39,12 @@ namespace FireProductManagerTests.ServiceLogicPackage
     [TestClass()]
     public class AccountManagerTests
     {
-        //[TestMethod()]
-        //public void LoginText()
-        //{
-        //    string accounts = "1";
-        //    string password = "1";
-        //    bool b = AccountManager.Login(accounts,password);
-        //}
+        [TestMethod()]
+        public void LoginText()
+        {
+            string accounts = "1";
+            string password = "1";
+            bool b = AccountManager.Login(accounts, password);
+        }
     }
 }
