@@ -22,7 +22,7 @@ namespace FireProductManager.ServiceLogicPackage
         {
             if (!IsPackageIdValid(packageid)) return;
 
-            PackageGateway.BorrowPackage(packageid);
+            //PackageGateway.BorrowPackage(packageid);
 
             InOutRecord inOutRecord = new InOutRecord();
             inOutRecord.ior_packageId = packageid;
@@ -37,7 +37,7 @@ namespace FireProductManager.ServiceLogicPackage
         {
             if (!IsPackageIdValid(packageid)) return;
             
-            PackageGateway.ReturnPackage(packageid, barrelid);
+            //PackageGateway.ReturnPackage(packageid, barrelid);
 
             InOutRecord inOutRecord = new InOutRecord();
             inOutRecord.ior_packageId = packageid;
@@ -53,9 +53,7 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_id", packageid));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            if (dt.Rows.Count > 0)
-                return true;
-            return false;
+            return dt.Rows.Count > 0;
         }
     }
 }

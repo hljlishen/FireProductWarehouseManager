@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FireProductManager.ServiceLogicPackage;
+using System;
 using System.Windows.Forms;
 using static cangku_01.view.AdminPage.AutoCloseMassageBox;
 
@@ -11,27 +12,29 @@ namespace FireProductManager.GuiPackage
             InitializeComponent();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void tb_password_TextChanged(object sender, EventArgs e)
         {
             tb_password.PasswordChar = '*';
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void but_login_Click(object sender, EventArgs e)
         {
             //获取用户名和密码
-            String name = tb_account.Text;
+            String account = tb_account.Text;
             String password = tb_password.Text;
-            if (name.Equals("admin") && password.Equals("admin"))
+
+            if (AccountManager.Login(account, password))
             {
-                
+                DialogResult = DialogResult.OK;
+                Close();
             }
             else
-            {
-                AutoClosingMessageBox.Show("登陆失败", "登陆失败", 1000);
-            }
+                lab_tip.Text = "登陆失败，请重新输入";
+            tb_account.Text = "";
+            tb_password.Text = "";
         }
 
-        private void login_Load(object sender, EventArgs e)
+        private void AdminLogin_Load(object sender, EventArgs e)
         {
 
         }

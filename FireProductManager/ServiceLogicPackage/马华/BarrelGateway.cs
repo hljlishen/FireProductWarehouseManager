@@ -14,26 +14,24 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //记录新桶
-        public static Barrel RecordNewBarrel()
+        public static int RecordNewBarrel()
         {
-            Barrel barrel = new Barrel();
+            Barrel barrel = new Barrel();//id自加
             barrel.ba_isRemoved = 0; //0为存在，1为不存在
             barrel.Insert();
-            barrel.ba_id = FindAvailableBarrelId();
-            return barrel;
+            barrel.ba_id = FindFinallyBarrelId();
+            return barrel.ba_id.Value;
         }
 
         //删除桶
         public static bool RemoveBarrel(int barrelid)
         {
+            if (!IsBarrelIdValid(barrelid)) return false;
+
             Barrel barrel = new Barrel();
             barrel.ba_id = barrelid;
-            if (IsBarrelIdValid(barrelid))
-            {
-                barrel.Delete();
-                return true;
-            }
-            return false;
+            barrel.Delete();
+            return true;
         }
 
         //全重
@@ -46,14 +44,13 @@ namespace FireProductManager.ServiceLogicPackage
             DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
 
             foreach (DataRow dr in dt.Rows)
-            {
                 weigth += double.Parse(dr["pa_weight"].ToString());
-            }
+
             return weigth;
         }
 
-        //找到可用的桶id
-        private static int FindAvailableBarrelId()
+        //找到最后一个桶的id
+        private static int FindFinallyBarrelId()
         {
             int barrelid = 0;
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
@@ -77,11 +74,7 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
             maker.AddAndCondition(new IntEqual("ba_id", barrelid));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            if (dt.Rows.Count > 0)
-            {
-                return true;
-            }
-            return false;
+            return dt.Rows.Count > 0;
         }
     }
 }
