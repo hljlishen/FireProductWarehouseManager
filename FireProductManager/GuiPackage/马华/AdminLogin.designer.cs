@@ -87,6 +87,7 @@
             // lab_tip
             // 
             this.lab_tip.AutoSize = true;
+            this.lab_tip.ForeColor = System.Drawing.Color.Red;
             this.lab_tip.Location = new System.Drawing.Point(150, 203);
             this.lab_tip.Name = "lab_tip";
             this.lab_tip.Size = new System.Drawing.Size(0, 12);

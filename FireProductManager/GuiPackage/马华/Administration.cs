@@ -9,6 +9,8 @@ namespace FireProductManager.GuiPackage
 {
     public partial class Administration : Form
     {
+        private PackageBorrowRecord packageBorrow = null;
+
         public Administration()
         {
             InitializeComponent();
@@ -35,6 +37,33 @@ namespace FireProductManager.GuiPackage
             AdminLogin login = new AdminLogin();
             if (login.ShowDialog() != DialogResult.OK)
                 Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BarrelGateway.RecordNewBarrel();
+        }
+
+        private void 锂合金ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (packageBorrow == null)
+            {
+                packageBorrow = new PackageBorrowRecord();
+            }
+            else
+            {
+                packageBorrow.Close();
+                packageBorrow = new PackageBorrowRecord();
+            }
+            packageBorrow.MdiParent = this;
+            packageBorrow.Show();
+            packageBorrow.Activate();
+        }
+
+        private void 仓库管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BarrelManagement barrelManagement = new BarrelManagement();
+            barrelManagement.Show();
         }
     }
 }

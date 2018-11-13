@@ -136,6 +136,18 @@
     <Compile Include="GuiPackage\马华\AdminLogin.designer.cs">
       <DependentUpon>AdminLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="GuiPackage\马华\BarrelManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\马华\BarrelManagement.Designer.cs">
+      <DependentUpon>BarrelManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuiPackage\马华\PackageBorrowRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\马华\PackageBorrowRecord.designer.cs">
+      <DependentUpon>PackageBorrowRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLogicPackage\燕廷\DepartmentGateway.cs" />
@@ -168,6 +180,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\马华\AdminLogin.resx">
       <DependentUpon>AdminLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\马华\BarrelManagement.resx">
+      <DependentUpon>BarrelManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\马华\PackageBorrowRecord.resx">
+      <DependentUpon>PackageBorrowRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

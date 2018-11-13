@@ -5,18 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
 
 namespace FireProductManager.ServiceLogicPackage.Tests
 {
     [TestClass()]
-    public class RecordOperationGatewayTests
+    public class BarrelGatewayTests
     {
         [TestMethod()]
-        public void QueryTest()
+        public void RecordNewBarrelTest()
         {
-            string sql = "select * from inoutrecord where ior_id = 1";
-            DataTable dt = RecordOperationGateway.Query(sql);
+            BarrelGateway.RecordNewBarrel();
+        }
+
+        [TestMethod()]
+        public void FindFinallyBarrelIdTest()
+        {
+            BarrelGateway.FindFinallyBarrelId();
+
+
         }
     }
 }

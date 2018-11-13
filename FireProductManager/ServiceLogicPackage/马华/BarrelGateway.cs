@@ -1,10 +1,11 @@
 ﻿using DbLink;
 using FireProductManager.EntityPackage;
 using System.Data;
+using System.Windows.Forms;
 
 namespace FireProductManager.ServiceLogicPackage
 {
-    class BarrelGateway
+    public class BarrelGateway
     {
         //查询桶
         public static DataTable Query(string sql)
@@ -54,17 +55,13 @@ namespace FireProductManager.ServiceLogicPackage
         {
             int barrelid = 0;
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
-            maker.AddAndCondition(new IntEqual("ba_isRemoved",0));
+            maker.MakeSelectMaxSql("ba_id");
             string sql = maker.MakeSelectSql();
             DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
 
             foreach (DataRow row in dt.Rows)
-            {
-                for (int i = 0; i<dt.Rows.Count;i++)
-                {
-                    barrelid = int.Parse(row["ba_id"].ToString());
-                }
-            }
+                barrelid = int.Parse(row["ba_id"].ToString());
+
             return barrelid;
         }
 

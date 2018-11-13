@@ -36,7 +36,7 @@
             this.器件管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.仪器管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.器件出入记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.仪器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.锂合金ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.AccouuntShow = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
@@ -69,6 +69,7 @@
             this.仓库管理ToolStripMenuItem.Name = "仓库管理ToolStripMenuItem";
             this.仓库管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.仓库管理ToolStripMenuItem.Text = "仓库管理";
+            this.仓库管理ToolStripMenuItem.Click += new System.EventHandler(this.仓库管理ToolStripMenuItem_Click);
             // 
             // 到期提醒ToolStripMenuItem
             // 
@@ -93,23 +94,24 @@
             // 器件出入记录ToolStripMenuItem
             // 
             this.器件出入记录ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.仪器ToolStripMenuItem});
+            this.锂合金ToolStripMenuItem});
             this.器件出入记录ToolStripMenuItem.Name = "器件出入记录ToolStripMenuItem";
             this.器件出入记录ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.器件出入记录ToolStripMenuItem.Text = "材料出入记录";
             // 
-            // 仪器ToolStripMenuItem
+            // 锂合金ToolStripMenuItem
             // 
-            this.仪器ToolStripMenuItem.Name = "仪器ToolStripMenuItem";
-            this.仪器ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.仪器ToolStripMenuItem.Text = "锂合金";
+            this.锂合金ToolStripMenuItem.Name = "锂合金ToolStripMenuItem";
+            this.锂合金ToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.锂合金ToolStripMenuItem.Text = "锂合金";
+            this.锂合金ToolStripMenuItem.Click += new System.EventHandler(this.锂合金ToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.员工管理ToolStripMenuItem,
-            this.仓库管理ToolStripMenuItem,
             this.到期提醒ToolStripMenuItem,
+            this.仓库管理ToolStripMenuItem,
             this.器件管理ToolStripMenuItem,
             this.器件出入记录ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -159,7 +161,7 @@
         private System.Windows.Forms.ToolStripMenuItem 器件管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 仪器管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 器件出入记录ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 仪器ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 锂合金ToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label AccouuntShow;
     }
