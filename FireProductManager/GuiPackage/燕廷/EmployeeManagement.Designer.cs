@@ -50,8 +50,6 @@
             this.la_foundname = new System.Windows.Forms.Label();
             this.la_foundsex = new System.Windows.Forms.Label();
             this.gb_foundemployees = new System.Windows.Forms.GroupBox();
-            this.cb_querydepartment = new System.Windows.Forms.CheckBox();
-            this.la_querydepartment = new System.Windows.Forms.Label();
             this.cms_employeetreeview = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsm_newcompany = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_newdepartment = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +72,7 @@
             resources.ApplyResources(this.bt_foundnowgroup, "bt_foundnowgroup");
             this.bt_foundnowgroup.Name = "bt_foundnowgroup";
             this.bt_foundnowgroup.UseVisualStyleBackColor = true;
+            this.bt_foundnowgroup.Click += new System.EventHandler(this.bt_foundnowgroup_Click);
             // 
             // bt_addemployee
             // 
@@ -171,6 +170,7 @@
             // 
             resources.ApplyResources(this.tv_department, "tv_department");
             this.tv_department.Name = "tv_department";
+            this.tv_department.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tv_department_AfterSelect);
             this.tv_department.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tv_department_MouseDown);
             // 
             // tb_foundname
@@ -206,8 +206,6 @@
             // 
             // gb_foundemployees
             // 
-            this.gb_foundemployees.Controls.Add(this.cb_querydepartment);
-            this.gb_foundemployees.Controls.Add(this.la_querydepartment);
             this.gb_foundemployees.Controls.Add(this.la_foundemployeeid);
             this.gb_foundemployees.Controls.Add(this.cb_foundsex);
             this.gb_foundemployees.Controls.Add(this.la_foundsex);
@@ -218,17 +216,6 @@
             resources.ApplyResources(this.gb_foundemployees, "gb_foundemployees");
             this.gb_foundemployees.Name = "gb_foundemployees";
             this.gb_foundemployees.TabStop = false;
-            // 
-            // cb_querydepartment
-            // 
-            resources.ApplyResources(this.cb_querydepartment, "cb_querydepartment");
-            this.cb_querydepartment.Name = "cb_querydepartment";
-            this.cb_querydepartment.UseVisualStyleBackColor = true;
-            // 
-            // la_querydepartment
-            // 
-            resources.ApplyResources(this.la_querydepartment, "la_querydepartment");
-            this.la_querydepartment.Name = "la_querydepartment";
             // 
             // cms_employeetreeview
             // 
@@ -316,8 +303,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsm_newgroup;
         private System.Windows.Forms.ToolStripMenuItem tsm_delete;
         private System.Windows.Forms.ToolStripMenuItem tsm_rename;
-        private System.Windows.Forms.CheckBox cb_querydepartment;
-        private System.Windows.Forms.Label la_querydepartment;
         private System.Windows.Forms.Button bt_dgvchangexcel;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn 姓名;

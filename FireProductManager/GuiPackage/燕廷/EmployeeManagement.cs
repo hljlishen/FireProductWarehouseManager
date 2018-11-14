@@ -27,39 +27,43 @@ namespace cangku_01.view.EmployeesManagement
         {
             Top = 0;
             Left = 0;
-            ShowTreeView();  //加载部门树状图
-            //DataTable dt = employee.QueryAllEmployee();//将全部员工加载
-            //ShowDataGridView(dt);
+            ShowTreeView();
+            ShowAllEmployee();
             cb_foundsex.Text = "男/女";
         }
 
         //TreeView显示数据
-        public void ShowTreeView()
+        private void ShowTreeView()
         {
             tv_department.Nodes.Clear();
             DepartmentGateway.LoadTreeView(tv_department);
             tv_department.ExpandAll();
         }
 
-        //DataGridView显示数据
-        public void ShowDataGridView(DataTable dt)
+        //显示数据库员工
+        private void ShowAllEmployee()
         {
-            //dgv_employeeinformation.Rows.Clear();
-            //foreach (DataRow dr in dt.Rows)
-            //{
-            //    DataGridViewRow row2 = new DataGridViewRow();
-            //    int index = dgv_employeeinformation.Rows.Add(row2);
-            //    dgv_employeeinformation.Rows[index].Cells[0].Value = dr["em_employeenumber"];
-            //    dgv_employeeinformation.Rows[index].Cells[1].Value = dr["em_name"];
-            //    dgv_employeeinformation.Rows[index].Cells[2].Value = dr["em_sex"];
-            //    Department department = new Department();
-            //    department.de_id = (int)dr["em_departmentid"];
-            //    List<string> mList = department.DepartmentName();
-            //    dgv_employeeinformation.Rows[index].Cells[3].Value = mList[2];
-            //    dgv_employeeinformation.Rows[index].Cells[4].Value = mList[1];
-            //    dgv_employeeinformation.Rows[index].Cells[5].Value = mList[0];
-            //    dgv_employeeinformation.Rows[index].Cells[8].Value = dr["em_id"];
-            //}
+            DataTable dataTable = EmployeeGateway.GetAllEmployees();
+            ShowDataGridView(dataTable);
+        }
+
+        //DataGridView显示数据
+        private void ShowDataGridView(DataTable dataTable)
+        {
+            dgv_employeeinformation.Rows.Clear();
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                DataGridViewRow row2 = new DataGridViewRow();
+                int index = dgv_employeeinformation.Rows.Add(row2);
+                dgv_employeeinformation.Rows[index].Cells[0].Value = dr["em_employeenumber"];
+                dgv_employeeinformation.Rows[index].Cells[1].Value = dr["em_name"];
+                dgv_employeeinformation.Rows[index].Cells[2].Value = dr["em_sex"];
+                List<string> mList = DepartmentGateway.DepartmentName((int)dr["em_departmentid"]);
+                dgv_employeeinformation.Rows[index].Cells[3].Value = mList[2];
+                dgv_employeeinformation.Rows[index].Cells[4].Value = mList[1];
+                dgv_employeeinformation.Rows[index].Cells[5].Value = mList[0];
+                dgv_employeeinformation.Rows[index].Cells[8].Value = dr["em_id"];
+            }
         }
         #endregion
 
@@ -69,6 +73,7 @@ namespace cangku_01.view.EmployeesManagement
         {
             AddOrUpdateEmployee add = new AddOrUpdateEmployee();
             add.Show();
+            ShowAllEmployee();
         }
 
         //删除与修改员工
@@ -82,114 +87,54 @@ namespace cangku_01.view.EmployeesManagement
 
             if (e.ColumnIndex == 7)//点击在修改按钮上
             {
-                UpdateEmployee();
+                if(UpdateEmployee()) ShowAllEmployee();
             }
         }
 
+        //删除员工
         private bool DeleteEmployee()
         {
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[8].Value;
                 string employeenumber = dgv_employeeinformation.CurrentRow.Cells[0].Value.ToString();
-                if (EmployeeGateway.DeleteEmployee(employeeid))
-                {
-                    ImageManager getSetImagePath = new ImageManager();
-                    getSetImagePath.DeleteEmployeeImage(employeenumber);
-                    return true;
-                }  
+                EmployeeGateway.DeleteEmployee(employeeid);
+                ImageManager getSetImagePath = new ImageManager();
+                getSetImagePath.DeleteEmployeeImage(employeenumber);
+                return true;
             }
             return false;
         }
 
-        private void UpdateEmployee()
+        //修改员工
+        private bool UpdateEmployee()
         {
             if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[8].Value;
-                AddOrUpdateEmployee update = new AddOrUpdateEmployee(employeeid);
-                update.Show();
+               AddOrUpdateEmployee update = new AddOrUpdateEmployee(employeeid);
+               update.Show();
+               return true;
             }
+            return false;
         }
         #endregion
 
         #region 员工搜索
         //员工搜索
-        //private void bt_foundnowgroup_Click(object sender, EventArgs e)
-        //{
-        //    if (cb_querydepartment.Checked == false)
-        //    {
-        //        CheckBoxIsFalse();
-        //        return;
-        //    }
-        //    CheckBoxIsTrun();
-        //}
+        private void bt_foundnowgroup_Click(object sender, EventArgs e)
+        {
+            DataTable dataTable = EmployeeGateway.GetQueryEmployees(tb_foundemployeeid.Text, tb_foundname.Text, cb_foundsex.Text);
+            ShowDataGridView(dataTable);
+        }
 
-        ////未勾选当前节点下查询
-        //private void CheckBoxIsFalse()
-        //{
-        //    Employee em = new Employee();
-        //    if (tb_foundemployeeid.Text.ToString().Equals(""))
-        //    {
-        //        em.EmployeeNumber = "";
-        //    }
-        //    else
-        //    {
-        //        em.EmployeeNumber = tb_foundemployeeid.Text;
-        //    }
-        //    em.Name = tb_foundname.Text;
-        //    em.Sex = cb_foundsex.Text;
-        //    if (em.EmployeeNumber.Equals("") && em.Name.Equals("") && em.Sex.Equals("男/女"))
-        //    {
-        //        Employee employee = new Employee();
-        //        DataTable dt = employee.QueryAllEmployee();
-        //        ShowDataGridView(dt);
-        //        return;
-        //    }
-        //    ShowDataGridView(em.QueryEmployee());
-        //}
-
-        ////勾选当前节点下查询
-        //private void CheckBoxIsTrun()
-        //{
-        //    Employee employee = new Employee();
-        //    Department department = new Department();
-        //    if (tb_foundemployeeid.Text.ToString().Equals(""))
-        //    {
-        //        employee.EmployeeNumber = "";
-        //    }
-        //    else
-        //    {
-        //        employee.EmployeeNumber = tb_foundemployeeid.Text;
-        //    }
-        //    employee.Name = tb_foundname.Text;
-        //    employee.Sex = cb_foundsex.Text;
-        //    if (employee.EmployeeNumber.Equals("") && employee.Name.Equals("") && employee.Sex.Equals("男/女")&& _treenode!=null)
-        //    {
-        //        DataTable dataTable = department.FindAllEmployeeOf(_treenode);
-        //        ShowDataGridView(dataTable);
-        //        return;
-        //    }
-        //    if (_treenode == null)
-        //    {
-        //        CheckBoxIsFalse();
-        //        return;
-        //    }
-        //    department.readNode(_treenode);
-        //    List<int> departmentidlist = department.DepartmentId;
-        //    ShowDataGridView(employee.QueryEmployee(departmentidlist));
-        //}
-
-        ////选取部门树状图刷新员工信息
-        //private void tv_department_AfterSelect(object sender, TreeViewEventArgs e)
-        //{
-        //    Department department = new Department(factory);
-        //    DataTable dataTable = department.FindAllEmployeeOf(e.Node);
-        //    _treenode = e.Node;
-        //    ShowDataGridView(dataTable);
-
-
-        //}
+        //选取部门树状图刷新员工信息
+        private void tv_department_AfterSelect(object sender, TreeViewEventArgs e)
+        { 
+            DataTable dataTable = DepartmentGateway.AllEmpolyeesOf(e.Node);
+            _treenode = e.Node;
+            ShowDataGridView(dataTable);
+        }
         #endregion
 
         #region 部门的添加、修改、删除
@@ -224,20 +169,27 @@ namespace cangku_01.view.EmployeesManagement
             switch (_level)
             {
                 case 0:
+                    tsm_newcompany.Visible = true;
+                    tsm_newdepartment.Visible = false;
+                    tsm_newgroup.Visible = false;
+                    tsm_delete.Visible = false;
+                    tsm_rename.Visible = false;
+                    break;
+                case 1:
                     tsm_newcompany.Visible = false;
                     tsm_newdepartment.Visible = true;
                     tsm_newgroup.Visible = false;
                     tsm_delete.Visible = true;
                     tsm_rename.Visible = true;
                     break;
-                case 1:
+                case 2:
                     tsm_newcompany.Visible = false;
                     tsm_newdepartment.Visible = false;
                     tsm_newgroup.Visible = true;
                     tsm_delete.Visible = true;
                     tsm_rename.Visible = true;
                     break;
-                case 2:
+                case 3:
                     tsm_newcompany.Visible = false;
                     tsm_newdepartment.Visible = false;
                     tsm_newgroup.Visible = false;
@@ -356,5 +308,6 @@ namespace cangku_01.view.EmployeesManagement
             ExcelOperator.DataGridViewToExcel(dgv_employeeinformation, true);
         }
         #endregion
+
     }
 }

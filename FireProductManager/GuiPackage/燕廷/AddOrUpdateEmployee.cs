@@ -1,9 +1,6 @@
-﻿using DbLink;
-using FireProductManager.EntityPackage;
-using FireProductManager.ServiceLogicPackage;
+﻿using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using static cangku_01.view.AdminPage.AutoCloseMassageBox;
@@ -38,15 +35,14 @@ namespace cangku_01.view.EmployeesManagement
             InitializeComponent();
             La_addoralter.Text = "修改员工";
             ShowEmployeeInformation(employeeId);
-            Bt_addemployee.Visible = false;
-            tb_employeesnumber.ReadOnly = true;  
+            Bt_addemployee.Visible = false; 
         }
 
         //加载部门树状图
         private void AddOrAlterEmployees_Load(object sender, EventArgs e)
         {
             tv_departmentshow.Nodes.Clear();
-            DepartmentGateway.LoadTreeView(tv_departmentshow,0);
+            DepartmentGateway.LoadTreeView(tv_departmentshow);
             tv_departmentshow.ExpandAll();
         }
 
@@ -113,7 +109,7 @@ namespace cangku_01.view.EmployeesManagement
         //选择员工的公司、部门、小组信息
         private void tv_departmentshow_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (tv_departmentshow.SelectedNode.Level != 2) //确定选中到部门
+            if (tv_departmentshow.SelectedNode.Level != 3) //确定选中到部门
             {
                 AutoClosingMessageBox.Show("为精确到小组", "为精确到小组", 500);
                 return;
