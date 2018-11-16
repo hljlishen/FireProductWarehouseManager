@@ -31,7 +31,8 @@ namespace FireProductManager.ServiceLogicPackage
 
             Barrel barrel = new Barrel();
             barrel.ba_id = barrelid;
-            barrel.Delete();
+            barrel.ba_isRemoved = 1;
+            barrel.Update();
             return true;
         }
 

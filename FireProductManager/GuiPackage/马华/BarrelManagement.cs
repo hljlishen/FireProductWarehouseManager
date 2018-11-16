@@ -9,6 +9,8 @@ namespace FireProductManager.GuiPackage
 {
     public partial class BarrelManagement : Form
     {
+        int barrelid1;
+        int barrelid2;
 
         QueryBarrel queryBarrel;
 
@@ -23,19 +25,20 @@ namespace FireProductManager.GuiPackage
             tb_showaddbarrelid.Text = BarrelGateway.RecordNewBarrel().ToString();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_removebarrel_Click(object sender, EventArgs e)
         {
-            int barrelid = int.Parse(lab_showbarrelid2.Text.Substring(0, lab_showbarrelid2.Text.Length - 2));
             DialogResult result = MessageBox.Show("确认删除该桶吗?", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (result == DialogResult.OK)
-                BarrelGateway.RemoveBarrel(barrelid);
+                BarrelGateway.RemoveBarrel(barrelid1);
+            lab_showbarrelid1.Text = "";
+            dgv_packageshow1.Rows.Clear();
         }
 
         private void btn_querybarrel1_Click(object sender, EventArgs e)
         {
             lab_showbarrelid1.Text = "";
             queryBarrel = new QueryBarrel();
-            queryBarrel.FormBorderStyle = FormBorderStyle.FixedSingle;
+            queryBarrel.FormBorderStyle = FormBorderStyle.None;
             queryBarrel.BarrelIdSelected += BarrelIdSelected1;
             queryBarrel.ShowDialog();
             queryBarrel.BarrelIdSelected -= BarrelIdSelected1;
@@ -45,7 +48,7 @@ namespace FireProductManager.GuiPackage
         {
             lab_showbarrelid2.Text = "";
             queryBarrel = new QueryBarrel();
-            queryBarrel.FormBorderStyle = FormBorderStyle.FixedSingle;
+            queryBarrel.FormBorderStyle = FormBorderStyle.None;
             queryBarrel.BarrelIdSelected += BarrelIdSelected2;
             queryBarrel.ShowDialog();
             queryBarrel.BarrelIdSelected -= BarrelIdSelected2;
@@ -58,8 +61,8 @@ namespace FireProductManager.GuiPackage
                 lab_showbarrelid1.Text += id;
             }
             lab_showbarrelid1.Text = lab_showbarrelid1.Text.Substring(0, lab_showbarrelid1.Text.Length);
-            int barrelid =int.Parse(lab_showbarrelid1.Text.Substring(0, lab_showbarrelid1.Text.Length - 2));
-            BarrelIdQueryPackageMessage(barrelid);
+            barrelid1 =int.Parse(lab_showbarrelid1.Text.Substring(0, lab_showbarrelid1.Text.Length - 2));
+            BarrelIdQueryPackageMessage(barrelid1);
         }
 
         private void BarrelIdSelected2(List<string> barrelIds)
@@ -69,8 +72,8 @@ namespace FireProductManager.GuiPackage
                 lab_showbarrelid2.Text += id;
             }
             lab_showbarrelid2.Text = lab_showbarrelid2.Text.Substring(0, lab_showbarrelid2.Text.Length);
-            int barrelid = int.Parse(lab_showbarrelid2.Text.Substring(0, lab_showbarrelid2.Text.Length - 2));
-            BarrelIdQueryPackageMessage(barrelid);
+            barrelid2 = int.Parse(lab_showbarrelid2.Text.Substring(0, lab_showbarrelid2.Text.Length - 2));
+            BarrelIdQueryPackageMessage(barrelid2);
         }
 
         private void ShowDataGridView(DataTable dt)

@@ -75,7 +75,7 @@
             this.btn_removebarrel.TabIndex = 27;
             this.btn_removebarrel.Text = "删除桶";
             this.btn_removebarrel.UseVisualStyleBackColor = true;
-            this.btn_removebarrel.Click += new System.EventHandler(this.button2_Click);
+            this.btn_removebarrel.Click += new System.EventHandler(this.btn_removebarrel_Click);
             // 
             // dgv_packageshow1
             // 

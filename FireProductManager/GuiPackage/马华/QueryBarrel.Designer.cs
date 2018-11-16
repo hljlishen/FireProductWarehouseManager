@@ -83,7 +83,7 @@
             this.ClientSize = new System.Drawing.Size(258, 525);
             this.Controls.Add(this.btn_return);
             this.Controls.Add(this.dgv_existbarrelid);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "QueryBarrel";
             this.Text = "QueryBarrel";
             this.Load += new System.EventHandler(this.QueryBarrel_Load);

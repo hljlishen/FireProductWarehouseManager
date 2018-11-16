@@ -38,13 +38,14 @@ namespace FireProductManager.GuiPackage
         private void QueryBarrel_Load(object sender, EventArgs e)
         {
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
+            maker.AddAndCondition(new IntEqual("ba_isRemoved",0));
             string sql = maker.MakeSelectSql();
             ShowDataGridView(BarrelGateway.Query(sql));
         }
 
         private void dgv_existbarrelid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (FormBorderStyle == FormBorderStyle.FixedSingle)
+            if (FormBorderStyle == FormBorderStyle.None)
             {
                 var selectedRows = dgv_existbarrelid.SelectedRows;
                 List<string> ids = new List<string>();
