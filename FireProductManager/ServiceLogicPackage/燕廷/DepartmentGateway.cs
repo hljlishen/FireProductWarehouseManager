@@ -15,10 +15,9 @@ namespace FireProductManager.ServiceLogicPackage
             Department department = new Department();
             List<int> DepartmentId = readNode(treeNode);
             DataTable datatable = new DataTable();
-
-            SelectSqlMaker maker = new SelectSqlMaker("employee");
             for (int i = 0; i < DepartmentId.Count; i++)
             {
+                SelectSqlMaker maker = new SelectSqlMaker("employee");
                 maker.AddAndCondition(new IntEqual("em_departmentid", DepartmentId[i]));
                 DataTable datatable1 = department.Select(maker.MakeSelectSql());
                 if (i == 0)
@@ -30,6 +29,7 @@ namespace FireProductManager.ServiceLogicPackage
                 {
                     datatable.ImportRow(dr);
                 }
+                datatable1 = null;
             }
             return datatable;
         }
