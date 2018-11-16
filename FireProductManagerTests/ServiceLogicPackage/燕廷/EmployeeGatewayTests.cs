@@ -12,11 +12,5 @@ namespace FireProductManager.ServiceLogicPackage.Tests
     [TestClass()]
     public class EmployeeGatewayTests
     {
-        [TestMethod()]
-        public void QueryTest()
-        {
-            string sql = "select * from employee where id = 1";
-            DataTable dt =  EmployeeGateway.Query(sql);
-        }
     }
 }
