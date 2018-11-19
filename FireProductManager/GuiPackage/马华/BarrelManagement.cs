@@ -121,5 +121,17 @@ namespace FireProductManager.GuiPackage
             string sql = maker.MakeSelectSql();
             return sql;
         }
+
+        private void btn_exchangepackageid1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dgv_packageshow1.Rows.Count; i++)
+            {
+                if (dgv_packageshow1.Rows[i].Selected == false)
+                {
+                    string rows = dgv_packageshow1.Rows[i].Cells[0].Value.ToString();
+                    
+                }
+            }
+        }
     }
 }
