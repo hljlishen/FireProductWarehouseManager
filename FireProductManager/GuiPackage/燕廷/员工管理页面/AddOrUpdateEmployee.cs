@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using static cangku_01.view.AdminPage.AutoCloseMassageBox;
+using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 //员工信息的添加、修改
 
-namespace cangku_01.view.EmployeesManagement
+namespace FireProductManager.GuiPackage
 {
     public partial class AddOrUpdateEmployee : Form
     {
@@ -54,7 +54,7 @@ namespace cangku_01.view.EmployeesManagement
             _name = EmployeeGateway.GetEmployeeInformation(employeeid).em_name;
             _sex = EmployeeGateway.GetEmployeeInformation(employeeid).em_sex;
             _departmentid = EmployeeGateway.GetEmployeeInformation(employeeid).em_departmentid.Value;
-            List<string> list = DepartmentGateway.DepartmentName(EmployeeGateway.GetEmployeeInformation(employeeid).em_departmentid.Value);
+            List<string> list = DepartmentGateway.ReadDepartmentNodeName(EmployeeGateway.GetEmployeeInformation(employeeid).em_departmentid.Value);
             _companyname = list[2];
             _departmentname = list[1];
             _groupname = list[0];

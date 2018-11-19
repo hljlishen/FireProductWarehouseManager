@@ -7,7 +7,7 @@ using FireProductManager.ServiceLogicPackage;
 
 //员工信息管理页面
 
-namespace cangku_01.view.EmployeesManagement
+namespace FireProductManager.GuiPackage
 {
     public partial class EmployeeManagement : Form
     {
@@ -58,7 +58,7 @@ namespace cangku_01.view.EmployeesManagement
                 dgv_employeeinformation.Rows[index].Cells[0].Value = dr["em_employeenumber"];
                 dgv_employeeinformation.Rows[index].Cells[1].Value = dr["em_name"];
                 dgv_employeeinformation.Rows[index].Cells[2].Value = dr["em_sex"];
-                List<string> mList = DepartmentGateway.DepartmentName((int)dr["em_departmentid"]);
+                List<string> mList = DepartmentGateway.ReadDepartmentNodeName((int)dr["em_departmentid"]);
                 dgv_employeeinformation.Rows[index].Cells[3].Value = mList[2];
                 dgv_employeeinformation.Rows[index].Cells[4].Value = mList[1];
                 dgv_employeeinformation.Rows[index].Cells[5].Value = mList[0];

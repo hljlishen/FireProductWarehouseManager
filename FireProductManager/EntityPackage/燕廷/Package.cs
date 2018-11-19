@@ -9,6 +9,7 @@ namespace FireProductManager.EntityPackage
 {
     public class Package : ActiveRecord
     {
+        //public uint? pa_id { get; set; }
         public int? pa_id { get; set; }
         public string pa_model { get; set; }
         public double pa_weigth { get; set; }

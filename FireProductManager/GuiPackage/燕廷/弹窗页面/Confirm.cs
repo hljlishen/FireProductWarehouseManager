@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace cangku_01.view.AdminPage
+namespace FireProductManager.GuiPackage
 {
     public partial class Confirm : Form
     {

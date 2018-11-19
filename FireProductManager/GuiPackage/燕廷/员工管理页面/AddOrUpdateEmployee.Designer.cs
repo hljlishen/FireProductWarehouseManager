@@ -1,4 +1,4 @@
-﻿namespace cangku_01.view.EmployeesManagement
+﻿namespace FireProductManager.GuiPackage
 {
     partial class AddOrUpdateEmployee
     {

@@ -94,34 +94,46 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\AddOrUpdateEmployee.cs">
+    <Compile Include="GuiPackage\燕廷\锂材料管理\AddOrAlterPackage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\AddOrUpdateEmployee.Designer.cs">
+    <Compile Include="GuiPackage\燕廷\锂材料管理\AddOrAlterPackage.Designer.cs">
+      <DependentUpon>AddOrAlterPackage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\锂材料管理\PackageManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\锂材料管理\PackageManagement.Designer.cs">
+      <DependentUpon>PackageManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\员工管理页面\AddOrUpdateEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\员工管理页面\AddOrUpdateEmployee.Designer.cs">
       <DependentUpon>AddOrUpdateEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\AutoCloseMassageBox.cs">
+    <Compile Include="GuiPackage\燕廷\弹窗页面\AutoCloseMassageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\AutoCloseMassageBox.Designer.cs">
+    <Compile Include="GuiPackage\燕廷\弹窗页面\AutoCloseMassageBox.Designer.cs">
       <DependentUpon>AutoCloseMassageBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\Confirm.cs">
+    <Compile Include="GuiPackage\燕廷\弹窗页面\Confirm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\Confirm.Designer.cs">
+    <Compile Include="GuiPackage\燕廷\弹窗页面\Confirm.Designer.cs">
       <DependentUpon>Confirm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\CreateDepartment.cs">
+    <Compile Include="GuiPackage\燕廷\员工管理页面\CreateDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\CreateDepartment.Designer.cs">
+    <Compile Include="GuiPackage\燕廷\员工管理页面\CreateDepartment.Designer.cs">
       <DependentUpon>CreateDepartment.cs</DependentUpon>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\EmployeeManagement.cs">
+    <Compile Include="GuiPackage\燕廷\员工管理页面\EmployeeManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\EmployeeManagement.Designer.cs">
+    <Compile Include="GuiPackage\燕廷\员工管理页面\EmployeeManagement.Designer.cs">
       <DependentUpon>EmployeeManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="GuiPackage\马华\Administration.cs">
@@ -169,20 +181,23 @@
     <Compile Include="ServiceLogicPackage\马华\EvirmentRecordGateway.cs" />
     <Compile Include="ServiceLogicPackage\马华\IEvirmentDevice.cs" />
     <Compile Include="ServiceLogicPackage\马华\RecordOperationGateway.cs" />
-    <EmbeddedResource Include="GuiPackage\燕廷\AddOrUpdateEmployee.resx">
+    <EmbeddedResource Include="GuiPackage\燕廷\员工管理页面\AddOrUpdateEmployee.resx">
       <DependentUpon>AddOrUpdateEmployee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GuiPackage\燕廷\AutoCloseMassageBox.resx">
-      <DependentUpon>AutoCloseMassageBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GuiPackage\燕廷\Confirm.resx">
+    <EmbeddedResource Include="GuiPackage\燕廷\弹窗页面\Confirm.resx">
       <DependentUpon>Confirm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GuiPackage\燕廷\CreateDepartment.resx">
+    <EmbeddedResource Include="GuiPackage\燕廷\员工管理页面\CreateDepartment.resx">
       <DependentUpon>CreateDepartment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GuiPackage\燕廷\EmployeeManagement.resx">
+    <EmbeddedResource Include="GuiPackage\燕廷\员工管理页面\EmployeeManagement.resx">
       <DependentUpon>EmployeeManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\燕廷\锂材料管理\AddOrAlterPackage.resx">
+      <DependentUpon>AddOrAlterPackage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\燕廷\锂材料管理\PackageManagement.resx">
+      <DependentUpon>PackageManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\马华\Administration.resx">
       <DependentUpon>Administration.cs</DependentUpon>

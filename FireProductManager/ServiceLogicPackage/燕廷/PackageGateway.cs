@@ -138,5 +138,13 @@ namespace FireProductManager.ServiceLogicPackage
             package.pa_isinWarehouse = 1;
             package.Update();
         }
+
+        //获取全部材料
+        public static DataTable GetAllPackage()
+        {
+            Package package = new Package();
+            SelectSqlMaker maker = new SelectSqlMaker("package");
+            return Query(maker.MakeSelectSql());
+        }
     }
 }

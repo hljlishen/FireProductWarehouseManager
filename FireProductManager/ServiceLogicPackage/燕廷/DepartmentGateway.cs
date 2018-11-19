@@ -185,7 +185,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //查询节点名字，以及父节点名
-        public static List<string> DepartmentName(int departmentid)
+        public static List<string> ReadDepartmentNodeName(int departmentid)
         {
             Department department = new Department();
             department.de_id = departmentid;
