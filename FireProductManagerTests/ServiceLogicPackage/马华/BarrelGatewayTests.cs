@@ -17,12 +17,5 @@ namespace FireProductManager.ServiceLogicPackage.Tests
             BarrelGateway.RecordNewBarrel();
         }
 
-        [TestMethod()]
-        public void FindFinallyBarrelIdTest()
-        {
-            BarrelGateway.FindFinallyBarrelId();
-
-
-        }
     }
 }

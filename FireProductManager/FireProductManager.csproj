@@ -172,6 +172,9 @@
     <EmbeddedResource Include="GuiPackage\燕廷\AddOrUpdateEmployee.resx">
       <DependentUpon>AddOrUpdateEmployee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\燕廷\AutoCloseMassageBox.resx">
+      <DependentUpon>AutoCloseMassageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\燕廷\Confirm.resx">
       <DependentUpon>Confirm.cs</DependentUpon>
     </EmbeddedResource>

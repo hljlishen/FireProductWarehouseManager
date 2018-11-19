@@ -20,8 +20,8 @@ namespace FireProductManager.ServiceLogicPackage
             Barrel barrel = new Barrel();//id自加
             barrel.ba_isRemoved = 0; //0为存在，1为不存在
             barrel.Insert();
-            barrel.ba_id = FindFinallyBarrelId();
-            return barrel.ba_id.Value;
+            barrel.ba_id = (uint)FindFinallyBarrelId();
+            return (int)barrel.ba_id;
         }
 
         //删除桶
@@ -30,7 +30,7 @@ namespace FireProductManager.ServiceLogicPackage
             if (!IsBarrelIdValid(barrelid)) return false;
 
             Barrel barrel = new Barrel();
-            barrel.ba_id = barrelid;
+            barrel.ba_id = (uint)barrelid;
             barrel.ba_isRemoved = 1;
             barrel.Update();
             return true;
@@ -72,7 +72,19 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
             maker.AddAndCondition(new IntEqual("ba_id", barrelid));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            return dt.Rows.Count > 0;
+            if (dt.Rows.Count > 0) return true;
+            return false;
+        }
+
+        //判断桶中是否存在pa_isinWarehouse为1的袋子
+        public static bool IsBarrelInExistPackage(int barrelid)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("package");
+            maker.AddAndCondition(new IntEqual("pa_barrelId",barrelid));
+            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
+            DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
+            if (dt.Rows.Count > 0) return true;
+            return false;
         }
     }
 }
