@@ -64,6 +64,7 @@
             this.tb_account.Name = "tb_account";
             this.tb_account.Size = new System.Drawing.Size(156, 29);
             this.tb_account.TabIndex = 2;
+            this.tb_account.Text = "1";
             // 
             // tb_password
             // 
@@ -72,6 +73,7 @@
             this.tb_password.Name = "tb_password";
             this.tb_password.Size = new System.Drawing.Size(156, 29);
             this.tb_password.TabIndex = 3;
+            this.tb_password.Text = "1";
             this.tb_password.TextChanged += new System.EventHandler(this.tb_password_TextChanged);
             // 
             // but_login

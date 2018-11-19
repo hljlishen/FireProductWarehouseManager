@@ -43,7 +43,7 @@ namespace FireProductManager.GuiPackage
             ShowDataGridView(BarrelGateway.Query(sql));
         }
 
-        private void dgv_existbarrelid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_existbarrelid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (FormBorderStyle == FormBorderStyle.None)
             {

@@ -10,6 +10,7 @@ namespace FireProductManager.GuiPackage
     public partial class Administration : Form
     {
         private PackageBorrowRecord packageBorrow = null;
+        private BarrelManagement barrelManagement = null;
 
         public Administration()
         {
@@ -62,8 +63,18 @@ namespace FireProductManager.GuiPackage
 
         private void 仓库管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BarrelManagement barrelManagement = new BarrelManagement();
+            if (barrelManagement == null)
+            {
+                barrelManagement = new BarrelManagement();
+            }
+            else
+            {
+                barrelManagement.Close();
+                barrelManagement = new BarrelManagement();
+            }
+            barrelManagement.MdiParent = this;
             barrelManagement.Show();
+            barrelManagement.Activate();
         }
     }
 }
