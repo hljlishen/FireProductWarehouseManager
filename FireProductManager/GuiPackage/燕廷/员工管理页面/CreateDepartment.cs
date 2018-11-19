@@ -4,7 +4,7 @@ using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Windows.Forms;
 
-namespace cangku_01.view.EmployeesManagement
+namespace FireProductManager.GuiPackage
 {
     public partial class CreateDepartment : Form
     {

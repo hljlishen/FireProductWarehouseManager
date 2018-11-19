@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 //信息提示窗
 
-namespace cangku_01.view.AdminPage
+namespace FireProductManager.GuiPackage
 {
     public partial class AutoCloseMassageBox : Form
     {

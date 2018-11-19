@@ -1,4 +1,4 @@
-﻿namespace cangku_01.view.AdminPage
+﻿namespace FireProductManager.GuiPackage
 {
     partial class AutoCloseMassageBox
     {

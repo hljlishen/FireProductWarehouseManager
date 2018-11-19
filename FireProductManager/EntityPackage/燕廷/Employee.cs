@@ -9,6 +9,7 @@ namespace FireProductManager.EntityPackage
 {
     public class Employee : ActiveRecord
     {
+        //public uint? em_id { get; set; }
         public int? em_id { get; set; }
         public string em_employeenumber { get; set; }
         public string em_name { get; set; }

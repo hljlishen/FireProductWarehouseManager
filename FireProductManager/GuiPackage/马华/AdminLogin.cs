@@ -1,7 +1,6 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Windows.Forms;
-using static cangku_01.view.AdminPage.AutoCloseMassageBox;
 
 namespace FireProductManager.GuiPackage
 {
