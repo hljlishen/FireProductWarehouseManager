@@ -14,6 +14,13 @@ namespace FireProductManager.ServiceLogicPackage.Tests
         [TestMethod()]
         public void NewPackageTest()
         {
+            PackageGateway.NewPackage("licaoliao","002",12,2,2,DateTime.Now,1);
+        }
+
+        [TestMethod()]
+        public void PutPackageIntoBarrelTest()
+        {
+            PackageGateway.PutPackageIntoBarrel(1,2);
             
         }
     }

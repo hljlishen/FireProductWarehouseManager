@@ -22,7 +22,7 @@ namespace FireProductManager.ServiceLogicPackage
             Package package = new Package();
             package.pa_id = packageId;
             package.pa_barrelId = barrelId;
-            if (!HasBarrel(barrelId)) throw new Exception("不存在该桶");
+            //if (!HasBarrel(barrelId)) throw new Exception("不存在该桶");
             package.Update();
         }
 
@@ -148,14 +148,16 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //添加材料 
-        public static void NewPackage(string model, Double weigth, int barrelId, int isinWarehouse, DateTime purchaseTime)
+        public static void NewPackage(string name, string model, Double weigth, int barrelId, int isinWarehouse, DateTime purchaseTime ,int projectId)
         {
-            Package package = new Package(); ;
+            Package package = new Package();
+            package.pa_name = name;
             package.pa_model = model;
             package.pa_weigth = weigth;
             package.pa_barrelId = barrelId;
             package.pa_isinWarehouse = isinWarehouse;
             package.pa_purchaseTime = purchaseTime;
+            package.pa_projectId = projectId;
             //FormValidation(package);
             package.Insert();
         }

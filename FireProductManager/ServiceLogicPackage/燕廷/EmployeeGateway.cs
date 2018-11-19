@@ -63,13 +63,14 @@ namespace FireProductManager.ServiceLogicPackage
         //表单验证
         private static void FormValidation(Employee employee, Operation operation)
         {
-            IdValidation(employee, operation);
+            isEmployeenumberValid(employee, operation);
             NameValidation(employee.em_name);
             DepartmentIdValidation(employee.em_departmentid.Value);
+            //异常拼接
         }
 
-        //em_employeenumber验证
-        private static void IdValidation(Employee employee, Operation operation)
+        //员工编号验证
+        private static void isEmployeenumberValid(Employee employee, Operation operation)
         {
             if (employee.em_employeenumber.Equals("")) {
                 throw new Exception("员工编号不能为空");
