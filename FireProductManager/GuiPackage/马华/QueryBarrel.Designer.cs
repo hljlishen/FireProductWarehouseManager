@@ -39,7 +39,7 @@
             // 
             this.dgv_existbarrelid.AllowUserToAddRows = false;
             this.dgv_existbarrelid.AllowUserToDeleteRows = false;
-            this.dgv_existbarrelid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgv_existbarrelid.BackgroundColor = System.Drawing.SystemColors.ButtonShadow;
             this.dgv_existbarrelid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_existbarrelid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.桶编号,
@@ -51,7 +51,7 @@
             this.dgv_existbarrelid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_existbarrelid.Size = new System.Drawing.Size(240, 480);
             this.dgv_existbarrelid.TabIndex = 0;
-            this.dgv_existbarrelid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_existbarrelid_CellContentDoubleClick);
+            this.dgv_existbarrelid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_existbarrelid_CellDoubleClick);
             // 
             // 桶编号
             // 

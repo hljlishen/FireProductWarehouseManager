@@ -20,7 +20,7 @@ namespace FireProductManager.ServiceLogicPackage
             Barrel barrel = new Barrel();//id自加
             barrel.ba_isRemoved = 0; //0为存在，1为不存在
             barrel.Insert();
-            barrel.ba_id = (uint)FindFinallyBarrelId();
+            barrel.ba_id = (uint)FindMaxBarrelId();
             return (int)barrel.ba_id;
         }
 
@@ -51,18 +51,13 @@ namespace FireProductManager.ServiceLogicPackage
             return weigth;
         }
 
-        //找到最后一个桶的id
-        private static int FindFinallyBarrelId()
+        //找到最大一个桶的id
+        private static int FindMaxBarrelId()
         {
-            int barrelid = 0;
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
-            maker.MakeSelectMaxSql("ba_id");
-            string sql = maker.MakeSelectSql();
+            string sql = maker.MakeSelectMaxSql("ba_id");
             DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
-
-            foreach (DataRow row in dt.Rows)
-                barrelid = int.Parse(row["ba_id"].ToString());
-
+            int barrelid = int.Parse(dt.Rows[0][0].ToString());
             return barrelid;
         }
 
@@ -72,8 +67,7 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
             maker.AddAndCondition(new IntEqual("ba_id", barrelid));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            if (dt.Rows.Count > 0) return true;
-            return false;
+            return dt.Rows.Count > 0;
         }
 
         //判断桶中是否存在pa_isinWarehouse为1的袋子
@@ -83,8 +77,7 @@ namespace FireProductManager.ServiceLogicPackage
             maker.AddAndCondition(new IntEqual("pa_barrelId",barrelid));
             maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            if (dt.Rows.Count > 0) return true;
-            return false;
+            return dt.Rows.Count > 0;
         }
     }
 }

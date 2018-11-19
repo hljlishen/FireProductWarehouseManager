@@ -30,6 +30,11 @@ namespace FireProductManager.GuiPackage
         {
             if (!BarrelGateway.IsBarrelInExistPackage(barrelid1))
             {
+                if (barrelid1 == 0)
+                {
+                    AutoClosingMessageBox.Show("        请先选择桶号在进行删除", "未选择桶号", 1000);
+                    return;
+                }
                 DialogResult result = MessageBox.Show("确认删除该桶吗?", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 if (result == DialogResult.OK)
                     BarrelGateway.RemoveBarrel(barrelid1);
@@ -90,8 +95,9 @@ namespace FireProductManager.GuiPackage
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_packageshow1.Rows.Add(row);
                 dgv_packageshow1.Rows[index].Cells[0].Value = dr["pa_id"];
-                dgv_packageshow1.Rows[index].Cells[1].Value = dr["pa_modle"];
-                dgv_packageshow1.Rows[index].Cells[2].Value = dr["pa_weigth"];
+
+                dgv_packageshow1.Rows[index].Cells[2].Value = dr["pa_modle"];
+                dgv_packageshow1.Rows[index].Cells[3].Value = dr["pa_weigth"];
             }
         }
 
@@ -103,8 +109,9 @@ namespace FireProductManager.GuiPackage
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_packageshow2.Rows.Add(row);
                 dgv_packageshow2.Rows[index].Cells[0].Value = dr["pa_id"];
-                dgv_packageshow2.Rows[index].Cells[1].Value = dr["pa_modle"];
-                dgv_packageshow2.Rows[index].Cells[2].Value = dr["pa_weigth"];
+
+                dgv_packageshow2.Rows[index].Cells[2].Value = dr["pa_modle"];
+                dgv_packageshow2.Rows[index].Cells[3].Value = dr["pa_weigth"];
             }
         }
 
@@ -128,8 +135,49 @@ namespace FireProductManager.GuiPackage
             {
                 if (dgv_packageshow1.Rows[i].Selected == false)
                 {
-                    string rows = dgv_packageshow1.Rows[i].Cells[0].Value.ToString();
-                    
+                    if (barrelid2 == 0)
+                    {
+                        AutoClosingMessageBox.Show("        请先选择桶号在进行更换", "未选择桶号", 1000);
+                        return;
+                    }
+                    int packageids =int.Parse(dgv_packageshow1.Rows[i].Cells[0].Value.ToString());
+                    PackageGateway.PutPackageIntoBarrel(packageids,barrelid2);
+                }
+            }
+        }
+
+        private void btn_removebarrel2_Click(object sender, EventArgs e)
+        {
+            if (!BarrelGateway.IsBarrelInExistPackage(barrelid2))
+            {
+                if (barrelid1 == 0)
+                {
+                    AutoClosingMessageBox.Show("        请先选择桶号在进行删除", "未选择桶号", 1000);
+                    return;
+                }
+                DialogResult result = MessageBox.Show("确认删除该桶吗?", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (result == DialogResult.OK)
+                    BarrelGateway.RemoveBarrel(barrelid2);
+                lab_showbarrelid2.Text = "";
+                dgv_packageshow2.Rows.Clear();
+            }
+            else
+                AutoClosingMessageBox.Show("        该桶内有袋子，不能删除", "存在袋子", 1000);
+        }
+
+        private void btn_exchangepackageid2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dgv_packageshow1.Rows.Count; i++)
+            {
+                if (dgv_packageshow1.Rows[i].Selected == false)
+                {
+                    if (barrelid2 == 0)
+                    {
+                        AutoClosingMessageBox.Show("        请先选择桶号在进行更换", "未选择桶号", 1000);
+                        return;
+                    }
+                    int packageids = int.Parse(dgv_packageshow1.Rows[i].Cells[0].Value.ToString());
+                    PackageGateway.PutPackageIntoBarrel(packageids, barrelid2);
                 }
             }
         }
