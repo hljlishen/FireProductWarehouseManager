@@ -1,6 +1,5 @@
 ﻿using FireProductManager.EntityPackage;
 using System;
-using System.Collections.Generic;
 using DbLink;
 using System.Data;
 
@@ -15,26 +14,25 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //删除员工
-        public static bool DeleteEmployee(int employeeId)
+        public static void DeleteEmployee(int employeeId)
         {
             Employee employee = new Employee();
             employee.em_id = employeeId;
-            HasEmployee(employee);
+            if (!HasEmployee(employee)) throw new Exception("不存在该员工");
             employee.Delete();
-            return true;
         }
 
         //员工是否存在
-        private static void HasEmployee(Employee employee)
+        private static bool HasEmployee(Employee employee)
         {
             SelectSqlMaker maker = new SelectSqlMaker("employee");
             maker.AddAndCondition(new IntEqual("em_id", employee.em_id.Value));
             DataTable dataTable = employee.Select(maker.MakeSelectSql());
             if (dataTable.Rows.Count == 0)
             {
-                throw new Exception("不存在该员工");
+                return false;
             }
-            return;
+            return true;
         }
 
         //修改员工
@@ -50,7 +48,7 @@ namespace FireProductManager.ServiceLogicPackage
             employee.Update();
         }
 
-        //添加员工 ??编码不能为汉字
+        //添加员工 
         public static void NewEmployee(string employeeNumber, string name, string sex, int departmentId)
         {
             Employee employee = new Employee();;
@@ -66,8 +64,8 @@ namespace FireProductManager.ServiceLogicPackage
         private static void FormValidation(Employee employee, Operation operation)
         {
             IdValidation(employee, operation);
-            NameValidation(employee);
-            DepartmentIdValidation(employee);
+            NameValidation(employee.em_name);
+            DepartmentIdValidation(employee.em_departmentid.Value);
         }
 
         //em_employeenumber验证
@@ -79,43 +77,39 @@ namespace FireProductManager.ServiceLogicPackage
             switch (operation)
             {
                 case Operation.New:
-                    NewEmployeeNumber(employee);
+                    NewEmployeeNumber(employee.em_employeenumber);
                     break;
                 case Operation.Update:
-                    UpdateEmployeeNumber(employee);
+                    UpdateEmployeeNumber(employee.em_id.Value, employee.em_employeenumber);
                     break;
             }
         }
 
         //添加EmployeeNumber
-        private static void NewEmployeeNumber(Employee employee)
+        private static void NewEmployeeNumber(string employeeNumber)
         {
             SelectSqlMaker maker = new SelectSqlMaker("employee");
-            maker.AddAndCondition(new IntEqual("em_employeenumber", employee.em_employeenumber));
-            DataTable dataTable = employee.Select(maker.MakeSelectSql());
+            maker.AddAndCondition(new IntEqual("em_employeenumber", employeeNumber));
+            DataTable dataTable = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dataTable.Rows.Count != 0)
             {
-
                 throw new Exception("该员工编号已存在");
             }
         }
 
         //更新EmployeeNumber
-        private static void UpdateEmployeeNumber(Employee employee)
+        private static void UpdateEmployeeNumber(int id,string employeeNumber)
         {
             SelectSqlMaker maker = new SelectSqlMaker("employee");
-            maker.AddAndCondition(new IntEqual("em_id", employee.em_id.Value));
-            DataTable dataTable = employee.Select(maker.MakeSelectSql());
+            maker.AddAndCondition(new IntEqual("em_id", id));
+            DataTable dataTable = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             Employee em = new Employee();
-            foreach (DataRow dr in dataTable.Rows)
-            {
-                em.LoadDataRow(dr);
-            }
+            em.LoadDataRow(dataTable.Rows[0]);
+            if (em.em_employeenumber == employeeNumber) return;
 
-            if (em.em_employeenumber == employee.em_employeenumber) return;
-
-            maker.AddAndCondition(new IntEqual("em_employeenumber", employee.em_employeenumber));
-            DataTable dataTable1 = employee.Select(maker.MakeSelectSql());
+            SelectSqlMaker maker1 = new SelectSqlMaker("employee");
+            maker.AddAndCondition(new IntEqual("em_employeenumber", employeeNumber));
+            DataTable dataTable1 = ActiveRecord.Select(maker1.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dataTable1.Rows.Count != 0)
             {
                 throw new Exception("该员工编号已存在");
@@ -123,44 +117,30 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //em_name验证
-        private static void NameValidation(Employee employee)
+        private static void NameValidation(string name)
         {
-            if (employee.em_employeenumber.Equals(""))
+            if (name.Equals(""))
             {
                 throw new Exception("员工姓名不能为空");
             }
         }
 
         //em_departmentid验证
-        private static void DepartmentIdValidation(Employee employee)
+        private static void DepartmentIdValidation(int deoartmentid)
         {
-            if (employee.em_departmentid == -1)
+            if (deoartmentid == -1)
             {
                 throw new Exception("未选择员工所在部门");
             }
         }
 
-        //员工部门交换 ?? 功能重复
+        //员工部门交换 
         public static void SwitchDepartment(int employeeId, int departmentId)
         {
             Employee employee = new Employee();
             employee.em_id = employeeId;
             employee.em_departmentid = departmentId;
             employee.Update();
-        }
-
-        //员工查询 ？？sql的的生成
-        public static List<Employee> Query(string sql)
-        {
-            DataTable dataTable = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
-            List<Employee> list = new List<Employee>();
-            foreach (DataRow dr in dataTable.Rows)
-            {
-                Employee employee = new Employee();
-                employee.LoadDataRow(dr);
-                list.Add(employee);
-            }
-            return list;
         }
 
         //获取员工信息
@@ -180,5 +160,38 @@ namespace FireProductManager.ServiceLogicPackage
             }
             return employee;
         }
+
+        //获取全部员工
+        public static DataTable GetAllEmployees()
+        {
+            Employee employee = new Employee();
+            SelectSqlMaker maker = new SelectSqlMaker("employee");
+            return Query(maker.MakeSelectSql());
+        }
+
+        //员工搜索
+        public static DataTable GetQueryEmployees(string employeenumber,string name,string sex)
+        {
+            if (sex.Equals("男/女")) sex = "";
+            if (employeenumber.Equals("") && name.Equals("") && sex.Equals(""))
+            {
+                DataTable dataTable = GetAllEmployees();
+                return dataTable;
+            }
+            SelectSqlMaker maker = new SelectSqlMaker("employee");
+            maker.AddAndCondition(new StringLike("em_employeenumber", employeenumber));
+            maker.AddAndCondition(new StringLike("em_name", name));
+            maker.AddAndCondition(new StringLike("em_sex", sex));
+            return Query(maker.MakeSelectSql());
+        }
+
+        //员工查询 
+        private static DataTable Query(string sql)
+        {
+            DataTable dataTable = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+            return dataTable;
+        }
+
+
     }
 }

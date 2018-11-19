@@ -9,47 +9,45 @@ namespace FireProductManager.ServiceLogicPackage
 {
     class DepartmentGateway
     {
-        private static List<int> DepartmentId = new List<int>();
-
         //获取部门下全部员工
-        public static List<Employee> AllEmpolyeesOf(TreeNode treeNode)
+        public static DataTable AllEmpolyeesOf(TreeNode treeNode)
         {
-            List<Employee> list = new List<Employee>();
             Department department = new Department();
-            readNode(treeNode);
+            List<int> DepartmentId = readNode(treeNode);
             DataTable datatable = new DataTable();
-            string sql1 = "select * from t_employee where em_departmentid =";
-            string sql2 = " or em_departmentid =";
-            string sql = "";
             for (int i = 0; i < DepartmentId.Count; i++)
             {
+                SelectSqlMaker maker = new SelectSqlMaker("employee");
+                maker.AddAndCondition(new IntEqual("em_departmentid", DepartmentId[i]));
+                DataTable datatable1 = department.Select(maker.MakeSelectSql());
                 if (i == 0)
                 {
-                    sql = sql1 + DepartmentId[i];
+                    datatable = datatable1.Copy();
                     continue;
+                }     
+                foreach (DataRow dr in datatable1.Rows)
+                {
+                    datatable.ImportRow(dr);
                 }
-                sql += sql2 + DepartmentId[i];
+                datatable1 = null;
             }
-            datatable = department.Select(sql);
-            return list;
+            return datatable;
         }
 
         //读取节点的叶子节点ID
-        public static void readNode(TreeNode treeNode)
+        private static List<int> readNode(TreeNode treeNode)
         {
+            List<int> DepartmentId = new List<int>();
             if (treeNode.Nodes.Count == 0)
             {
                 DepartmentId.Add((int)treeNode.Tag);
-                return;
+                return DepartmentId;
             }
             foreach (TreeNode children in treeNode.Nodes)
             {
-                if (children.Nodes.Count == 0)
-                {
-                    DepartmentId.Add((int)children.Tag);
-                }
-                readNode(children);
+                DepartmentId.AddRange(readNode(children));
             }
+            return DepartmentId;
         }
 
         //部门删除
@@ -146,88 +144,44 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //加载部门树状图
-        public static void LoadTreeView(TreeView treeView, int parentId = 0)
+        public static void LoadTreeView(TreeView treeView)
         {
+            treeView.Nodes.Clear();
             Department department = new Department();
             SelectSqlMaker maker = new SelectSqlMaker("department");
-            maker.AddAndCondition(new IntEqual("de_belongid", parentId));
             DataTable dataTable = department.Select(maker.MakeSelectSql());
             if (dataTable.Rows.Count == 0) return;
-            InitializeNode(treeView, dataTable);
+            TreeNode rootNode = new TreeNode("所有部门");
+            rootNode.Tag = 0;
+            LoadSubNodes(rootNode);
+            treeView.Nodes.Add(rootNode);
         }
 
-        //Node初始化
-        private static void InitializeNode(TreeView treeView,DataTable dataTable)
+        private static void LoadSubNodes(TreeNode parentNode)
         {
-            int pId = -1;
-            foreach (DataRow row in dataTable.Rows)
-            {
-                TreeNode node = new TreeNode();
-                Department department = new Department();
-                department.LoadDataRow(row);
-                node.Text = row["de_name"].ToString();
-                node.Tag = row["de_id"];
-                pId = (int)row["de_belongid"];
-                if (pId == 0)
-                {
-                    treeView.Nodes.Add(node);//添加根节点
-                }
-                else
-                {
-                    RefreshChildNode(treeView, node, pId);//添加根节点之外的其他节点
-                }
-                LoadTreeView(treeView, (int)node.Tag);//查找以node为父节点的子节点
-            }
-        }
+            int parentId = (int)parentNode.Tag;
+            SelectSqlMaker make = new SelectSqlMaker("department");
+            make.AddAndCondition(new IntEqual("de_belongid", parentId));
+            DataTable dt = ActiveRecord.Select(make.MakeSelectSql(), DbLinkManager.databaseType,
+                DbLinkManager.connectString);
 
-        //处理根节点的子节点
-        private static void RefreshChildNode(TreeView treeView, TreeNode treeNode, int parentId)
-        {
-            foreach (TreeNode node in treeView.Nodes)
-            {
-                if ((int)node.Tag == parentId)
-                {
-                    node.Nodes.Add(treeNode);
-                    return;
-                }
-                else if (node.Nodes.Count > 0)
-                {
-                    FindChildNode(node, treeNode, parentId);
-                }
-            }
-        }
+            if (dt.Rows.Count == 0) return;
 
-        //处理根节点的子节点的子节点
-        private static void FindChildNode(TreeNode tNode, TreeNode treeNode, int parentId)
-        {
-            foreach (TreeNode node in tNode.Nodes)
+            foreach (DataRow dataRow in dt.Rows)
             {
-                if ((int)node.Tag == parentId)
-                {
-                    node.Nodes.Add(treeNode);
-                    return;
-                }
-                else if (node.Nodes.Count > 0)
-                {
-                    FindChildNode(node, treeNode, parentId);
-                }
+                TreeNode childNode = new TreeNode((string)dataRow["de_name"]) { Tag = (int)dataRow["de_id"] };
+                parentNode.Nodes.Add(childNode);
+                LoadSubNodes(childNode);
             }
         }
 
         //全部部门
-        public static List<Department> AllDepartments()
+        public static DataTable AllDepartments()
         {
             Department department = new Department();
             SelectSqlMaker maker = new SelectSqlMaker("t_department");
             DataTable dataTable = department.Select(maker.MakeSelectSql());
-            List<Department> list = new List<Department>();
-            foreach (DataRow dr in dataTable.Rows)
-            {
-                Department p = new Department();
-                p.LoadDataRow(dr);
-                list.Add(p);
-            }
-            return list;
+            return dataTable;
         }
 
         //查询节点名字，以及父节点名
@@ -248,5 +202,6 @@ namespace FireProductManager.ServiceLogicPackage
             }
             return mList;
         }
+
     }
 }
