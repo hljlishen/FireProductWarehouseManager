@@ -23,6 +23,7 @@ namespace FireProductManager
         {
             //float[] f = DepartmentGateway.SubArray(new float[] { 1, 2, 3, 4 }, 0, 2);
             //Test[] i = DepartmentGateway.SubArray(new Test[] {new Test(), new Test() }, 0, 2);
+            Dock = DockStyle.Fill;
         }
     }
 

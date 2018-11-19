@@ -53,8 +53,7 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_id", packageid));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            if (dt.Rows.Count > 0) return true;
-            return false;
+            return dt.Rows.Count > 0;
         }
     }
 }

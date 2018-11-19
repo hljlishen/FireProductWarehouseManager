@@ -52,11 +52,11 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //找到最后一个桶的id
-        private static int FindFinallyBarrelId()
+        private static int FindMaxBarrelId()
         {
             int barrelid = 0;
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
-            maker.MakeSelectMaxSql("ba_id");
+            maker.MakeSelectMaxSql("ba_id");    //??????????????erro
             string sql = maker.MakeSelectSql();
             DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
 
@@ -72,8 +72,7 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
             maker.AddAndCondition(new IntEqual("ba_id", barrelid));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            if (dt.Rows.Count > 0) return true;
-            return false;
+            return dt.Rows.Count > 0;
         }
 
         //判断桶中是否存在pa_isinWarehouse为1的袋子
@@ -83,8 +82,7 @@ namespace FireProductManager.ServiceLogicPackage
             maker.AddAndCondition(new IntEqual("pa_barrelId",barrelid));
             maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            if (dt.Rows.Count > 0) return true;
-            return false;
+            return dt.Rows.Count > 0;
         }
     }
 }

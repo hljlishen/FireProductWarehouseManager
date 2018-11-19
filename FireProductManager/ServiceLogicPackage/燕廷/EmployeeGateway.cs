@@ -18,7 +18,7 @@ namespace FireProductManager.ServiceLogicPackage
         {
             Employee employee = new Employee();
             employee.em_id = employeeId;
-            if (!HasEmployee(employee)) throw new Exception("不存在该员工");
+            if (!HasEmployee(employee)) throw new Exception("不存在该员工");  //????????????正确异常
             employee.Delete();
         }
 
@@ -28,11 +28,7 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("employee");
             maker.AddAndCondition(new IntEqual("em_id", employee.em_id.Value));
             DataTable dataTable = employee.Select(maker.MakeSelectSql());
-            if (dataTable.Rows.Count == 0)
-            {
-                return false;
-            }
-            return true;
+            return dataTable.Rows.Count != 0;
         }
 
         //修改员工
@@ -63,13 +59,13 @@ namespace FireProductManager.ServiceLogicPackage
         //表单验证
         private static void FormValidation(Employee employee, Operation operation)
         {
-            IdValidation(employee, operation);
+            IsIdValid(employee, operation);  //??????????????错误异常
             NameValidation(employee.em_name);
             DepartmentIdValidation(employee.em_departmentid.Value);
         }
 
         //em_employeenumber验证
-        private static void IdValidation(Employee employee, Operation operation)
+        private static void IsIdValid(Employee employee, Operation operation)
         {
             if (employee.em_employeenumber.Equals("")) {
                 throw new Exception("员工编号不能为空");

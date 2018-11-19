@@ -69,7 +69,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //该部门是否存在
-        private static void HasDepartment(Department department)
+        private static void HasDepartment(Department department)        //????????????????
         {
             SelectSqlMaker maker = new SelectSqlMaker("department");
             maker.AddAndCondition(new IntEqual("de_id", department.de_id.Value));
@@ -82,7 +82,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //是否存在子部门
-        private static void HasSonDepartment(Department department)
+        private static void HasSonDepartment(Department department)     //???????????????
         {
             SelectSqlMaker maker = new SelectSqlMaker("department");
             maker.AddAndCondition(new IntEqual("de_belongid", department.de_id.Value));
@@ -95,7 +95,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //是否存在员工
-        private static void HasEmployee(Department department)
+        private static void HasEmployee(Department department)      //??????????????????
         {
             SelectSqlMaker maker = new SelectSqlMaker("department");
             maker = new SelectSqlMaker("employee");
@@ -130,7 +130,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //部门名字查重
-        private static void NodeDuplicateChecking(Department department)
+        private static void NodeDuplicateChecking(Department department)    //???????????naming erro
         {
             SelectSqlMaker maker = new SelectSqlMaker("department");
             maker.AddAndCondition(new StringEqual("de_name", department.de_name));
@@ -185,7 +185,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //查询节点名字，以及父节点名
-        public static List<string> ReadDepartmentNodeName(int departmentid)
+        public static List<string> ReadDepartmentNodeName(int departmentid)     //????????return string
         {
             Department department = new Department();
             department.de_id = departmentid;
