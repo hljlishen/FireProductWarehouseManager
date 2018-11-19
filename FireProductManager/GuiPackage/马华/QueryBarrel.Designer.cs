@@ -38,6 +38,7 @@
             // dgv_existbarrelid
             // 
             this.dgv_existbarrelid.AllowUserToAddRows = false;
+            this.dgv_existbarrelid.AllowUserToDeleteRows = false;
             this.dgv_existbarrelid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgv_existbarrelid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_existbarrelid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

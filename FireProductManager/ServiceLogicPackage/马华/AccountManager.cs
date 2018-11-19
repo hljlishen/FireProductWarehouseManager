@@ -40,7 +40,7 @@ namespace FireProductManager.ServiceLogicPackage
             if (dt.Rows.Count > 0)
             {
                 account = new Account();
-                account.LoadDataRow(dt.Rows[0]);
+                account.LoadDataRow(dt.Rows[0]);//改为uint后loaddatarow不支持
                 return true;
             }  
             return false;

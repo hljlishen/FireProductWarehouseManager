@@ -35,10 +35,12 @@
             this.类型1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.规格1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.重量1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.操作 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_packageshow2 = new System.Windows.Forms.DataGridView();
             this.类型2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.规格2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.重量2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.操作1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_querybarrel1 = new System.Windows.Forms.Button();
             this.btn_querybarrel2 = new System.Windows.Forms.Button();
             this.lab_showbarrelid1 = new System.Windows.Forms.Label();
@@ -81,46 +83,58 @@
             // 
             this.dgv_packageshow1.AllowUserToAddRows = false;
             this.dgv_packageshow1.AllowUserToDeleteRows = false;
-            this.dgv_packageshow1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_packageshow1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgv_packageshow1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_packageshow1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.类型1,
             this.规格1,
-            this.重量1});
+            this.重量1,
+            this.操作});
             this.dgv_packageshow1.Location = new System.Drawing.Point(58, 195);
             this.dgv_packageshow1.Name = "dgv_packageshow1";
             this.dgv_packageshow1.RowTemplate.Height = 23;
             this.dgv_packageshow1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgv_packageshow1.Size = new System.Drawing.Size(364, 374);
+            this.dgv_packageshow1.Size = new System.Drawing.Size(364, 352);
             this.dgv_packageshow1.TabIndex = 28;
             // 
             // 类型1
             // 
             this.类型1.HeaderText = "类型";
             this.类型1.Name = "类型1";
+            this.类型1.ReadOnly = true;
+            this.类型1.Width = 80;
             // 
             // 规格1
             // 
             this.规格1.HeaderText = "规格（mm*mm）";
             this.规格1.Name = "规格1";
+            this.规格1.ReadOnly = true;
+            this.规格1.Width = 81;
             // 
             // 重量1
             // 
             this.重量1.HeaderText = "重量";
             this.重量1.Name = "重量1";
+            this.重量1.ReadOnly = true;
+            this.重量1.Width = 80;
+            // 
+            // 操作
+            // 
+            this.操作.HeaderText = "操作";
+            this.操作.Name = "操作";
+            this.操作.Width = 80;
             // 
             // dgv_packageshow2
             // 
             this.dgv_packageshow2.AllowUserToAddRows = false;
             this.dgv_packageshow2.AllowUserToDeleteRows = false;
-            this.dgv_packageshow2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_packageshow2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgv_packageshow2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_packageshow2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.类型2,
             this.规格2,
-            this.重量2});
+            this.重量2,
+            this.操作1});
             this.dgv_packageshow2.Location = new System.Drawing.Point(567, 195);
             this.dgv_packageshow2.Name = "dgv_packageshow2";
             this.dgv_packageshow2.RowTemplate.Height = 23;
@@ -132,16 +146,28 @@
             // 
             this.类型2.HeaderText = "类型";
             this.类型2.Name = "类型2";
+            this.类型2.ReadOnly = true;
+            this.类型2.Width = 80;
             // 
             // 规格2
             // 
             this.规格2.HeaderText = "规格（mm*mm）";
             this.规格2.Name = "规格2";
+            this.规格2.ReadOnly = true;
+            this.规格2.Width = 81;
             // 
             // 重量2
             // 
             this.重量2.HeaderText = "重量";
             this.重量2.Name = "重量2";
+            this.重量2.ReadOnly = true;
+            this.重量2.Width = 80;
+            // 
+            // 操作1
+            // 
+            this.操作1.HeaderText = "操作";
+            this.操作1.Name = "操作1";
+            this.操作1.Width = 80;
             // 
             // btn_querybarrel1
             // 
@@ -199,7 +225,7 @@
             this.Controls.Add(this.btn_addbarrel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "BarrelManagement";
-            this.Text = "管理桶";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.BarrelManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_packageshow1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_packageshow2)).EndInit();
@@ -214,15 +240,17 @@
         private System.Windows.Forms.Button btn_removebarrel;
         private System.Windows.Forms.DataGridView dgv_packageshow1;
         private System.Windows.Forms.DataGridView dgv_packageshow2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 类型1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 规格1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 重量1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 类型2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 规格2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 重量2;
         private System.Windows.Forms.Button btn_querybarrel1;
         private System.Windows.Forms.Button btn_querybarrel2;
         private System.Windows.Forms.Label lab_showbarrelid1;
         private System.Windows.Forms.Label lab_showbarrelid2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 类型1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 规格1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 重量1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 操作;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 类型2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 规格2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 重量2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 操作1;
     }
 }

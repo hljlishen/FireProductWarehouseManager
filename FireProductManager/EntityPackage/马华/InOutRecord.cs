@@ -9,10 +9,9 @@ namespace FireProductManager.EntityPackage
 {
     class InOutRecord : ActiveRecord
     {
-
-        public int? ior_id { get; set; }
-        public int? ior_packageId { get; set; }
-        public int? ior_employeeId { get; set; }
+        public uint? ior_id { get; set; }
+        public uint? ior_packageId { get; set; }
+        public uint? ior_employeeId { get; set; }
         public string ior_direction { get; set; }
         public DateTime? ior_timeStmp { get; set; }
 

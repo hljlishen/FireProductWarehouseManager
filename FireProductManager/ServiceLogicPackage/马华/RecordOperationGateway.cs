@@ -25,8 +25,8 @@ namespace FireProductManager.ServiceLogicPackage
             //PackageGateway.BorrowPackage(packageid);
 
             InOutRecord inOutRecord = new InOutRecord();
-            inOutRecord.ior_packageId = packageid;
-            inOutRecord.ior_employeeId = employeeid;
+            inOutRecord.ior_packageId = (uint)packageid;
+            inOutRecord.ior_employeeId = (uint)employeeid;
             inOutRecord.ior_direction = "出库";
             inOutRecord.ior_timeStmp = DateTime.Now;
             inOutRecord.Insert();
@@ -40,8 +40,8 @@ namespace FireProductManager.ServiceLogicPackage
             //PackageGateway.ReturnPackage(packageid, barrelid);
 
             InOutRecord inOutRecord = new InOutRecord();
-            inOutRecord.ior_packageId = packageid;
-            inOutRecord.ior_employeeId = employeeid;
+            inOutRecord.ior_packageId = (uint)packageid;
+            inOutRecord.ior_employeeId = (uint)employeeid;
             inOutRecord.ior_direction = "入库";
             inOutRecord.ior_timeStmp = DateTime.Now;
             inOutRecord.Insert();  
@@ -53,7 +53,8 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_id", packageid));
             DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            return dt.Rows.Count > 0;
+            if (dt.Rows.Count > 0) return true;
+            return false;
         }
     }
 }

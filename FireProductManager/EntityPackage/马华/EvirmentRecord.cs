@@ -10,7 +10,7 @@ namespace FireProductManager.EntityPackage
     public class EvirmentRecord : ActiveRecord
     {
 
-        public int? er_id { get; set; }
+        public uint? er_id { get; set; }
         public double? er_temperature { get; set; }
         public double? er_humidity { get; set; }
         public DateTime? er_timeStmp { get; set; }
