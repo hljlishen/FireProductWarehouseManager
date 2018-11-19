@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using static cangku_01.view.AdminPage.AutoCloseMassageBox;
+using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 namespace FireProductManager.GuiPackage
 {
