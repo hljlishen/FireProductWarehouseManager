@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLogicPackage\燕廷\EmployeeGatewayTests.cs" />
+    <Compile Include="ServiceLogicPackage\燕廷\PackageGatewayTests.cs" />
     <Compile Include="ServiceLogicPackage\马华\AccountManagerTests.cs" />
     <Compile Include="ServiceLogicPackage\马华\BarrelGatewayTests.cs" />
     <Compile Include="ServiceLogicPackage\马华\RecordOperationGatewayTests.cs" />

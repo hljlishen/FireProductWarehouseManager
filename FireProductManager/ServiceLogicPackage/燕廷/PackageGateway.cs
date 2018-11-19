@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace FireProductManager.ServiceLogicPackage
 {
-    class PackageGateway
+    public class PackageGateway
     {
         //材料查询
         public static DataTable Query(string sql)
@@ -145,6 +145,25 @@ namespace FireProductManager.ServiceLogicPackage
             Package package = new Package();
             SelectSqlMaker maker = new SelectSqlMaker("package");
             return Query(maker.MakeSelectSql());
+        }
+
+        //添加材料 
+        public static void NewPackage(string model, Double weigth, int barrelId, int isinWarehouse, DateTime purchaseTime)
+        {
+            Package package = new Package(); ;
+            package.pa_model = model;
+            package.pa_weigth = weigth;
+            package.pa_barrelId = barrelId;
+            package.pa_isinWarehouse = isinWarehouse;
+            package.pa_purchaseTime = purchaseTime;
+            //FormValidation(package);
+            package.Insert();
+        }
+
+        //表单验证
+        private static void FormValidation(Package package)
+        {
+            
         }
     }
 }

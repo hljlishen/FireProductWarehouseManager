@@ -87,16 +87,16 @@ namespace FireProductManager.GuiPackage
                 if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[9].Value;
-                    AddOrUpdatePackage Update = new AddOrUpdatePackage(packageid);
-                    Update.ShowDialog();
+                    //AddOrUpdatePackage Update = new AddOrUpdatePackage(packageid);
+                    //Update.ShowDialog();
                 }
             }
             //查看
             if (e.ColumnIndex == 8)
             {
                 int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[9].Value;
-                AddOrUpdatePackage add = new AddOrUpdatePackage(packageid);
-                add.ShowDialog();
+                //AddOrUpdatePackage add = new AddOrUpdatePackage(packageid);
+                //add.ShowDialog();
             }
         }
 

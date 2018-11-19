@@ -395,7 +395,6 @@
             this.bt_selectduty.TabIndex = 69;
             this.bt_selectduty.Text = "...";
             this.bt_selectduty.UseVisualStyleBackColor = true;
-            this.bt_selectduty.Click += new System.EventHandler(this.bt_selectduty_Click);
             // 
             // la_state
             // 
@@ -535,7 +534,6 @@
             this.Name = "AddOrUpdateInstrument";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "编辑仪器信息";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddOrUpdateInstrument_FormClosing);
             this.Load += new System.EventHandler(this.AddOrModifyInstrument_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_instrumentphoto)).EndInit();
             this.ResumeLayout(false);
