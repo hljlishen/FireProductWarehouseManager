@@ -32,19 +32,21 @@
             this.tb_showaddbarrelid = new System.Windows.Forms.TextBox();
             this.btn_removebarrel = new System.Windows.Forms.Button();
             this.dgv_packageshow1 = new System.Windows.Forms.DataGridView();
-            this.类型1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.规格1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.重量1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.操作 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_packageshow2 = new System.Windows.Forms.DataGridView();
-            this.类型2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.规格2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.重量2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.操作1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_querybarrel1 = new System.Windows.Forms.Button();
             this.btn_querybarrel2 = new System.Windows.Forms.Button();
             this.lab_showbarrelid1 = new System.Windows.Forms.Label();
             this.lab_showbarrelid2 = new System.Windows.Forms.Label();
+            this.类型2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.规格2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.重量2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.操作1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btn_exchangepackageid1 = new System.Windows.Forms.Button();
+            this.btn_exchangepackageid2 = new System.Windows.Forms.Button();
+            this.类型1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.规格1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.重量1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.操作 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_packageshow1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_packageshow2)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +54,7 @@
             // btn_addbarrel
             // 
             this.btn_addbarrel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_addbarrel.Location = new System.Drawing.Point(38, 41);
+            this.btn_addbarrel.Location = new System.Drawing.Point(58, 43);
             this.btn_addbarrel.Name = "btn_addbarrel";
             this.btn_addbarrel.Size = new System.Drawing.Size(75, 23);
             this.btn_addbarrel.TabIndex = 25;
@@ -63,7 +65,7 @@
             // tb_showaddbarrelid
             // 
             this.tb_showaddbarrelid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_showaddbarrelid.Location = new System.Drawing.Point(138, 43);
+            this.tb_showaddbarrelid.Location = new System.Drawing.Point(159, 43);
             this.tb_showaddbarrelid.Name = "tb_showaddbarrelid";
             this.tb_showaddbarrelid.Size = new System.Drawing.Size(100, 23);
             this.tb_showaddbarrelid.TabIndex = 26;
@@ -94,35 +96,8 @@
             this.dgv_packageshow1.Name = "dgv_packageshow1";
             this.dgv_packageshow1.RowTemplate.Height = 23;
             this.dgv_packageshow1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgv_packageshow1.Size = new System.Drawing.Size(364, 352);
+            this.dgv_packageshow1.Size = new System.Drawing.Size(364, 374);
             this.dgv_packageshow1.TabIndex = 28;
-            // 
-            // 类型1
-            // 
-            this.类型1.HeaderText = "类型";
-            this.类型1.Name = "类型1";
-            this.类型1.ReadOnly = true;
-            this.类型1.Width = 80;
-            // 
-            // 规格1
-            // 
-            this.规格1.HeaderText = "规格（mm*mm）";
-            this.规格1.Name = "规格1";
-            this.规格1.ReadOnly = true;
-            this.规格1.Width = 81;
-            // 
-            // 重量1
-            // 
-            this.重量1.HeaderText = "重量";
-            this.重量1.Name = "重量1";
-            this.重量1.ReadOnly = true;
-            this.重量1.Width = 80;
-            // 
-            // 操作
-            // 
-            this.操作.HeaderText = "操作";
-            this.操作.Name = "操作";
-            this.操作.Width = 80;
             // 
             // dgv_packageshow2
             // 
@@ -141,33 +116,6 @@
             this.dgv_packageshow2.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgv_packageshow2.Size = new System.Drawing.Size(364, 374);
             this.dgv_packageshow2.TabIndex = 29;
-            // 
-            // 类型2
-            // 
-            this.类型2.HeaderText = "类型";
-            this.类型2.Name = "类型2";
-            this.类型2.ReadOnly = true;
-            this.类型2.Width = 80;
-            // 
-            // 规格2
-            // 
-            this.规格2.HeaderText = "规格（mm*mm）";
-            this.规格2.Name = "规格2";
-            this.规格2.ReadOnly = true;
-            this.规格2.Width = 81;
-            // 
-            // 重量2
-            // 
-            this.重量2.HeaderText = "重量";
-            this.重量2.Name = "重量2";
-            this.重量2.ReadOnly = true;
-            this.重量2.Width = 80;
-            // 
-            // 操作1
-            // 
-            this.操作1.HeaderText = "操作";
-            this.操作1.Name = "操作1";
-            this.操作1.Width = 80;
             // 
             // btn_querybarrel1
             // 
@@ -209,11 +157,94 @@
             this.lab_showbarrelid2.Size = new System.Drawing.Size(0, 21);
             this.lab_showbarrelid2.TabIndex = 33;
             // 
+            // 类型2
+            // 
+            this.类型2.HeaderText = "类型";
+            this.类型2.Name = "类型2";
+            this.类型2.ReadOnly = true;
+            this.类型2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.类型2.Width = 80;
+            // 
+            // 规格2
+            // 
+            this.规格2.HeaderText = "规格（mm*mm）";
+            this.规格2.Name = "规格2";
+            this.规格2.ReadOnly = true;
+            this.规格2.Width = 81;
+            // 
+            // 重量2
+            // 
+            this.重量2.HeaderText = "重量";
+            this.重量2.Name = "重量2";
+            this.重量2.ReadOnly = true;
+            this.重量2.Width = 80;
+            // 
+            // 操作1
+            // 
+            this.操作1.HeaderText = "操作";
+            this.操作1.Name = "操作1";
+            this.操作1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.操作1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.操作1.Width = 80;
+            // 
+            // btn_exchangepackageid1
+            // 
+            this.btn_exchangepackageid1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_exchangepackageid1.Location = new System.Drawing.Point(479, 320);
+            this.btn_exchangepackageid1.Name = "btn_exchangepackageid1";
+            this.btn_exchangepackageid1.Size = new System.Drawing.Size(37, 37);
+            this.btn_exchangepackageid1.TabIndex = 34;
+            this.btn_exchangepackageid1.Text = ">>";
+            this.btn_exchangepackageid1.UseVisualStyleBackColor = true;
+            this.btn_exchangepackageid1.Click += new System.EventHandler(this.btn_exchangepackageid1_Click);
+            // 
+            // btn_exchangepackageid2
+            // 
+            this.btn_exchangepackageid2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_exchangepackageid2.Location = new System.Drawing.Point(479, 415);
+            this.btn_exchangepackageid2.Name = "btn_exchangepackageid2";
+            this.btn_exchangepackageid2.Size = new System.Drawing.Size(37, 37);
+            this.btn_exchangepackageid2.TabIndex = 35;
+            this.btn_exchangepackageid2.Text = "<<";
+            this.btn_exchangepackageid2.UseVisualStyleBackColor = true;
+            // 
+            // 类型1
+            // 
+            this.类型1.HeaderText = "类型";
+            this.类型1.Name = "类型1";
+            this.类型1.ReadOnly = true;
+            this.类型1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.类型1.Width = 80;
+            // 
+            // 规格1
+            // 
+            this.规格1.HeaderText = "规格（mm*mm）";
+            this.规格1.Name = "规格1";
+            this.规格1.ReadOnly = true;
+            this.规格1.Width = 81;
+            // 
+            // 重量1
+            // 
+            this.重量1.HeaderText = "重量";
+            this.重量1.Name = "重量1";
+            this.重量1.ReadOnly = true;
+            this.重量1.Width = 80;
+            // 
+            // 操作
+            // 
+            this.操作.HeaderText = "操作";
+            this.操作.Name = "操作";
+            this.操作.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.操作.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.操作.Width = 80;
+            // 
             // BarrelManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.btn_exchangepackageid2);
+            this.Controls.Add(this.btn_exchangepackageid1);
             this.Controls.Add(this.lab_showbarrelid2);
             this.Controls.Add(this.lab_showbarrelid1);
             this.Controls.Add(this.btn_querybarrel2);
@@ -244,13 +275,15 @@
         private System.Windows.Forms.Button btn_querybarrel2;
         private System.Windows.Forms.Label lab_showbarrelid1;
         private System.Windows.Forms.Label lab_showbarrelid2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 类型1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 规格1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 重量1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 操作;
         private System.Windows.Forms.DataGridViewTextBoxColumn 类型2;
         private System.Windows.Forms.DataGridViewTextBoxColumn 规格2;
         private System.Windows.Forms.DataGridViewTextBoxColumn 重量2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 操作1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn 操作1;
+        private System.Windows.Forms.Button btn_exchangepackageid1;
+        private System.Windows.Forms.Button btn_exchangepackageid2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 类型1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 规格1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 重量1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn 操作;
     }
 }
