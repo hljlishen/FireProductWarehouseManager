@@ -45,21 +45,20 @@
             this.gb_foundrecord = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_exceloperator = new System.Windows.Forms.Button();
-            this.桶号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.方向 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.领用人 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.领用项目 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.领用数量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.领用日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.生产单位 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.生产日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.袋子id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.tb_projectid = new System.Windows.Forms.TextBox();
             this.btn_selectprojectid = new System.Windows.Forms.Button();
+            this.袋子id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.桶号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.方向 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.领用日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.领用人 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.领用项目 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.生产单位 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.生产日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PackageInAndOutrecord)).BeginInit();
             this.gb_foundrecord.SuspendLayout();
             this.SuspendLayout();
@@ -119,18 +118,17 @@
             this.dgv_PackageInAndOutrecord.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgv_PackageInAndOutrecord.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_PackageInAndOutrecord.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.袋子id,
             this.桶号,
             this.类型,
             this.规格,
-            this.重量,
             this.方向,
+            this.领用日期,
             this.领用人,
             this.领用项目,
-            this.领用数量,
-            this.领用日期,
+            this.重量,
             this.生产单位,
-            this.生产日期,
-            this.袋子id});
+            this.生产日期});
             this.dgv_PackageInAndOutrecord.Location = new System.Drawing.Point(69, 97);
             this.dgv_PackageInAndOutrecord.Name = "dgv_PackageInAndOutrecord";
             this.dgv_PackageInAndOutrecord.RowTemplate.Height = 23;
@@ -267,75 +265,6 @@
             this.btn_exceloperator.UseVisualStyleBackColor = true;
             this.btn_exceloperator.Click += new System.EventHandler(this.btn_exceloperator_Click);
             // 
-            // 桶号
-            // 
-            this.桶号.HeaderText = "桶号";
-            this.桶号.Name = "桶号";
-            // 
-            // 类型
-            // 
-            this.类型.HeaderText = "类型";
-            this.类型.Name = "类型";
-            this.类型.ReadOnly = true;
-            // 
-            // 规格
-            // 
-            this.规格.HeaderText = "规格（mm*mm）";
-            this.规格.Name = "规格";
-            this.规格.ReadOnly = true;
-            // 
-            // 重量
-            // 
-            this.重量.HeaderText = "重量";
-            this.重量.Name = "重量";
-            this.重量.ReadOnly = true;
-            // 
-            // 方向
-            // 
-            this.方向.HeaderText = "方向";
-            this.方向.Name = "方向";
-            // 
-            // 领用人
-            // 
-            this.领用人.HeaderText = "领用人";
-            this.领用人.Name = "领用人";
-            this.领用人.ReadOnly = true;
-            // 
-            // 领用项目
-            // 
-            this.领用项目.HeaderText = "领用项目";
-            this.领用项目.Name = "领用项目";
-            // 
-            // 领用数量
-            // 
-            this.领用数量.HeaderText = "领用数量";
-            this.领用数量.Name = "领用数量";
-            this.领用数量.ReadOnly = true;
-            // 
-            // 领用日期
-            // 
-            this.领用日期.HeaderText = "领用日期";
-            this.领用日期.Name = "领用日期";
-            // 
-            // 生产单位
-            // 
-            this.生产单位.HeaderText = "生产单位";
-            this.生产单位.Name = "生产单位";
-            this.生产单位.ReadOnly = true;
-            // 
-            // 生产日期
-            // 
-            this.生产日期.HeaderText = "生产日期";
-            this.生产日期.Name = "生产日期";
-            this.生产日期.ReadOnly = true;
-            // 
-            // 袋子id
-            // 
-            this.袋子id.HeaderText = "袋子id";
-            this.袋子id.Name = "袋子id";
-            this.袋子id.ReadOnly = true;
-            this.袋子id.Visible = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -364,6 +293,68 @@
             this.btn_selectprojectid.TabIndex = 29;
             this.btn_selectprojectid.Text = "...";
             this.btn_selectprojectid.UseVisualStyleBackColor = true;
+            // 
+            // 袋子id
+            // 
+            this.袋子id.HeaderText = "袋子编号";
+            this.袋子id.Name = "袋子id";
+            this.袋子id.ReadOnly = true;
+            this.袋子id.Visible = false;
+            // 
+            // 桶号
+            // 
+            this.桶号.HeaderText = "所在桶";
+            this.桶号.Name = "桶号";
+            // 
+            // 类型
+            // 
+            this.类型.HeaderText = "类型";
+            this.类型.Name = "类型";
+            this.类型.ReadOnly = true;
+            // 
+            // 规格
+            // 
+            this.规格.HeaderText = "规格（mm*mm）";
+            this.规格.Name = "规格";
+            this.规格.ReadOnly = true;
+            // 
+            // 方向
+            // 
+            this.方向.HeaderText = "方向";
+            this.方向.Name = "方向";
+            // 
+            // 领用日期
+            // 
+            this.领用日期.HeaderText = "日期";
+            this.领用日期.Name = "领用日期";
+            // 
+            // 领用人
+            // 
+            this.领用人.HeaderText = "领用人";
+            this.领用人.Name = "领用人";
+            this.领用人.ReadOnly = true;
+            // 
+            // 领用项目
+            // 
+            this.领用项目.HeaderText = "领用项目";
+            this.领用项目.Name = "领用项目";
+            // 
+            // 重量
+            // 
+            this.重量.HeaderText = "重量(g)";
+            this.重量.Name = "重量";
+            this.重量.ReadOnly = true;
+            // 
+            // 生产单位
+            // 
+            this.生产单位.HeaderText = "生产单位";
+            this.生产单位.Name = "生产单位";
+            this.生产单位.ReadOnly = true;
+            // 
+            // 生产日期
+            // 
+            this.生产日期.HeaderText = "生产日期";
+            this.生产日期.Name = "生产日期";
             // 
             // PackageBorrowRecord
             // 
@@ -402,20 +393,19 @@
         private System.Windows.Forms.GroupBox gb_foundrecord;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_exceloperator;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 桶号;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 类型;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 规格;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 重量;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 方向;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 领用人;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 领用项目;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 领用数量;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 领用日期;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 生产单位;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 生产日期;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 袋子id;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_projectid;
         private System.Windows.Forms.Button btn_selectprojectid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 袋子id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 桶号;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 类型;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 规格;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 方向;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 领用日期;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 领用人;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 领用项目;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 重量;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 生产单位;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 生产日期;
     }
 }

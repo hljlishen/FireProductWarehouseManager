@@ -1,9 +1,7 @@
-﻿using System;
+﻿using FireProductManager.ServiceLogicPackage;
+using System;
 using System.Data;
-using DbLink;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using FireProductManager.ServiceLogicPackage;
 
 namespace FireProductManager.GuiPackage
 {
@@ -43,10 +41,7 @@ namespace FireProductManager.GuiPackage
 
         private void QueryBarrel_Load(object sender, EventArgs e)
         {
-            SelectSqlMaker maker = new SelectSqlMaker("barrel");
-            maker.AddAndCondition(new IntEqual("ba_isRemoved",0));
-            string sql = maker.MakeSelectSql();
-            ShowDataGridView(BarrelGateway.Query(sql));
+            ShowDataGridView(BarrelGateway.NoRemoveBarrelId());
         }
 
         private void dgv_existbarrelid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

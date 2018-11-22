@@ -7,7 +7,7 @@ using DbLink;
 
 namespace FireProductManager.EntityPackage
 {
-    class Barrel : ActiveRecord
+    public class Barrel : ActiveRecord
     {
 
         public uint? ba_id { get; set; }

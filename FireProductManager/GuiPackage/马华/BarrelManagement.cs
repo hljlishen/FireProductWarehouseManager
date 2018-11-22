@@ -1,5 +1,4 @@
-﻿using DbLink;
-using FireProductManager.ServiceLogicPackage;
+﻿using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -67,14 +66,14 @@ namespace FireProductManager.GuiPackage
         {
             barrelid1 = barrelId;
             lab_showbarrelid1.Text = barrelId.ToString() + "号桶";
-            ShowDataGridView1(BarrelGateway.Query(BarrelIdQueryPackageMessage(barrelid1)));
+            ShowDataGridView1(BarrelGateway.BarrelIdQueryPackageMessage(barrelid1));
         }
 
         private void BarrelIdSelected2(int barrelId)
         {
             barrelid2 = barrelId;
             lab_showbarrelid2.Text = barrelId.ToString() + "号桶";
-            ShowDataGridView2(BarrelGateway.Query(BarrelIdQueryPackageMessage(barrelid2)));
+            ShowDataGridView2(BarrelGateway.BarrelIdQueryPackageMessage(barrelid2));
         }
 
         private void ShowDataGridView1(DataTable dt)
@@ -86,8 +85,8 @@ namespace FireProductManager.GuiPackage
                 int index = dgv_packageshow1.Rows.Add(row);
                 dgv_packageshow1.Rows[index].Cells[0].Value = dr["pa_id"];
                 dgv_packageshow1.Rows[index].Cells[1].Value = dr["pa_name"];
-                dgv_packageshow1.Rows[index].Cells[2].Value = dr["pa_modle"];
-                dgv_packageshow1.Rows[index].Cells[3].Value = dr["pa_weight"] + "g";
+                dgv_packageshow1.Rows[index].Cells[2].Value = dr["pa_model"];
+                dgv_packageshow1.Rows[index].Cells[3].Value = dr["pa_weigth"] + "g";
             }
         }
 
@@ -100,23 +99,14 @@ namespace FireProductManager.GuiPackage
                 int index = dgv_packageshow2.Rows.Add(row);
                 dgv_packageshow2.Rows[index].Cells[0].Value = dr["pa_id"];
                 dgv_packageshow2.Rows[index].Cells[1].Value = dr["pa_name"];
-                dgv_packageshow2.Rows[index].Cells[2].Value = dr["pa_modle"];
-                dgv_packageshow2.Rows[index].Cells[3].Value = dr["pa_weight"] + "g";
+                dgv_packageshow2.Rows[index].Cells[2].Value = dr["pa_model"];
+                dgv_packageshow2.Rows[index].Cells[3].Value = dr["pa_weigth"] + "g";
             }
         }
 
         private void BarrelManagement_Load(object sender, EventArgs e)
         {
             
-        }
-
-        private string BarrelIdQueryPackageMessage(int barrelid)
-        {
-            SelectSqlMaker maker = new SelectSqlMaker("package");
-            maker.AddAndCondition(new IntEqual("pa_barrelId", barrelid));
-            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
-            string sql = maker.MakeSelectSql();
-            return sql;
         }
 
         private void btn_exchangepackageid1_Click(object sender, EventArgs e)

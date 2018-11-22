@@ -255,7 +255,7 @@
             this.la_authoritycheck.TabIndex = 19;
             this.la_authoritycheck.Text = "未选择权限级别";
             // 
-            // AdministratorManagement
+            // AddOrUpdateAdministratorManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -275,7 +275,7 @@
             this.Controls.Add(this.btn_addaccount);
             this.Controls.Add(this.dgv_administrator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AdministratorManagement";
+            this.Name = "AddOrUpdateAdministratorManagement";
             this.Text = "AdministratorManagement";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_administrator)).EndInit();
             this.ResumeLayout(false);

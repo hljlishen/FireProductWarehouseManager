@@ -33,7 +33,7 @@ namespace FireProductManager.GuiPackage
         private void Administration_Load(object sender, EventArgs e)
         {
             ShowLoginWindow();
-            仓库管理ToolStripMenuItem_Click(sender, e);
+            //仓库管理ToolStripMenuItem_Click(sender, e);
         }
 
         private void ShowLoginWindow()

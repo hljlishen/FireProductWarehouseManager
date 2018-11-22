@@ -8,10 +8,27 @@ namespace FireProductManager.ServiceLogicPackage
     public class BarrelGateway
     {
         //查询桶
-        public static DataTable Query(string sql)
+        private static DataTable Query(string sql)
         {
             var queryBarrel = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
             return queryBarrel;
+        }
+
+        public static DataTable BarrelIdQueryPackageMessage(int barrelid)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("package");
+            maker.AddAndCondition(new IntEqual("pa_barrelId", barrelid));
+            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
+            string sql = maker.MakeSelectSql();
+            return Query(sql);
+        }
+
+        public static DataTable NoRemoveBarrelId()
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("barrel");
+            maker.AddAndCondition(new IntEqual("ba_isRemoved", 0));
+            string sql = maker.MakeSelectSql();
+            return Query(sql);
         }
 
         //记录新桶
@@ -46,7 +63,7 @@ namespace FireProductManager.ServiceLogicPackage
             DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
 
             foreach (DataRow dr in dt.Rows)
-                weigth += double.Parse(dr["pa_weight"].ToString());
+                weigth += double.Parse(dr["pa_weigth"].ToString());
 
             return weigth;
         }
