@@ -142,6 +142,12 @@
     <Compile Include="GuiPackage\马华\Administration.designer.cs">
       <DependentUpon>Administration.cs</DependentUpon>
     </Compile>
+    <Compile Include="GuiPackage\马华\AddOrUpdateAdministratorManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\马华\AddOrUpdateAdministratorManagement.Designer.cs">
+      <DependentUpon>AddOrUpdateAdministratorManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="GuiPackage\马华\AdminLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\马华\Administration.resx">
       <DependentUpon>Administration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\马华\AddOrUpdateAdministratorManagement.resx">
+      <DependentUpon>AddOrUpdateAdministratorManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\马华\AdminLogin.resx">
       <DependentUpon>AdminLogin.cs</DependentUpon>

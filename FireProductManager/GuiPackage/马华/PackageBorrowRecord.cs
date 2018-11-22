@@ -12,6 +12,7 @@ namespace FireProductManager.GuiPackage
         public PackageBorrowRecord()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void PackageBorrowRecord_Load(object sender, EventArgs e)
@@ -19,9 +20,8 @@ namespace FireProductManager.GuiPackage
             cb_directquery.Text = "出入库";
             //选择时间查询
             cb_choicetime.MouseClick += cb_choicetime_MouseClick;
-            //调用方法固定页面
-            Top = 0;
-            Left = 0;
+
+
         }
 
         //DataGridView显示数据

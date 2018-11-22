@@ -10,7 +10,7 @@ namespace FireProductManager.GuiPackage
     public partial class QueryBarrel : Form
     {
 
-        public delegate void BarrelIdSelectedHandler(List<string> barrelid);
+        public delegate void BarrelIdSelectedHandler(int barrelid);
         public event BarrelIdSelectedHandler BarrelIdSelected;
 
         public QueryBarrel()
@@ -31,8 +31,14 @@ namespace FireProductManager.GuiPackage
             {
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_existbarrelid.Rows.Add(row);
-                dgv_existbarrelid.Rows[index].Cells[0].Value = dr["ba_id"] + "号桶";
+                dgv_existbarrelid.Rows[index].Cells[0].Value = dr["ba_id"];
+                dgv_existbarrelid.Rows[index].Cells[1].Value = SelectWeightOfBarrel((int)dr["ba_id"]) + "g";
             }
+        }
+
+        private string SelectWeightOfBarrel(int barrelid)
+        {
+            return BarrelGateway.WeightOfBarrel(barrelid).ToString();
         }
 
         private void QueryBarrel_Load(object sender, EventArgs e)
@@ -45,18 +51,8 @@ namespace FireProductManager.GuiPackage
 
         private void dgv_existbarrelid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (FormBorderStyle == FormBorderStyle.None)
-            {
-                var selectedRows = dgv_existbarrelid.SelectedRows;
-                List<string> ids = new List<string>();
-                foreach (var row in selectedRows)
-                {
-                    string id = ((DataGridViewRow)row).Cells[0].Value.ToString();
-                    ids.Add(id);
-                }
-                BarrelIdSelected?.Invoke(ids);
-                Close();
-            }
+            BarrelIdSelected?.Invoke((int)(dgv_existbarrelid.SelectedRows[0]).Cells[0].Value);
+            Close();
         }
     }
 }

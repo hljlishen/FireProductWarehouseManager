@@ -38,6 +38,7 @@
             this.器件出入记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.锂合金ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.管理员ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AccouuntShow = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -113,12 +114,20 @@
             this.到期提醒ToolStripMenuItem,
             this.仓库管理ToolStripMenuItem,
             this.器件管理ToolStripMenuItem,
-            this.器件出入记录ToolStripMenuItem});
+            this.器件出入记录ToolStripMenuItem,
+            this.管理员ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1424, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 管理员ToolStripMenuItem
+            // 
+            this.管理员ToolStripMenuItem.Name = "管理员ToolStripMenuItem";
+            this.管理员ToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
+            this.管理员ToolStripMenuItem.Text = "管理员";
+            this.管理员ToolStripMenuItem.Click += new System.EventHandler(this.管理员ToolStripMenuItem_Click);
             // 
             // AccouuntShow
             // 
@@ -164,5 +173,6 @@
         private System.Windows.Forms.ToolStripMenuItem 锂合金ToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label AccouuntShow;
+        private System.Windows.Forms.ToolStripMenuItem 管理员ToolStripMenuItem;
     }
 }

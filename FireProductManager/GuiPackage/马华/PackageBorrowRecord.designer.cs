@@ -34,28 +34,32 @@
             this.la_to = new System.Windows.Forms.Label();
             this.dtp_end = new System.Windows.Forms.DateTimePicker();
             this.dgv_PackageInAndOutrecord = new System.Windows.Forms.DataGridView();
-            this.桶号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.领用人 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.领用数量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.领用日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.方向 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.生产单位 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.生产日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.袋子id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cb_directquery = new System.Windows.Forms.ComboBox();
             this.cb_choicetime = new System.Windows.Forms.CheckBox();
             this.btn_selectpackageid = new System.Windows.Forms.Button();
             this.tb_packageid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tb_employee = new System.Windows.Forms.TextBox();
+            this.tb_employeeid = new System.Windows.Forms.TextBox();
             this.btn_selectemployee = new System.Windows.Forms.Button();
             this.gb_foundrecord = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_exceloperator = new System.Windows.Forms.Button();
+            this.桶号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.方向 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.领用人 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.领用项目 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.领用数量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.领用日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.生产单位 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.生产日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.袋子id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tb_projectid = new System.Windows.Forms.TextBox();
+            this.btn_selectprojectid = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PackageInAndOutrecord)).BeginInit();
             this.gb_foundrecord.SuspendLayout();
             this.SuspendLayout();
@@ -119,10 +123,11 @@
             this.类型,
             this.规格,
             this.重量,
+            this.方向,
             this.领用人,
+            this.领用项目,
             this.领用数量,
             this.领用日期,
-            this.方向,
             this.生产单位,
             this.生产日期,
             this.袋子id});
@@ -132,6 +137,135 @@
             this.dgv_PackageInAndOutrecord.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgv_PackageInAndOutrecord.Size = new System.Drawing.Size(1279, 669);
             this.dgv_PackageInAndOutrecord.TabIndex = 0;
+            // 
+            // cb_directquery
+            // 
+            this.cb_directquery.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_directquery.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cb_directquery.FormattingEnabled = true;
+            this.cb_directquery.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cb_directquery.Items.AddRange(new object[] {
+            "出入库",
+            "出库",
+            "入库"});
+            this.cb_directquery.Location = new System.Drawing.Point(716, 32);
+            this.cb_directquery.Name = "cb_directquery";
+            this.cb_directquery.Size = new System.Drawing.Size(100, 25);
+            this.cb_directquery.TabIndex = 17;
+            // 
+            // cb_choicetime
+            // 
+            this.cb_choicetime.AutoSize = true;
+            this.cb_choicetime.Location = new System.Drawing.Point(843, 39);
+            this.cb_choicetime.Name = "cb_choicetime";
+            this.cb_choicetime.Size = new System.Drawing.Size(15, 14);
+            this.cb_choicetime.TabIndex = 21;
+            this.cb_choicetime.UseVisualStyleBackColor = true;
+            // 
+            // btn_selectpackageid
+            // 
+            this.btn_selectpackageid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_selectpackageid.Location = new System.Drawing.Point(160, 32);
+            this.btn_selectpackageid.Name = "btn_selectpackageid";
+            this.btn_selectpackageid.Size = new System.Drawing.Size(28, 23);
+            this.btn_selectpackageid.TabIndex = 22;
+            this.btn_selectpackageid.Text = "...";
+            this.btn_selectpackageid.UseVisualStyleBackColor = true;
+            // 
+            // tb_packageid
+            // 
+            this.tb_packageid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_packageid.Location = new System.Drawing.Point(83, 32);
+            this.tb_packageid.Name = "tb_packageid";
+            this.tb_packageid.ReadOnly = true;
+            this.tb_packageid.Size = new System.Drawing.Size(72, 23);
+            this.tb_packageid.TabIndex = 23;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(4, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "袋子编号：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(207, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 20);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "领用人编号：";
+            // 
+            // tb_employeeid
+            // 
+            this.tb_employeeid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_employeeid.Location = new System.Drawing.Point(301, 33);
+            this.tb_employeeid.Name = "tb_employeeid";
+            this.tb_employeeid.ReadOnly = true;
+            this.tb_employeeid.Size = new System.Drawing.Size(68, 23);
+            this.tb_employeeid.TabIndex = 25;
+            // 
+            // btn_selectemployee
+            // 
+            this.btn_selectemployee.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_selectemployee.Location = new System.Drawing.Point(371, 33);
+            this.btn_selectemployee.Name = "btn_selectemployee";
+            this.btn_selectemployee.Size = new System.Drawing.Size(28, 23);
+            this.btn_selectemployee.TabIndex = 26;
+            this.btn_selectemployee.Text = "...";
+            this.btn_selectemployee.UseVisualStyleBackColor = true;
+            // 
+            // gb_foundrecord
+            // 
+            this.gb_foundrecord.Controls.Add(this.label4);
+            this.gb_foundrecord.Controls.Add(this.tb_projectid);
+            this.gb_foundrecord.Controls.Add(this.btn_selectprojectid);
+            this.gb_foundrecord.Controls.Add(this.label3);
+            this.gb_foundrecord.Controls.Add(this.cb_choicetime);
+            this.gb_foundrecord.Controls.Add(this.btn_search);
+            this.gb_foundrecord.Controls.Add(this.label1);
+            this.gb_foundrecord.Controls.Add(this.btn_selectemployee);
+            this.gb_foundrecord.Controls.Add(this.dtp_end);
+            this.gb_foundrecord.Controls.Add(this.cb_directquery);
+            this.gb_foundrecord.Controls.Add(this.la_to);
+            this.gb_foundrecord.Controls.Add(this.dtp_begin);
+            this.gb_foundrecord.Controls.Add(this.tb_packageid);
+            this.gb_foundrecord.Controls.Add(this.La_TimeQuery);
+            this.gb_foundrecord.Controls.Add(this.tb_employeeid);
+            this.gb_foundrecord.Controls.Add(this.btn_selectpackageid);
+            this.gb_foundrecord.Controls.Add(this.label2);
+            this.gb_foundrecord.Location = new System.Drawing.Point(69, 15);
+            this.gb_foundrecord.Name = "gb_foundrecord";
+            this.gb_foundrecord.Size = new System.Drawing.Size(1279, 76);
+            this.gb_foundrecord.TabIndex = 27;
+            this.gb_foundrecord.TabStop = false;
+            this.gb_foundrecord.Text = "搜索记录";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(663, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 20);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "方向：";
+            // 
+            // btn_exceloperator
+            // 
+            this.btn_exceloperator.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_exceloperator.Location = new System.Drawing.Point(1263, 772);
+            this.btn_exceloperator.Name = "btn_exceloperator";
+            this.btn_exceloperator.Size = new System.Drawing.Size(75, 23);
+            this.btn_exceloperator.TabIndex = 28;
+            this.btn_exceloperator.Text = "导出Excel";
+            this.btn_exceloperator.UseVisualStyleBackColor = true;
+            this.btn_exceloperator.Click += new System.EventHandler(this.btn_exceloperator_Click);
             // 
             // 桶号
             // 
@@ -156,11 +290,21 @@
             this.重量.Name = "重量";
             this.重量.ReadOnly = true;
             // 
+            // 方向
+            // 
+            this.方向.HeaderText = "方向";
+            this.方向.Name = "方向";
+            // 
             // 领用人
             // 
             this.领用人.HeaderText = "领用人";
             this.领用人.Name = "领用人";
             this.领用人.ReadOnly = true;
+            // 
+            // 领用项目
+            // 
+            this.领用项目.HeaderText = "领用项目";
+            this.领用项目.Name = "领用项目";
             // 
             // 领用数量
             // 
@@ -172,11 +316,6 @@
             // 
             this.领用日期.HeaderText = "领用日期";
             this.领用日期.Name = "领用日期";
-            // 
-            // 方向
-            // 
-            this.方向.HeaderText = "方向";
-            this.方向.Name = "方向";
             // 
             // 生产单位
             // 
@@ -197,131 +336,34 @@
             this.袋子id.ReadOnly = true;
             this.袋子id.Visible = false;
             // 
-            // cb_directquery
+            // label4
             // 
-            this.cb_directquery.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_directquery.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cb_directquery.FormattingEnabled = true;
-            this.cb_directquery.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cb_directquery.Items.AddRange(new object[] {
-            "出入库",
-            "出库",
-            "入库"});
-            this.cb_directquery.Location = new System.Drawing.Point(646, 32);
-            this.cb_directquery.Name = "cb_directquery";
-            this.cb_directquery.Size = new System.Drawing.Size(100, 25);
-            this.cb_directquery.TabIndex = 17;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Location = new System.Drawing.Point(424, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 20);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "领用项目编号：";
             // 
-            // cb_choicetime
+            // tb_projectid
             // 
-            this.cb_choicetime.AutoSize = true;
-            this.cb_choicetime.Location = new System.Drawing.Point(843, 39);
-            this.cb_choicetime.Name = "cb_choicetime";
-            this.cb_choicetime.Size = new System.Drawing.Size(15, 14);
-            this.cb_choicetime.TabIndex = 21;
-            this.cb_choicetime.UseVisualStyleBackColor = true;
+            this.tb_projectid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_projectid.Location = new System.Drawing.Point(533, 33);
+            this.tb_projectid.Name = "tb_projectid";
+            this.tb_projectid.ReadOnly = true;
+            this.tb_projectid.Size = new System.Drawing.Size(72, 23);
+            this.tb_projectid.TabIndex = 30;
             // 
-            // btn_selectpackageid
+            // btn_selectprojectid
             // 
-            this.btn_selectpackageid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_selectpackageid.Location = new System.Drawing.Point(178, 32);
-            this.btn_selectpackageid.Name = "btn_selectpackageid";
-            this.btn_selectpackageid.Size = new System.Drawing.Size(28, 23);
-            this.btn_selectpackageid.TabIndex = 22;
-            this.btn_selectpackageid.Text = "...";
-            this.btn_selectpackageid.UseVisualStyleBackColor = true;
-            // 
-            // tb_packageid
-            // 
-            this.tb_packageid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_packageid.Location = new System.Drawing.Point(101, 32);
-            this.tb_packageid.Name = "tb_packageid";
-            this.tb_packageid.ReadOnly = true;
-            this.tb_packageid.Size = new System.Drawing.Size(72, 23);
-            this.tb_packageid.TabIndex = 23;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(22, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "袋子编号：";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(291, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 20);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "领用人编号：";
-            // 
-            // tb_employee
-            // 
-            this.tb_employee.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_employee.Location = new System.Drawing.Point(385, 32);
-            this.tb_employee.Name = "tb_employee";
-            this.tb_employee.ReadOnly = true;
-            this.tb_employee.Size = new System.Drawing.Size(82, 23);
-            this.tb_employee.TabIndex = 25;
-            // 
-            // btn_selectemployee
-            // 
-            this.btn_selectemployee.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_selectemployee.Location = new System.Drawing.Point(472, 32);
-            this.btn_selectemployee.Name = "btn_selectemployee";
-            this.btn_selectemployee.Size = new System.Drawing.Size(28, 23);
-            this.btn_selectemployee.TabIndex = 26;
-            this.btn_selectemployee.Text = "...";
-            this.btn_selectemployee.UseVisualStyleBackColor = true;
-            // 
-            // gb_foundrecord
-            // 
-            this.gb_foundrecord.Controls.Add(this.label3);
-            this.gb_foundrecord.Controls.Add(this.cb_choicetime);
-            this.gb_foundrecord.Controls.Add(this.btn_search);
-            this.gb_foundrecord.Controls.Add(this.label1);
-            this.gb_foundrecord.Controls.Add(this.btn_selectemployee);
-            this.gb_foundrecord.Controls.Add(this.dtp_end);
-            this.gb_foundrecord.Controls.Add(this.cb_directquery);
-            this.gb_foundrecord.Controls.Add(this.la_to);
-            this.gb_foundrecord.Controls.Add(this.dtp_begin);
-            this.gb_foundrecord.Controls.Add(this.tb_packageid);
-            this.gb_foundrecord.Controls.Add(this.La_TimeQuery);
-            this.gb_foundrecord.Controls.Add(this.tb_employee);
-            this.gb_foundrecord.Controls.Add(this.btn_selectpackageid);
-            this.gb_foundrecord.Controls.Add(this.label2);
-            this.gb_foundrecord.Location = new System.Drawing.Point(69, 15);
-            this.gb_foundrecord.Name = "gb_foundrecord";
-            this.gb_foundrecord.Size = new System.Drawing.Size(1279, 76);
-            this.gb_foundrecord.TabIndex = 27;
-            this.gb_foundrecord.TabStop = false;
-            this.gb_foundrecord.Text = "搜索记录";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(593, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 20);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "方向：";
-            // 
-            // btn_exceloperator
-            // 
-            this.btn_exceloperator.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_exceloperator.Location = new System.Drawing.Point(1263, 772);
-            this.btn_exceloperator.Name = "btn_exceloperator";
-            this.btn_exceloperator.Size = new System.Drawing.Size(75, 23);
-            this.btn_exceloperator.TabIndex = 28;
-            this.btn_exceloperator.Text = "导出Excel";
-            this.btn_exceloperator.UseVisualStyleBackColor = true;
-            this.btn_exceloperator.Click += new System.EventHandler(this.btn_exceloperator_Click);
+            this.btn_selectprojectid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_selectprojectid.Location = new System.Drawing.Point(610, 33);
+            this.btn_selectprojectid.Name = "btn_selectprojectid";
+            this.btn_selectprojectid.Size = new System.Drawing.Size(28, 23);
+            this.btn_selectprojectid.TabIndex = 29;
+            this.btn_selectprojectid.Text = "...";
+            this.btn_selectprojectid.UseVisualStyleBackColor = true;
             // 
             // PackageBorrowRecord
             // 
@@ -355,7 +397,7 @@
         private System.Windows.Forms.TextBox tb_packageid;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tb_employee;
+        private System.Windows.Forms.TextBox tb_employeeid;
         private System.Windows.Forms.Button btn_selectemployee;
         private System.Windows.Forms.GroupBox gb_foundrecord;
         private System.Windows.Forms.Label label3;
@@ -364,12 +406,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 类型;
         private System.Windows.Forms.DataGridViewTextBoxColumn 规格;
         private System.Windows.Forms.DataGridViewTextBoxColumn 重量;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 方向;
         private System.Windows.Forms.DataGridViewTextBoxColumn 领用人;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 领用项目;
         private System.Windows.Forms.DataGridViewTextBoxColumn 领用数量;
         private System.Windows.Forms.DataGridViewTextBoxColumn 领用日期;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 方向;
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产单位;
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产日期;
         private System.Windows.Forms.DataGridViewTextBoxColumn 袋子id;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tb_projectid;
+        private System.Windows.Forms.Button btn_selectprojectid;
     }
 }
