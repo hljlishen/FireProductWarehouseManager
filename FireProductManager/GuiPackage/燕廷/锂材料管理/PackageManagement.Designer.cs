@@ -34,16 +34,19 @@
             this.tb_barrdlid = new System.Windows.Forms.TextBox();
             this.bt_querypackage = new System.Windows.Forms.Button();
             this.dgv_instrumentinformation = new System.Windows.Forms.DataGridView();
+            this.材料名称 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.型号规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.生产厂商 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.货架位置 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.项目令号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.查看详情 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.在库状态 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.la_project = new System.Windows.Forms.Label();
+            this.tb_project = new System.Windows.Forms.TextBox();
             this.la_name = new System.Windows.Forms.Label();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tb_model = new System.Windows.Forms.TextBox();
@@ -93,21 +96,22 @@
             this.bt_querypackage.TabIndex = 3;
             this.bt_querypackage.Text = "搜索";
             this.bt_querypackage.UseVisualStyleBackColor = true;
-            this.bt_querypackage.Click += new System.EventHandler(this.button2_Click);
+            this.bt_querypackage.Click += new System.EventHandler(this.bt_querypackage_Click);
             // 
             // dgv_instrumentinformation
             // 
             this.dgv_instrumentinformation.AllowUserToAddRows = false;
             this.dgv_instrumentinformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_instrumentinformation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.材料名称,
             this.ID,
             this.name,
             this.型号规格,
             this.生产厂商,
             this.货架位置,
+            this.项目令号,
             this.Column1,
             this.Column2,
-            this.查看详情,
             this.在库状态});
             this.dgv_instrumentinformation.Location = new System.Drawing.Point(73, 95);
             this.dgv_instrumentinformation.MultiSelect = false;
@@ -118,26 +122,30 @@
             this.dgv_instrumentinformation.TabIndex = 4;
             this.dgv_instrumentinformation.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_instrumentinformation_CellContentClick);
             // 
+            // 材料名称
+            // 
+            this.材料名称.HeaderText = "材料名称";
+            this.材料名称.Name = "材料名称";
+            this.材料名称.Width = 160;
+            // 
             // ID
             // 
             this.ID.HeaderText = "材料型号";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
-            this.ID.Width = 300;
+            this.ID.Width = 150;
             // 
             // name
             // 
             this.name.HeaderText = "重量（g）";
             this.name.Name = "name";
             this.name.ReadOnly = true;
-            this.name.Width = 130;
             // 
             // 型号规格
             // 
             this.型号规格.HeaderText = "所在桶";
             this.型号规格.Name = "型号规格";
             this.型号规格.ReadOnly = true;
-            this.型号规格.Width = 130;
             // 
             // 生产厂商
             // 
@@ -152,6 +160,12 @@
             this.货架位置.Name = "货架位置";
             this.货架位置.ReadOnly = true;
             this.货架位置.Width = 200;
+            // 
+            // 项目令号
+            // 
+            this.项目令号.HeaderText = "项目令号";
+            this.项目令号.Name = "项目令号";
+            this.项目令号.Width = 150;
             // 
             // Column1
             // 
@@ -171,16 +185,6 @@
             this.Column2.UseColumnTextForButtonValue = true;
             this.Column2.Width = 120;
             // 
-            // 查看详情
-            // 
-            this.查看详情.HeaderText = "查看详情";
-            this.查看详情.Name = "查看详情";
-            this.查看详情.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.查看详情.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.查看详情.Text = "查看详情";
-            this.查看详情.UseColumnTextForButtonValue = true;
-            this.查看详情.Width = 120;
-            // 
             // 在库状态
             // 
             this.在库状态.HeaderText = "材料ID";
@@ -191,6 +195,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.la_project);
+            this.groupBox1.Controls.Add(this.tb_project);
             this.groupBox1.Controls.Add(this.la_name);
             this.groupBox1.Controls.Add(this.tb_name);
             this.groupBox1.Controls.Add(this.tb_model);
@@ -207,20 +213,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "仪器搜索";
             // 
+            // la_project
+            // 
+            this.la_project.AutoSize = true;
+            this.la_project.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_project.Location = new System.Drawing.Point(852, 20);
+            this.la_project.Name = "la_project";
+            this.la_project.Size = new System.Drawing.Size(79, 20);
+            this.la_project.TabIndex = 73;
+            this.la_project.Text = "项目命号：";
+            // 
+            // tb_project
+            // 
+            this.tb_project.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_project.Location = new System.Drawing.Point(937, 17);
+            this.tb_project.Name = "tb_project";
+            this.tb_project.Size = new System.Drawing.Size(126, 26);
+            this.tb_project.TabIndex = 74;
+            // 
             // la_name
             // 
             this.la_name.AutoSize = true;
             this.la_name.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_name.Location = new System.Drawing.Point(50, 20);
+            this.la_name.Location = new System.Drawing.Point(44, 20);
             this.la_name.Name = "la_name";
             this.la_name.Size = new System.Drawing.Size(79, 20);
             this.la_name.TabIndex = 71;
-            this.la_name.Text = "材料型号：";
+            this.la_name.Text = "材料名称：";
             // 
             // tb_name
             // 
             this.tb_name.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_name.Location = new System.Drawing.Point(129, 17);
+            this.tb_name.Location = new System.Drawing.Point(123, 17);
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(126, 26);
             this.tb_name.TabIndex = 72;
@@ -241,7 +265,7 @@
             this.la_model.Name = "la_model";
             this.la_model.Size = new System.Drawing.Size(79, 20);
             this.la_model.TabIndex = 21;
-            this.la_model.Text = "仪器规格：";
+            this.la_model.Text = "材料规格：";
             // 
             // cb_IsInWareHouse
             // 
@@ -287,9 +311,10 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv_instrumentinformation);
             this.Controls.Add(this.bt_addpackage);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PackageManagement";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "InstrumentManagement";
             this.Load += new System.EventHandler(this.index_instrument_Load);
@@ -315,14 +340,17 @@
         private System.Windows.Forms.Label la_name;
         private System.Windows.Forms.TextBox tb_name;
         private System.Windows.Forms.Button bt_dgvchangeexcel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 材料名称;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn 型号规格;
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产厂商;
         private System.Windows.Forms.DataGridViewTextBoxColumn 货架位置;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 项目令号;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
         private System.Windows.Forms.DataGridViewButtonColumn Column2;
-        private System.Windows.Forms.DataGridViewButtonColumn 查看详情;
         private System.Windows.Forms.DataGridViewTextBoxColumn 在库状态;
+        private System.Windows.Forms.Label la_project;
+        private System.Windows.Forms.TextBox tb_project;
     }
 }

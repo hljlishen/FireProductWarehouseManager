@@ -11,11 +11,6 @@ namespace FireProductManager.GuiPackage
 {
     public partial class PackageManagement : Form
     {
-        EmployeeManagement selectEmployees;
-        public delegate void InstrumentSelectedHandler(List<int> instrumentIds,List<string> insTagids);
-        public event InstrumentSelectedHandler InstrumentSelected;
-        private int dutyid;
-
         public PackageManagement()
         {
             InitializeComponent();
@@ -38,65 +33,59 @@ namespace FireProductManager.GuiPackage
             {
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_instrumentinformation.Rows.Add(row);
-                dgv_instrumentinformation.Rows[index].Cells[0].Value = dr["pa_modle"];
-                dgv_instrumentinformation.Rows[index].Cells[1].Value = dr["pa_weight"];
-                dgv_instrumentinformation.Rows[index].Cells[2].Value = dr["pa_barrelid"];
-                dgv_instrumentinformation.Rows[index].Cells[3].Value = dr["pa_isinwarehouse"];
-                dgv_instrumentinformation.Rows[index].Cells[4].Value = dr["pa_purchasetime"];
-                dgv_instrumentinformation.Rows[index].Cells[5].Value = dr["pa_id"];
+                dgv_instrumentinformation.Rows[index].Cells[0].Value = dr["pa_name"];
+                dgv_instrumentinformation.Rows[index].Cells[1].Value = dr["pa_model"];
+                dgv_instrumentinformation.Rows[index].Cells[2].Value = dr["pa_weight"];
+                dgv_instrumentinformation.Rows[index].Cells[3].Value = dr["pa_barrelid"];
+                dgv_instrumentinformation.Rows[index].Cells[4].Value = PackageGateway.IsinWarehouseDataTypeChangeString((int)dr["pa_isinwarehouse"]);
+                dgv_instrumentinformation.Rows[index].Cells[5].Value = dr["pa_purchasetime"];
+                dgv_instrumentinformation.Rows[index].Cells[6].Value = dr["pa_projectid"];
+                dgv_instrumentinformation.Rows[index].Cells[9].Value = dr["pa_id"];
             }
         }
 
+        //搜索按钮
+        private void bt_querypackage_Click(object sender, EventArgs e)
+        {
+            string name = tb_name.Text;
+            string model = tb_model.Text;
+            string barrdlid = tb_barrdlid.Text;
+            string isInWareHouse = cb_IsInWareHouse.Text;
+            string porject = tb_project.Text;
+            DataTable dataTable = PackageGateway.GetQueryPackage(name, model, barrdlid, isInWareHouse, porject);
+            ShowDataGridView(dataTable);
+        }
+
         //材料添加
-        private void button1_Click(object sender, EventArgs e)  
+        private void button1_Click(object sender, EventArgs e)
         {
             AddOrUpdatePackage add = new AddOrUpdatePackage();
             add.ShowDialog();
         }
 
-        //搜索按钮
-        private void button2_Click(object sender, EventArgs e)  
-        {
-            //ins.TagId = tb_tagid.Text;
-            //ins.Name = tb_instrumentname.Text;
-            //ins.Model = tb_model.Text;
-            //ins.IsInWareHouse = cb_IsInWareHouse.Text.Equals("全部") ?  null : cb_IsInWareHouse.Text;
-            //ins.Duty = dutyid;
-            //ShowDataGridView(dao.QueryInstrument(ins));
-            //tb_duty.Text = "";
-            //dutyid = 0;
-        }
-
-        //材料的修改、删除、查看
+        //材料的修改、删除
         private void dgv_instrumentinformation_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //删除
-            if (e.ColumnIndex == 6)
+            if (e.ColumnIndex == 7)
             {
                 if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[9].Value;
-                    //删除逻辑代码？？
+                    PackageGateway.DeletePackage(packageid);
                     AutoClosingMessageBox.Show("仪器信息删除成功", "仪器信息删除", 1000);
                     dgv_instrumentinformation.Rows.RemoveAt(e.RowIndex);
                 }
             }
             //修改
-            if (e.ColumnIndex == 7)
+            if (e.ColumnIndex == 8)
             {
                 if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[9].Value;
-                    //AddOrUpdatePackage Update = new AddOrUpdatePackage(packageid);
-                    //Update.ShowDialog();
+                    AddOrUpdatePackage Update = new AddOrUpdatePackage(packageid);
+                    Update.ShowDialog();
                 }
-            }
-            //查看
-            if (e.ColumnIndex == 8)
-            {
-                int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[9].Value;
-                //AddOrUpdatePackage add = new AddOrUpdatePackage(packageid);
-                //add.ShowDialog();
             }
         }
 
@@ -107,5 +96,6 @@ namespace FireProductManager.GuiPackage
             ExcelOperator.DataGridViewToExcel(dgv_instrumentinformation, true);
         }
         #endregion
+
     }
 }

@@ -64,8 +64,8 @@ namespace FireProductManager.ServiceLogicPackage
         private static void FormValidation(Employee employee, Operation operation)
         {
             isEmployeenumberValid(employee, operation);
-            NameValidation(employee.em_name);
-            DepartmentIdValidation(employee.em_departmentid.Value);
+            if(NameValidation(employee.em_name)) throw new Exception("员工姓名不能为空");
+            if(DepartmentIdValidation(employee.em_departmentid.Value)) throw new Exception("未选择员工所在部门");
             //异常拼接
         }
 
@@ -118,21 +118,15 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //em_name验证
-        private static void NameValidation(string name)
+        private static bool NameValidation(string name)
         {
-            if (name.Equals(""))
-            {
-                throw new Exception("员工姓名不能为空");
-            }
+            return name.Equals("");
         }
 
         //em_departmentid验证
-        private static void DepartmentIdValidation(int deoartmentid)
+        private static bool DepartmentIdValidation(int deoartmentid)
         {
-            if (deoartmentid == -1)
-            {
-                throw new Exception("未选择员工所在部门");
-            }
+            return deoartmentid == -1;
         }
 
         //员工部门交换 

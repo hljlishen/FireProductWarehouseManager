@@ -13,7 +13,7 @@ namespace FireProductManager.EntityPackage
         public int? pa_id { get; set; }
         public string pa_name { get; set; }
         public string pa_model { get; set; }
-        public double? pa_weigth { get; set; }
+        public double? pa_weight { get; set; }
         public int? pa_barrelId { get; set; }
         public int? pa_isinWarehouse { get; set; }
         public DateTime? pa_purchaseTime { get; set; }
@@ -22,7 +22,5 @@ namespace FireProductManager.EntityPackage
         public Package() : base("package", "pa_id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {
         }
-
-       
     }
 }

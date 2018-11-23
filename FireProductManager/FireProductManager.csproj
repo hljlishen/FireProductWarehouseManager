@@ -84,6 +84,7 @@
     <Compile Include="EntityPackage\燕廷\Department.cs" />
     <Compile Include="EntityPackage\燕廷\Employee.cs" />
     <Compile Include="EntityPackage\燕廷\Package.cs" />
+    <Compile Include="EntityPackage\燕廷\Project.cs" />
     <Compile Include="EntityPackage\马华\Account.cs" />
     <Compile Include="EntityPackage\马华\Barrel.cs" />
     <Compile Include="EntityPackage\马华\EvirmentRecord.cs" />
@@ -245,7 +246,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="GuiPackage\燕廷\项目管理\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="MySql.Data.dll" />
   </ItemGroup>
