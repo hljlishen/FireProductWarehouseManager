@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.dgv_existbarrelid = new System.Windows.Forms.DataGridView();
-            this.btn_return = new System.Windows.Forms.Button();
             this.桶编号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.全重 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_return = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_existbarrelid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,24 +44,15 @@
             this.dgv_existbarrelid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.桶编号,
             this.全重});
-            this.dgv_existbarrelid.Location = new System.Drawing.Point(6, 6);
+            this.dgv_existbarrelid.Location = new System.Drawing.Point(12, 12);
             this.dgv_existbarrelid.MultiSelect = false;
             this.dgv_existbarrelid.Name = "dgv_existbarrelid";
             this.dgv_existbarrelid.RowTemplate.Height = 23;
+            this.dgv_existbarrelid.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgv_existbarrelid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_existbarrelid.Size = new System.Drawing.Size(240, 480);
+            this.dgv_existbarrelid.Size = new System.Drawing.Size(234, 474);
             this.dgv_existbarrelid.TabIndex = 0;
             this.dgv_existbarrelid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_existbarrelid_CellDoubleClick);
-            // 
-            // btn_return
-            // 
-            this.btn_return.Location = new System.Drawing.Point(171, 492);
-            this.btn_return.Name = "btn_return";
-            this.btn_return.Size = new System.Drawing.Size(75, 23);
-            this.btn_return.TabIndex = 1;
-            this.btn_return.Text = "返回";
-            this.btn_return.UseVisualStyleBackColor = true;
-            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
             // 
             // 桶编号
             // 
@@ -77,10 +68,21 @@
             this.全重.ReadOnly = true;
             this.全重.Width = 98;
             // 
+            // btn_return
+            // 
+            this.btn_return.Location = new System.Drawing.Point(97, 492);
+            this.btn_return.Name = "btn_return";
+            this.btn_return.Size = new System.Drawing.Size(75, 23);
+            this.btn_return.TabIndex = 1;
+            this.btn_return.Text = "返回";
+            this.btn_return.UseVisualStyleBackColor = true;
+            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
+            // 
             // QueryBarrel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(258, 525);
             this.Controls.Add(this.btn_return);
             this.Controls.Add(this.dgv_existbarrelid);

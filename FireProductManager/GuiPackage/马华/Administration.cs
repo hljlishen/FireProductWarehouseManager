@@ -14,6 +14,7 @@ namespace FireProductManager.GuiPackage
         private BarrelManagement barrelManagement = null;
         private EmployeeManagement employeeManagement = null;
         private AddOrUpdateAdministratorManagement administratorManagement = null;
+        private PackageManagement packageManagement = null;
 
         public Administration()
         {
@@ -112,6 +113,22 @@ namespace FireProductManager.GuiPackage
             administratorManagement.MdiParent = this;
             administratorManagement.Show();
             administratorManagement.Activate();
+        }
+
+        private void 锂合金材料管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (packageManagement == null)
+            {
+                packageManagement = new PackageManagement();
+            }
+            else
+            {
+                packageManagement.Close();
+                packageManagement = new PackageManagement();
+            }
+            packageManagement.MdiParent = this;
+            packageManagement.Show();
+            packageManagement.Activate();
         }
     }
 }

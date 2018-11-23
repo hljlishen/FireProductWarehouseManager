@@ -67,11 +67,11 @@ namespace FireProductManager.ServiceLogicPackage
             return dt.Rows.Count > 0;
         }
 
-        public static DataTable SearchInOrOutRecord(string packageId,string employeeNumber,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
+        public static DataTable SearchInOrOutRecord(string packageId,string employeeId,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
         {
             SelectSqlMaker maker = new SelectSqlMaker("inoutrecord");
             maker.AddAndCondition(new StringEqual("ior_packageId", packageId));
-            maker.AddAndCondition(new StringEqual("ior_employeeId", employeeNumber));
+            maker.AddAndCondition(new StringEqual("ior_employeeId", employeeId));
             maker.AddAndCondition(new StringEqual("ior_projectId", projectId));
             if (direction == "出入库")
                 maker.AddAndCondition(new StringLike("ior_direction", "库"));

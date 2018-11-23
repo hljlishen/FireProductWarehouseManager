@@ -51,7 +51,7 @@
             this.tb_packageid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tb_employeenumber = new System.Windows.Forms.TextBox();
+            this.tb_employeeid = new System.Windows.Forms.TextBox();
             this.btn_selectemployee = new System.Windows.Forms.Button();
             this.gb_foundrecord = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -232,6 +232,7 @@
             this.btn_selectpackageid.TabIndex = 22;
             this.btn_selectpackageid.Text = "...";
             this.btn_selectpackageid.UseVisualStyleBackColor = true;
+            this.btn_selectpackageid.Click += new System.EventHandler(this.btn_selectpackageid_Click);
             // 
             // tb_packageid
             // 
@@ -262,14 +263,14 @@
             this.label2.TabIndex = 24;
             this.label2.Text = "领用人编号：";
             // 
-            // tb_employeenumber
+            // tb_employeeid
             // 
-            this.tb_employeenumber.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_employeenumber.Location = new System.Drawing.Point(301, 33);
-            this.tb_employeenumber.Name = "tb_employeenumber";
-            this.tb_employeenumber.ReadOnly = true;
-            this.tb_employeenumber.Size = new System.Drawing.Size(68, 23);
-            this.tb_employeenumber.TabIndex = 25;
+            this.tb_employeeid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_employeeid.Location = new System.Drawing.Point(301, 33);
+            this.tb_employeeid.Name = "tb_employeeid";
+            this.tb_employeeid.ReadOnly = true;
+            this.tb_employeeid.Size = new System.Drawing.Size(68, 23);
+            this.tb_employeeid.TabIndex = 25;
             // 
             // btn_selectemployee
             // 
@@ -298,7 +299,7 @@
             this.gb_foundrecord.Controls.Add(this.dtp_begin);
             this.gb_foundrecord.Controls.Add(this.tb_packageid);
             this.gb_foundrecord.Controls.Add(this.La_TimeQuery);
-            this.gb_foundrecord.Controls.Add(this.tb_employeenumber);
+            this.gb_foundrecord.Controls.Add(this.tb_employeeid);
             this.gb_foundrecord.Controls.Add(this.btn_selectpackageid);
             this.gb_foundrecord.Controls.Add(this.label2);
             this.gb_foundrecord.Location = new System.Drawing.Point(69, 15);
@@ -336,6 +337,7 @@
             this.btn_selectprojectid.TabIndex = 29;
             this.btn_selectprojectid.Text = "...";
             this.btn_selectprojectid.UseVisualStyleBackColor = true;
+            this.btn_selectprojectid.Click += new System.EventHandler(this.btn_selectprojectid_Click);
             // 
             // label3
             // 
@@ -390,7 +392,7 @@
         private System.Windows.Forms.TextBox tb_packageid;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tb_employeenumber;
+        private System.Windows.Forms.TextBox tb_employeeid;
         private System.Windows.Forms.Button btn_selectemployee;
         private System.Windows.Forms.GroupBox gb_foundrecord;
         private System.Windows.Forms.Label label3;

@@ -63,7 +63,7 @@ namespace FireProductManager.ServiceLogicPackage
             DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
 
             foreach (DataRow dr in dt.Rows)
-                weigth += double.Parse(dr["pa_weigth"].ToString());
+                weigth += double.Parse(dr["pa_weight"].ToString());
 
             return weigth;
         }

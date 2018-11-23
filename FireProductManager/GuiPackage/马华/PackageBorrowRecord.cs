@@ -10,6 +10,7 @@ namespace FireProductManager.GuiPackage
     {
 
         EmployeeManagement selectEmployees;
+        PackageManagement selectPackages;
 
         public PackageBorrowRecord()
         {
@@ -41,7 +42,7 @@ namespace FireProductManager.GuiPackage
                 dgv_PackageInAndOutrecord.Rows[index].Cells[4].Value = dr["ior_direction"];
                 dgv_PackageInAndOutrecord.Rows[index].Cells[5].Value = dr["ior_timeStmp"];
 
-                dgv_PackageInAndOutrecord.Rows[index].Cells[6].Value = SelectEmployeeName((int)dr["ior_employeeId"]);
+                dgv_PackageInAndOutrecord.Rows[index].Cells[6].Value = dr["ior_borrowName"];
                 dgv_PackageInAndOutrecord.Rows[index].Cells[8].Value = SelectPackageWeigth((int)dr["ior_packageId"]) + "g";
             }
         }
@@ -70,19 +71,11 @@ namespace FireProductManager.GuiPackage
             return packagemodel;
         }
 
-        private string SelectEmployeeName(int id)
-        {
-            string employrrname = null;
-            foreach (DataRow dr in RecordOperationGateway.GetAllInOrOutRecord().Rows)
-                employrrname = dr["ior_borrowName"].ToString();
-            return employrrname;
-        }
-
         private double SelectPackageWeigth(int id)
         {
             double packageweigth = 0;
             foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuery(id).Rows)
-                packageweigth = (double)dr["pa_weigth"];
+                packageweigth = (double)dr["pa_weight"];
             return packageweigth;
         }
 
@@ -111,7 +104,7 @@ namespace FireProductManager.GuiPackage
         private void btn_search_Click(object sender, EventArgs e)
         {
             string packageId = tb_packageid.Text;
-            string employeeNumber = tb_employeenumber.Text;
+            string employeeId = tb_employeeid.Text;
             string projectId = tb_projectid.Text;
             string direction = cb_directquery.Text;
             bool isChoiceTime = false;
@@ -119,9 +112,9 @@ namespace FireProductManager.GuiPackage
             DateTime endTime = dtp_end.Value.AddDays(1);
             if (cb_choicetime.Checked.Equals(true))
                 isChoiceTime = true;
-            ShowDataGridView(RecordOperationGateway.SearchInOrOutRecord(packageId, employeeNumber, projectId, direction, isChoiceTime, begintTime, endTime));
+            ShowDataGridView(RecordOperationGateway.SearchInOrOutRecord(packageId, employeeId, projectId, direction, isChoiceTime, begintTime, endTime));
             tb_packageid.Text = "";
-            tb_employeenumber.Text = "";
+            tb_employeeid.Text = "";
             tb_projectid.Text = "";
         }
 
@@ -137,13 +130,30 @@ namespace FireProductManager.GuiPackage
 
         private void EmployeesSelected(int employeesId, string emNumbers)
         {
-            tb_employeenumber.Text = "";
-            foreach (var name in emNumbers)
-            {
-                tb_employeenumber.Text += name;
-            }
-            tb_employeenumber.Text = tb_employeenumber.Text.Substring(0, tb_employeenumber.Text.Length);
+            tb_employeeid.Text = "";
+            tb_employeeid.Text = employeesId.ToString();
         }
 
+        //查询袋子
+        private void btn_selectpackageid_Click(object sender, EventArgs e)
+        {
+        //    selectPackages = new PackageManagement();
+        //    selectPackages.FormBorderStyle = FormBorderStyle.FixedSingle;
+        //    selectPackages.EmployeesSelected += PackagesSelected;
+        //    selectPackages.ShowDialog();
+        //    selectPackages.EmployeesSelected -= PackagesSelected;
+        }
+
+        //查询项目
+        private void btn_selectprojectid_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //private void PackagesSelected(int packageId)
+        //{
+        //    tb_packageid.Text = "";
+        //    tb_packageid.Text = packageId.ToString();
+        //}
     }
 }
