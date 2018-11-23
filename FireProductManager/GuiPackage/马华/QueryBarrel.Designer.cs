@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.dgv_existbarrelid = new System.Windows.Forms.DataGridView();
+            this.btn_return = new System.Windows.Forms.Button();
             this.桶编号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.全重 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_return = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_existbarrelid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,20 +53,6 @@
             this.dgv_existbarrelid.TabIndex = 0;
             this.dgv_existbarrelid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_existbarrelid_CellDoubleClick);
             // 
-            // 桶编号
-            // 
-            this.桶编号.HeaderText = "桶编号";
-            this.桶编号.Name = "桶编号";
-            this.桶编号.ReadOnly = true;
-            this.桶编号.Width = 99;
-            // 
-            // 全重
-            // 
-            this.全重.HeaderText = "全重";
-            this.全重.Name = "全重";
-            this.全重.ReadOnly = true;
-            this.全重.Width = 98;
-            // 
             // btn_return
             // 
             this.btn_return.Location = new System.Drawing.Point(171, 492);
@@ -76,6 +62,20 @@
             this.btn_return.Text = "返回";
             this.btn_return.UseVisualStyleBackColor = true;
             this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
+            // 
+            // 桶编号
+            // 
+            this.桶编号.HeaderText = "桶编号";
+            this.桶编号.Name = "桶编号";
+            this.桶编号.ReadOnly = true;
+            this.桶编号.Width = 99;
+            // 
+            // 全重
+            // 
+            this.全重.HeaderText = "全重(g)";
+            this.全重.Name = "全重";
+            this.全重.ReadOnly = true;
+            this.全重.Width = 98;
             // 
             // QueryBarrel
             // 

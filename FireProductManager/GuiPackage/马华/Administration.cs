@@ -2,6 +2,7 @@
 using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Windows.Forms;
+using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 //管理员主页面
 
@@ -11,6 +12,7 @@ namespace FireProductManager.GuiPackage
     {
         private PackageBorrowRecord packageBorrow = null;
         private BarrelManagement barrelManagement = null;
+        private AddOrUpdateAdministratorManagement administratorManagement = null;
 
         public Administration()
         {
@@ -31,6 +33,7 @@ namespace FireProductManager.GuiPackage
         private void Administration_Load(object sender, EventArgs e)
         {
             ShowLoginWindow();
+            //仓库管理ToolStripMenuItem_Click(sender, e);
         }
 
         private void ShowLoginWindow()
@@ -75,6 +78,28 @@ namespace FireProductManager.GuiPackage
             barrelManagement.MdiParent = this;
             barrelManagement.Show();
             barrelManagement.Activate();
+        }
+
+        private void 管理员ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!AccountManager.CanWriteDatabase())
+            {
+                AutoClosingMessageBox.Show("          用户权限级别不足", "权限", 1000);
+                return;
+            }
+            
+            if (administratorManagement == null)
+            {
+                administratorManagement = new AddOrUpdateAdministratorManagement();
+            }
+            else
+            {
+                administratorManagement.Close();
+                administratorManagement = new AddOrUpdateAdministratorManagement();
+            }
+            administratorManagement.MdiParent = this;
+            administratorManagement.Show();
+            administratorManagement.Activate();
         }
     }
 }
