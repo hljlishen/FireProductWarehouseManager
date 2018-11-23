@@ -1,8 +1,6 @@
 ﻿using DbLink;
 using FireProductManager.EntityPackage;
-using FireProductManager.GuiPackage;
 using System.Data;
-using System.Windows.Forms;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -41,10 +39,17 @@ namespace FireProductManager.ServiceLogicPackage
             return account.ac_authority == 1;
         }
 
-        public static DataTable Query(string sql)
+        private static DataTable Query(string sql)
         {
             var queryBarrel = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
             return queryBarrel;
+        }
+
+        public static DataTable GetAllAccount()
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("account");
+            string sql = maker.MakeSelectSql();
+            return Query(sql);
         }
 
         public static bool RemoveAccount(int accountid)

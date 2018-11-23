@@ -12,6 +12,7 @@ namespace FireProductManager.GuiPackage
     {
         private PackageBorrowRecord packageBorrow = null;
         private BarrelManagement barrelManagement = null;
+        private EmployeeManagement employeeManagement = null;
         private AddOrUpdateAdministratorManagement administratorManagement = null;
 
         public Administration()
@@ -21,7 +22,18 @@ namespace FireProductManager.GuiPackage
 
         private void 员工管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (employeeManagement == null)
+            {
+                employeeManagement = new EmployeeManagement();
+            }
+            else
+            {
+                employeeManagement.Close();
+                employeeManagement = new EmployeeManagement();
+            }
+            employeeManagement.MdiParent = this;
+            employeeManagement.Show();
+            employeeManagement.Activate();
         }
 
         private void btn_logout_Click(object sender, EventArgs e)

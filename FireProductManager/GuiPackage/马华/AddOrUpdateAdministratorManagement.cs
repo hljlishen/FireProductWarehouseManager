@@ -1,7 +1,6 @@
-﻿using System.Data;
+﻿using FireProductManager.ServiceLogicPackage;
+using System.Data;
 using System.Windows.Forms;
-using DbLink;
-using FireProductManager.ServiceLogicPackage;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 namespace FireProductManager.GuiPackage
@@ -22,9 +21,7 @@ namespace FireProductManager.GuiPackage
         {
             TextBoxCheckShow();
             StartPosition = FormStartPosition.CenterScreen;
-            SelectSqlMaker maker = new SelectSqlMaker("account");
-            string sql = maker.MakeSelectSql();
-            ShowDataGridView(AccountManager.Query(sql));
+            ShowDataGridView(AccountManager.GetAllAccount());
         }
 
         private void ShowDataGridView(DataTable dt)
