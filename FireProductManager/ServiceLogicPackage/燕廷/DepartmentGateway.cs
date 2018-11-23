@@ -63,49 +63,37 @@ namespace FireProductManager.ServiceLogicPackage
         //部门删除验证
         private static void DeleteDepartmentVerification(Department department)
         {
-            HasDepartment(department);
-            HasSonDepartment(department);
-            HasEmployee(department);
+            if(!HasDepartment(department)) throw new Exception("不存在该小组");
+            if(HasSonDepartment(department)) throw new Exception("该部门之下还有子部门");
+            if(HasEmployee(department)) throw new Exception("该部门之下存在员工");
         }
 
         //该部门是否存在
-        private static void HasDepartment(Department department)
+        private static bool HasDepartment(Department department)
         {
             SelectSqlMaker maker = new SelectSqlMaker("department");
             maker.AddAndCondition(new IntEqual("de_id", department.de_id.Value));
             DataTable dataTable = department.Select(maker.MakeSelectSql());
-            if (dataTable.Rows.Count == 0)
-            {
-                throw new Exception("不存在该小组");
-            }
-            return;
+            return dataTable.Rows.Count > 0;
         }
 
         //是否存在子部门
-        private static void HasSonDepartment(Department department)
+        private static bool HasSonDepartment(Department department)
         {
             SelectSqlMaker maker = new SelectSqlMaker("department");
             maker.AddAndCondition(new IntEqual("de_belongid", department.de_id.Value));
             DataTable departmentDataTable = department.Select(maker.MakeSelectSql());
-            if (departmentDataTable.Rows.Count != 0)
-            {
-                throw new Exception("该部门之下还有子部门");
-            }
-            return;
+            return departmentDataTable.Rows.Count != 0;
         }
 
         //是否存在员工
-        private static void HasEmployee(Department department)
+        private static bool HasEmployee(Department department)
         {
             SelectSqlMaker maker = new SelectSqlMaker("department");
             maker = new SelectSqlMaker("employee");
             maker.AddAndCondition(new IntEqual("em_departmentid", department.de_id.Value));
             DataTable employeeDataTable = department.Select(maker.MakeSelectSql());
-            if (employeeDataTable.Rows.Count != 0)
-            {
-                throw new Exception("该部门之下存在员工");
-            }
-            return;
+            return employeeDataTable.Rows.Count != 0;
         }
 
         //添加部门
@@ -114,7 +102,7 @@ namespace FireProductManager.ServiceLogicPackage
             Department department = new Department();
             department.de_name = name;
             department.de_belongId = belongId;
-            NodeDuplicateChecking(department);
+            if (!NodeDuplicateChecking(department)) throw new Exception("该部门名字已经存在");
             department.Insert();
         }
 
@@ -125,22 +113,18 @@ namespace FireProductManager.ServiceLogicPackage
             department.de_id = id;
             department.de_name = name;
             department.de_belongId = belongId;
-            NodeDuplicateChecking(department);
+            if(!NodeDuplicateChecking(department)) throw new Exception("该部门名字已经存在");
             department.Update();
         }
 
         //部门名字查重
-        private static void NodeDuplicateChecking(Department department)
+        private static bool NodeDuplicateChecking(Department department)
         {
             SelectSqlMaker maker = new SelectSqlMaker("department");
             maker.AddAndCondition(new StringEqual("de_name", department.de_name));
             maker.AddAndCondition(new IntEqual("de_belongid", department.de_belongId.Value));
             DataTable departmentDataTable = department.Select(maker.MakeSelectSql());
-            if (departmentDataTable.Rows.Count == 0)
-            {
-                return;
-            }
-            throw new Exception("该部门名字已经存在");
+            return departmentDataTable.Rows.Count == 0;
         }
 
         //加载部门树状图

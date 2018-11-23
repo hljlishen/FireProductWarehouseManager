@@ -147,25 +147,93 @@ namespace FireProductManager.ServiceLogicPackage
             return Query(maker.MakeSelectSql());
         }
 
+        //获取员工信息
+        public static DataTable GetPackageInformation(int packageId)
+        {
+
+            Package package = new Package();
+            package.pa_id = packageId;
+            SelectSqlMaker maker = new SelectSqlMaker("package");
+            maker.AddAndCondition(new IntEqual("pa_id", packageId));
+            DataTable dataTable = package.Select(maker.MakeSelectSql());
+            return dataTable;
+        }
+
         //添加材料 
-        public static void NewPackage(string name, string model, Double weigth, int barrelId, int isinWarehouse, DateTime purchaseTime ,int projectId)
+        public static void NewPackage(string name, string model, Double weigth, int barrelId, string isinWarehouse, DateTime purchaseTime ,int projectId)
         {
             Package package = new Package();
             package.pa_name = name;
             package.pa_model = model;
-            package.pa_weigth = weigth;
+            package.pa_weight = weigth;
             package.pa_barrelId = barrelId;
-            package.pa_isinWarehouse = isinWarehouse;
+            package.pa_isinWarehouse = IsinWarehouseDataTypeChangeInt(isinWarehouse);
             package.pa_purchaseTime = purchaseTime;
             package.pa_projectId = projectId;
-            //FormValidation(package);
+            FormValidation(package);
             package.Insert();
+        }
+
+        //修改材料 
+        public static void UpdatePackage(int id ,string name, string model, Double weigth, int barrelId, string isinWarehouse, DateTime purchaseTime, int projectId)
+        {
+            Package package = new Package();
+            package.pa_id = id;
+            package.pa_name = name;
+            package.pa_model = model;
+            package.pa_weight = weigth;
+            package.pa_barrelId = barrelId;
+            package.pa_isinWarehouse = IsinWarehouseDataTypeChangeInt(isinWarehouse);
+            package.pa_purchaseTime = purchaseTime;
+            package.pa_projectId = projectId;
+            FormValidation(package);
+            package.Update();
+        }
+
+        //删除材料 
+        public static void DeletePackage(int packageId)
+        {
+            Package package = new Package();
+            package.pa_id = packageId;
+            package.Delete();
         }
 
         //表单验证
         private static void FormValidation(Package package)
         {
             
+        }
+
+        //在库状态转化为int
+        private static int IsinWarehouseDataTypeChangeInt(string isinWarehouse)
+        {
+            int _isinWarehouse = -1;
+            if (isinWarehouse.Equals("在库")) return 0;
+            if (isinWarehouse.Equals("不在库")) return 1;
+            return _isinWarehouse;
+        }
+
+        //在库状态转化为
+        public static string IsinWarehouseDataTypeChangeString(int isinWarehouse)
+        {
+            string _isinWarehouse = "不在库";
+            if (isinWarehouse == 0) return "在库";
+            return _isinWarehouse;
+        }
+
+        //材料搜索
+        public static DataTable GetQueryPackage(string name, string model, string barrelId, string isinWarehouse, string projectId)
+        {
+            int _barrelId = barrelId.Equals("") ? 0 : Convert.ToInt32(barrelId);
+            int _isInWareHouse = isinWarehouse.Equals("全部") ? -1 : IsinWarehouseDataTypeChangeInt(isinWarehouse);
+            int _projectId = projectId.Equals("") ? 0 : Convert.ToInt32(projectId);
+            SelectSqlMaker maker = new SelectSqlMaker("package");
+            maker.AddAndCondition(new StringLike("pa_name", name));
+            maker.AddAndCondition(new StringLike("pa_model", model));
+            if (_barrelId != 0) maker.AddAndCondition(new IntEqual("pa_barrelId", _barrelId));
+            if(_isInWareHouse !=-1) maker.AddAndCondition(new IntEqual("pa_isinWarehouse", _isInWareHouse));
+            if (_projectId != 0) maker.AddAndCondition(new IntEqual("pa_projectId", _projectId));
+            return Query(maker.MakeSelectSql()); 
         }
     }
 }
