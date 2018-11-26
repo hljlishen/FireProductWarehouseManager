@@ -137,6 +137,12 @@
     <Compile Include="GuiPackage\燕廷\员工管理页面\EmployeeManagement.Designer.cs">
       <DependentUpon>EmployeeManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="GuiPackage\燕廷\项目管理\ProjectManageme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\项目管理\ProjectManageme.Designer.cs">
+      <DependentUpon>ProjectManageme.cs</DependentUpon>
+    </Compile>
     <Compile Include="GuiPackage\马华\Administration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +212,9 @@
     <EmbeddedResource Include="GuiPackage\燕廷\锂材料管理\PackageManagement.resx">
       <DependentUpon>PackageManagement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\燕廷\项目管理\ProjectManageme.resx">
+      <DependentUpon>ProjectManageme.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\马华\Administration.resx">
       <DependentUpon>Administration.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,9 +255,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GuiPackage\燕廷\项目管理\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="MySql.Data.dll" />
   </ItemGroup>

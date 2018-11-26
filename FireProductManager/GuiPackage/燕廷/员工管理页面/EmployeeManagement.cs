@@ -280,10 +280,13 @@ namespace FireProductManager.GuiPackage
         //dgv双击获取员工id
         private void dgv_employeeinformation_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int employeeId = (int)(dgv_employeeinformation.SelectedRows[0]).Cells[8].Value;
-            string emNumbers = (dgv_employeeinformation.SelectedRows[0]).Cells[0].Value.ToString();
-            EmployeesSelected?.Invoke(employeeId, emNumbers);
-            Close();
+            if (FormBorderStyle == FormBorderStyle.FixedSingle)
+            {
+                int employeeId = (int)(dgv_employeeinformation.SelectedRows[0]).Cells[8].Value;
+                string emNumbers = (dgv_employeeinformation.SelectedRows[0]).Cells[0].Value.ToString();
+                EmployeesSelected?.Invoke(employeeId, emNumbers);
+                Close();
+            }
         }
         #endregion
 
