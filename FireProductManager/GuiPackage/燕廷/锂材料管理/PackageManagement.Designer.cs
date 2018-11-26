@@ -121,6 +121,7 @@
             this.dgv_instrumentinformation.Size = new System.Drawing.Size(1273, 659);
             this.dgv_instrumentinformation.TabIndex = 4;
             this.dgv_instrumentinformation.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_instrumentinformation_CellContentClick);
+            this.dgv_instrumentinformation.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_instrumentinformation_CellMouseDoubleClick);
             // 
             // 材料名称
             // 
@@ -311,7 +312,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv_instrumentinformation);
             this.Controls.Add(this.bt_addpackage);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PackageManagement";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;

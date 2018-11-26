@@ -11,6 +11,9 @@ namespace FireProductManager.GuiPackage
 {
     public partial class PackageManagement : Form
     {
+        public delegate void PackageIdSelectedHandler(int packageid);
+        public event PackageIdSelectedHandler PackageIdSelected;
+
         public PackageManagement()
         {
             InitializeComponent();
@@ -97,5 +100,13 @@ namespace FireProductManager.GuiPackage
         }
         #endregion
 
+        private void dgv_instrumentinformation_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (FormBorderStyle == FormBorderStyle.FixedSingle)
+            {
+                PackageIdSelected?.Invoke((int)(dgv_instrumentinformation.SelectedRows[0]).Cells[9].Value);
+                Close();
+            }
+        }
     }
 }
