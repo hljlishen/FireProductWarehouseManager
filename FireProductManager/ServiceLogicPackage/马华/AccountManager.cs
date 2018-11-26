@@ -45,7 +45,7 @@ namespace FireProductManager.ServiceLogicPackage
             return queryBarrel;
         }
 
-        public static DataTable GetAllAccount()
+        public static DataTable GetAllAccountInformation()
         {
             SelectSqlMaker maker = new SelectSqlMaker("account");
             string sql = maker.MakeSelectSql();

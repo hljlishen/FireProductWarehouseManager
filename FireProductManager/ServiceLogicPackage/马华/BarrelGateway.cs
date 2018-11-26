@@ -14,7 +14,7 @@ namespace FireProductManager.ServiceLogicPackage
             return queryBarrel;
         }
 
-        public static DataTable BarrelIdQueryPackageMessage(int barrelid)
+        public static DataTable BarrelIdQueryPackageInformation(int barrelid)
         {
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_barrelId", barrelid));

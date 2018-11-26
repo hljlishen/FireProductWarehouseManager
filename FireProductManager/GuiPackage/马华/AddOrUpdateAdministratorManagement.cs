@@ -21,7 +21,7 @@ namespace FireProductManager.GuiPackage
         {
             TextBoxCheckShow();
             StartPosition = FormStartPosition.CenterScreen;
-            ShowDataGridView(AccountManager.GetAllAccount());
+            ShowDataGridView(AccountManager.GetAllAccountInformation());
         }
 
         private void ShowDataGridView(DataTable dt)

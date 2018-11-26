@@ -112,7 +112,7 @@ namespace FireProductManager.GuiPackage
             DateTime endTime = dtp_end.Value.AddDays(1);
             if (cb_choicetime.Checked.Equals(true))
                 isChoiceTime = true;
-            ShowDataGridView(RecordOperationGateway.SearchInOrOutRecord(packageId, employeeId, projectId, direction, isChoiceTime, begintTime, endTime));
+            ShowDataGridView(RecordOperationGateway.ConditionsSearchInOrOutRecord(packageId, employeeId, projectId, direction, isChoiceTime, begintTime, endTime));
             tb_packageid.Text = "";
             tb_employeeid.Text = "";
             tb_projectid.Text = "";
@@ -137,11 +137,11 @@ namespace FireProductManager.GuiPackage
         //查询袋子
         private void btn_selectpackageid_Click(object sender, EventArgs e)
         {
-        //    selectPackages = new PackageManagement();
-        //    selectPackages.FormBorderStyle = FormBorderStyle.FixedSingle;
-        //    selectPackages.EmployeesSelected += PackagesSelected;
-        //    selectPackages.ShowDialog();
-        //    selectPackages.EmployeesSelected -= PackagesSelected;
+            selectPackages = new PackageManagement();
+            selectPackages.FormBorderStyle = FormBorderStyle.FixedSingle;
+            selectPackages.PackageIdSelected += PackagesSelected;
+            selectPackages.ShowDialog();
+            selectPackages.PackageIdSelected -= PackagesSelected;
         }
 
         //查询项目
@@ -150,10 +150,10 @@ namespace FireProductManager.GuiPackage
 
         }
 
-        //private void PackagesSelected(int packageId)
-        //{
-        //    tb_packageid.Text = "";
-        //    tb_packageid.Text = packageId.ToString();
-        //}
+        private void PackagesSelected(int packageId)
+        {
+            tb_packageid.Text = "";
+            tb_packageid.Text = packageId.ToString();
+        }
     }
 }

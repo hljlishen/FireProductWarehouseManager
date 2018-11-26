@@ -67,7 +67,7 @@ namespace FireProductManager.ServiceLogicPackage
             return dt.Rows.Count > 0;
         }
 
-        public static DataTable SearchInOrOutRecord(string packageId,string employeeId,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
+        public static DataTable ConditionsSearchInOrOutRecord(string packageId,string employeeId,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
         {
             SelectSqlMaker maker = new SelectSqlMaker("inoutrecord");
             maker.AddAndCondition(new StringEqual("ior_packageId", packageId));
