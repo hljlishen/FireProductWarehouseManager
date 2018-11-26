@@ -12,7 +12,9 @@ namespace FireProductManager.GuiPackage
     {
         private PackageBorrowRecord packageBorrow = null;
         private BarrelManagement barrelManagement = null;
+        private EmployeeManagement employeeManagement = null;
         private AddOrUpdateAdministratorManagement administratorManagement = null;
+        private PackageManagement packageManagement = null;
 
         public Administration()
         {
@@ -21,7 +23,18 @@ namespace FireProductManager.GuiPackage
 
         private void 员工管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (employeeManagement == null)
+            {
+                employeeManagement = new EmployeeManagement();
+            }
+            else
+            {
+                employeeManagement.Close();
+                employeeManagement = new EmployeeManagement();
+            }
+            employeeManagement.MdiParent = this;
+            employeeManagement.Show();
+            employeeManagement.Activate();
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
@@ -100,6 +113,22 @@ namespace FireProductManager.GuiPackage
             administratorManagement.MdiParent = this;
             administratorManagement.Show();
             administratorManagement.Activate();
+        }
+
+        private void 锂合金材料管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (packageManagement == null)
+            {
+                packageManagement = new PackageManagement();
+            }
+            else
+            {
+                packageManagement.Close();
+                packageManagement = new PackageManagement();
+            }
+            packageManagement.MdiParent = this;
+            packageManagement.Show();
+            packageManagement.Activate();
         }
     }
 }

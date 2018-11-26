@@ -1,5 +1,4 @@
-﻿using DbLink;
-using FireProductManager.ServiceLogicPackage;
+﻿using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -9,6 +8,10 @@ namespace FireProductManager.GuiPackage
     //仪器出入库查询页面
     public partial class PackageBorrowRecord : Form
     {
+
+        EmployeeManagement selectEmployees;
+        PackageManagement selectPackages;
+
         public PackageBorrowRecord()
         {
             InitializeComponent();
@@ -21,9 +24,7 @@ namespace FireProductManager.GuiPackage
             //选择时间查询
             cb_choicetime.MouseClick += cb_choicetime_MouseClick;
 
-            SelectSqlMaker maker = new SelectSqlMaker("inoutrecord");
-            string sql = maker.MakeSelectSql();
-            ShowDataGridView(RecordOperationGateway.Query(sql)); 
+            ShowDataGridView(RecordOperationGateway.GetAllInOrOutRecord()); 
         }
 
         //DataGridView显示数据
@@ -41,7 +42,7 @@ namespace FireProductManager.GuiPackage
                 dgv_PackageInAndOutrecord.Rows[index].Cells[4].Value = dr["ior_direction"];
                 dgv_PackageInAndOutrecord.Rows[index].Cells[5].Value = dr["ior_timeStmp"];
 
-                dgv_PackageInAndOutrecord.Rows[index].Cells[6].Value = SelectEmployeeName((int)dr["ior_employeeId"]);
+                dgv_PackageInAndOutrecord.Rows[index].Cells[6].Value = dr["ior_borrowName"];
                 dgv_PackageInAndOutrecord.Rows[index].Cells[8].Value = SelectPackageWeigth((int)dr["ior_packageId"]) + "g";
             }
         }
@@ -49,7 +50,7 @@ namespace FireProductManager.GuiPackage
         private int SelectBaeerlId(int id)
         {
             int barrelid = 0;
-            foreach (DataRow dr in GetPackageIdQuerySql(id).Rows)
+            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuery(id).Rows)
                 barrelid = (int)dr["pa_barrelId"];
             return barrelid;
         }
@@ -57,7 +58,7 @@ namespace FireProductManager.GuiPackage
         private string SelectPackageName(int id)
         {
             string packagename = null;
-            foreach (DataRow dr in GetPackageIdQuerySql(id).Rows)
+            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuery(id).Rows)
                 packagename = dr["pa_name"].ToString();
             return packagename;
         }
@@ -65,31 +66,17 @@ namespace FireProductManager.GuiPackage
         private string SelectPackageModel(int id)
         {
             string packagemodel = null;
-            foreach (DataRow dr in GetPackageIdQuerySql(id).Rows)
+            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuery(id).Rows)
                 packagemodel = dr["pa_model"].ToString();
             return packagemodel;
-        }
-
-        private string SelectEmployeeName(int id)
-        {
-            return EmployeeGateway.GetEmployeeInformation(id).em_name;
         }
 
         private double SelectPackageWeigth(int id)
         {
             double packageweigth = 0;
-            foreach (DataRow dr in GetPackageIdQuerySql(id).Rows)
-                packageweigth = (double)dr["pa_weigth"];
+            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuery(id).Rows)
+                packageweigth = (double)dr["pa_weight"];
             return packageweigth;
-        }
-
-        private DataTable GetPackageIdQuerySql(int id)
-        {
-            SelectSqlMaker maker = new SelectSqlMaker("package");
-            maker.AddAndCondition(new IntEqual("pa_id", id));
-            string sql = maker.MakeSelectSql();
-            DataTable dt = PackageGateway.Query(sql);
-            return dt;
         }
 
         //点击勾选框选择时间查询
@@ -112,5 +99,61 @@ namespace FireProductManager.GuiPackage
         {
             ExcelOperator.DataGridViewToExcel(dgv_PackageInAndOutrecord, true);
         }
+
+        //搜索出入库信息按钮
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+            string packageId = tb_packageid.Text;
+            string employeeId = tb_employeeid.Text;
+            string projectId = tb_projectid.Text;
+            string direction = cb_directquery.Text;
+            bool isChoiceTime = false;
+            DateTime begintTime = dtp_begin.Value;
+            DateTime endTime = dtp_end.Value.AddDays(1);
+            if (cb_choicetime.Checked.Equals(true))
+                isChoiceTime = true;
+            ShowDataGridView(RecordOperationGateway.SearchInOrOutRecord(packageId, employeeId, projectId, direction, isChoiceTime, begintTime, endTime));
+            tb_packageid.Text = "";
+            tb_employeeid.Text = "";
+            tb_projectid.Text = "";
+        }
+
+        //查询员工
+        private void btn_selectemployee_Click(object sender, EventArgs e)
+        {
+            selectEmployees = new EmployeeManagement();
+            selectEmployees.FormBorderStyle = FormBorderStyle.FixedSingle;
+            selectEmployees.EmployeesSelected += EmployeesSelected;
+            selectEmployees.ShowDialog();
+            selectEmployees.EmployeesSelected -= EmployeesSelected;
+        }
+
+        private void EmployeesSelected(int employeesId, string emNumbers)
+        {
+            tb_employeeid.Text = "";
+            tb_employeeid.Text = employeesId.ToString();
+        }
+
+        //查询袋子
+        private void btn_selectpackageid_Click(object sender, EventArgs e)
+        {
+        //    selectPackages = new PackageManagement();
+        //    selectPackages.FormBorderStyle = FormBorderStyle.FixedSingle;
+        //    selectPackages.EmployeesSelected += PackagesSelected;
+        //    selectPackages.ShowDialog();
+        //    selectPackages.EmployeesSelected -= PackagesSelected;
+        }
+
+        //查询项目
+        private void btn_selectprojectid_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //private void PackagesSelected(int packageId)
+        //{
+        //    tb_packageid.Text = "";
+        //    tb_packageid.Text = packageId.ToString();
+        //}
     }
 }

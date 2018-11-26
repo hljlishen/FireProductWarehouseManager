@@ -89,8 +89,9 @@
             // 仪器管理ToolStripMenuItem
             // 
             this.仪器管理ToolStripMenuItem.Name = "仪器管理ToolStripMenuItem";
-            this.仪器管理ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.仪器管理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.仪器管理ToolStripMenuItem.Text = "锂合金材料管理";
+            this.仪器管理ToolStripMenuItem.Click += new System.EventHandler(this.锂合金材料管理ToolStripMenuItem_Click);
             // 
             // 器件出入记录ToolStripMenuItem
             // 
