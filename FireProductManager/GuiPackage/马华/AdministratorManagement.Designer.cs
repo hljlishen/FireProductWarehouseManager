@@ -55,7 +55,6 @@
             this.dgv_administrator.Location = new System.Drawing.Point(558, 99);
             this.dgv_administrator.Name = "dgv_administrator";
             this.dgv_administrator.RowTemplate.Height = 23;
-            this.dgv_administrator.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgv_administrator.Size = new System.Drawing.Size(780, 669);
             this.dgv_administrator.TabIndex = 1;
             this.dgv_administrator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_administrator_CellContentClick);

@@ -48,7 +48,6 @@
             this.dgv_existbarrelid.MultiSelect = false;
             this.dgv_existbarrelid.Name = "dgv_existbarrelid";
             this.dgv_existbarrelid.RowTemplate.Height = 23;
-            this.dgv_existbarrelid.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgv_existbarrelid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_existbarrelid.Size = new System.Drawing.Size(234, 474);
             this.dgv_existbarrelid.TabIndex = 0;

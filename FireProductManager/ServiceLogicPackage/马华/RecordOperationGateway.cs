@@ -31,8 +31,6 @@ namespace FireProductManager.ServiceLogicPackage
         //借包
         public static void BorrowPackage(int packageid,int employeeid,int projectId,string borrowName,string accountName)
         {
-            if (!IsPackageIdValid(packageid)) return;
-
             PackageGateway.BorrowPackage(packageid);
 
             InOutRecord inOutRecord = new InOutRecord();
@@ -47,10 +45,8 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //还包
-        public static void ReturnPackage(int packageid,int barrelid,int employeeid, int projectId, string borrowName, string accoundName)
+        public static void ReturnPackage(int packageid,int barrelid,int employeeid, int projectId, string borrowName, string accountName)
         {
-            if (!IsPackageIdValid(packageid)) return;
-            
             PackageGateway.ReturnPackage(packageid, barrelid);
 
             InOutRecord inOutRecord = new InOutRecord();
@@ -58,14 +54,14 @@ namespace FireProductManager.ServiceLogicPackage
             inOutRecord.ior_employeeId = (uint)employeeid;
             inOutRecord.ior_projectId = (uint)projectId;
             inOutRecord.ior_borrowName = borrowName;
-            inOutRecord.ior_accountName = accoundName;
+            inOutRecord.ior_accountName = accountName;
             inOutRecord.ior_direction = "入库";
             inOutRecord.ior_timeStmp = DateTime.Now;
             inOutRecord.Insert();  
         }
 
         //判断packageid是否存在
-        private static bool IsPackageIdValid(int packageid)
+        public static bool IsPackageIdValid(int packageid)
         {
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_id", packageid));
@@ -87,6 +83,17 @@ namespace FireProductManager.ServiceLogicPackage
                 maker.AddAndCondition(new DateBetweenOpenInterval("ior_timeStmp", begintTime, endTime,DbLinkManager.databaseType));
             string sql = maker.MakeSelectSql();
             return Query(sql);
+        }
+
+        public static int IsinWarehouse(int packageId)
+        {
+            int inWarehouse = 0;
+            SelectSqlMaker maker = new SelectSqlMaker("package");
+            maker.AddAndCondition(new IntEqual("pa_id", packageId));
+            DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
+            foreach (DataRow dr in dt.Rows)
+                inWarehouse = (int)dr["pa_isinWarehouse"];
+            return inWarehouse;
         }
     }
 }

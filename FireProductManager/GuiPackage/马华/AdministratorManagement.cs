@@ -14,11 +14,6 @@ namespace FireProductManager.GuiPackage
         public AdministratorManagement()
         {
             InitializeComponent();
-            FirstPerform();
-        }
-
-        public void FirstPerform()
-        {
             StartPosition = FormStartPosition.CenterScreen;
             ShowDataGridView(AccountManager.GetAllAccountInformation());
         }
@@ -59,15 +54,17 @@ namespace FireProductManager.GuiPackage
                     string account = dgv_administrator.CurrentRow.Cells[1].Value.ToString();
                     string password = dgv_administrator.CurrentRow.Cells[2].Value.ToString();
                     int authority = (int)dgv_administrator.CurrentRow.Cells[3].Value;
-                    addOrUpdateAministrator = new AddOrUpdateAministrator(accountid,account,password,authority);
+                    addOrUpdateAministrator.Close();
+                    addOrUpdateAministrator = new AddOrUpdateAministrator(accountid, account, password, authority);
                     PanelShow(addOrUpdateAministrator);
-                    FirstPerform();
                 }
             }
         }
 
         private void AdministratorManagement_Load(object sender, EventArgs e)
         {
+            addOrUpdateAministrator = new AddOrUpdateAministrator();
+            PanelShow(addOrUpdateAministrator);
         }
 
         private void PanelShow(AddOrUpdateAministrator addOrUpdateAministrator)
@@ -76,14 +73,13 @@ namespace FireProductManager.GuiPackage
             addOrUpdateAministrator.FormBorderStyle = FormBorderStyle.None;
             pa_addorupdate.Controls.Add(addOrUpdateAministrator);
             addOrUpdateAministrator.Show();
-            FirstPerform();
         }
 
         private void btn_addaccount_Click(object sender, EventArgs e)
         {
+            addOrUpdateAministrator.Close();
             addOrUpdateAministrator = new AddOrUpdateAministrator();
             PanelShow(addOrUpdateAministrator);
-            FirstPerform();
         }
     }
 }

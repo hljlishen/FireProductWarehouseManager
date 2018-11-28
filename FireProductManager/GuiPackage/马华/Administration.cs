@@ -15,7 +15,8 @@ namespace FireProductManager.GuiPackage
         private EmployeeManagement employeeManagement = null;
         private AdministratorManagement administratorManagement = null;
         private PackageManagement packageManagement = null;
-        private MainPage mainPage = null; 
+        private MainPage mainPage = null;
+        private AdminLogin login = null;
 
         public Administration()
         {
@@ -41,7 +42,7 @@ namespace FireProductManager.GuiPackage
         private void btn_logout_Click(object sender, EventArgs e)
         {
             AccountManager.Logout();
-            员工管理ToolStripMenuItem_Click(sender,e);
+            出入库登记ToolStripMenultem_Click(sender,e);
             ShowLoginWindow();
             la_account.Text = AccountManager.ReturnAccount();
         }
@@ -50,19 +51,14 @@ namespace FireProductManager.GuiPackage
         {
             ShowLoginWindow();
             la_account.Text = AccountManager.ReturnAccount();
-            //仓库管理ToolStripMenuItem_Click(sender, e);
-            //Ahdr ahdr = new Ahdr();
-            //ahdr.WeightGetted += Ahdr_WeightGetted;
+            出入库登记ToolStripMenultem_Click(sender, e);
+            
         }
 
-        //private void Ahdr_WeightGetted(double weigh)
-        //{
-            
-        //}
 
         private void ShowLoginWindow()
         {
-            AdminLogin login = new AdminLogin();
+            login = new AdminLogin();
             if (login.ShowDialog() != DialogResult.OK)
                 Close();
         }

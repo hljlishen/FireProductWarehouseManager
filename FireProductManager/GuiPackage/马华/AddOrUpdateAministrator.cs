@@ -33,7 +33,7 @@ namespace FireProductManager.GuiPackage
             la_title.Text = "添加管理员信息";
         }
 
-        private void btn_update_Click(object sender, System.EventArgs e)
+        private void btn_update_Click(object sender, EventArgs e)
         {
             TextBoxCheckShow();
             if (!TextBoxCheck())
@@ -41,6 +41,7 @@ namespace FireProductManager.GuiPackage
             AccountManager.UpdateAccount(accountid, tb_account.Text, tb_password.Text, int.Parse(cb_authority.Text));
             AutoClosingMessageBox.Show("                修改成功", "修改管理员", 1000);
             EmptyTextBox();
+            RefreshThePage();
         }
 
         private void EmptyTextBox()
@@ -82,7 +83,7 @@ namespace FireProductManager.GuiPackage
             la_passwordcheck.Visible = false;
         }
 
-        private void btn_add_Click(object sender, System.EventArgs e)
+        private void btn_add_Click(object sender, EventArgs e)
         {
             TextBoxCheckShow();
             if (!TextBoxCheck())
@@ -90,19 +91,12 @@ namespace FireProductManager.GuiPackage
             AccountManager.AddAccount(tb_account.Text, tb_password.Text, int.Parse(cb_authority.Text));
             AutoClosingMessageBox.Show("                添加成功", "添加管理员", 1000);
             EmptyTextBox();
-            ResetPageInformation();
+            RefreshThePage();
         }
 
-        //重置页面信息
-        public void ResetPageInformation()
+        private void RefreshThePage()
         {
-            foreach (Control ctr in Controls)
-            {
-                if (ctr is TextBox)//考虑是文本框的话
-                {
-                    ((TextBox)ctr).Text = String.Empty;
-                }
-            }
+            
         }
     }
 }

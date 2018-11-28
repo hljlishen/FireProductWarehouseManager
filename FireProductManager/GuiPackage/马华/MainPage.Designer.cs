@@ -28,9 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_selectprojectid = new System.Windows.Forms.Button();
+            this.btn_selectbarrelid = new System.Windows.Forms.Button();
+            this.tb_packageid = new System.Windows.Forms.TextBox();
+            this.tb_borrowName = new System.Windows.Forms.TextBox();
+            this.tb_direction = new System.Windows.Forms.TextBox();
+            this.tb_packageweight = new System.Windows.Forms.TextBox();
+            this.tb_projectid = new System.Windows.Forms.TextBox();
+            this.tb_packagemodel = new System.Windows.Forms.TextBox();
+            this.tb_barrelid = new System.Windows.Forms.TextBox();
+            this.tb_packagename = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -39,22 +50,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tb_packagename = new System.Windows.Forms.TextBox();
-            this.tb_barrelid = new System.Windows.Forms.TextBox();
-            this.tb_packagemodel = new System.Windows.Forms.TextBox();
-            this.tb_projectid = new System.Windows.Forms.TextBox();
-            this.tb_packageweight = new System.Windows.Forms.TextBox();
-            this.tb_direction = new System.Windows.Forms.TextBox();
-            this.tb_borrowName = new System.Windows.Forms.TextBox();
-            this.tb_timer = new System.Windows.Forms.TextBox();
-            this.btn_selectemployee = new System.Windows.Forms.Button();
-            this.btn_selectbarrelid = new System.Windows.Forms.Button();
-            this.btn_selectprojectid = new System.Windows.Forms.Button();
+            this.tabControl4 = new System.Windows.Forms.TabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.Hum_num = new System.Windows.Forms.Label();
+            this.Tem_num = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabControl2.SuspendLayout();
+            this.tabControl4.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -78,8 +87,7 @@
             // 
             this.tabPage1.Controls.Add(this.btn_selectprojectid);
             this.tabPage1.Controls.Add(this.btn_selectbarrelid);
-            this.tabPage1.Controls.Add(this.btn_selectemployee);
-            this.tabPage1.Controls.Add(this.tb_timer);
+            this.tabPage1.Controls.Add(this.tb_packageid);
             this.tabPage1.Controls.Add(this.tb_borrowName);
             this.tabPage1.Controls.Add(this.tb_direction);
             this.tabPage1.Controls.Add(this.tb_packageweight);
@@ -104,15 +112,100 @@
             this.tabPage1.Text = "出入库信息";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btn_selectprojectid
+            // 
+            this.btn_selectprojectid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_selectprojectid.Location = new System.Drawing.Point(744, 108);
+            this.btn_selectprojectid.Name = "btn_selectprojectid";
+            this.btn_selectprojectid.Size = new System.Drawing.Size(28, 23);
+            this.btn_selectprojectid.TabIndex = 29;
+            this.btn_selectprojectid.Text = "...";
+            this.btn_selectprojectid.UseVisualStyleBackColor = true;
+            // 
+            // btn_selectbarrelid
+            // 
+            this.btn_selectbarrelid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_selectbarrelid.Location = new System.Drawing.Point(716, 38);
+            this.btn_selectbarrelid.Name = "btn_selectbarrelid";
+            this.btn_selectbarrelid.Size = new System.Drawing.Size(28, 23);
+            this.btn_selectbarrelid.TabIndex = 28;
+            this.btn_selectbarrelid.Text = "...";
+            this.btn_selectbarrelid.UseVisualStyleBackColor = true;
+            this.btn_selectbarrelid.Click += new System.EventHandler(this.btn_selectbarrelid_Click);
+            // 
+            // tb_packageid
+            // 
+            this.tb_packageid.Location = new System.Drawing.Point(582, 223);
+            this.tb_packageid.Name = "tb_packageid";
+            this.tb_packageid.Size = new System.Drawing.Size(156, 23);
+            this.tb_packageid.TabIndex = 16;
+            this.tb_packageid.TextChanged += new System.EventHandler(this.tb_packageid_TextChanged);
+            // 
+            // tb_borrowName
+            // 
+            this.tb_borrowName.Location = new System.Drawing.Point(115, 223);
+            this.tb_borrowName.Name = "tb_borrowName";
+            this.tb_borrowName.ReadOnly = true;
+            this.tb_borrowName.Size = new System.Drawing.Size(156, 23);
+            this.tb_borrowName.TabIndex = 15;
+            // 
+            // tb_direction
+            // 
+            this.tb_direction.Location = new System.Drawing.Point(554, 166);
+            this.tb_direction.Name = "tb_direction";
+            this.tb_direction.ReadOnly = true;
+            this.tb_direction.Size = new System.Drawing.Size(156, 23);
+            this.tb_direction.TabIndex = 14;
+            // 
+            // tb_packageweight
+            // 
+            this.tb_packageweight.Location = new System.Drawing.Point(138, 166);
+            this.tb_packageweight.Name = "tb_packageweight";
+            this.tb_packageweight.ReadOnly = true;
+            this.tb_packageweight.Size = new System.Drawing.Size(156, 23);
+            this.tb_packageweight.TabIndex = 13;
+            // 
+            // tb_projectid
+            // 
+            this.tb_projectid.Location = new System.Drawing.Point(582, 108);
+            this.tb_projectid.Name = "tb_projectid";
+            this.tb_projectid.ReadOnly = true;
+            this.tb_projectid.Size = new System.Drawing.Size(156, 23);
+            this.tb_projectid.TabIndex = 12;
+            // 
+            // tb_packagemodel
+            // 
+            this.tb_packagemodel.Location = new System.Drawing.Point(187, 105);
+            this.tb_packagemodel.Name = "tb_packagemodel";
+            this.tb_packagemodel.ReadOnly = true;
+            this.tb_packagemodel.Size = new System.Drawing.Size(156, 23);
+            this.tb_packagemodel.TabIndex = 11;
+            // 
+            // tb_barrelid
+            // 
+            this.tb_barrelid.Location = new System.Drawing.Point(554, 38);
+            this.tb_barrelid.Name = "tb_barrelid";
+            this.tb_barrelid.ReadOnly = true;
+            this.tb_barrelid.Size = new System.Drawing.Size(156, 23);
+            this.tb_barrelid.TabIndex = 10;
+            // 
+            // tb_packagename
+            // 
+            this.tb_packagename.Location = new System.Drawing.Point(101, 40);
+            this.tb_packagename.Name = "tb_packagename";
+            this.tb_packagename.ReadOnly = true;
+            this.tb_packagename.Size = new System.Drawing.Size(156, 23);
+            this.tb_packagename.TabIndex = 9;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label8.Location = new System.Drawing.Point(497, 226);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(51, 20);
+            this.label8.Size = new System.Drawing.Size(79, 20);
             this.label8.TabIndex = 7;
-            this.label8.Text = "时间：";
+            this.label8.Text = "袋子编号：";
             // 
             // label7
             // 
@@ -184,120 +277,98 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "类型：";
             // 
-            // tabControl2
+            // tabControl4
             // 
-            this.tabControl2.Controls.Add(this.tabPage2);
-            this.tabControl2.Location = new System.Drawing.Point(938, 34);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(438, 302);
-            this.tabControl2.TabIndex = 2;
+            this.tabControl4.Controls.Add(this.tabPage4);
+            this.tabControl4.Location = new System.Drawing.Point(942, 34);
+            this.tabControl4.Name = "tabControl4";
+            this.tabControl4.SelectedIndex = 0;
+            this.tabControl4.Size = new System.Drawing.Size(420, 189);
+            this.tabControl4.TabIndex = 30;
             // 
-            // tabPage2
+            // tabPage4
             // 
-            this.tabPage2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(430, 276);
-            this.tabPage2.TabIndex = 0;
-            this.tabPage2.Text = "出入库记录";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage4.Controls.Add(this.label9);
+            this.tabPage4.Controls.Add(this.label10);
+            this.tabPage4.Controls.Add(this.Hum_num);
+            this.tabPage4.Controls.Add(this.Tem_num);
+            this.tabPage4.Controls.Add(this.pictureBox4);
+            this.tabPage4.Controls.Add(this.pictureBox5);
+            this.tabPage4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tabPage4.Size = new System.Drawing.Size(412, 163);
+            this.tabPage4.TabIndex = 0;
+            this.tabPage4.Text = "温湿度监控信息";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tb_packagename
+            // label9
             // 
-            this.tb_packagename.Location = new System.Drawing.Point(101, 40);
-            this.tb_packagename.Name = "tb_packagename";
-            this.tb_packagename.Size = new System.Drawing.Size(156, 23);
-            this.tb_packagename.TabIndex = 9;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(258, 94);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 25);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "仓库湿度";
             // 
-            // tb_barrelid
+            // label10
             // 
-            this.tb_barrelid.Location = new System.Drawing.Point(554, 38);
-            this.tb_barrelid.Name = "tb_barrelid";
-            this.tb_barrelid.Size = new System.Drawing.Size(156, 23);
-            this.tb_barrelid.TabIndex = 10;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.Location = new System.Drawing.Point(92, 92);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(96, 28);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "仓库温度";
             // 
-            // tb_packagemodel
+            // Hum_num
             // 
-            this.tb_packagemodel.Location = new System.Drawing.Point(187, 105);
-            this.tb_packagemodel.Name = "tb_packagemodel";
-            this.tb_packagemodel.Size = new System.Drawing.Size(156, 23);
-            this.tb_packagemodel.TabIndex = 11;
+            this.Hum_num.AutoSize = true;
+            this.Hum_num.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Hum_num.Location = new System.Drawing.Point(268, 58);
+            this.Hum_num.Name = "Hum_num";
+            this.Hum_num.Size = new System.Drawing.Size(28, 26);
+            this.Hum_num.TabIndex = 13;
+            this.Hum_num.Text = "--";
             // 
-            // tb_projectid
+            // Tem_num
             // 
-            this.tb_projectid.Location = new System.Drawing.Point(582, 108);
-            this.tb_projectid.Name = "tb_projectid";
-            this.tb_projectid.Size = new System.Drawing.Size(156, 23);
-            this.tb_projectid.TabIndex = 12;
+            this.Tem_num.AutoSize = true;
+            this.Tem_num.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Tem_num.Location = new System.Drawing.Point(102, 58);
+            this.Tem_num.Name = "Tem_num";
+            this.Tem_num.Size = new System.Drawing.Size(28, 26);
+            this.Tem_num.TabIndex = 12;
+            this.Tem_num.Text = "--";
             // 
-            // tb_packageweight
+            // pictureBox4
             // 
-            this.tb_packageweight.Location = new System.Drawing.Point(138, 166);
-            this.tb_packageweight.Name = "tb_packageweight";
-            this.tb_packageweight.Size = new System.Drawing.Size(156, 23);
-            this.tb_packageweight.TabIndex = 13;
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
+            this.pictureBox4.Location = new System.Drawing.Point(197, 57);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox4.TabIndex = 9;
+            this.pictureBox4.TabStop = false;
             // 
-            // tb_direction
+            // pictureBox5
             // 
-            this.tb_direction.Location = new System.Drawing.Point(554, 166);
-            this.tb_direction.Name = "tb_direction";
-            this.tb_direction.Size = new System.Drawing.Size(156, 23);
-            this.tb_direction.TabIndex = 14;
-            // 
-            // tb_borrowName
-            // 
-            this.tb_borrowName.Location = new System.Drawing.Point(115, 223);
-            this.tb_borrowName.Name = "tb_borrowName";
-            this.tb_borrowName.Size = new System.Drawing.Size(156, 23);
-            this.tb_borrowName.TabIndex = 15;
-            // 
-            // tb_timer
-            // 
-            this.tb_timer.Location = new System.Drawing.Point(554, 226);
-            this.tb_timer.Name = "tb_timer";
-            this.tb_timer.Size = new System.Drawing.Size(156, 23);
-            this.tb_timer.TabIndex = 16;
-            // 
-            // btn_selectemployee
-            // 
-            this.btn_selectemployee.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_selectemployee.Location = new System.Drawing.Point(277, 223);
-            this.btn_selectemployee.Name = "btn_selectemployee";
-            this.btn_selectemployee.Size = new System.Drawing.Size(28, 23);
-            this.btn_selectemployee.TabIndex = 27;
-            this.btn_selectemployee.Text = "...";
-            this.btn_selectemployee.UseVisualStyleBackColor = true;
-            this.btn_selectemployee.Click += new System.EventHandler(this.btn_selectemployee_Click);
-            // 
-            // btn_selectbarrelid
-            // 
-            this.btn_selectbarrelid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_selectbarrelid.Location = new System.Drawing.Point(716, 38);
-            this.btn_selectbarrelid.Name = "btn_selectbarrelid";
-            this.btn_selectbarrelid.Size = new System.Drawing.Size(28, 23);
-            this.btn_selectbarrelid.TabIndex = 28;
-            this.btn_selectbarrelid.Text = "...";
-            this.btn_selectbarrelid.UseVisualStyleBackColor = true;
-            this.btn_selectbarrelid.Click += new System.EventHandler(this.btn_selectbarrelid_Click);
-            // 
-            // btn_selectprojectid
-            // 
-            this.btn_selectprojectid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_selectprojectid.Location = new System.Drawing.Point(744, 108);
-            this.btn_selectprojectid.Name = "btn_selectprojectid";
-            this.btn_selectprojectid.Size = new System.Drawing.Size(28, 23);
-            this.btn_selectprojectid.TabIndex = 29;
-            this.btn_selectprojectid.Text = "...";
-            this.btn_selectprojectid.UseVisualStyleBackColor = true;
+            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
+            this.pictureBox5.Location = new System.Drawing.Point(28, 57);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox5.TabIndex = 8;
+            this.pictureBox5.TabStop = false;
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 861);
-            this.Controls.Add(this.tabControl2);
+            this.Controls.Add(this.tabControl4);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -307,7 +378,11 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
+            this.tabControl4.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -317,8 +392,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -327,7 +400,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tb_timer;
+        private System.Windows.Forms.TextBox tb_packageid;
         private System.Windows.Forms.TextBox tb_borrowName;
         private System.Windows.Forms.TextBox tb_direction;
         private System.Windows.Forms.TextBox tb_packageweight;
@@ -335,8 +408,15 @@
         private System.Windows.Forms.TextBox tb_packagemodel;
         private System.Windows.Forms.TextBox tb_barrelid;
         private System.Windows.Forms.TextBox tb_packagename;
-        private System.Windows.Forms.Button btn_selectprojectid;
         private System.Windows.Forms.Button btn_selectbarrelid;
-        private System.Windows.Forms.Button btn_selectemployee;
+        private System.Windows.Forms.Button btn_selectprojectid;
+        private System.Windows.Forms.TabControl tabControl4;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label Hum_num;
+        private System.Windows.Forms.Label Tem_num;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }

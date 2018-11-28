@@ -44,6 +44,7 @@ namespace FireProductManager.GuiPackage
 
                 dgv_PackageInAndOutrecord.Rows[index].Cells[6].Value = dr["ior_borrowName"];
                 dgv_PackageInAndOutrecord.Rows[index].Cells[8].Value = SelectPackageWeigth((int)dr["ior_packageId"]) + "g";
+                dgv_PackageInAndOutrecord.Rows[index].Cells[11].Value = dr["ior_accountName"];
             }
         }
 
@@ -128,7 +129,7 @@ namespace FireProductManager.GuiPackage
             selectEmployees.EmployeesSelected -= EmployeesSelected;
         }
 
-        private void EmployeesSelected(int employeesId, string emNumbers)
+        private void EmployeesSelected(int employeesId, string emNumbers,string name)
         {
             tb_employeeid.Text = "";
             tb_employeeid.Text = employeesId.ToString();
