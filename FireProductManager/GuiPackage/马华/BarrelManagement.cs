@@ -66,14 +66,14 @@ namespace FireProductManager.GuiPackage
         {
             barrelid1 = barrelId;
             lab_showbarrelid1.Text = barrelId.ToString() + "号桶";
-            ShowDataGridView1(BarrelGateway.BarrelIdQueryPackageMessage(barrelid1));
+            ShowDataGridView1(BarrelGateway.BarrelIdQueryPackageInformation(barrelid1));
         }
 
         private void BarrelIdSelected2(int barrelId)
         {
             barrelid2 = barrelId;
             lab_showbarrelid2.Text = barrelId.ToString() + "号桶";
-            ShowDataGridView2(BarrelGateway.BarrelIdQueryPackageMessage(barrelid2));
+            ShowDataGridView2(BarrelGateway.BarrelIdQueryPackageInformation(barrelid2));
         }
 
         private void ShowDataGridView1(DataTable dt)
