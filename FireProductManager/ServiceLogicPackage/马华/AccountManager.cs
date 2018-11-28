@@ -89,5 +89,11 @@ namespace FireProductManager.ServiceLogicPackage
             account.ac_authority = authority;
             account.Update();
         }
+
+        public static string ReturnAccount()
+        {
+            if (account == null) return null;
+            return account.ac_account;
+        }
     }
 }

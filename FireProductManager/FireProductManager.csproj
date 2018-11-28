@@ -143,17 +143,23 @@
     <Compile Include="GuiPackage\燕廷\项目管理\ProjectManageme.Designer.cs">
       <DependentUpon>ProjectManageme.cs</DependentUpon>
     </Compile>
+    <Compile Include="GuiPackage\马华\AddOrUpdateAministrator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\马华\AddOrUpdateAministrator.Designer.cs">
+      <DependentUpon>AddOrUpdateAministrator.cs</DependentUpon>
+    </Compile>
     <Compile Include="GuiPackage\马华\Administration.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GuiPackage\马华\Administration.designer.cs">
       <DependentUpon>Administration.cs</DependentUpon>
     </Compile>
-    <Compile Include="GuiPackage\马华\AddOrUpdateAdministratorManagement.cs">
+    <Compile Include="GuiPackage\马华\AdministratorManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GuiPackage\马华\AddOrUpdateAdministratorManagement.Designer.cs">
-      <DependentUpon>AddOrUpdateAdministratorManagement.cs</DependentUpon>
+    <Compile Include="GuiPackage\马华\AdministratorManagement.Designer.cs">
+      <DependentUpon>AdministratorManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="GuiPackage\马华\AdminLogin.cs">
       <SubType>Form</SubType>
@@ -166,6 +172,12 @@
     </Compile>
     <Compile Include="GuiPackage\马华\BarrelManagement.Designer.cs">
       <DependentUpon>BarrelManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuiPackage\马华\MainPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\马华\MainPage.Designer.cs">
+      <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="GuiPackage\马华\PackageBorrowRecord.cs">
       <SubType>Form</SubType>
@@ -191,6 +203,7 @@
     </EmbeddedResource>
     <Compile Include="ServiceLogicPackage\马华\AccountManager.cs" />
     <Compile Include="ServiceLogicPackage\马华\BarrelGateway.cs" />
+    <Compile Include="ServiceLogicPackage\马华\ElectronicScaleDevice.cs" />
     <Compile Include="ServiceLogicPackage\马华\EvirmentRecordGateway.cs" />
     <Compile Include="ServiceLogicPackage\马华\IEvirmentDevice.cs" />
     <Compile Include="ServiceLogicPackage\马华\RecordOperationGateway.cs" />
@@ -215,17 +228,23 @@
     <EmbeddedResource Include="GuiPackage\燕廷\项目管理\ProjectManageme.resx">
       <DependentUpon>ProjectManageme.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\马华\AddOrUpdateAministrator.resx">
+      <DependentUpon>AddOrUpdateAministrator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\马华\Administration.resx">
       <DependentUpon>Administration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GuiPackage\马华\AddOrUpdateAdministratorManagement.resx">
-      <DependentUpon>AddOrUpdateAdministratorManagement.cs</DependentUpon>
+    <EmbeddedResource Include="GuiPackage\马华\AdministratorManagement.resx">
+      <DependentUpon>AdministratorManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\马华\AdminLogin.resx">
       <DependentUpon>AdminLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\马华\BarrelManagement.resx">
       <DependentUpon>BarrelManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\马华\MainPage.resx">
+      <DependentUpon>MainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\马华\PackageBorrowRecord.resx">
       <DependentUpon>PackageBorrowRecord.cs</DependentUpon>

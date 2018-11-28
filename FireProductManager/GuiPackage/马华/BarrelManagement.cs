@@ -46,7 +46,7 @@ namespace FireProductManager.GuiPackage
         {
             lab_showbarrelid1.Text = "";
             queryBarrel = new QueryBarrel();
-            queryBarrel.FormBorderStyle = FormBorderStyle.None;
+            queryBarrel.FormBorderStyle = FormBorderStyle.FixedSingle;
             queryBarrel.BarrelIdSelected += BarrelIdSelected1;
             queryBarrel.ShowDialog();
             queryBarrel.BarrelIdSelected -= BarrelIdSelected1;
@@ -56,7 +56,7 @@ namespace FireProductManager.GuiPackage
         {
             lab_showbarrelid2.Text = "";
             queryBarrel = new QueryBarrel();
-            queryBarrel.FormBorderStyle = FormBorderStyle.None;
+            queryBarrel.FormBorderStyle = FormBorderStyle.FixedSingle;
             queryBarrel.BarrelIdSelected += BarrelIdSelected2;
             queryBarrel.ShowDialog();
             queryBarrel.BarrelIdSelected -= BarrelIdSelected2;

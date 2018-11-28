@@ -13,8 +13,9 @@ namespace FireProductManager.GuiPackage
         private PackageBorrowRecord packageBorrow = null;
         private BarrelManagement barrelManagement = null;
         private EmployeeManagement employeeManagement = null;
-        private AddOrUpdateAdministratorManagement administratorManagement = null;
+        private AdministratorManagement administratorManagement = null;
         private PackageManagement packageManagement = null;
+        private MainPage mainPage = null; 
 
         public Administration()
         {
@@ -40,14 +41,24 @@ namespace FireProductManager.GuiPackage
         private void btn_logout_Click(object sender, EventArgs e)
         {
             AccountManager.Logout();
+            员工管理ToolStripMenuItem_Click(sender,e);
             ShowLoginWindow();
+            la_account.Text = AccountManager.ReturnAccount();
         }
 
         private void Administration_Load(object sender, EventArgs e)
         {
             ShowLoginWindow();
+            la_account.Text = AccountManager.ReturnAccount();
             //仓库管理ToolStripMenuItem_Click(sender, e);
+            //Ahdr ahdr = new Ahdr();
+            //ahdr.WeightGetted += Ahdr_WeightGetted;
         }
+
+        //private void Ahdr_WeightGetted(double weigh)
+        //{
+            
+        //}
 
         private void ShowLoginWindow()
         {
@@ -103,12 +114,12 @@ namespace FireProductManager.GuiPackage
             
             if (administratorManagement == null)
             {
-                administratorManagement = new AddOrUpdateAdministratorManagement();
+                administratorManagement = new AdministratorManagement();
             }
             else
             {
                 administratorManagement.Close();
-                administratorManagement = new AddOrUpdateAdministratorManagement();
+                administratorManagement = new AdministratorManagement();
             }
             administratorManagement.MdiParent = this;
             administratorManagement.Show();
@@ -129,6 +140,22 @@ namespace FireProductManager.GuiPackage
             packageManagement.MdiParent = this;
             packageManagement.Show();
             packageManagement.Activate();
+        }
+
+        private void 出入库登记ToolStripMenultem_Click(object sender, EventArgs e)
+        {
+            if (mainPage == null)
+            {
+                mainPage = new MainPage();
+            }
+            else
+            {
+                mainPage.Close();
+                mainPage = new MainPage();
+            }
+            mainPage.MdiParent = this;
+            mainPage.Show();
+            mainPage.Activate();
         }
     }
 }
