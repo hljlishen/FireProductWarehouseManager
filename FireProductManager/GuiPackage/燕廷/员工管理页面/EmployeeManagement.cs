@@ -13,7 +13,7 @@ namespace FireProductManager.GuiPackage
     {
         private TreeNode _treenode;
         private int _level;
-        public delegate void EmployeesSelectedHandler(int employeesIds,string emNumbers);
+        public delegate void EmployeesSelectedHandler(int employeesIds,string emNumbers,string name);
         public event EmployeesSelectedHandler EmployeesSelected;
 
         public EmployeeManagement()
@@ -284,7 +284,8 @@ namespace FireProductManager.GuiPackage
             {
                 int employeeId = (int)(dgv_employeeinformation.SelectedRows[0]).Cells[8].Value;
                 string emNumbers = (dgv_employeeinformation.SelectedRows[0]).Cells[0].Value.ToString();
-                EmployeesSelected?.Invoke(employeeId, emNumbers);
+                string name = (dgv_employeeinformation.SelectedRows[0]).Cells[1].Value.ToString();
+                EmployeesSelected?.Invoke(employeeId, emNumbers, name);
                 Close();
             }
         }
