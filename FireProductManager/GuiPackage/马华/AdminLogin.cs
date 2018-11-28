@@ -35,7 +35,8 @@ namespace FireProductManager.GuiPackage
 
         private void AdminLogin_Load(object sender, EventArgs e)
         {
-
+           
         }
+
     }
 }

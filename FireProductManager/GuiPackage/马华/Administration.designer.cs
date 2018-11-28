@@ -32,14 +32,17 @@
             this.btn_logout = new System.Windows.Forms.Button();
             this.员工管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.仓库管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.到期提醒ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.器件管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.项目令号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.材料管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.仪器管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.器件出入记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.材料出入记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.锂合金ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.管理员ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AccouuntShow = new System.Windows.Forms.Label();
+            this.la_account = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.出入库登记ToolStripMenultem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,34 +75,34 @@
             this.仓库管理ToolStripMenuItem.Text = "仓库管理";
             this.仓库管理ToolStripMenuItem.Click += new System.EventHandler(this.仓库管理ToolStripMenuItem_Click);
             // 
-            // 到期提醒ToolStripMenuItem
+            // 项目令号ToolStripMenuItem
             // 
-            this.到期提醒ToolStripMenuItem.Name = "到期提醒ToolStripMenuItem";
-            this.到期提醒ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.到期提醒ToolStripMenuItem.Text = "到期提醒";
+            this.项目令号ToolStripMenuItem.Name = "项目令号ToolStripMenuItem";
+            this.项目令号ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.项目令号ToolStripMenuItem.Text = "项目令号";
             // 
-            // 器件管理ToolStripMenuItem
+            // 材料管理ToolStripMenuItem
             // 
-            this.器件管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.材料管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.仪器管理ToolStripMenuItem});
-            this.器件管理ToolStripMenuItem.Name = "器件管理ToolStripMenuItem";
-            this.器件管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.器件管理ToolStripMenuItem.Text = "材料管理";
+            this.材料管理ToolStripMenuItem.Name = "材料管理ToolStripMenuItem";
+            this.材料管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.材料管理ToolStripMenuItem.Text = "材料管理";
             // 
             // 仪器管理ToolStripMenuItem
             // 
             this.仪器管理ToolStripMenuItem.Name = "仪器管理ToolStripMenuItem";
-            this.仪器管理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.仪器管理ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.仪器管理ToolStripMenuItem.Text = "锂合金材料管理";
             this.仪器管理ToolStripMenuItem.Click += new System.EventHandler(this.锂合金材料管理ToolStripMenuItem_Click);
             // 
-            // 器件出入记录ToolStripMenuItem
+            // 材料出入记录ToolStripMenuItem
             // 
-            this.器件出入记录ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.材料出入记录ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.锂合金ToolStripMenuItem});
-            this.器件出入记录ToolStripMenuItem.Name = "器件出入记录ToolStripMenuItem";
-            this.器件出入记录ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
-            this.器件出入记录ToolStripMenuItem.Text = "材料出入记录";
+            this.材料出入记录ToolStripMenuItem.Name = "材料出入记录ToolStripMenuItem";
+            this.材料出入记录ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
+            this.材料出入记录ToolStripMenuItem.Text = "材料出入记录";
             // 
             // 锂合金ToolStripMenuItem
             // 
@@ -111,11 +114,12 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.出入库登记ToolStripMenultem,
             this.员工管理ToolStripMenuItem,
-            this.到期提醒ToolStripMenuItem,
+            this.项目令号ToolStripMenuItem,
             this.仓库管理ToolStripMenuItem,
-            this.器件管理ToolStripMenuItem,
-            this.器件出入记录ToolStripMenuItem,
+            this.材料管理ToolStripMenuItem,
+            this.材料出入记录ToolStripMenuItem,
             this.管理员ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -134,16 +138,44 @@
             // 
             this.AccouuntShow.AutoSize = true;
             this.AccouuntShow.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AccouuntShow.Location = new System.Drawing.Point(1243, 1);
+            this.AccouuntShow.Location = new System.Drawing.Point(1272, 1);
             this.AccouuntShow.Name = "AccouuntShow";
             this.AccouuntShow.Size = new System.Drawing.Size(0, 21);
             this.AccouuntShow.TabIndex = 4;
+            // 
+            // la_account
+            // 
+            this.la_account.AutoSize = true;
+            this.la_account.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_account.Location = new System.Drawing.Point(1278, 8);
+            this.la_account.Name = "la_account";
+            this.la_account.Size = new System.Drawing.Size(0, 17);
+            this.la_account.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(1217, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "用户名:";
+            // 
+            // 出入库登记ToolStripMenultem
+            // 
+            this.出入库登记ToolStripMenultem.Name = "出入库登记ToolStripMenultem";
+            this.出入库登记ToolStripMenultem.Size = new System.Drawing.Size(80, 21);
+            this.出入库登记ToolStripMenultem.Text = "出入库登记";
+            this.出入库登记ToolStripMenultem.Click += new System.EventHandler(this.出入库登记ToolStripMenultem_Click);
             // 
             // Administration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1424, 862);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.la_account);
             this.Controls.Add(this.AccouuntShow);
             this.Controls.Add(this.btn_logout);
             this.Controls.Add(this.menuStrip1);
@@ -167,13 +199,16 @@
         private System.Windows.Forms.Button btn_logout;
         private System.Windows.Forms.ToolStripMenuItem 员工管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 仓库管理ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 到期提醒ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 器件管理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 项目令号ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 材料管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 仪器管理ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 器件出入记录ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 材料出入记录ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 锂合金ToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label AccouuntShow;
         private System.Windows.Forms.ToolStripMenuItem 管理员ToolStripMenuItem;
+        private System.Windows.Forms.Label la_account;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem 出入库登记ToolStripMenultem;
     }
 }

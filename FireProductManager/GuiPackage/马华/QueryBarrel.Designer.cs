@@ -48,7 +48,6 @@
             this.dgv_existbarrelid.MultiSelect = false;
             this.dgv_existbarrelid.Name = "dgv_existbarrelid";
             this.dgv_existbarrelid.RowTemplate.Height = 23;
-            this.dgv_existbarrelid.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgv_existbarrelid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_existbarrelid.Size = new System.Drawing.Size(234, 474);
             this.dgv_existbarrelid.TabIndex = 0;
@@ -86,9 +85,10 @@
             this.ClientSize = new System.Drawing.Size(258, 525);
             this.Controls.Add(this.btn_return);
             this.Controls.Add(this.dgv_existbarrelid);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "QueryBarrel";
-            this.Text = "QueryBarrel";
             this.Load += new System.EventHandler(this.QueryBarrel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_existbarrelid)).EndInit();
             this.ResumeLayout(false);

@@ -45,6 +45,7 @@
             this.重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.生产单位 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.生产日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.管理员 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cb_directquery = new System.Windows.Forms.ComboBox();
             this.cb_choicetime = new System.Windows.Forms.CheckBox();
             this.btn_selectpackageid = new System.Windows.Forms.Button();
@@ -129,11 +130,11 @@
             this.领用项目,
             this.重量,
             this.生产单位,
-            this.生产日期});
+            this.生产日期,
+            this.管理员});
             this.dgv_PackageInAndOutrecord.Location = new System.Drawing.Point(69, 97);
             this.dgv_PackageInAndOutrecord.Name = "dgv_PackageInAndOutrecord";
             this.dgv_PackageInAndOutrecord.RowTemplate.Height = 23;
-            this.dgv_PackageInAndOutrecord.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgv_PackageInAndOutrecord.Size = new System.Drawing.Size(1279, 669);
             this.dgv_PackageInAndOutrecord.TabIndex = 0;
             // 
@@ -198,6 +199,11 @@
             // 
             this.生产日期.HeaderText = "生产日期";
             this.生产日期.Name = "生产日期";
+            // 
+            // 管理员
+            // 
+            this.管理员.HeaderText = "管理员";
+            this.管理员.Name = "管理员";
             // 
             // cb_directquery
             // 
@@ -411,5 +417,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 重量;
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产单位;
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产日期;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 管理员;
     }
 }

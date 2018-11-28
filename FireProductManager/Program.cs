@@ -17,7 +17,7 @@ namespace FireProductManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProjectManageme());
+            Application.Run(new Administration());
         }
     }
 }
