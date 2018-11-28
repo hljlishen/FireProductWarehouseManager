@@ -27,7 +27,8 @@ namespace FireProductManager.GuiPackage
         //添加项目
         private void bt_addproject_Click(object sender, EventArgs e)
         {
-
+            AddOrUpdateProject addOrUpdateProject = new AddOrUpdateProject();
+            addOrUpdateProject.ShowDialog();
         }
 
         //修改、删除项目

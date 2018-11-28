@@ -147,7 +147,7 @@ namespace FireProductManager.ServiceLogicPackage
             return Query(maker.MakeSelectSql());
         }
 
-        //获取员工信息
+        //获取材料信息
         public static DataTable GetPackageInformation(int packageId)
         {
 
