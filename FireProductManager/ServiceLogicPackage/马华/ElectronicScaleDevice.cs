@@ -42,7 +42,7 @@ namespace FireProductManager.ServiceLogicPackage
         {
             string weightStr = serialPort.ReadExisting();
 
-            WeightGetted(GetWeight(weightStr));
+            WeightGetted?.Invoke(GetWeight(weightStr));
         }
 
         private double GetWeight(string weightStr)

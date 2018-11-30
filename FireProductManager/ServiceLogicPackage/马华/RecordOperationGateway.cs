@@ -20,7 +20,7 @@ namespace FireProductManager.ServiceLogicPackage
             return Query(sql);
         }
 
-        public static DataTable ThroughPackageIdQuery(int packageId)
+        public static DataTable ThroughPackageIdQuerypackage(int packageId)
         {
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_id", packageId));
@@ -65,10 +65,11 @@ namespace FireProductManager.ServiceLogicPackage
         {
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_id", packageid));
-            DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
+            DataTable dt = Query(maker.MakeSelectSql());
             return dt.Rows.Count > 0;
         }
 
+        //条件搜索
         public static DataTable ConditionsSearchInOrOutRecord(string packageId,string employeeId,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
         {
             SelectSqlMaker maker = new SelectSqlMaker("inoutrecord");
@@ -85,15 +86,25 @@ namespace FireProductManager.ServiceLogicPackage
             return Query(sql);
         }
 
-        public static int IsinWarehouse(int packageId)
+        //判断袋子是否在库
+        public static bool IsinWarehouse(int packageId)
         {
             int inWarehouse = 0;
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_id", packageId));
-            DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            foreach (DataRow dr in dt.Rows)
+
+            foreach (DataRow dr in Query(maker.MakeSelectSql()).Rows)
                 inWarehouse = (int)dr["pa_isinWarehouse"];
-            return inWarehouse;
+
+            return inWarehouse == 0;
+        }
+
+        public static DataTable ThroughPackageIdQueryinoutrecord(int packageId)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("inoutrecord");
+            maker.AddAndCondition(new IntEqual("ior_packageId", packageId));
+            string sql = maker.MakeSelectSql();
+            return Query(sql);
         }
     }
 }
