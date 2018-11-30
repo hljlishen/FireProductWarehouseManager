@@ -11,7 +11,7 @@ namespace FireProductManager.EntityPackage
     {
         public uint? pr_id { get; set; }
         public string pr_name { get; set; }
-        public int? pr_projectId { get; set; }
+        public string pr_projectPassword { get; set; }
         public string pr_note { get; set; }
 
         public Project() : base("project", "pr_id", DbLinkManager.databaseType, DbLinkManager.connectString)

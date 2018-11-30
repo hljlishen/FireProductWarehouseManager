@@ -65,7 +65,7 @@
             this.bt_addpackage.Name = "bt_addpackage";
             this.bt_addpackage.Size = new System.Drawing.Size(80, 45);
             this.bt_addpackage.TabIndex = 0;
-            this.bt_addpackage.Text = "添加仪器";
+            this.bt_addpackage.Text = "添加材料";
             this.bt_addpackage.UseVisualStyleBackColor = true;
             this.bt_addpackage.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -212,7 +212,7 @@
             this.groupBox1.Size = new System.Drawing.Size(1187, 55);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "仪器搜索";
+            this.groupBox1.Text = "材料搜索";
             // 
             // la_project
             // 

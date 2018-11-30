@@ -95,11 +95,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\锂材料管理\AddOrAlterPackage.cs">
+    <Compile Include="GuiPackage\燕廷\项目管理\AddOrUpdateProject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GuiPackage\燕廷\锂材料管理\AddOrAlterPackage.Designer.cs">
-      <DependentUpon>AddOrAlterPackage.cs</DependentUpon>
+    <Compile Include="GuiPackage\燕廷\项目管理\AddOrUpdateProject.Designer.cs">
+      <DependentUpon>AddOrUpdateProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\锂材料管理\AddOrUpdatePackage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\锂材料管理\AddOrUpdatePackage.Designer.cs">
+      <DependentUpon>AddOrUpdatePackage.cs</DependentUpon>
     </Compile>
     <Compile Include="GuiPackage\燕廷\锂材料管理\PackageManagement.cs">
       <SubType>Form</SubType>
@@ -201,6 +207,7 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="ServiceLogicPackage\燕廷\ProjectGateway.cs" />
     <Compile Include="ServiceLogicPackage\马华\AccountManager.cs" />
     <Compile Include="ServiceLogicPackage\马华\BarrelGateway.cs" />
     <Compile Include="ServiceLogicPackage\马华\ElectronicScaleDevice.cs" />
@@ -219,11 +226,14 @@
     <EmbeddedResource Include="GuiPackage\燕廷\员工管理页面\EmployeeManagement.resx">
       <DependentUpon>EmployeeManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GuiPackage\燕廷\锂材料管理\AddOrAlterPackage.resx">
-      <DependentUpon>AddOrAlterPackage.cs</DependentUpon>
+    <EmbeddedResource Include="GuiPackage\燕廷\锂材料管理\AddOrUpdatePackage.resx">
+      <DependentUpon>AddOrUpdatePackage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\燕廷\锂材料管理\PackageManagement.resx">
       <DependentUpon>PackageManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\燕廷\项目管理\AddOrUpdateProject.resx">
+      <DependentUpon>AddOrUpdateProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\燕廷\项目管理\ProjectManageme.resx">
       <DependentUpon>ProjectManageme.cs</DependentUpon>

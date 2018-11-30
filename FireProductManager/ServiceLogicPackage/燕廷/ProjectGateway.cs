@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FireProductManager.ServiceLogicPackage.燕廷
+namespace FireProductManager.ServiceLogicPackage
 {
-    class ProjectGateway
+    public class ProjectGateway
     {
         //获取全部项目
         public static DataTable GetAllProject()
@@ -20,7 +20,7 @@ namespace FireProductManager.ServiceLogicPackage.燕廷
         }
 
         //项目搜索
-        public static DataTable GetQueryEmployees(string employeenumber, string name, string sex)
+        public static DataTable GetQueryProject(string employeenumber, string name, string sex)
         {
             if (sex.Equals("男/女")) sex = "";
             if (employeenumber.Equals("") && name.Equals("") && sex.Equals(""))
@@ -40,6 +40,35 @@ namespace FireProductManager.ServiceLogicPackage.燕廷
         {
             DataTable dataTable = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
             return dataTable;
+        }
+
+        //添加项目 
+        public static void NewProject(string name, string projectPassword, string note)
+        {
+            Project project = new Project();
+            project.pr_name = name;
+            project.pr_projectPassword = projectPassword;
+            project.pr_note = note;
+            project.Insert();
+        }
+
+        //修改项目
+        public static void UpdateProject(uint id, string name, string projectPassword, string note)
+        {
+            Project project = new Project();
+            project.pr_id = id;
+            project.pr_name = name;
+            project.pr_projectPassword = projectPassword;
+            project.pr_note = note;
+            project.Update();
+        }
+
+        //删除项目
+        public static void DeleteProject(int projectId)
+        {
+            Project project = new Project();
+            project.pr_id = (uint)projectId;
+            project.Delete();
         }
     }
 }
