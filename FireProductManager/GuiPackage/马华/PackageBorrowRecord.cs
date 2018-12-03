@@ -9,6 +9,9 @@ namespace FireProductManager.GuiPackage
     public partial class PackageBorrowRecord : Form
     {
 
+        public delegate void PackageIdIdSelectedHandler(int packageid);
+        public event PackageIdIdSelectedHandler PackageIdSelected;
+
         EmployeeManagement selectEmployees;
         PackageManagement selectPackages;
 
@@ -51,7 +54,7 @@ namespace FireProductManager.GuiPackage
         private int SelectBaeerlId(int id)
         {
             int barrelid = 0;
-            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuery(id).Rows)
+            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuerypackage(id).Rows)
                 barrelid = (int)dr["pa_barrelId"];
             return barrelid;
         }
@@ -59,7 +62,7 @@ namespace FireProductManager.GuiPackage
         private string SelectPackageName(int id)
         {
             string packagename = null;
-            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuery(id).Rows)
+            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuerypackage(id).Rows)
                 packagename = dr["pa_name"].ToString();
             return packagename;
         }
@@ -67,7 +70,7 @@ namespace FireProductManager.GuiPackage
         private string SelectPackageModel(int id)
         {
             string packagemodel = null;
-            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuery(id).Rows)
+            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuerypackage(id).Rows)
                 packagemodel = dr["pa_model"].ToString();
             return packagemodel;
         }
@@ -75,7 +78,7 @@ namespace FireProductManager.GuiPackage
         private double SelectPackageWeigth(int id)
         {
             double packageweigth = 0;
-            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuery(id).Rows)
+            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuerypackage(id).Rows)
                 packageweigth = (double)dr["pa_weight"];
             return packageweigth;
         }
@@ -155,6 +158,12 @@ namespace FireProductManager.GuiPackage
         {
             tb_packageid.Text = "";
             tb_packageid.Text = packageId.ToString();
+        }
+
+        private void dgv_PackageInAndOutrecord_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = (int)(dgv_PackageInAndOutrecord.SelectedRows[0]).Cells[0].Value;
+            PackageIdSelected?.Invoke(id);
         }
     }
 }

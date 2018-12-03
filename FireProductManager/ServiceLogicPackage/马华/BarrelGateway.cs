@@ -60,7 +60,7 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_barrelId", barrelid));
             string sql = maker.MakeSelectSql();
-            DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+            DataTable dt = Query(sql);
 
             foreach (DataRow dr in dt.Rows)
                 weigth += double.Parse(dr["pa_weight"].ToString());
@@ -73,7 +73,7 @@ namespace FireProductManager.ServiceLogicPackage
         {
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
             string sql = maker.MakeSelectMaxSql("ba_id");
-            DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+            DataTable dt = Query(sql);
             int barrelid = int.Parse(dt.Rows[0][0].ToString());
             return barrelid;
         }
@@ -83,7 +83,7 @@ namespace FireProductManager.ServiceLogicPackage
         {
             SelectSqlMaker maker = new SelectSqlMaker("barrel");
             maker.AddAndCondition(new IntEqual("ba_id", barrelid));
-            DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
+            DataTable dt = Query(maker.MakeSelectSql());
             return dt.Rows.Count > 0;
         }
 
@@ -93,8 +93,21 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_barrelId",barrelid));
             maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
-            DataTable dt = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
+            DataTable dt = Query(maker.MakeSelectSql());
             return dt.Rows.Count > 0;
+        }
+
+        //找到的桶内重量不足桶id
+        public static int SearchShortweightBarrrelId()
+        {
+            int barrelId = 0;
+            foreach (DataRow dr in NoRemoveBarrelId().Rows)
+            {
+                barrelId = (int)dr["ba_id"];
+                if (WeightOfBarrel(barrelId) < 50)
+                    return barrelId;
+            }
+            return  barrelId;
         }
     }
 }

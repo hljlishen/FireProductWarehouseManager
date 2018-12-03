@@ -142,8 +142,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgv_administrator;
         private System.Windows.Forms.Button btn_addaccount;
         private System.Windows.Forms.Panel pa_addorupdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn 用户id;
@@ -152,5 +150,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 权限级别;
         private System.Windows.Forms.DataGridViewButtonColumn 删除;
         private System.Windows.Forms.DataGridViewButtonColumn 修改;
+        private System.Windows.Forms.DataGridView dgv_administrator;
     }
 }

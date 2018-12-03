@@ -14,7 +14,7 @@ namespace FireProductManager.ServiceLogicPackage
             maker.AddAndCondition(new StringEqual("ac_account", accounts));
             maker.AddAndCondition(new StringEqual("ac_password", password));
             string sql = maker.MakeSelectSql();
-            DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+            DataTable dt = Query(sql);
             if (dt.Rows.Count > 0)
             {
                 account = new Account();
@@ -67,7 +67,7 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("account");
             maker.AddAndCondition(new IntEqual("ac_id",accountid));
             string sql = maker.MakeSelectSql();
-            DataTable dt = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
+            DataTable dt = Query(sql);
             return dt.Rows.Count > 0;
         }
 
