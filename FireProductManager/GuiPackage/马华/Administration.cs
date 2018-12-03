@@ -17,6 +17,7 @@ namespace FireProductManager.GuiPackage
         private PackageManagement packageManagement = null;
         private MainPage mainPage = null;
         private AdminLogin login = null;
+        private ProjectManageme projectManageme = null;
 
         public Administration()
         {
@@ -100,7 +101,7 @@ namespace FireProductManager.GuiPackage
             barrelManagement.Activate();
         }
 
-        private void 管理员ToolStripMenuItem_Click(object sender, EventArgs e)
+        public void 管理员ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!AccountManager.CanWriteDatabase())
             {
@@ -152,6 +153,22 @@ namespace FireProductManager.GuiPackage
             mainPage.MdiParent = this;
             mainPage.Show();
             mainPage.Activate();
+        }
+
+        private void 项目令号ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (projectManageme == null)
+            {
+                projectManageme = new ProjectManageme();
+            }
+            else
+            {
+                projectManageme.Close();
+                projectManageme = new ProjectManageme();
+            }
+            projectManageme.MdiParent = this;
+            projectManageme.Show();
+            projectManageme.Activate();
         }
     }
 }

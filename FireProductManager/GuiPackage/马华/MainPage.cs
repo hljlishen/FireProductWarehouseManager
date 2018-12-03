@@ -15,7 +15,6 @@ namespace FireProductManager.GuiPackage
 
         int employeeid = 0;//员工怎么获取
         int packageId = 0;
-        string weighs = "";
 
         public MainPage()
         {

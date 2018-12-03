@@ -14,7 +14,7 @@ namespace FireProductManager.GuiPackage
         public AddOrUpdateAministrator(int accountId,string account,string password,int authority)
         {
             InitializeComponent();
-            TextBoxCheckShow();
+            TextBoxVisibleIsFalse();
             btn_add.Visible = false;
             btn_update.Visible = true;
             la_title.Text = "修改管理员信息";
@@ -28,7 +28,7 @@ namespace FireProductManager.GuiPackage
         public AddOrUpdateAministrator()
         {
             InitializeComponent();
-            TextBoxCheckShow();
+            TextBoxVisibleIsFalse();
             btn_add.Visible = true;
             btn_update.Visible = false;
             la_title.Text = "添加管理员信息";
@@ -36,13 +36,12 @@ namespace FireProductManager.GuiPackage
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            TextBoxCheckShow();
+            TextBoxVisibleIsFalse();
             if (!TextBoxCheck())
                 return;
             AccountManager.UpdateAccount(accountid, tb_account.Text, tb_password.Text, int.Parse(cb_authority.Text));
             AutoClosingMessageBox.Show("                修改成功", "修改管理员", 1000);
             EmptyTextBox();
-            RefreshThePage();
         }
 
         private void EmptyTextBox()
@@ -77,7 +76,7 @@ namespace FireProductManager.GuiPackage
             return validation;
         }
 
-        private void TextBoxCheckShow()
+        private void TextBoxVisibleIsFalse()
         {
             la_accountcheck.Visible = false;
             la_authoritycheck.Visible = false;
@@ -86,18 +85,12 @@ namespace FireProductManager.GuiPackage
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            TextBoxCheckShow();
+            TextBoxVisibleIsFalse();
             if (!TextBoxCheck())
                 return;
             AccountManager.AddAccount(tb_account.Text, tb_password.Text, int.Parse(cb_authority.Text));
             AutoClosingMessageBox.Show("                添加成功", "添加管理员", 1000);
             EmptyTextBox();
-            RefreshThePage();
-        }
-
-        private void RefreshThePage()
-        {
-
         }
     }
 }
