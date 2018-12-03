@@ -38,11 +38,11 @@
             this.材料出入记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.锂合金ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.出入库登记ToolStripMenultem = new System.Windows.Forms.ToolStripMenuItem();
             this.管理员ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AccouuntShow = new System.Windows.Forms.Label();
             this.la_account = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.出入库登记ToolStripMenultem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +80,7 @@
             this.项目令号ToolStripMenuItem.Name = "项目令号ToolStripMenuItem";
             this.项目令号ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.项目令号ToolStripMenuItem.Text = "项目令号";
+            this.项目令号ToolStripMenuItem.Click += new System.EventHandler(this.项目令号ToolStripMenuItem_Click);
             // 
             // 材料管理ToolStripMenuItem
             // 
@@ -127,6 +128,13 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // 出入库登记ToolStripMenultem
+            // 
+            this.出入库登记ToolStripMenultem.Name = "出入库登记ToolStripMenultem";
+            this.出入库登记ToolStripMenultem.Size = new System.Drawing.Size(80, 21);
+            this.出入库登记ToolStripMenultem.Text = "出入库登记";
+            this.出入库登记ToolStripMenultem.Click += new System.EventHandler(this.出入库登记ToolStripMenultem_Click);
+            // 
             // 管理员ToolStripMenuItem
             // 
             this.管理员ToolStripMenuItem.Name = "管理员ToolStripMenuItem";
@@ -161,13 +169,6 @@
             this.label1.Size = new System.Drawing.Size(47, 17);
             this.label1.TabIndex = 8;
             this.label1.Text = "用户名:";
-            // 
-            // 出入库登记ToolStripMenultem
-            // 
-            this.出入库登记ToolStripMenultem.Name = "出入库登记ToolStripMenultem";
-            this.出入库登记ToolStripMenultem.Size = new System.Drawing.Size(80, 21);
-            this.出入库登记ToolStripMenultem.Text = "出入库登记";
-            this.出入库登记ToolStripMenultem.Click += new System.EventHandler(this.出入库登记ToolStripMenultem_Click);
             // 
             // Administration
             // 

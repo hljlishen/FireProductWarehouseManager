@@ -55,7 +55,7 @@ namespace FireProductManager.GuiPackage
                     int authority = (int)dgv_administrator.CurrentRow.Cells[3].Value;
                     addOrUpdateAministrator.Close();
                     addOrUpdateAministrator = new AddOrUpdateAministrator(accountid, account, password, authority);
-                    PanelShow(addOrUpdateAministrator);
+                    AddOrUpdatePageSwitching(addOrUpdateAministrator);
                 }
             }
         }
@@ -63,10 +63,10 @@ namespace FireProductManager.GuiPackage
         private void AdministratorManagement_Load(object sender, EventArgs e)
         {
             addOrUpdateAministrator = new AddOrUpdateAministrator();
-            PanelShow(addOrUpdateAministrator);
+            AddOrUpdatePageSwitching(addOrUpdateAministrator);
         }
 
-        private void PanelShow(AddOrUpdateAministrator addOrUpdateAministrator)
+        private void AddOrUpdatePageSwitching(AddOrUpdateAministrator addOrUpdateAministrator)
         {
             addOrUpdateAministrator.TopLevel = false;
             addOrUpdateAministrator.FormBorderStyle = FormBorderStyle.None;
@@ -78,7 +78,7 @@ namespace FireProductManager.GuiPackage
         {
             addOrUpdateAministrator.Close();
             addOrUpdateAministrator = new AddOrUpdateAministrator();
-            PanelShow(addOrUpdateAministrator);
+            AddOrUpdatePageSwitching(addOrUpdateAministrator);
         }
     }
 }
