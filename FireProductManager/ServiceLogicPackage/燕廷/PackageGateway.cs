@@ -235,5 +235,15 @@ namespace FireProductManager.ServiceLogicPackage
             if (_projectId != 0) maker.AddAndCondition(new IntEqual("pa_projectId", _projectId));
             return Query(maker.MakeSelectSql()); 
         }
+
+        //获取最新插入的数据
+        public static int GetLastPackage()
+        {
+            string sql = "select * from package pa_id order by pa_id desc";
+            DataTable dataTable = Query(sql);
+            DataRow myDr = dataTable.Rows[0];
+            int packageid = (int)myDr["pa_id"];
+            return packageid;
+        }
     }
 }

@@ -21,14 +21,30 @@ namespace FireProductManager.GuiPackage
 
         private void ProjectManageme_Load(object sender, EventArgs e)
         {
+            DataTable dataTable = ProjectGateway.GetAllProject();
+            ShowDataGridView(dataTable);
+        }
 
+        //DataGridView显示数据
+        public void ShowDataGridView(DataTable dataTable)
+        {
+            dgv_projectinformation.Rows.Clear();
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+                int index = dgv_projectinformation.Rows.Add(row);
+                dgv_projectinformation.Rows[index].Cells[0].Value = dr["pr_name"];
+                dgv_projectinformation.Rows[index].Cells[1].Value = dr["pr_projectPassword"];
+                dgv_projectinformation.Rows[index].Cells[2].Value = dr["pr_note"];
+                dgv_projectinformation.Rows[index].Cells[5].Value = dr["pr_id"];
+            }
         }
 
         //添加项目
         private void bt_addproject_Click(object sender, EventArgs e)
         {
-            AddOrUpdateProject addOrUpdateProject = new AddOrUpdateProject();
-            addOrUpdateProject.ShowDialog();
+            AddOrUpdateProject addProject = new AddOrUpdateProject();
+            addProject.ShowDialog();
         }
 
         //修改、删除项目
@@ -40,8 +56,8 @@ namespace FireProductManager.GuiPackage
                 if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     int projectid = (int)dgv_projectinformation.CurrentRow.Cells[5].Value;
-                    PackageGateway.DeletePackage(projectid);
-                    AutoClosingMessageBox.Show("项目信息删除成功", "仪器信息删除", 1000);
+                    ProjectGateway.DeleteProject(projectid);
+                    AutoClosingMessageBox.Show("项目信息删除成功", "项目信息删除", 1000);
                     dgv_projectinformation.Rows.RemoveAt(e.RowIndex);
                 }
             }
@@ -50,9 +66,9 @@ namespace FireProductManager.GuiPackage
             {
                 if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    int packageid = (int)dgv_projectinformation.CurrentRow.Cells[9].Value;
-                    AddOrUpdatePackage Update = new AddOrUpdatePackage(packageid);
-                    Update.ShowDialog();
+                    uint projectid = (uint)dgv_projectinformation.CurrentRow.Cells[9].Value;
+                    AddOrUpdateProject UpdateProject = new AddOrUpdateProject(projectid);
+                    UpdateProject.ShowDialog();
                 }
             }
         }

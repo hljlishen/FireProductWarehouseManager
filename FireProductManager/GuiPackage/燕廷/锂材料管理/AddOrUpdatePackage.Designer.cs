@@ -95,7 +95,6 @@
             this.tb_barrel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_barrel.Location = new System.Drawing.Point(511, 185);
             this.tb_barrel.Name = "tb_barrel";
-            this.tb_barrel.ReadOnly = true;
             this.tb_barrel.Size = new System.Drawing.Size(127, 26);
             this.tb_barrel.TabIndex = 47;
             // 

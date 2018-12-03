@@ -73,6 +73,7 @@ namespace FireProductManager.GuiPackage
             PackageGateway.NewPackage(_name,_model,_weigth,_projectId,_isinWarehouse,_purchaseTime,_projectId);
             AutoClosingMessageBox.Show("仪器信息保存成功", "仪器信息添加", 1000);
             ResetPageInformation();
+            PrintQRCode printQRCode = new PrintQRCode(PackageGateway.GetLastPackage());
         }
 
         //重置页面信息

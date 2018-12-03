@@ -142,6 +142,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddOrUpdateProject";
             this.Text = "编辑项目信息";
+            this.Load += new System.EventHandler(this.AddOrUpdateProject_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
