@@ -76,7 +76,8 @@ namespace FireProductManager.GuiPackage
         //项目搜索
         private void bt_queryproject_Click(object sender, EventArgs e)
         {
-
+            DataTable dataTable = ProjectGateway.GetQueryProject(tb_name.Text, tb_projectpassword.Text);
+            ShowDataGridView(dataTable);
         }
 
         //dgv导出Excel

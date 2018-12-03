@@ -37,7 +37,7 @@
             this.项目Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.la_project = new System.Windows.Forms.Label();
-            this.tb_project = new System.Windows.Forms.TextBox();
+            this.tb_projectpassword = new System.Windows.Forms.TextBox();
             this.la_name = new System.Windows.Forms.Label();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.bt_queryproject = new System.Windows.Forms.Button();
@@ -121,7 +121,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.la_project);
-            this.groupBox1.Controls.Add(this.tb_project);
+            this.groupBox1.Controls.Add(this.tb_projectpassword);
             this.groupBox1.Controls.Add(this.la_name);
             this.groupBox1.Controls.Add(this.tb_name);
             this.groupBox1.Controls.Add(this.bt_queryproject);
@@ -142,13 +142,13 @@
             this.la_project.TabIndex = 73;
             this.la_project.Text = "项目命号：";
             // 
-            // tb_project
+            // tb_projectpassword
             // 
-            this.tb_project.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_project.Location = new System.Drawing.Point(389, 17);
-            this.tb_project.Name = "tb_project";
-            this.tb_project.Size = new System.Drawing.Size(126, 26);
-            this.tb_project.TabIndex = 74;
+            this.tb_projectpassword.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_projectpassword.Location = new System.Drawing.Point(389, 17);
+            this.tb_projectpassword.Name = "tb_projectpassword";
+            this.tb_projectpassword.Size = new System.Drawing.Size(126, 26);
+            this.tb_projectpassword.TabIndex = 74;
             // 
             // la_name
             // 
@@ -231,7 +231,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 项目Id;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label la_project;
-        private System.Windows.Forms.TextBox tb_project;
+        private System.Windows.Forms.TextBox tb_projectpassword;
         private System.Windows.Forms.Label la_name;
         private System.Windows.Forms.TextBox tb_name;
         private System.Windows.Forms.Button bt_queryproject;
