@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageManagement));
             this.bt_addpackage = new System.Windows.Forms.Button();
             this.la_barrrlid = new System.Windows.Forms.Label();
@@ -54,8 +55,16 @@
             this.cb_IsInWareHouse = new System.Windows.Forms.ComboBox();
             this.la_IsInWareHouse = new System.Windows.Forms.Label();
             this.bt_dgvchangeexcel = new System.Windows.Forms.Button();
+            this.cms_packageoperation = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms_newpackage = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsm_newpackage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsm_updatepackage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsm_deletepackage = new System.Windows.Forms.ToolStripMenuItem();
+            this.添加ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_instrumentinformation)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.cms_packageoperation.SuspendLayout();
+            this.cms_newpackage.SuspendLayout();
             this.SuspendLayout();
             // 
             // bt_addpackage
@@ -303,11 +312,51 @@
             this.bt_dgvchangeexcel.UseVisualStyleBackColor = true;
             this.bt_dgvchangeexcel.Click += new System.EventHandler(this.bt_dgvchangeexcel_Click);
             // 
+            // cms_packageoperation
+            // 
+            this.cms_packageoperation.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsm_newpackage,
+            this.tsm_updatepackage,
+            this.tsm_deletepackage});
+            this.cms_packageoperation.Name = "cms_packageoperation";
+            this.cms_packageoperation.Size = new System.Drawing.Size(181, 92);
+            // 
+            // cms_newpackage
+            // 
+            this.cms_newpackage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.添加ToolStripMenuItem1});
+            this.cms_newpackage.Name = "cms_newpackage";
+            this.cms_newpackage.Size = new System.Drawing.Size(101, 26);
+            // 
+            // tsm_newpackage
+            // 
+            this.tsm_newpackage.Name = "tsm_newpackage";
+            this.tsm_newpackage.Size = new System.Drawing.Size(180, 22);
+            this.tsm_newpackage.Text = "添加";
+            // 
+            // tsm_updatepackage
+            // 
+            this.tsm_updatepackage.Name = "tsm_updatepackage";
+            this.tsm_updatepackage.Size = new System.Drawing.Size(180, 22);
+            this.tsm_updatepackage.Text = "修改";
+            // 
+            // tsm_deletepackage
+            // 
+            this.tsm_deletepackage.Name = "tsm_deletepackage";
+            this.tsm_deletepackage.Size = new System.Drawing.Size(180, 22);
+            this.tsm_deletepackage.Text = "删除";
+            // 
+            // 添加ToolStripMenuItem1
+            // 
+            this.添加ToolStripMenuItem1.Name = "添加ToolStripMenuItem1";
+            this.添加ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
+            this.添加ToolStripMenuItem1.Text = "添加";
+            // 
             // PackageManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1420, 840);
+            this.ClientSize = new System.Drawing.Size(1420, 832);
             this.Controls.Add(this.bt_dgvchangeexcel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv_instrumentinformation);
@@ -322,6 +371,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_instrumentinformation)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.cms_packageoperation.ResumeLayout(false);
+            this.cms_newpackage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -353,5 +404,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 在库状态;
         private System.Windows.Forms.Label la_project;
         private System.Windows.Forms.TextBox tb_project;
+        private System.Windows.Forms.ContextMenuStrip cms_packageoperation;
+        private System.Windows.Forms.ToolStripMenuItem tsm_newpackage;
+        private System.Windows.Forms.ToolStripMenuItem tsm_updatepackage;
+        private System.Windows.Forms.ToolStripMenuItem tsm_deletepackage;
+        private System.Windows.Forms.ContextMenuStrip cms_newpackage;
+        private System.Windows.Forms.ToolStripMenuItem 添加ToolStripMenuItem1;
     }
 }

@@ -20,18 +20,16 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //项目搜索
-        public static DataTable GetQueryProject(string employeenumber, string name, string sex)
+        public static DataTable GetQueryProject(string name, string projectPassword)
         {
-            if (sex.Equals("男/女")) sex = "";
-            if (employeenumber.Equals("") && name.Equals("") && sex.Equals(""))
+            if (name.Equals("") && name.Equals("") && projectPassword.Equals(""))
             {
                 DataTable dataTable = GetAllProject();
                 return dataTable;
             }
-            SelectSqlMaker maker = new SelectSqlMaker("employee");
-            maker.AddAndCondition(new StringLike("em_employeenumber", employeenumber));
-            maker.AddAndCondition(new StringLike("em_name", name));
-            maker.AddAndCondition(new StringLike("em_sex", sex));
+            SelectSqlMaker maker = new SelectSqlMaker("project");
+            maker.AddAndCondition(new StringLike("pr_name", name));
+            maker.AddAndCondition(new StringLike("pr_projectpassword", projectPassword));
             return Query(maker.MakeSelectSql());
         }
 
@@ -69,6 +67,16 @@ namespace FireProductManager.ServiceLogicPackage
             Project project = new Project();
             project.pr_id = (uint)projectId;
             project.Delete();
+        }
+
+        //获取项目信息
+        public static DataTable GetProjectInformation(uint projectid)
+        {
+            Project project = new Project();
+            SelectSqlMaker maker = new SelectSqlMaker("project");
+            maker.AddAndCondition(new IntEqual("pr_id",(int)projectid));
+            DataTable dataTable = project.Select(maker.MakeSelectSql());
+            return dataTable;
         }
     }
 }

@@ -32,17 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeManagement));
             this.tb_foundemployeeid = new System.Windows.Forms.TextBox();
             this.bt_foundnowgroup = new System.Windows.Forms.Button();
-            this.bt_addemployee = new System.Windows.Forms.Button();
             this.dgv_employeeinformation = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.姓名 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.性别 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.公司 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.部门 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.小组 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.del = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.update_ = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.员工Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tv_department = new System.Windows.Forms.TreeView();
             this.tb_foundname = new System.Windows.Forms.TextBox();
             this.cb_foundsex = new System.Windows.Forms.ComboBox();
@@ -57,9 +47,24 @@
             this.tsm_delete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_rename = new System.Windows.Forms.ToolStripMenuItem();
             this.bt_dgvchangexcel = new System.Windows.Forms.Button();
+            this.cms_employeeoperation = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsm_newemployee = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsm_updateemployee = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsm_deleteemployee = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_newemployee = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tms_new = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.姓名 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.性别 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.公司 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.部门 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.小组 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.员工Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_employeeinformation)).BeginInit();
             this.gb_foundemployees.SuspendLayout();
             this.cms_employeetreeview.SuspendLayout();
+            this.cms_employeeoperation.SuspendLayout();
+            this.cms_newemployee.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_foundemployeeid
@@ -74,13 +79,6 @@
             this.bt_foundnowgroup.UseVisualStyleBackColor = true;
             this.bt_foundnowgroup.Click += new System.EventHandler(this.bt_foundnowgroup_Click);
             // 
-            // bt_addemployee
-            // 
-            resources.ApplyResources(this.bt_addemployee, "bt_addemployee");
-            this.bt_addemployee.Name = "bt_addemployee";
-            this.bt_addemployee.UseVisualStyleBackColor = true;
-            this.bt_addemployee.Click += new System.EventHandler(this.bt_addemployee_Click);
-            // 
             // dgv_employeeinformation
             // 
             this.dgv_employeeinformation.AllowUserToAddRows = false;
@@ -92,79 +90,15 @@
             this.公司,
             this.部门,
             this.小组,
-            this.del,
-            this.update_,
             this.员工Id});
             resources.ApplyResources(this.dgv_employeeinformation, "dgv_employeeinformation");
             this.dgv_employeeinformation.MultiSelect = false;
             this.dgv_employeeinformation.Name = "dgv_employeeinformation";
             this.dgv_employeeinformation.RowTemplate.Height = 23;
             this.dgv_employeeinformation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_employeeinformation.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_employeeinformation_CellContentClick);
             this.dgv_employeeinformation.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_employeeinformation_CellMouseDoubleClick);
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "01";
-            resources.ApplyResources(this.ID, "ID");
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // 姓名
-            // 
-            resources.ApplyResources(this.姓名, "姓名");
-            this.姓名.Name = "姓名";
-            this.姓名.ReadOnly = true;
-            // 
-            // 性别
-            // 
-            resources.ApplyResources(this.性别, "性别");
-            this.性别.Name = "性别";
-            this.性别.ReadOnly = true;
-            // 
-            // 公司
-            // 
-            resources.ApplyResources(this.公司, "公司");
-            this.公司.Name = "公司";
-            this.公司.ReadOnly = true;
-            // 
-            // 部门
-            // 
-            resources.ApplyResources(this.部门, "部门");
-            this.部门.Name = "部门";
-            this.部门.ReadOnly = true;
-            // 
-            // 小组
-            // 
-            resources.ApplyResources(this.小组, "小组");
-            this.小组.Name = "小组";
-            this.小组.ReadOnly = true;
-            // 
-            // del
-            // 
-            this.del.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(this.del, "del");
-            this.del.Name = "del";
-            this.del.ReadOnly = true;
-            this.del.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.del.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.del.Text = "删除";
-            this.del.UseColumnTextForButtonValue = true;
-            // 
-            // update_
-            // 
-            this.update_.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(this.update_, "update_");
-            this.update_.Name = "update_";
-            this.update_.ReadOnly = true;
-            this.update_.Text = "修改";
-            this.update_.UseColumnTextForButtonValue = true;
-            // 
-            // 员工Id
-            // 
-            resources.ApplyResources(this.员工Id, "员工Id");
-            this.员工Id.Name = "员工Id";
-            this.员工Id.ReadOnly = true;
+            this.dgv_employeeinformation.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_employeeinformation_CellMouseDown);
+            this.dgv_employeeinformation.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgv_employeeinformation_MouseClick);
             // 
             // tv_department
             // 
@@ -265,6 +199,89 @@
             this.bt_dgvchangexcel.UseVisualStyleBackColor = true;
             this.bt_dgvchangexcel.Click += new System.EventHandler(this.bt_dgvchangexcel_Click);
             // 
+            // cms_employeeoperation
+            // 
+            this.cms_employeeoperation.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsm_newemployee,
+            this.tsm_updateemployee,
+            this.tsm_deleteemployee});
+            this.cms_employeeoperation.Name = "cms_employeeoperation";
+            resources.ApplyResources(this.cms_employeeoperation, "cms_employeeoperation");
+            // 
+            // tsm_newemployee
+            // 
+            this.tsm_newemployee.Name = "tsm_newemployee";
+            resources.ApplyResources(this.tsm_newemployee, "tsm_newemployee");
+            this.tsm_newemployee.Click += new System.EventHandler(this.tsm_newemployee_Click);
+            // 
+            // tsm_updateemployee
+            // 
+            this.tsm_updateemployee.Name = "tsm_updateemployee";
+            resources.ApplyResources(this.tsm_updateemployee, "tsm_updateemployee");
+            this.tsm_updateemployee.Click += new System.EventHandler(this.tsm_updateemployee_Click);
+            // 
+            // tsm_deleteemployee
+            // 
+            this.tsm_deleteemployee.Name = "tsm_deleteemployee";
+            resources.ApplyResources(this.tsm_deleteemployee, "tsm_deleteemployee");
+            this.tsm_deleteemployee.Click += new System.EventHandler(this.tsm_deleteemployee_Click);
+            // 
+            // cms_newemployee
+            // 
+            this.cms_newemployee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tms_new});
+            this.cms_newemployee.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.cms_newemployee, "cms_newemployee");
+            // 
+            // tms_new
+            // 
+            this.tms_new.Name = "tms_new";
+            resources.ApplyResources(this.tms_new, "tms_new");
+            this.tms_new.Click += new System.EventHandler(this.tsm_newemployee_Click);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "01";
+            resources.ApplyResources(this.ID, "ID");
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // 姓名
+            // 
+            resources.ApplyResources(this.姓名, "姓名");
+            this.姓名.Name = "姓名";
+            this.姓名.ReadOnly = true;
+            // 
+            // 性别
+            // 
+            resources.ApplyResources(this.性别, "性别");
+            this.性别.Name = "性别";
+            this.性别.ReadOnly = true;
+            // 
+            // 公司
+            // 
+            resources.ApplyResources(this.公司, "公司");
+            this.公司.Name = "公司";
+            this.公司.ReadOnly = true;
+            // 
+            // 部门
+            // 
+            resources.ApplyResources(this.部门, "部门");
+            this.部门.Name = "部门";
+            this.部门.ReadOnly = true;
+            // 
+            // 小组
+            // 
+            resources.ApplyResources(this.小组, "小组");
+            this.小组.Name = "小组";
+            this.小组.ReadOnly = true;
+            // 
+            // 员工Id
+            // 
+            resources.ApplyResources(this.员工Id, "员工Id");
+            this.员工Id.Name = "员工Id";
+            this.员工Id.ReadOnly = true;
+            // 
             // EmployeeManagement
             // 
             resources.ApplyResources(this, "$this");
@@ -272,7 +289,6 @@
             this.Controls.Add(this.bt_dgvchangexcel);
             this.Controls.Add(this.gb_foundemployees);
             this.Controls.Add(this.tv_department);
-            this.Controls.Add(this.bt_addemployee);
             this.Controls.Add(this.dgv_employeeinformation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EmployeeManagement";
@@ -281,6 +297,8 @@
             this.gb_foundemployees.ResumeLayout(false);
             this.gb_foundemployees.PerformLayout();
             this.cms_employeetreeview.ResumeLayout(false);
+            this.cms_employeeoperation.ResumeLayout(false);
+            this.cms_newemployee.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -288,7 +306,6 @@
         #endregion
         private System.Windows.Forms.TextBox tb_foundemployeeid;
         private System.Windows.Forms.Button bt_foundnowgroup;
-        private System.Windows.Forms.Button bt_addemployee;
         private System.Windows.Forms.TreeView tv_department;
         public System.Windows.Forms.DataGridView dgv_employeeinformation;
         private System.Windows.Forms.TextBox tb_foundname;
@@ -304,14 +321,18 @@
         private System.Windows.Forms.ToolStripMenuItem tsm_delete;
         private System.Windows.Forms.ToolStripMenuItem tsm_rename;
         private System.Windows.Forms.Button bt_dgvchangexcel;
+        private System.Windows.Forms.ContextMenuStrip cms_employeeoperation;
+        private System.Windows.Forms.ToolStripMenuItem tsm_updateemployee;
+        private System.Windows.Forms.ToolStripMenuItem tsm_deleteemployee;
+        private System.Windows.Forms.ToolStripMenuItem tsm_newemployee;
+        private System.Windows.Forms.ContextMenuStrip cms_newemployee;
+        private System.Windows.Forms.ToolStripMenuItem tms_new;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn 姓名;
         private System.Windows.Forms.DataGridViewTextBoxColumn 性别;
         private System.Windows.Forms.DataGridViewTextBoxColumn 公司;
         private System.Windows.Forms.DataGridViewTextBoxColumn 部门;
         private System.Windows.Forms.DataGridViewTextBoxColumn 小组;
-        private System.Windows.Forms.DataGridViewButtonColumn del;
-        private System.Windows.Forms.DataGridViewButtonColumn update_;
         private System.Windows.Forms.DataGridViewTextBoxColumn 员工Id;
     }
 }

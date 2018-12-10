@@ -191,7 +191,7 @@
             this.bt_alterinstrument.TabIndex = 58;
             this.bt_alterinstrument.Text = "修改";
             this.bt_alterinstrument.UseVisualStyleBackColor = true;
-            this.bt_alterinstrument.Click += new System.EventHandler(this.bt_alterinstrument_Click);
+            this.bt_alterinstrument.Click += new System.EventHandler(this.bt_alterpackage_Click);
             // 
             // cb_isInWareHouse
             // 

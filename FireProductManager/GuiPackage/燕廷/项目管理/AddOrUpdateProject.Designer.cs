@@ -65,7 +65,7 @@
             // tb_name
             // 
             this.tb_name.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_name.Location = new System.Drawing.Point(139, 61);
+            this.tb_name.Location = new System.Drawing.Point(133, 107);
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(106, 26);
             this.tb_name.TabIndex = 90;
@@ -73,7 +73,7 @@
             // tb_projectpassword
             // 
             this.tb_projectpassword.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_projectpassword.Location = new System.Drawing.Point(139, 110);
+            this.tb_projectpassword.Location = new System.Drawing.Point(133, 159);
             this.tb_projectpassword.Name = "tb_projectpassword";
             this.tb_projectpassword.Size = new System.Drawing.Size(106, 26);
             this.tb_projectpassword.TabIndex = 89;
@@ -82,7 +82,7 @@
             // 
             this.la_projectpassword.AutoSize = true;
             this.la_projectpassword.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_projectpassword.Location = new System.Drawing.Point(60, 113);
+            this.la_projectpassword.Location = new System.Drawing.Point(54, 162);
             this.la_projectpassword.Name = "la_projectpassword";
             this.la_projectpassword.Size = new System.Drawing.Size(79, 20);
             this.la_projectpassword.TabIndex = 87;
@@ -92,7 +92,7 @@
             // 
             this.la_name.AutoSize = true;
             this.la_name.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_name.Location = new System.Drawing.Point(60, 64);
+            this.la_name.Location = new System.Drawing.Point(54, 110);
             this.la_name.Name = "la_name";
             this.la_name.Size = new System.Drawing.Size(79, 20);
             this.la_name.TabIndex = 86;
@@ -102,7 +102,7 @@
             // 
             this.la_addoralter.AutoSize = true;
             this.la_addoralter.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_addoralter.Location = new System.Drawing.Point(233, 16);
+            this.la_addoralter.Location = new System.Drawing.Point(233, 42);
             this.la_addoralter.Name = "la_addoralter";
             this.la_addoralter.Size = new System.Drawing.Size(0, 21);
             this.la_addoralter.TabIndex = 85;
@@ -110,16 +110,17 @@
             // tb_note
             // 
             this.tb_note.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_note.Location = new System.Drawing.Point(139, 152);
+            this.tb_note.Location = new System.Drawing.Point(133, 207);
+            this.tb_note.Multiline = true;
             this.tb_note.Name = "tb_note";
-            this.tb_note.Size = new System.Drawing.Size(106, 26);
+            this.tb_note.Size = new System.Drawing.Size(311, 229);
             this.tb_note.TabIndex = 101;
             // 
             // la_note
             // 
             this.la_note.AutoSize = true;
             this.la_note.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_note.Location = new System.Drawing.Point(60, 155);
+            this.la_note.Location = new System.Drawing.Point(54, 207);
             this.la_note.Name = "la_note";
             this.la_note.Size = new System.Drawing.Size(51, 20);
             this.la_note.TabIndex = 100;
@@ -141,6 +142,7 @@
             this.Controls.Add(this.la_addoralter);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddOrUpdateProject";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "编辑项目信息";
             this.Load += new System.EventHandler(this.AddOrUpdateProject_Load);
             this.ResumeLayout(false);
