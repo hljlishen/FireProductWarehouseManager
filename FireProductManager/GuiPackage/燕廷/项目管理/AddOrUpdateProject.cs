@@ -25,12 +25,13 @@ namespace FireProductManager.GuiPackage
         }
 
         //项目修改构造方法
-        public AddOrUpdateProject(uint projectid)
+        public AddOrUpdateProject(int projectid)
         {
             InitializeComponent();
             la_addoralter.Text = "项目修改";
 
-            _projectid = projectid;
+            _projectid = (uint)projectid;
+            ShowProjectInformation();
 
             Bt_addproject.Visible = false;
         }
@@ -47,6 +48,16 @@ namespace FireProductManager.GuiPackage
         {
             ProjectGateway.NewProject(tb_name.Text,tb_projectpassword.Text,tb_note.Text);
             Close();
+        }
+
+        //员工信息展示
+        private void ShowProjectInformation()
+        {
+            DataTable dataTable = ProjectGateway.GetProjectInformation(_projectid);
+            DataRow myDr = dataTable.Rows[0];
+            tb_name.Text = myDr["pr_name"].ToString();
+            tb_projectpassword.Text = myDr["pr_projectpassword"].ToString();
+            tb_note.Text = myDr["pr_note"].ToString();
         }
 
         private void AddOrUpdateProject_Load(object sender, EventArgs e)

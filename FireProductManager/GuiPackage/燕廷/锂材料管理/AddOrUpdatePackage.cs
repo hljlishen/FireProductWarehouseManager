@@ -101,12 +101,12 @@ namespace FireProductManager.GuiPackage
             _projectId = Convert.ToInt32(tb_projectId.Text);
         }
 
-        //仪器信息修改
-        private void bt_alterinstrument_Click(object sender, EventArgs e)
+        //材料信息修改
+        private void bt_alterpackage_Click(object sender, EventArgs e)
         {
             GetPackageInformation();
             PackageGateway.UpdatePackage(_id,_name, _model, _weigth, _projectId, _isinWarehouse, _purchaseTime, _projectId);
-            AutoClosingMessageBox.Show("仪器信息修改成功", "仪器信息修改", 1000);
+            AutoClosingMessageBox.Show("材料信息修改成功", "仪器信息修改", 1000);
             Close();
         }
 

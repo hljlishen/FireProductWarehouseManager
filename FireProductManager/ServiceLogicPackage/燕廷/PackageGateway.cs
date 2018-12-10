@@ -122,12 +122,13 @@ namespace FireProductManager.ServiceLogicPackage
             return keyValuePairs;
         }
 
-        internal static void ReturnPackage(int packageid, int barrelid)
+        internal static void ReturnPackage(int packageid, int barrelid , double weigth)
         {
             Package package = new Package();
             package.pa_id = packageid;
             package.pa_isinWarehouse = 0;
             package.pa_barrelId = barrelid;
+            package.pa_weight = weigth;
             package.Update();
         }
 
@@ -160,7 +161,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //添加材料 
-        public static void NewPackage(string name, string model, Double weigth, int barrelId, string isinWarehouse, DateTime purchaseTime ,int projectId)
+        public static void NewPackage(string name, string model, double weigth, int barrelId, string isinWarehouse, DateTime purchaseTime ,int projectId)
         {
             Package package = new Package();
             package.pa_name = name;
@@ -175,7 +176,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //修改材料 
-        public static void UpdatePackage(int id ,string name, string model, Double weigth, int barrelId, string isinWarehouse, DateTime purchaseTime, int projectId)
+        public static void UpdatePackage(int id ,string name, string model, double weigth, int barrelId, string isinWarehouse, DateTime purchaseTime, int projectId)
         {
             Package package = new Package();
             package.pa_id = id;
@@ -224,17 +225,17 @@ namespace FireProductManager.ServiceLogicPackage
         //材料搜索
         public static DataTable GetQueryPackage(string name, string model, string barrelId, string isinWarehouse, string projectId)
         {
-            int _barrelId = barrelId.Equals("") ? 0 : Convert.ToInt32(barrelId);
             int _isInWareHouse = isinWarehouse.Equals("全部") ? -1 : IsinWarehouseDataTypeChangeInt(isinWarehouse);
-            int _projectId = projectId.Equals("") ? 0 : Convert.ToInt32(projectId);
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new StringLike("pa_name", name));
             maker.AddAndCondition(new StringLike("pa_model", model));
-            if (_barrelId != 0) maker.AddAndCondition(new IntEqual("pa_barrelId", _barrelId));
+            maker.AddAndCondition(new IntEqual("pa_barrelId", barrelId));
             if(_isInWareHouse !=-1) maker.AddAndCondition(new IntEqual("pa_isinWarehouse", _isInWareHouse));
-            if (_projectId != 0) maker.AddAndCondition(new IntEqual("pa_projectId", _projectId));
+            maker.AddAndCondition(new IntEqual("pa_projectId", projectId));
             return Query(maker.MakeSelectSql()); 
         }
+
+        public DataTable GetPackagesInBarrel(string barrelId) => GetQueryPackage(null, null, barrelId, null, null);
 
         //获取最新插入的数据
         public static int GetLastPackage()

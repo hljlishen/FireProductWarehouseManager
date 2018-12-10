@@ -68,5 +68,15 @@ namespace FireProductManager.ServiceLogicPackage
             project.pr_id = (uint)projectId;
             project.Delete();
         }
+
+        //获取项目信息
+        public static DataTable GetProjectInformation(uint projectid)
+        {
+            Project project = new Project();
+            SelectSqlMaker maker = new SelectSqlMaker("project");
+            maker.AddAndCondition(new IntEqual("pr_id",(int)projectid));
+            DataTable dataTable = project.Select(maker.MakeSelectSql());
+            return dataTable;
+        }
     }
 }

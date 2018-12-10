@@ -62,33 +62,49 @@ namespace FireProductManager.GuiPackage
                 dgv_employeeinformation.Rows[index].Cells[3].Value = mList[2];
                 dgv_employeeinformation.Rows[index].Cells[4].Value = mList[1];
                 dgv_employeeinformation.Rows[index].Cells[5].Value = mList[0];
-                dgv_employeeinformation.Rows[index].Cells[8].Value = dr["em_id"];
+                dgv_employeeinformation.Rows[index].Cells[6].Value = dr["em_id"];
             }
         }
         #endregion
 
         #region 添加、删除、修改员工信息
+
+        //右键单击表格
+        private void dgv_employeeinformation_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Point ClickPoint = new Point(e.X, e.Y);
+                int x = e.X;
+                int y = e.Y;
+                int a = e.RowIndex;
+                dgv_employeeinformation.CurrentCell = dgv_employeeinformation.Rows[e.RowIndex].Cells[0]; 
+                dgv_employeeinformation.Rows[e.RowIndex].Selected = true;
+                cms_employeeoperation.Show(MousePosition);
+            }
+        }
+
+        //右键空白
+        private void dgv_employeeinformation_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                cms_newemployee.Show(MousePosition);
+            }
+        }
+
+        private void tsm_newemployee_Click(object sender, EventArgs e) => NewEmployee();
+
+        private void tsm_updateemployee_Click(object sender, EventArgs e) => UpdateEmployee();
+
+        private void tsm_deleteemployee_Click(object sender, EventArgs e) => DeleteEmployee();
+
         //添加员工
-        private void bt_addemployee_Click(object sender, EventArgs e)
+        private void NewEmployee()
         {
             AddOrUpdateEmployee add = new AddOrUpdateEmployee();
             add.Show();
             ShowAllEmployee();
-        }
-
-        //删除与修改员工
-        private void dgv_employeeinformation_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 6)//点击在删除按钮上
-            {
-                if(DeleteEmployee()) dgv_employeeinformation.Rows.RemoveAt(e.RowIndex);
-
-            }
-
-            if (e.ColumnIndex == 7)//点击在修改按钮上
-            {
-                if(UpdateEmployee()) ShowAllEmployee();
-            }
         }
 
         //删除员工
@@ -96,7 +112,7 @@ namespace FireProductManager.GuiPackage
         {
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[8].Value;
+                int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[6].Value;
                 string employeenumber = dgv_employeeinformation.CurrentRow.Cells[0].Value.ToString();
                 EmployeeGateway.DeleteEmployee(employeeid);
                 ImageManager getSetImagePath = new ImageManager();
@@ -111,7 +127,7 @@ namespace FireProductManager.GuiPackage
         {
             if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-               int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[8].Value;
+               int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[6].Value;
                AddOrUpdateEmployee update = new AddOrUpdateEmployee(employeeid);
                update.Show();
                return true;
@@ -297,6 +313,7 @@ namespace FireProductManager.GuiPackage
         {
             ExcelOperator.DataGridViewToExcel(dgv_employeeinformation, true);
         }
+
         #endregion
 
     }

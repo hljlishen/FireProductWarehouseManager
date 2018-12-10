@@ -66,7 +66,6 @@ namespace FireProductManager.ServiceLogicPackage
             isEmployeenumberValid(employee, operation);
             if(NameValidation(employee.em_name)) throw new Exception("员工姓名不能为空");
             if(DepartmentIdValidation(employee.em_departmentid.Value)) throw new Exception("未选择员工所在部门");
-            //异常拼接
         }
 
         //员工编号验证

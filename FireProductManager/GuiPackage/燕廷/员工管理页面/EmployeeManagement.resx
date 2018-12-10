@@ -125,7 +125,7 @@
     <value>105, 20</value>
   </data>
   <data name="tb_foundemployeeid.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 26</value>
+    <value>177, 26</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tb_foundemployeeid.TabIndex" type="System.Int32, mscorlib">
@@ -151,7 +151,7 @@
     <value>NoControl</value>
   </data>
   <data name="bt_foundnowgroup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>692, 15</value>
+    <value>819, 16</value>
   </data>
   <data name="bt_foundnowgroup.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 29</value>
@@ -174,114 +174,27 @@
   <data name="&gt;&gt;bt_foundnowgroup.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="bt_addemployee.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt</value>
-  </data>
-  <data name="bt_addemployee.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="bt_addemployee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1267, 28</value>
-  </data>
-  <data name="bt_addemployee.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 44</value>
-  </data>
-  <data name="bt_addemployee.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="bt_addemployee.Text" xml:space="preserve">
-    <value>添加员工</value>
-  </data>
-  <data name="&gt;&gt;bt_addemployee.Name" xml:space="preserve">
-    <value>bt_addemployee</value>
-  </data>
-  <data name="&gt;&gt;bt_addemployee.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bt_addemployee.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;bt_addemployee.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <metadata name="ID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="ID.HeaderText" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="ID.ToolTipText" xml:space="preserve">
-    <value>01</value>
-  </data>
   <metadata name="姓名.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="姓名.HeaderText" xml:space="preserve">
-    <value>姓名</value>
-  </data>
   <metadata name="性别.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="性别.HeaderText" xml:space="preserve">
-    <value>性别</value>
-  </data>
-  <data name="性别.Width" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
   <metadata name="公司.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="公司.HeaderText" xml:space="preserve">
-    <value>公司</value>
-  </data>
-  <data name="公司.Width" type="System.Int32, mscorlib">
-    <value>131</value>
-  </data>
   <metadata name="部门.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="部门.HeaderText" xml:space="preserve">
-    <value>部门</value>
-  </data>
-  <data name="部门.Width" type="System.Int32, mscorlib">
-    <value>131</value>
-  </data>
   <metadata name="小组.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="小组.HeaderText" xml:space="preserve">
-    <value>小组</value>
-  </data>
-  <data name="小组.Width" type="System.Int32, mscorlib">
-    <value>131</value>
-  </data>
-  <metadata name="del.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="del.HeaderText" xml:space="preserve">
-    <value>删除</value>
-  </data>
-  <data name="del.Width" type="System.Int32, mscorlib">
-    <value>108</value>
-  </data>
-  <metadata name="update_.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="update_.HeaderText" xml:space="preserve">
-    <value>修改</value>
-  </data>
-  <data name="update_.Width" type="System.Int32, mscorlib">
-    <value>108</value>
-  </data>
   <metadata name="员工Id.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="员工Id.HeaderText" xml:space="preserve">
-    <value>员工Id</value>
-  </data>
-  <data name="员工Id.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="dgv_employeeinformation.Location" type="System.Drawing.Point, System.Drawing">
     <value>440, 103</value>
   </data>
@@ -301,7 +214,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;dgv_employeeinformation.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tv_department.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 18pt</value>
@@ -325,16 +238,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tv_department.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="tb_foundname.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 10.5pt</value>
   </data>
   <data name="tb_foundname.Location" type="System.Drawing.Point, System.Drawing">
-    <value>319, 19</value>
+    <value>398, 18</value>
   </data>
   <data name="tb_foundname.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 26</value>
+    <value>149, 26</value>
   </data>
   <data name="tb_foundname.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -364,7 +277,7 @@
     <value>女</value>
   </data>
   <data name="cb_foundsex.Location" type="System.Drawing.Point, System.Drawing">
-    <value>541, 21</value>
+    <value>669, 21</value>
   </data>
   <data name="cb_foundsex.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 20</value>
@@ -427,7 +340,7 @@
     <value>NoControl</value>
   </data>
   <data name="la_foundname.Location" type="System.Drawing.Point, System.Drawing">
-    <value>254, 22</value>
+    <value>333, 21</value>
   </data>
   <data name="la_foundname.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 20</value>
@@ -460,7 +373,7 @@
     <value>NoControl</value>
   </data>
   <data name="la_foundsex.Location" type="System.Drawing.Point, System.Drawing">
-    <value>474, 21</value>
+    <value>602, 21</value>
   </data>
   <data name="la_foundsex.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 20</value>
@@ -487,7 +400,7 @@
     <value>440, 22</value>
   </data>
   <data name="gb_foundemployees.Size" type="System.Drawing.Size, System.Drawing">
-    <value>788, 55</value>
+    <value>913, 55</value>
   </data>
   <data name="gb_foundemployees.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -505,11 +418,20 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gb_foundemployees.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <metadata name="cms_employeetreeview.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>32, 16</value>
   </metadata>
+  <data name="cms_employeetreeview.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 114</value>
+  </data>
+  <data name="&gt;&gt;cms_employeetreeview.Name" xml:space="preserve">
+    <value>cms_employeetreeview</value>
+  </data>
+  <data name="&gt;&gt;cms_employeetreeview.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="tsm_newcompany.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
@@ -540,15 +462,6 @@
   <data name="tsm_rename.Text" xml:space="preserve">
     <value>重命名</value>
   </data>
-  <data name="cms_employeetreeview.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 114</value>
-  </data>
-  <data name="&gt;&gt;cms_employeetreeview.Name" xml:space="preserve">
-    <value>cms_employeetreeview</value>
-  </data>
-  <data name="&gt;&gt;cms_employeetreeview.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="bt_dgvchangexcel.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 9pt</value>
   </data>
@@ -577,7 +490,118 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bt_dgvchangexcel.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
+  </data>
+  <metadata name="cms_employeeoperation.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>221, 16</value>
+  </metadata>
+  <data name="cms_employeeoperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 70</value>
+  </data>
+  <data name="&gt;&gt;cms_employeeoperation.Name" xml:space="preserve">
+    <value>cms_employeeoperation</value>
+  </data>
+  <data name="&gt;&gt;cms_employeeoperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tsm_newemployee.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="tsm_newemployee.Text" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="tsm_updateemployee.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="tsm_updateemployee.Text" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="tsm_deleteemployee.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="tsm_deleteemployee.Text" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <metadata name="cms_newemployee.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>417, 16</value>
+  </metadata>
+  <data name="cms_newemployee.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 26</value>
+  </data>
+  <data name="&gt;&gt;cms_newemployee.Name" xml:space="preserve">
+    <value>cms_newemployee</value>
+  </data>
+  <data name="&gt;&gt;cms_newemployee.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tms_new.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="tms_new.Text" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <metadata name="ID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="ID.HeaderText" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="ID.ToolTipText" xml:space="preserve">
+    <value>01</value>
+  </data>
+  <data name="ID.Width" type="System.Int32, mscorlib">
+    <value>160</value>
+  </data>
+  <metadata name="姓名.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="姓名.HeaderText" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="姓名.Width" type="System.Int32, mscorlib">
+    <value>130</value>
+  </data>
+  <metadata name="性别.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="性别.HeaderText" xml:space="preserve">
+    <value>性别</value>
+  </data>
+  <metadata name="公司.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="公司.HeaderText" xml:space="preserve">
+    <value>公司</value>
+  </data>
+  <data name="公司.Width" type="System.Int32, mscorlib">
+    <value>160</value>
+  </data>
+  <metadata name="部门.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="部门.HeaderText" xml:space="preserve">
+    <value>部门</value>
+  </data>
+  <data name="部门.Width" type="System.Int32, mscorlib">
+    <value>160</value>
+  </data>
+  <metadata name="小组.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="小组.HeaderText" xml:space="preserve">
+    <value>小组</value>
+  </data>
+  <data name="小组.Width" type="System.Int32, mscorlib">
+    <value>160</value>
+  </data>
+  <metadata name="员工Id.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="员工Id.HeaderText" xml:space="preserve">
+    <value>员工Id</value>
+  </data>
+  <data name="员工Id.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -589,7 +613,7 @@
     <value>6, 12</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1380, 800</value>
+    <value>1420, 832</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -680,6 +704,60 @@
   <data name="$this.Text" xml:space="preserve">
     <value>员工信息管理</value>
   </data>
+  <data name="&gt;&gt;tsm_newcompany.Name" xml:space="preserve">
+    <value>tsm_newcompany</value>
+  </data>
+  <data name="&gt;&gt;tsm_newcompany.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsm_newdepartment.Name" xml:space="preserve">
+    <value>tsm_newdepartment</value>
+  </data>
+  <data name="&gt;&gt;tsm_newdepartment.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsm_newgroup.Name" xml:space="preserve">
+    <value>tsm_newgroup</value>
+  </data>
+  <data name="&gt;&gt;tsm_newgroup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsm_delete.Name" xml:space="preserve">
+    <value>tsm_delete</value>
+  </data>
+  <data name="&gt;&gt;tsm_delete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsm_rename.Name" xml:space="preserve">
+    <value>tsm_rename</value>
+  </data>
+  <data name="&gt;&gt;tsm_rename.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsm_newemployee.Name" xml:space="preserve">
+    <value>tsm_newemployee</value>
+  </data>
+  <data name="&gt;&gt;tsm_newemployee.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsm_updateemployee.Name" xml:space="preserve">
+    <value>tsm_updateemployee</value>
+  </data>
+  <data name="&gt;&gt;tsm_updateemployee.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsm_deleteemployee.Name" xml:space="preserve">
+    <value>tsm_deleteemployee</value>
+  </data>
+  <data name="&gt;&gt;tsm_deleteemployee.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tms_new.Name" xml:space="preserve">
+    <value>tms_new</value>
+  </data>
+  <data name="&gt;&gt;tms_new.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;ID.Name" xml:space="preserve">
     <value>ID</value>
   </data>
@@ -716,53 +794,11 @@
   <data name="&gt;&gt;小组.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;del.Name" xml:space="preserve">
-    <value>del</value>
-  </data>
-  <data name="&gt;&gt;del.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewButtonColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;update_.Name" xml:space="preserve">
-    <value>update_</value>
-  </data>
-  <data name="&gt;&gt;update_.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewButtonColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;员工Id.Name" xml:space="preserve">
     <value>员工Id</value>
   </data>
   <data name="&gt;&gt;员工Id.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsm_newcompany.Name" xml:space="preserve">
-    <value>tsm_newcompany</value>
-  </data>
-  <data name="&gt;&gt;tsm_newcompany.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsm_newdepartment.Name" xml:space="preserve">
-    <value>tsm_newdepartment</value>
-  </data>
-  <data name="&gt;&gt;tsm_newdepartment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsm_newgroup.Name" xml:space="preserve">
-    <value>tsm_newgroup</value>
-  </data>
-  <data name="&gt;&gt;tsm_newgroup.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsm_delete.Name" xml:space="preserve">
-    <value>tsm_delete</value>
-  </data>
-  <data name="&gt;&gt;tsm_delete.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsm_rename.Name" xml:space="preserve">
-    <value>tsm_rename</value>
-  </data>
-  <data name="&gt;&gt;tsm_rename.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>EmployeeManagement</value>
