@@ -160,10 +160,45 @@ namespace FireProductManager.GuiPackage
             tb_packageid.Text = packageId.ToString();
         }
 
-        private void dgv_PackageInAndOutrecord_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_PackageInAndOutrecord_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int id = (int)(dgv_PackageInAndOutrecord.SelectedRows[0]).Cells[0].Value;
-            PackageIdSelected?.Invoke(id);
+            if (FormBorderStyle == FormBorderStyle.None)
+            {
+                contextMenuStrip1.Enabled = false;
+                return;
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    //若行已是选中状态就不再进行设置
+                    if (dgv_PackageInAndOutrecord.Rows[e.RowIndex].Selected == false)
+                    {
+                        dgv_PackageInAndOutrecord.ClearSelection();
+                        dgv_PackageInAndOutrecord.Rows[e.RowIndex].Selected = true;
+                    }
+                    //只选中一行时设置活动单元格
+                    if (e.ColumnIndex < 0)
+                        return;
+                    if (dgv_PackageInAndOutrecord.SelectedRows.Count == 1)
+                    {
+                        dgv_PackageInAndOutrecord.CurrentCell = dgv_PackageInAndOutrecord.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    }
+                    //弹出操作菜单
+                    contextMenuStrip1.Show(MousePosition.X, MousePosition.Y);
+                }
+            }
+        }
+
+        private void 选择ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FormBorderStyle == FormBorderStyle.FixedSingle)
+            {
+                int id = (int)(dgv_PackageInAndOutrecord.SelectedRows[0]).Cells[0].Value;
+                PackageIdSelected?.Invoke(id);
+                Close();
+            }
         }
     }
 }

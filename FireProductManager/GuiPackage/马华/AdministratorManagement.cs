@@ -8,14 +8,16 @@ namespace FireProductManager.GuiPackage
 {
     public partial class AdministratorManagement : Form
     {
-        AddOrUpdateAministrator addOrUpdateAministrator = null;
+        AddOrUpdateAministrator addOrUpdateAministrator;
 
         public AdministratorManagement()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-            ShowDataGridView(AccountManager.GetAllAccountInformation());
+            RefreshDataGridViewShow();
         }
+
+        private void RefreshDataGridViewShow() => ShowDataGridView(AccountManager.GetAllAccountInformation());
 
         private void ShowDataGridView(DataTable dt)
         {
@@ -54,6 +56,7 @@ namespace FireProductManager.GuiPackage
                     string password = dgv_administrator.CurrentRow.Cells[2].Value.ToString();
                     int authority = (int)dgv_administrator.CurrentRow.Cells[3].Value;
                     addOrUpdateAministrator.Close();
+                    RefreshDataGridViewShow();
                     addOrUpdateAministrator = new AddOrUpdateAministrator(accountid, account, password, authority);
                     AddOrUpdatePageSwitching(addOrUpdateAministrator);
                 }
@@ -77,6 +80,7 @@ namespace FireProductManager.GuiPackage
         private void btn_addaccount_Click(object sender, EventArgs e)
         {
             addOrUpdateAministrator.Close();
+            RefreshDataGridViewShow();
             addOrUpdateAministrator = new AddOrUpdateAministrator();
             AddOrUpdatePageSwitching(addOrUpdateAministrator);
         }

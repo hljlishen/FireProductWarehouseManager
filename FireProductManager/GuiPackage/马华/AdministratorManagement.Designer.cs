@@ -55,6 +55,7 @@
             this.dgv_administrator.Location = new System.Drawing.Point(558, 99);
             this.dgv_administrator.Name = "dgv_administrator";
             this.dgv_administrator.RowTemplate.Height = 23;
+            this.dgv_administrator.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv_administrator.Size = new System.Drawing.Size(780, 669);
             this.dgv_administrator.TabIndex = 1;
             this.dgv_administrator.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_administrator_CellContentClick);
@@ -128,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 861);
+            this.ClientSize = new System.Drawing.Size(1420, 832);
             this.Controls.Add(this.pa_addorupdate);
             this.Controls.Add(this.btn_addaccount);
             this.Controls.Add(this.dgv_administrator);

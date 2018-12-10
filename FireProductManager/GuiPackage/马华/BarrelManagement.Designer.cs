@@ -117,7 +117,7 @@
             this.dgv_packageshow1.Location = new System.Drawing.Point(253, 158);
             this.dgv_packageshow1.Name = "dgv_packageshow1";
             this.dgv_packageshow1.RowTemplate.Height = 23;
-            this.dgv_packageshow1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dgv_packageshow1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv_packageshow1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_packageshow1.Size = new System.Drawing.Size(364, 558);
             this.dgv_packageshow1.TabIndex = 28;
@@ -179,7 +179,7 @@
             this.dgv_packageshow2.Location = new System.Drawing.Point(762, 158);
             this.dgv_packageshow2.Name = "dgv_packageshow2";
             this.dgv_packageshow2.RowTemplate.Height = 23;
-            this.dgv_packageshow2.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dgv_packageshow2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv_packageshow2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_packageshow2.Size = new System.Drawing.Size(364, 558);
             this.dgv_packageshow2.TabIndex = 29;
@@ -287,7 +287,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1424, 861);
+            this.ClientSize = new System.Drawing.Size(1420, 832);
             this.Controls.Add(this.btn_removebarrel2);
             this.Controls.Add(this.btn_exchangepackageid2);
             this.Controls.Add(this.btn_exchangepackageid1);

@@ -24,20 +24,12 @@ namespace FireProductManager.ServiceLogicPackage
             return false;
         }
 
-        public static void Logout()
-        {
-            account = null;
-        }
+        public static void Logout() => account = null;
 
         public static bool CanReadDatabase()     //用不到
-        {
-            return (account.ac_authority == 1 || account.ac_authority == 2);//1为超级管理员，2为普通管理员
-        }
+=> (account.ac_authority == 1 || account.ac_authority == 2);//1为超级管理员，2为普通管理员
 
-        public static bool CanWriteDatabase()
-        {
-            return account.ac_authority == 1;
-        }
+        public static bool CanWriteDatabase() => account.ac_authority == 1;
 
         private static DataTable Query(string sql)
         {

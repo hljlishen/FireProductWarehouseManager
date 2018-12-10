@@ -58,9 +58,6 @@ namespace FireProductManager.ServiceLogicPackage
             return query;
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            shouldRecord = true;
-        }
+        private void Timer_Tick(object sender, EventArgs e) => shouldRecord = true;
     }
 }

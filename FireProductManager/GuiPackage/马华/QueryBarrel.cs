@@ -44,10 +44,55 @@ namespace FireProductManager.GuiPackage
             ShowDataGridView(BarrelGateway.NoRemoveBarrelId());
         }
 
-        private void dgv_existbarrelid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_existbarrelid_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    if (e.ColumnIndex < 0)
+                        return;
+                    //若行已是选中状态就不再进行设置
+                    if (dgv_existbarrelid.Rows[e.RowIndex].Selected == false)
+                    {
+                        dgv_existbarrelid.ClearSelection();
+                        dgv_existbarrelid.Rows[e.RowIndex].Selected = true;
+                    }
+                    //只选中一行时设置活动单元格
+                    if (dgv_existbarrelid.SelectedRows.Count == 1)
+                    {
+                        dgv_existbarrelid.CurrentCell = dgv_existbarrelid.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    }
+                    //弹出操作菜单
+                    contextMenuStrip1.Show(MousePosition.X, MousePosition.Y);
+                }
+            }
+        }
+
+        private void 选择ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BarrelIdSelected?.Invoke((int)(dgv_existbarrelid.SelectedRows[0]).Cells[0].Value);
             Close();
+        }
+
+        private void 查询ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int barrelid = (int)(dgv_existbarrelid.SelectedRows[0]).Cells[0].Value;
+            ShowDataGridView2(BarrelGateway.BarrelIdQueryPackageInformation(barrelid));
+        }
+
+        private void ShowDataGridView2(DataTable dt)
+        {
+            dgv_package.Rows.Clear();
+            foreach (DataRow dr in dt.Rows)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+                int index = dgv_package.Rows.Add(row);
+                dgv_package.Rows[index].Cells[0].Value = dr["pa_id"];
+                dgv_package.Rows[index].Cells[1].Value = dr["pa_name"];
+                dgv_package.Rows[index].Cells[2].Value = dr["pa_model"];
+                dgv_package.Rows[index].Cells[3].Value = dr["pa_weight"] + "g";
+            }
         }
     }
 }

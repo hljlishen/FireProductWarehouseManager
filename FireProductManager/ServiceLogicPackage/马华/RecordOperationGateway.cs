@@ -45,9 +45,9 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //还包
-        public static void ReturnPackage(int packageid,int barrelid,int employeeid, int projectId, string borrowName, string accountName)
+        public static void ReturnPackage(int packageid,int barrelid,int employeeid, int projectId, string borrowName, string accountName,double weight)
         {
-            PackageGateway.ReturnPackage(packageid, barrelid);
+            PackageGateway.ReturnPackage(packageid, barrelid, weight);
 
             InOutRecord inOutRecord = new InOutRecord();
             inOutRecord.ior_packageId = (uint)packageid;
@@ -95,7 +95,6 @@ namespace FireProductManager.ServiceLogicPackage
 
             foreach (DataRow dr in Query(maker.MakeSelectSql()).Rows)
                 inWarehouse = (int)dr["pa_isinWarehouse"];
-
             return inWarehouse == 0;
         }
 

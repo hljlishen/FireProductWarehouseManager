@@ -59,6 +59,7 @@ namespace FireProductManager.ServiceLogicPackage
             double weigth = 0;
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_barrelId", barrelid));
+            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
             string sql = maker.MakeSelectSql();
             DataTable dt = Query(sql);
 

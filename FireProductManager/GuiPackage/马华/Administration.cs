@@ -18,6 +18,7 @@ namespace FireProductManager.GuiPackage
         private MainPage mainPage = null;
         private AdminLogin login = null;
         private ProjectManageme projectManageme = null;
+        Administration administration = null;
 
         public Administration()
         {
@@ -45,13 +46,12 @@ namespace FireProductManager.GuiPackage
             AccountManager.Logout();
             出入库登记ToolStripMenultem_Click(sender,e);
             ShowLoginWindow();
-            la_account.Text = AccountManager.ReturnAccount();
         }
 
         private void Administration_Load(object sender, EventArgs e)
         {
             ShowLoginWindow();
-            la_account.Text = AccountManager.ReturnAccount();
+            this.Text ="登录的账号：" + AccountManager.ReturnAccount();
             出入库登记ToolStripMenultem_Click(sender, e);
             
         }
