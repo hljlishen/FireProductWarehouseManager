@@ -29,7 +29,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //借包
-        public static void BorrowPackage(int packageid,int employeeid,int projectId,string borrowName,string accountName)
+        public static void BorrowPackage(int packageid,int employeeid,uint projectId,string borrowName,string accountName,string projectPassword)
         {
             PackageGateway.BorrowPackage(packageid);
 
@@ -39,22 +39,24 @@ namespace FireProductManager.ServiceLogicPackage
             inOutRecord.ior_projectId = (uint)projectId;
             inOutRecord.ior_borrowName = borrowName;
             inOutRecord.ior_accountName = accountName;
+            inOutRecord.ior_projectPassword = projectPassword;
             inOutRecord.ior_direction = "出库";
             inOutRecord.ior_timeStmp = DateTime.Now;
             inOutRecord.Insert();
         }
 
         //还包
-        public static void ReturnPackage(int packageid,int barrelid,int employeeid, int projectId, string borrowName, string accountName,double weight)
+        public static void ReturnPackage(int packageid,int barrelid,int employeeid, uint projectId, string borrowName, string accountName,double weight, string projectPassword)
         {
             PackageGateway.ReturnPackage(packageid, barrelid, weight);
 
             InOutRecord inOutRecord = new InOutRecord();
             inOutRecord.ior_packageId = (uint)packageid;
             inOutRecord.ior_employeeId = (uint)employeeid;
-            inOutRecord.ior_projectId = (uint)projectId;
+            inOutRecord.ior_projectId = projectId;
             inOutRecord.ior_borrowName = borrowName;
             inOutRecord.ior_accountName = accountName;
+            inOutRecord.ior_projectPassword = projectPassword;
             inOutRecord.ior_direction = "入库";
             inOutRecord.ior_timeStmp = DateTime.Now;
             inOutRecord.Insert();  

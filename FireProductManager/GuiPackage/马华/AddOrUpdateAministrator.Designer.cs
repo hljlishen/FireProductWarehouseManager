@@ -112,8 +112,8 @@
             this.cb_authority.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.cb_authority.FormattingEnabled = true;
             this.cb_authority.Items.AddRange(new object[] {
-            "1",
-            "2"});
+            "1(超级管理员)",
+            "2(普通管理员)"});
             this.cb_authority.Location = new System.Drawing.Point(158, 403);
             this.cb_authority.Name = "cb_authority";
             this.cb_authority.Size = new System.Drawing.Size(162, 29);

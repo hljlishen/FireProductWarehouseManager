@@ -8,6 +8,8 @@ namespace FireProductManager.GuiPackage
 {
     public partial class AddOrUpdateAministrator : Form
     {
+        public delegate void RefreshDataHandler();
+        public event RefreshDataHandler RefreshData;
         int accountid;
 
         //修改管理员信息
@@ -21,7 +23,10 @@ namespace FireProductManager.GuiPackage
             accountid = accountId;
             tb_account.Text = account;
             tb_password.Text = password;
-            cb_authority.Text = authority.ToString();
+            if(authority == 1)
+                cb_authority.Text = "1(超级管理员)";
+            else if(authority == 2)
+                cb_authority.Text = "2(普通管理员)";
         }
 
         //添加管理员信息
@@ -39,9 +44,10 @@ namespace FireProductManager.GuiPackage
             TextBoxVisibleIsFalse();
             if (!TextBoxCheck())
                 return;
-            AccountManager.UpdateAccount(accountid, tb_account.Text, tb_password.Text, int.Parse(cb_authority.Text));
+            AccountManager.UpdateAccount(accountid, tb_account.Text, tb_password.Text, AccountAuthority());
             AutoClosingMessageBox.Show("                修改成功", "修改管理员", 1000);
             EmptyTextBox();
+            RefreshData?.Invoke();
         }
 
         private void EmptyTextBox()
@@ -88,9 +94,17 @@ namespace FireProductManager.GuiPackage
             TextBoxVisibleIsFalse();
             if (!TextBoxCheck())
                 return;
-            AccountManager.AddAccount(tb_account.Text, tb_password.Text, int.Parse(cb_authority.Text));
+            AccountManager.AddAccount(tb_account.Text, tb_password.Text, AccountAuthority());
             AutoClosingMessageBox.Show("                添加成功", "添加管理员", 1000);
             EmptyTextBox();
+            RefreshData?.Invoke();
+        }
+
+        private int AccountAuthority()
+        {
+            if (cb_authority.Text == "1(超级管理员)")
+                return 1;
+            return 2;
         }
     }
 }
