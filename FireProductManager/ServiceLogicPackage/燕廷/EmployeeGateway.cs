@@ -7,12 +7,6 @@ namespace FireProductManager.ServiceLogicPackage
 {
     public class EmployeeGateway
     {
-        private enum Operation
-        {
-            Update,
-            New,
-        }
-
         //删除员工
         public static void DeleteEmployee(int employeeId)
         {
@@ -44,7 +38,6 @@ namespace FireProductManager.ServiceLogicPackage
             employee.em_name = name;
             employee.em_sex = sex;
             employee.em_departmentid = departmentId;
-            FormValidation(employee, Operation.Update);
             employee.Update();
         }
 
@@ -56,64 +49,40 @@ namespace FireProductManager.ServiceLogicPackage
             employee.em_name = name;
             employee.em_sex = sex;
             employee.em_departmentid = departmentId;
-            FormValidation(employee, Operation.New);
             employee.Insert();
         }
 
-        //表单验证
-        private static void FormValidation(Employee employee, Operation operation)
-        {
-            isEmployeenumberValid(employee, operation);
-            if(NameValidation(employee.em_name)) throw new Exception("员工姓名不能为空");
-            if(DepartmentIdValidation(employee.em_departmentid.Value)) throw new Exception("未选择员工所在部门");
-        }
-
-        //员工编号验证
-        private static void isEmployeenumberValid(Employee employee, Operation operation)
-        {
-            if (employee.em_employeenumber.Equals("")) {
-                throw new Exception("员工编号不能为空");
-            }
-            switch (operation)
-            {
-                case Operation.New:
-                    NewEmployeeNumber(employee.em_employeenumber);
-                    break;
-                case Operation.Update:
-                    UpdateEmployeeNumber(employee.em_id.Value, employee.em_employeenumber);
-                    break;
-            }
-        }
-
         //添加EmployeeNumber
-        private static void NewEmployeeNumber(string employeeNumber)
+        public static bool NewEmployeeNumber(string employeeNumber)
         {
             SelectSqlMaker maker = new SelectSqlMaker("employee");
             maker.AddAndCondition(new IntEqual("em_employeenumber", employeeNumber));
             DataTable dataTable = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dataTable.Rows.Count != 0)
             {
-                throw new Exception("该员工编号已存在");
+                return false;
             }
+            return true;
         }
 
         //更新EmployeeNumber
-        private static void UpdateEmployeeNumber(int id,string employeeNumber)
+        public static bool UpdateEmployeeNumber(int id,string employeeNumber)
         {
             SelectSqlMaker maker = new SelectSqlMaker("employee");
             maker.AddAndCondition(new IntEqual("em_id", id));
             DataTable dataTable = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             Employee em = new Employee();
             em.LoadDataRow(dataTable.Rows[0]);
-            if (em.em_employeenumber == employeeNumber) return;
+            if (em.em_employeenumber.Equals(employeeNumber)) return true;
 
             SelectSqlMaker maker1 = new SelectSqlMaker("employee");
             maker.AddAndCondition(new IntEqual("em_employeenumber", employeeNumber));
             DataTable dataTable1 = ActiveRecord.Select(maker1.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dataTable1.Rows.Count != 0)
             {
-                throw new Exception("该员工编号已存在");
+                return false;
             }
+            return true;
         }
 
         //em_name验证
@@ -185,7 +154,6 @@ namespace FireProductManager.ServiceLogicPackage
             DataTable dataTable = ActiveRecord.Select(sql, DbLinkManager.databaseType, DbLinkManager.connectString);
             return dataTable;
         }
-
 
     }
 }

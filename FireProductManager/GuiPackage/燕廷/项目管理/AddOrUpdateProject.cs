@@ -33,12 +33,13 @@ namespace FireProductManager.GuiPackage
             _projectid = (uint)projectid;
             ShowProjectInformation();
 
-            Bt_addproject.Visible = false;
+            bt_addproject.Visible = false;
         }
 
         //项目信息修改
         private void bt_updateproject_Click(object sender, EventArgs e)
         {
+            if (!FormValidation()) return;
             ProjectGateway.UpdateProject(_projectid,tb_name.Text, tb_projectpassword.Text, tb_note.Text);
             Close();
         }
@@ -46,11 +47,43 @@ namespace FireProductManager.GuiPackage
         //项目信息添加
         private void Bt_addproject_Click(object sender, EventArgs e)
         {
+            if (!FormValidation()) return;
             ProjectGateway.NewProject(tb_name.Text,tb_projectpassword.Text,tb_note.Text);
             Close();
         }
 
-        //员工信息展示
+        //表单验证
+        private bool FormValidation()
+        {
+            bool validation = true;
+            if (tb_name.Text.Trim().Equals(""))
+            {
+                la_errorname.Visible = true;
+                la_errorname.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorname.Visible = false;
+
+            if (tb_projectpassword.Text.Trim().Equals(""))
+            {
+                la_errorprojectpassword.Visible = true;
+                la_errorprojectpassword.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorprojectpassword.Visible = false;
+
+            if (tb_note.Text.Trim().Equals(""))
+            {
+                la_errornote.Visible = true;
+                la_errornote.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errornote.Visible = false;
+
+            return validation;
+        }
+
+        //项目信息展示
         private void ShowProjectInformation()
         {
             DataTable dataTable = ProjectGateway.GetProjectInformation(_projectid);

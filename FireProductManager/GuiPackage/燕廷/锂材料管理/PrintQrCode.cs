@@ -1,12 +1,7 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZXing;
 
@@ -15,14 +10,20 @@ namespace FireProductManager.GuiPackage
     public partial class PrintQRCode : Form
     {
         private int _packageid;
+        private int _labelwide = 146;
+        private int _labelhigh = 111;
+        private int _codeSizeInPixels;
 
-        public PrintQRCode(int packageid)
+        public PrintQRCode(int packageid )
         {
             InitializeComponent();
             _packageid = packageid;
             string msg = packageid.ToString();
 
-            PictureBoxShow(GenByZXingNet(msg));
+            Bitmap bitmap = GenByZXingNet(msg);
+            bitmap = NewLabelSize(bitmap);
+            AddTextToImg(bitmap, msg);
+            PictureBoxShow(bitmap);
 
             InstrumentMessageDataTableShowTextBox();
             Print();
@@ -60,18 +61,30 @@ namespace FireProductManager.GuiPackage
             pb_qrcode.Image = bmp;
         }
 
+        private Bitmap NewLabelSize(Bitmap bm)
+        {
+            Bitmap bitmap = new Bitmap(_labelwide, _labelhigh);
+            Graphics graphics = Graphics.FromImage(bitmap);
+
+            float QrCode_X = _labelwide / 2 - (_codeSizeInPixels / 2);
+            float QrCode_y = _labelhigh / 100 * 5;
+            graphics.DrawImage(bm, new PointF(QrCode_X, QrCode_y));
+
+            return bitmap;
+        }
+
         private Bitmap GenByZXingNet(string msg)
         {
             BarcodeWriter writer = new BarcodeWriter();
             writer.Format = BarcodeFormat.QR_CODE;
             writer.Options.Hints.Add(EncodeHintType.CHARACTER_SET, "UTF-8");//编码问题
             writer.Options.Hints.Add(EncodeHintType.ERROR_CORRECTION, ZXing.QrCode.Internal.ErrorCorrectionLevel.H);
-            const int codeSizeInPixels = 250;   //设置图片长宽
+            int codeSizeInPixels = _labelhigh / 100 * 80;   //设置图片长宽
+            _codeSizeInPixels = codeSizeInPixels;
             writer.Options.Height = writer.Options.Width = codeSizeInPixels;
-            writer.Options.Margin = 5;//设置边框
+            writer.Options.Margin = 0;//设置边框
             ZXing.Common.BitMatrix bm = writer.Encode(msg);
             Bitmap img = writer.Write(bm);
-            AddTextToImg(img, msg);
             return img;
         }
 
@@ -79,15 +92,15 @@ namespace FireProductManager.GuiPackage
         {
             Graphics graphics = Graphics.FromImage(bmp);
             //字体大小
-            float fontSize = 18.0f;
-            Font font = new Font("微软雅黑", fontSize, FontStyle.Bold);
+            float fontSize = 10.0f;
+            Font font = new Font("宋体", fontSize, FontStyle.Regular);
             Brush whiteBrush = new SolidBrush(Color.Black);
             //文本的长度
             SizeF size = graphics.MeasureString(text, font);
             float textWidth = text.Length * fontSize;
             //下面定义一个矩形区域，以后在这个矩形里画上白底黑字
-            float rectX = 125 - size.Width / 2;
-            float rectY = 210;
+            float rectX = _labelwide / 2 - size.Width / 2;
+            float rectY = _labelhigh / 100 * 85;
             float rectWidth = text.Length * (fontSize + 40);
             float rectHeight = fontSize + 40;
             //声明矩形域

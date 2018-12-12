@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectManageme));
             this.dgv_projectinformation = new System.Windows.Forms.DataGridView();
+            this.项目名称 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.项目令号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.备注 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.项目Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.la_project = new System.Windows.Forms.Label();
             this.tb_projectpassword = new System.Windows.Forms.TextBox();
@@ -44,10 +48,6 @@
             this.tsm_deleteproject = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_newproject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsm_new = new System.Windows.Forms.ToolStripMenuItem();
-            this.项目名称 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.项目令号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.备注 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.项目Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_projectinformation)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.cms_projectoperation.SuspendLayout();
@@ -70,8 +70,39 @@
             this.dgv_projectinformation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_projectinformation.Size = new System.Drawing.Size(944, 644);
             this.dgv_projectinformation.TabIndex = 4;
+            this.dgv_projectinformation.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_projectinformation_CellMouseDoubleClick);
             this.dgv_projectinformation.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_projectinformation_CellMouseDown);
             this.dgv_projectinformation.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgv_projectinformation_MouseClick);
+            // 
+            // 项目名称
+            // 
+            this.项目名称.DataPropertyName = "01";
+            this.项目名称.HeaderText = "项目名称";
+            this.项目名称.Name = "项目名称";
+            this.项目名称.ReadOnly = true;
+            this.项目名称.ToolTipText = "01";
+            this.项目名称.Width = 200;
+            // 
+            // 项目令号
+            // 
+            this.项目令号.HeaderText = "项目令号";
+            this.项目令号.Name = "项目令号";
+            this.项目令号.ReadOnly = true;
+            this.项目令号.Width = 200;
+            // 
+            // 备注
+            // 
+            this.备注.HeaderText = "备注";
+            this.备注.Name = "备注";
+            this.备注.ReadOnly = true;
+            this.备注.Width = 500;
+            // 
+            // 项目Id
+            // 
+            this.项目Id.HeaderText = "项目Id";
+            this.项目Id.Name = "项目Id";
+            this.项目Id.ReadOnly = true;
+            this.项目Id.Visible = false;
             // 
             // groupBox1
             // 
@@ -189,36 +220,6 @@
             this.tsm_new.Text = "添加";
             this.tsm_new.Click += new System.EventHandler(this.tsm_newproject_Click);
             // 
-            // 项目名称
-            // 
-            this.项目名称.DataPropertyName = "01";
-            this.项目名称.HeaderText = "项目名称";
-            this.项目名称.Name = "项目名称";
-            this.项目名称.ReadOnly = true;
-            this.项目名称.ToolTipText = "01";
-            this.项目名称.Width = 200;
-            // 
-            // 项目令号
-            // 
-            this.项目令号.HeaderText = "项目令号";
-            this.项目令号.Name = "项目令号";
-            this.项目令号.ReadOnly = true;
-            this.项目令号.Width = 200;
-            // 
-            // 备注
-            // 
-            this.备注.HeaderText = "备注";
-            this.备注.Name = "备注";
-            this.备注.ReadOnly = true;
-            this.备注.Width = 500;
-            // 
-            // 项目Id
-            // 
-            this.项目Id.HeaderText = "项目Id";
-            this.项目Id.Name = "项目Id";
-            this.项目Id.ReadOnly = true;
-            this.项目Id.Visible = false;
-            // 
             // ProjectManageme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -230,7 +231,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ProjectManageme";
-            this.Text = "ProjectManageme";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "项目管理";
             this.Load += new System.EventHandler(this.ProjectManageme_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_projectinformation)).EndInit();
             this.groupBox1.ResumeLayout(false);
