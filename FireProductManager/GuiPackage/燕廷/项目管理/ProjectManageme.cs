@@ -1,12 +1,7 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
@@ -14,6 +9,10 @@ namespace FireProductManager.GuiPackage
 {
     public partial class ProjectManageme : Form
     {
+        public delegate void ProjectSelectedHandler(int id,string projectPassword);
+        public event ProjectSelectedHandler ProjectSelecteds;
+
+
         public ProjectManageme()
         {
             InitializeComponent();
@@ -79,7 +78,7 @@ namespace FireProductManager.GuiPackage
             }
         }
 
-        //添加-菜单
+        //添加-右键菜单
         private void tsm_newproject_Click(object sender, EventArgs e) => NewProject();
 
         //添加项目
@@ -89,7 +88,7 @@ namespace FireProductManager.GuiPackage
             addProject.ShowDialog();
         }
 
-        //修改-菜单
+        //修改-右键菜单
         private void tsm_updateproject_Click(object sender, EventArgs e) => UpdateProject();
 
         //修改项目
@@ -100,7 +99,7 @@ namespace FireProductManager.GuiPackage
             UpdateProject.ShowDialog();
         }
 
-        //删除-菜单
+        //删除-右键菜单
         private void tsm_deleteproject_Click(object sender, EventArgs e) => DeleteProject();
 
         //删除项目
@@ -108,12 +107,22 @@ namespace FireProductManager.GuiPackage
         {
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                int projectid = (int)dgv_projectinformation.CurrentRow.Cells[5].Value;
+                int projectid = (int)dgv_projectinformation.CurrentRow.Cells[3].Value;
                 ProjectGateway.DeleteProject(projectid);
                 AutoClosingMessageBox.Show("项目信息删除成功", "项目信息删除", 1000);
             }
         }
 
-       
+        //双击返回行数据
+        private void dgv_projectinformation_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (FormBorderStyle == FormBorderStyle.FixedSingle)
+            {
+                int projectid = (int)(dgv_projectinformation.SelectedRows[0]).Cells[3].Value;
+                string projectPassword = (dgv_projectinformation.SelectedRows[0]).Cells[1].Value.ToString();
+                ProjectSelecteds?.Invoke(projectid,projectPassword);
+                Close();
+            }
+        }
     }
 }

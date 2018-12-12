@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
@@ -43,7 +44,7 @@ namespace FireProductManager.GuiPackage
                 dgv_instrumentinformation.Rows[index].Cells[4].Value = PackageGateway.IsinWarehouseDataTypeChangeString((int)dr["pa_isinwarehouse"]);
                 dgv_instrumentinformation.Rows[index].Cells[5].Value = dr["pa_purchasetime"];
                 dgv_instrumentinformation.Rows[index].Cells[6].Value = dr["pa_projectid"];
-                dgv_instrumentinformation.Rows[index].Cells[9].Value = dr["pa_id"];
+                dgv_instrumentinformation.Rows[index].Cells[7].Value = dr["pa_id"];
             }
         }
 
@@ -59,36 +60,59 @@ namespace FireProductManager.GuiPackage
             ShowDataGridView(dataTable);
         }
 
-        //材料添加
-        private void button1_Click(object sender, EventArgs e)
+        //右键单击表格数据
+        private void dgv_instrumentinformation_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Point ClickPoint = new Point(e.X, e.Y);
+                int x = e.X;
+                int y = e.Y;
+                int a = e.RowIndex;
+                dgv_instrumentinformation.CurrentCell = dgv_instrumentinformation.Rows[e.RowIndex].Cells[0];
+                dgv_instrumentinformation.Rows[e.RowIndex].Selected = true;
+                cms_packageoperation.Show(MousePosition);
+            }
+        }
+
+        //右键单击DGV空白
+        private void dgv_instrumentinformation_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                cms_newpackage.Show(MousePosition);
+            }
+        }
+
+        private void tsm_newpackage_Click(object sender, EventArgs e) => NewPackage();
+
+        //添加材料
+        private void NewPackage()
         {
             AddOrUpdatePackage add = new AddOrUpdatePackage();
             add.ShowDialog();
         }
 
-        //材料的修改、删除
-        private void dgv_instrumentinformation_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void tsm_updatepackage_Click(object sender, EventArgs e) => UpdatePackage();
+
+        //修改材料
+        private void UpdatePackage()
         {
-            //删除
-            if (e.ColumnIndex == 7)
+            int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[7].Value;
+            AddOrUpdatePackage Update = new AddOrUpdatePackage(packageid);
+            Update.ShowDialog();
+        }
+
+        private void tsm_deletepackage_Click(object sender, EventArgs e) => DeletePackage();
+
+        //删除材料
+        private void DeletePackage()
+        {
+            if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[9].Value;
-                    PackageGateway.DeletePackage(packageid);
-                    AutoClosingMessageBox.Show("仪器信息删除成功", "仪器信息删除", 1000);
-                    dgv_instrumentinformation.Rows.RemoveAt(e.RowIndex);
-                }
-            }
-            //修改
-            if (e.ColumnIndex == 8)
-            {
-                if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[9].Value;
-                    AddOrUpdatePackage Update = new AddOrUpdatePackage(packageid);
-                    Update.ShowDialog();
-                }
+                int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[7].Value;
+                PackageGateway.DeletePackage(packageid);
+                AutoClosingMessageBox.Show("材料信息删除成功", "材料信息删除", 1000);
             }
         }
 
@@ -108,5 +132,7 @@ namespace FireProductManager.GuiPackage
                 Close();
             }
         }
+
+       
     }
 }

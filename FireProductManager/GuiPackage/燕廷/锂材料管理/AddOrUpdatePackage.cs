@@ -1,9 +1,6 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
@@ -57,7 +54,7 @@ namespace FireProductManager.GuiPackage
             tb_barrel.Text = myDr["pa_barrelId"].ToString();
             cb_isInWareHouse.Text = PackageGateway.IsinWarehouseDataTypeChangeString((int)myDr["pa_isinWarehouse"]);
             time_purchaseTime.Text = myDr["pa_purchaseTime"].ToString();
-            tb_projectId.Text = myDr["pa_projectId"].ToString(); 
+            tb_projectpassword.Text = myDr["pa_projectId"].ToString(); 
         }
 
         //取消按钮
@@ -98,7 +95,6 @@ namespace FireProductManager.GuiPackage
             _barrelId = Convert.ToInt32(tb_barrel.Text);
             _isinWarehouse = cb_isInWareHouse.Text;
             _purchaseTime = Convert.ToDateTime(time_purchaseTime.Text);
-            _projectId = Convert.ToInt32(tb_projectId.Text);
         }
 
         //材料信息修改
@@ -120,5 +116,22 @@ namespace FireProductManager.GuiPackage
             //    placeidcoding = shelvesTreeView.PlaceIdCoding;
             //}
         }
+
+        //选择项目令号
+        private void bt_changeprojectpassword_Click(object sender, EventArgs e)
+        {
+            ProjectManageme projectManageme = new ProjectManageme();
+            projectManageme.FormBorderStyle = FormBorderStyle.FixedSingle;
+            projectManageme.ProjectSelecteds += ProjectSelecteds;
+            projectManageme.ShowDialog();
+            projectManageme.ProjectSelecteds -= ProjectSelecteds;
+        }
+
+        //显示项目令号
+        private void ProjectSelecteds(int projectid, string projectpassword)
+        {
+            _projectId = projectid;
+            tb_projectpassword.Text = projectpassword;
+        }
     }
-}
+} 

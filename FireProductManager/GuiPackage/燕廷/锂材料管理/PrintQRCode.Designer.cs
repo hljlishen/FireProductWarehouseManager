@@ -124,7 +124,9 @@
             this.Controls.Add(this.la_modeltext);
             this.Controls.Add(this.la_nametext);
             this.Controls.Add(this.pb_qrcode);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "PrintQRCode";
             this.Text = "打印二维码";
             this.Load += new System.EventHandler(this.PrintQRCode_Load);

@@ -298,7 +298,7 @@ namespace FireProductManager.GuiPackage
         {
             if (FormBorderStyle == FormBorderStyle.FixedSingle)
             {
-                int employeeId = (int)(dgv_employeeinformation.SelectedRows[0]).Cells[8].Value;
+                int employeeId = (int)(dgv_employeeinformation.SelectedRows[0]).Cells[6].Value;
                 string emNumbers = (dgv_employeeinformation.SelectedRows[0]).Cells[0].Value.ToString();
                 string name = (dgv_employeeinformation.SelectedRows[0]).Cells[1].Value.ToString();
                 EmployeesSelected?.Invoke(employeeId, emNumbers, name);

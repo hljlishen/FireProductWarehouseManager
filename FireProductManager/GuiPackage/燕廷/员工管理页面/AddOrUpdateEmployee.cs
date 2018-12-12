@@ -12,6 +12,7 @@ namespace FireProductManager.GuiPackage
     public partial class AddOrUpdateEmployee : Form
     {
         ImageManager getSetImagePath = new ImageManager();
+
         private int _employeeid;
         private string _employeenumber;
         private string _name;
@@ -20,6 +21,12 @@ namespace FireProductManager.GuiPackage
         private string _companyname;
         private string _departmentname;
         private string _groupname;
+
+        private enum Operation
+        {
+            Update,
+            New,
+        }
 
         //添加页面状态
         public AddOrUpdateEmployee()
@@ -30,11 +37,12 @@ namespace FireProductManager.GuiPackage
         }
 
         //修改页面状态
-        public AddOrUpdateEmployee(int employeeId)
+        public AddOrUpdateEmployee(int employeeid)
         {
             InitializeComponent();
             La_addoralter.Text = "修改员工";
-            ShowEmployeeInformation(employeeId);
+            _employeeid = employeeid;
+            ShowEmployeeInformation(_employeeid);
             Bt_addemployee.Visible = false; 
         }
 
@@ -49,7 +57,6 @@ namespace FireProductManager.GuiPackage
         //员工信息展示
         private void ShowEmployeeInformation(int employeeid)
         {
-            _employeeid = employeeid;
             _employeenumber = EmployeeGateway.GetEmployeeInformation(employeeid).em_employeenumber;
             _name = EmployeeGateway.GetEmployeeInformation(employeeid).em_name;
             _sex = EmployeeGateway.GetEmployeeInformation(employeeid).em_sex;
@@ -80,9 +87,22 @@ namespace FireProductManager.GuiPackage
         private void Bt_addemployee_Click(object sender, EventArgs e)
         {
             GetEmployeeInformation();
+            if (!FormValidation(Operation.New)) return;
             EmployeeGateway.NewEmployee(_employeenumber,_name,_sex,_departmentid);
             getSetImagePath.SaveEmployeeImage(_employeenumber);
             AutoClosingMessageBox.Show("员工信息添加成功", "员工信息添加", 1000);
+            Close();
+        }
+
+        //员工信息修改
+        private void bt_alteremployee_Click(object sender, EventArgs e)
+        {
+            GetEmployeeInformation();
+            if (!FormValidation(Operation.Update)) return;
+            EmployeeGateway.UpdateEmployee(_employeeid,_employeenumber,_name,_sex,_departmentid);
+            pb_employeephoto.Image.Dispose();
+            getSetImagePath.SaveEmployeeImage(_employeenumber);
+            AutoClosingMessageBox.Show("员工信息修改成功", "员工信息修改", 1000);
             Close();
         }
 
@@ -95,15 +115,58 @@ namespace FireProductManager.GuiPackage
             else _sex = "女";
         }
 
-        //员工信息修改
-        private void bt_alteremployee_Click(object sender, EventArgs e)
+        //表单验证
+        private bool FormValidation(Operation operation)
         {
-            GetEmployeeInformation();
-            EmployeeGateway.UpdateEmployee(_employeeid,_employeenumber,_name,_sex,_departmentid);
-            pb_employeephoto.Image.Dispose();
-            getSetImagePath.SaveEmployeeImage(_employeenumber);
-            AutoClosingMessageBox.Show("员工信息修改成功", "员工信息修改", 1000);
-            Close();
+            bool validation = true;
+            if (tb_employeesnumber.Text.Trim().Equals(""))
+            {
+                la_errornumber.Visible = true;
+                la_errornumber.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errornumber.Visible = false;
+
+            switch (operation)
+            {
+                case Operation.New:
+                    if (!(EmployeeGateway.NewEmployeeNumber(_employeenumber)))
+                    {
+                        la_errorexistnumber.Visible = true;
+                        la_errorexistnumber.ForeColor = Color.Red;
+                        validation = false;
+                    }
+                    else la_errorexistnumber.Visible = false;
+                    break;
+
+                case Operation.Update:
+                    if (!(EmployeeGateway.UpdateEmployeeNumber(_employeeid,_employeenumber)))
+                    {
+                        la_errorexistnumber.Visible = true;
+                        la_errorexistnumber.ForeColor = Color.Red;
+                        validation = false;
+                    }
+                    else la_errorexistnumber.Visible = false;
+                    break;
+            }
+
+            if (tb_name.Text.Trim().Equals(""))
+            {
+                la_errorname.Visible = true;
+                la_errorname.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorname.Visible = false;
+
+            if (la_group.Text.Trim().Equals("员工小组"))
+            {
+                la_errorgroup.Visible = true;
+                la_errorgroup.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorgroup.Visible = false;
+
+            return validation;
         }
 
         //选择员工的公司、部门、小组信息
