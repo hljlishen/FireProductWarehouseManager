@@ -1,7 +1,6 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
@@ -28,7 +27,7 @@ namespace FireProductManager.GuiPackage
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_administrator.Rows.Add(row);
                 dgv_administrator.Rows[index].Cells[0].Value = dr["ac_id"];
-                dgv_administrator.Rows[index].Cells[1].Value = dr["ac_account"];
+                dgv_administrator.Rows[index].Cells[1].Value = dr["ac_accountNumber"];
                 dgv_administrator.Rows[index].Cells[2].Value = dr["ac_password"];
                 dgv_administrator.Rows[index].Cells[3].Value = dr["ac_authority"];
             }
@@ -52,9 +51,7 @@ namespace FireProductManager.GuiPackage
         private void dgv_administrator_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
-            {
                 contextMenuStrip2.Show(MousePosition);
-            }
         }
 
         private void AddAccount_Click(object sender, EventArgs e)

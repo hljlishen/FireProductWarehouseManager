@@ -11,7 +11,7 @@ namespace FireProductManager.ServiceLogicPackage
         public static bool Login(string accounts,string password)
         {
             SelectSqlMaker maker = new SelectSqlMaker("account");
-            maker.AddAndCondition(new StringEqual("ac_account", accounts));
+            maker.AddAndCondition(new StringEqual("ac_accountNumber", accounts));
             maker.AddAndCondition(new StringEqual("ac_password", password));
             string sql = maker.MakeSelectSql();
             DataTable dt = Query(sql);
@@ -66,7 +66,7 @@ namespace FireProductManager.ServiceLogicPackage
         public static void AddAccount(string accounts,string password,int authority)
         {
             Account account = new Account();
-            account.ac_account = accounts;
+            account.ac_accountNumber = accounts;
             account.ac_password = password;
             account.ac_authority = authority;
             account.Insert();
@@ -76,7 +76,7 @@ namespace FireProductManager.ServiceLogicPackage
         {
             Account account = new Account();
             account.ac_id = accountid;
-            account.ac_account = accounts;
+            account.ac_accountNumber = accounts;
             account.ac_password = password;
             account.ac_authority = authority;
             account.Update();
@@ -85,7 +85,16 @@ namespace FireProductManager.ServiceLogicPackage
         public static string ReturnAccount()
         {
             if (account == null) return null;
-            return account.ac_account;
+            return account.ac_accountNumber;
+        }
+
+        public static bool IsAccountNumberValid(string accountNumber)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("account");
+            maker.AddAndCondition(new StringEqual("ac_accountNumber", accountNumber));
+            string sql = maker.MakeSelectSql();
+            DataTable dt = Query(sql);
+            return dt.Rows.Count > 0;
         }
     }
 }

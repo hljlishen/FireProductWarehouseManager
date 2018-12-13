@@ -17,10 +17,7 @@ namespace FireProductManager.GuiPackage
             StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void btn_return_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void btn_return_Click(object sender, EventArgs e) => Close();
 
         private void ShowDataGridView(DataTable dt)
         {
@@ -34,15 +31,9 @@ namespace FireProductManager.GuiPackage
             }
         }
 
-        private string SelectWeightOfBarrel(int barrelid)
-        {
-            return BarrelGateway.WeightOfBarrel(barrelid).ToString();
-        }
+        private string SelectWeightOfBarrel(int barrelid) => BarrelGateway.WeightOfBarrel(barrelid).ToString();
 
-        private void QueryBarrel_Load(object sender, EventArgs e)
-        {
-            ShowDataGridView(BarrelGateway.NoRemoveBarrelId());
-        }
+        private void QueryBarrel_Load(object sender, EventArgs e) => ShowDataGridView(BarrelGateway.NoRemoveBarrelId());
 
         //右键菜单选择
         //private void dgv_existbarrelid_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)

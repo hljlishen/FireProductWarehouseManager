@@ -11,10 +11,7 @@ namespace FireProductManager.GuiPackage
             InitializeComponent();
         }
 
-        private void tb_password_TextChanged(object sender, EventArgs e)
-        {
-            tb_password.PasswordChar = '*';
-        }
+        private void tb_password_TextChanged(object sender, EventArgs e) => tb_password.PasswordChar = '*';
 
         private void but_login_Click(object sender, EventArgs e)
         {

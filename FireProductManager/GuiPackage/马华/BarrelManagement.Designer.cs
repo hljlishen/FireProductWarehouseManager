@@ -36,15 +36,7 @@
             this.tb_showaddbarrelid = new System.Windows.Forms.TextBox();
             this.btn_removebarrel1 = new System.Windows.Forms.Button();
             this.dgv_packageshow1 = new System.Windows.Forms.DataGridView();
-            this.包id1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.类型1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.规格1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.重量1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_packageshow2 = new System.Windows.Forms.DataGridView();
-            this.包id2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.类型2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.规格2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.重量2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_querybarrel1 = new System.Windows.Forms.Button();
             this.btn_querybarrel2 = new System.Windows.Forms.Button();
             this.lab_showbarrelid1 = new System.Windows.Forms.Label();
@@ -52,6 +44,14 @@
             this.btn_exchangepackageid1 = new System.Windows.Forms.Button();
             this.btn_exchangepackageid2 = new System.Windows.Forms.Button();
             this.btn_removebarrel2 = new System.Windows.Forms.Button();
+            this.包id1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.类型1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.规格1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.重量1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.包id2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.类型2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.规格2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.重量2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_packageshow1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_packageshow2)).BeginInit();
             this.SuspendLayout();
@@ -122,32 +122,6 @@
             this.dgv_packageshow1.Size = new System.Drawing.Size(364, 558);
             this.dgv_packageshow1.TabIndex = 28;
             // 
-            // 包id1
-            // 
-            this.包id1.HeaderText = "袋子id";
-            this.包id1.Name = "包id1";
-            this.包id1.ReadOnly = true;
-            this.包id1.Visible = false;
-            // 
-            // 类型1
-            // 
-            this.类型1.HeaderText = "类型";
-            this.类型1.Name = "类型1";
-            this.类型1.ReadOnly = true;
-            this.类型1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // 规格1
-            // 
-            this.规格1.HeaderText = "规格（mm*mm）";
-            this.规格1.Name = "规格1";
-            this.规格1.ReadOnly = true;
-            // 
-            // 重量1
-            // 
-            this.重量1.HeaderText = "重量";
-            this.重量1.Name = "重量1";
-            this.重量1.ReadOnly = true;
-            // 
             // dgv_packageshow2
             // 
             this.dgv_packageshow2.AllowUserToAddRows = false;
@@ -183,32 +157,6 @@
             this.dgv_packageshow2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_packageshow2.Size = new System.Drawing.Size(364, 558);
             this.dgv_packageshow2.TabIndex = 29;
-            // 
-            // 包id2
-            // 
-            this.包id2.HeaderText = "袋子id";
-            this.包id2.Name = "包id2";
-            this.包id2.ReadOnly = true;
-            this.包id2.Visible = false;
-            // 
-            // 类型2
-            // 
-            this.类型2.HeaderText = "类型";
-            this.类型2.Name = "类型2";
-            this.类型2.ReadOnly = true;
-            this.类型2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // 规格2
-            // 
-            this.规格2.HeaderText = "规格（mm*mm）";
-            this.规格2.Name = "规格2";
-            this.规格2.ReadOnly = true;
-            // 
-            // 重量2
-            // 
-            this.重量2.HeaderText = "重量";
-            this.重量2.Name = "重量2";
-            this.重量2.ReadOnly = true;
             // 
             // btn_querybarrel1
             // 
@@ -282,6 +230,58 @@
             this.btn_removebarrel2.Text = "删除桶";
             this.btn_removebarrel2.UseVisualStyleBackColor = true;
             this.btn_removebarrel2.Click += new System.EventHandler(this.btn_removebarrel2_Click);
+            // 
+            // 包id1
+            // 
+            this.包id1.HeaderText = "袋子id";
+            this.包id1.Name = "包id1";
+            this.包id1.ReadOnly = true;
+            this.包id1.Visible = false;
+            // 
+            // 类型1
+            // 
+            this.类型1.HeaderText = "材料名称";
+            this.类型1.Name = "类型1";
+            this.类型1.ReadOnly = true;
+            this.类型1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // 规格1
+            // 
+            this.规格1.HeaderText = "规格（mm*mm）";
+            this.规格1.Name = "规格1";
+            this.规格1.ReadOnly = true;
+            // 
+            // 重量1
+            // 
+            this.重量1.HeaderText = "重量";
+            this.重量1.Name = "重量1";
+            this.重量1.ReadOnly = true;
+            // 
+            // 包id2
+            // 
+            this.包id2.HeaderText = "袋子id";
+            this.包id2.Name = "包id2";
+            this.包id2.ReadOnly = true;
+            this.包id2.Visible = false;
+            // 
+            // 类型2
+            // 
+            this.类型2.HeaderText = "材料名称";
+            this.类型2.Name = "类型2";
+            this.类型2.ReadOnly = true;
+            this.类型2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // 规格2
+            // 
+            this.规格2.HeaderText = "规格（mm*mm）";
+            this.规格2.Name = "规格2";
+            this.规格2.ReadOnly = true;
+            // 
+            // 重量2
+            // 
+            this.重量2.HeaderText = "重量";
+            this.重量2.Name = "重量2";
+            this.重量2.ReadOnly = true;
             // 
             // BarrelManagement
             // 

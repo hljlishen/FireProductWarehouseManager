@@ -15,6 +15,8 @@ namespace FireProductManager.GuiPackage
         PackageManagement selectPackages;
         ProjectManageme selectProject;
 
+        int projectids = 0;
+
         public PackageBorrowRecord()
         {
             InitializeComponent();
@@ -44,8 +46,12 @@ namespace FireProductManager.GuiPackage
                 dgv_PackageInAndOutrecord.Rows[index].Cells[4].Value = dr["ior_direction"];
                 dgv_PackageInAndOutrecord.Rows[index].Cells[5].Value = dr["ior_timeStmp"];
                 dgv_PackageInAndOutrecord.Rows[index].Cells[6].Value = dr["ior_borrowName"];
+                dgv_PackageInAndOutrecord.Rows[index].Cells[7].Value = dr["ior_projectPassword"];
                 dgv_PackageInAndOutrecord.Rows[index].Cells[8].Value = SelectPackageWeigth((int)dr["ior_packageId"]) + "g";
-                dgv_PackageInAndOutrecord.Rows[index].Cells[11].Value = dr["ior_accountName"];
+
+
+                dgv_PackageInAndOutrecord.Rows[index].Cells[11].Value = dr["ior_accountNumber"];
+                dgv_PackageInAndOutrecord.Rows[index].Cells[12].Value = dr["ior_projectId"];
             }
         }
 
@@ -104,7 +110,7 @@ namespace FireProductManager.GuiPackage
         {
             string packageId = tb_packageid.Text;
             string employeeId = tb_employeeid.Text;
-            string projectId = tb_projectPassword.Text;
+            int projectId = projectids;
             string direction = cb_directquery.Text;
             bool isChoiceTime = false;
             DateTime begintTime = dtp_begin.Value;
@@ -155,6 +161,7 @@ namespace FireProductManager.GuiPackage
 
         private void ProjectSelected(int projectid,string projectPassword)
         {
+            projectids = projectid;
             tb_projectPassword.Text = "";
             tb_projectPassword.Text = projectPassword.ToString();
         }

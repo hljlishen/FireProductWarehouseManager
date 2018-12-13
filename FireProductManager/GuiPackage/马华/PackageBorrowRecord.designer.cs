@@ -56,13 +56,14 @@
             this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.方向 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.领用日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.领用人 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.领用项目令号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.生产单位 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.生产日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.管理员 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.项目id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PackageInAndOutrecord)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.gb_foundrecord.SuspendLayout();
@@ -130,13 +131,14 @@
             this.类型,
             this.规格,
             this.方向,
-            this.领用日期,
+            this.日期,
             this.领用人,
             this.领用项目令号,
             this.重量,
             this.生产单位,
             this.生产日期,
-            this.管理员});
+            this.管理员,
+            this.项目id});
             this.dgv_PackageInAndOutrecord.Location = new System.Drawing.Point(69, 97);
             this.dgv_PackageInAndOutrecord.Name = "dgv_PackageInAndOutrecord";
             this.dgv_PackageInAndOutrecord.ReadOnly = true;
@@ -333,11 +335,11 @@
             this.桶号.HeaderText = "所在桶";
             this.桶号.Name = "桶号";
             this.桶号.ReadOnly = true;
-            this.桶号.Width = 112;
+            this.桶号.Width = 102;
             // 
             // 类型
             // 
-            this.类型.HeaderText = "类型";
+            this.类型.HeaderText = "材料名称";
             this.类型.Name = "类型";
             this.类型.ReadOnly = true;
             this.类型.Width = 113;
@@ -356,12 +358,12 @@
             this.方向.ReadOnly = true;
             this.方向.Width = 112;
             // 
-            // 领用日期
+            // 日期
             // 
-            this.领用日期.HeaderText = "日期";
-            this.领用日期.Name = "领用日期";
-            this.领用日期.ReadOnly = true;
-            this.领用日期.Width = 135;
+            this.日期.HeaderText = "领用日期（归还日期）";
+            this.日期.Name = "日期";
+            this.日期.ReadOnly = true;
+            this.日期.Width = 155;
             // 
             // 领用人
             // 
@@ -375,7 +377,7 @@
             this.领用项目令号.HeaderText = "领用项目令号";
             this.领用项目令号.Name = "领用项目令号";
             this.领用项目令号.ReadOnly = true;
-            this.领用项目令号.Width = 113;
+            this.领用项目令号.Width = 103;
             // 
             // 重量
             // 
@@ -400,10 +402,17 @@
             // 
             // 管理员
             // 
-            this.管理员.HeaderText = "管理员";
+            this.管理员.HeaderText = "管理员编号";
             this.管理员.Name = "管理员";
             this.管理员.ReadOnly = true;
             this.管理员.Width = 90;
+            // 
+            // 项目id
+            // 
+            this.项目id.HeaderText = "项目id";
+            this.项目id.Name = "项目id";
+            this.项目id.ReadOnly = true;
+            this.项目id.Visible = false;
             // 
             // PackageBorrowRecord
             // 
@@ -453,12 +462,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 类型;
         private System.Windows.Forms.DataGridViewTextBoxColumn 规格;
         private System.Windows.Forms.DataGridViewTextBoxColumn 方向;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 领用日期;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 日期;
         private System.Windows.Forms.DataGridViewTextBoxColumn 领用人;
         private System.Windows.Forms.DataGridViewTextBoxColumn 领用项目令号;
         private System.Windows.Forms.DataGridViewTextBoxColumn 重量;
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产单位;
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产日期;
         private System.Windows.Forms.DataGridViewTextBoxColumn 管理员;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 项目id;
     }
 }

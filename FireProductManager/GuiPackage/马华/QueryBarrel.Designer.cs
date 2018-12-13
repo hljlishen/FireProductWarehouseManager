@@ -63,7 +63,6 @@
             this.dgv_existbarrelid.TabIndex = 0;
             this.dgv_existbarrelid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_existbarrelid_CellMouseClick);
             this.dgv_existbarrelid.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_existbarrelid_CellMouseDoubleClick);
-            //this.dgv_existbarrelid.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_existbarrelid_CellMouseDown);
             // 
             // 桶编号
             // 
@@ -91,7 +90,6 @@
             this.选择ToolStripMenuItem.Name = "选择ToolStripMenuItem";
             this.选择ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.选择ToolStripMenuItem.Text = "选择";
-            //this.选择ToolStripMenuItem.Click += new System.EventHandler(this.选择ToolStripMenuItem_Click);
             // 
             // btn_return
             // 
@@ -129,7 +127,7 @@
             // 
             // 类型
             // 
-            this.类型.HeaderText = "类型";
+            this.类型.HeaderText = "材料名称";
             this.类型.Name = "类型";
             // 
             // 规格

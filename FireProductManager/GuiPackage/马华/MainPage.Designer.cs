@@ -188,7 +188,7 @@
             // tb_packagename
             // 
             this.tb_packagename.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_packagename.Location = new System.Drawing.Point(146, 46);
+            this.tb_packagename.Location = new System.Drawing.Point(171, 46);
             this.tb_packagename.Name = "tb_packagename";
             this.tb_packagename.ReadOnly = true;
             this.tb_packagename.Size = new System.Drawing.Size(140, 23);
@@ -270,9 +270,9 @@
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(89, 47);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "类型：";
+            this.label1.Text = "材料名称：";
             // 
             // label9
             // 
@@ -360,7 +360,7 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "类型";
+            this.columnHeader2.Text = "材料名称";
             this.columnHeader2.Width = 90;
             // 
             // columnHeader3

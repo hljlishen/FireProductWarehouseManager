@@ -16,7 +16,7 @@ namespace FireProductManager.GuiPackage
 
         int employeeid = 0;
         int packageid = 0;
-        uint projectid = 0;
+        int projectid = 0;
         bool isPrint = false;
         string accountname = AccountManager.ReturnAccount();
 
@@ -72,10 +72,10 @@ namespace FireProductManager.GuiPackage
                 tb_packagemodel.Text = dr["pa_model"].ToString();
                 tb_packageweight.Text = dr["pa_weight"].ToString();
                 tb_barrelid.Text = dr["pa_barrelId"].ToString();
-                projectid =(uint)dr["pa_projectId"];
+                projectid =(int)dr["pa_projectId"];
             }
 
-            foreach (DataRow dr in ProjectGateway.GetProjectInformation(projectid).Rows)
+            foreach (DataRow dr in ProjectGateway.GetProjectInformation((uint)projectid).Rows)
                 tb_projectpassword.Text = dr["pr_projectPassword"].ToString();
 
             tb_direction.Text = "出库";
@@ -88,8 +88,6 @@ namespace FireProductManager.GuiPackage
             if (!TextBoxCheck())
                 return;
 
-            if (isPrint)
-                PrintAfterBagChange();
             RecordOperationGateway.BorrowPackage(packageid, employeeid, projectid, tb_borrowName.Text, accountname, tb_projectpassword.Text);
             ListViewShow();
             AutoClosingMessageBox.Show("                出库成功", "出库", 1000);
@@ -106,11 +104,11 @@ namespace FireProductManager.GuiPackage
 
             foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQueryinoutrecord(packageid).Rows)
             {
-                projectid = (uint)dr["ior_projectId"];
+                projectid = (int)dr["ior_projectId"];
                 tb_borrowName.Text = dr["ior_borrowName"].ToString();
             }
 
-            foreach (DataRow dr in ProjectGateway.GetProjectInformation(projectid).Rows)
+            foreach (DataRow dr in ProjectGateway.GetProjectInformation((uint)projectid).Rows)
                 tb_projectpassword.Text = dr["pr_projectPassword"].ToString();
 
             tb_barrelid.Text = BarrelGateway.SearchShortweightBarrrelId().ToString();
