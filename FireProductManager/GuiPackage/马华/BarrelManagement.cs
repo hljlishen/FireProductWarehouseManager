@@ -23,7 +23,7 @@ namespace FireProductManager.GuiPackage
         {
             if (!AccountManager.CanReadDatabase()) //没有用
             { 
-                AutoClosingMessageBox.Show("           权限不足无法新建桶", "权限", 1000);
+                AutoClosingMessageBox.Show("           权限不足无法新建桶", "权限", 2000);
                 return;
             }
             tb_showaddbarrelid.Text = BarrelGateway.RecordNewBarrel().ToString() + "号桶";
@@ -39,7 +39,7 @@ namespace FireProductManager.GuiPackage
                 dgv_packageshow1.Rows.Clear();
             }
             else
-                AutoClosingMessageBox.Show("        该桶内有袋子，不能删除", "存在袋子", 1000);
+                AutoClosingMessageBox.Show("        该桶内有袋子，不能删除", "存在袋子", 2000);
         }
 
         private void btn_querybarrel1_Click(object sender, EventArgs e)
@@ -142,7 +142,7 @@ namespace FireProductManager.GuiPackage
                 dgv_packageshow2.Rows.Clear();
             }
             else
-                AutoClosingMessageBox.Show("        该桶内有袋子，不能删除", "存在袋子", 1000);
+                AutoClosingMessageBox.Show("        该桶内有袋子，不能删除", "存在袋子", 2000);
         }
 
         private void btn_exchangepackageid2_Click(object sender, EventArgs e)
@@ -173,12 +173,15 @@ namespace FireProductManager.GuiPackage
         {
             if (barrelid == 0)
             {
-                AutoClosingMessageBox.Show("        请先选择桶号在进行操作", "未选择桶号", 1000);
+                AutoClosingMessageBox.Show("        请先选择桶号在进行删除", "未选择桶号", 2000);
                 return;
             }
             DialogResult result = MessageBox.Show("确认删除该桶吗?", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (result == DialogResult.OK)
+            {
                 BarrelGateway.RemoveBarrel(barrelid);
+                AutoClosingMessageBox.Show("                   删除成功", "删除成功", 2000);
+            }   
         }
 
         //刷新桶
