@@ -70,6 +70,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_projectPassword = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -398,6 +399,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_projectPassword);
             this.groupBox1.Controls.Add(this.tb_borrowName);
             this.groupBox1.Controls.Add(this.btn_packageid);
             this.groupBox1.Controls.Add(this.label8);
@@ -469,6 +471,17 @@
             this.panel1.Size = new System.Drawing.Size(471, 475);
             this.panel1.TabIndex = 0;
             // 
+            // btn_projectPassword
+            // 
+            this.btn_projectPassword.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_projectPassword.Location = new System.Drawing.Point(703, 184);
+            this.btn_projectPassword.Name = "btn_projectPassword";
+            this.btn_projectPassword.Size = new System.Drawing.Size(28, 23);
+            this.btn_projectPassword.TabIndex = 38;
+            this.btn_projectPassword.Text = "...";
+            this.btn_projectPassword.UseVisualStyleBackColor = true;
+            this.btn_projectPassword.Click += new System.EventHandler(this.btn_projectPassword_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -536,5 +549,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_projectPassword;
     }
 }

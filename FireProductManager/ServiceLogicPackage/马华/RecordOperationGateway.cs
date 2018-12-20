@@ -29,20 +29,21 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //借包
-        public static void BorrowPackage(int packageid,int employeeid,int projectId,string borrowName,string accountName,string projectPassword)
+        public static void BorrowPackage(int packageid,int employeeid,int projectId,string borrowName,string accountName,string projectPassword,double outWeight)
         {
             PackageGateway.BorrowPackage(packageid);
 
-            InOutRecord inOutRecord = new InOutRecord();
-            inOutRecord.ior_packageId = (uint)packageid;
-            inOutRecord.ior_employeeId = (uint)employeeid;
-            inOutRecord.ior_projectId = (uint)projectId;
-            inOutRecord.ior_borrowName = borrowName;
-            inOutRecord.ior_accountNumber = accountName;
-            inOutRecord.ior_projectPassword = projectPassword;
-            inOutRecord.ior_direction = "出库";
-            inOutRecord.ior_timeStmp = DateTime.Now;
-            inOutRecord.Insert();
+            OutRecord outRecord = new OutRecord();
+            outRecord.or_packageId = (uint)packageid; 
+            outRecord.or_employeeId = (uint)employeeid;
+            outRecord.or_projectId = (uint)projectId;
+            outRecord.or_borrowName = borrowName;
+            outRecord.or_accountNumber = accountName;
+            outRecord.or_projectPassword = projectPassword;
+            outRecord.or_direction = "出库";
+            outRecord.or_timeStmp = DateTime.Now;
+            outRecord.or_outWeight = outWeight;
+            outRecord.Insert();
         }
 
         //还包

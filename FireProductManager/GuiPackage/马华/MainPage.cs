@@ -13,6 +13,7 @@ namespace FireProductManager.GuiPackage
         PackageBorrowRecord packageBorrowRecord = null;
         ListViewItem listView = new ListViewItem();
         EmployeeManagement selectEmployees;
+        ProjectManageme selectProject;
 
         int employeeid = 0;
         int packageid = 0;
@@ -72,15 +73,12 @@ namespace FireProductManager.GuiPackage
                 tb_packagemodel.Text = dr["pa_model"].ToString();
                 tb_packageweight.Text = dr["pa_weight"].ToString();
                 tb_barrelid.Text = dr["pa_barrelId"].ToString();
-                projectid =(int)dr["pa_projectId"];
             }
-
-            foreach (DataRow dr in ProjectGateway.GetProjectInformation((uint)projectid).Rows)
-                tb_projectpassword.Text = dr["pr_projectPassword"].ToString();
 
             tb_direction.Text = "出库";
             RecordPackageOutboundInformation();
         }
+
 
         private void RecordPackageOutboundInformation()
         {
@@ -88,9 +86,15 @@ namespace FireProductManager.GuiPackage
             if (!TextBoxCheck())
                 return;
 
-            RecordOperationGateway.BorrowPackage(packageid, employeeid, projectid, tb_borrowName.Text, accountname, tb_projectpassword.Text);
+            if (tb_projectpassword.Text == "")
+            {
+                DialogResult result = MessageBox.Show("不选择项目令号", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (result != DialogResult.OK)
+                    return;
+            }
+            RecordOperationGateway.BorrowPackage(packageid, employeeid, projectid, tb_borrowName.Text, accountname, tb_projectpassword.Text, double.Parse(tb_packageweight.Text));
             ListViewShow();
-            AutoClosingMessageBox.Show("                出库成功", "出库", 1000);
+            AutoClosingMessageBox.Show("                出库成功", "出库", 2000);
             EmptyTextBox();
         }
 
@@ -108,9 +112,6 @@ namespace FireProductManager.GuiPackage
                 tb_borrowName.Text = dr["ior_borrowName"].ToString();
             }
 
-            foreach (DataRow dr in ProjectGateway.GetProjectInformation((uint)projectid).Rows)
-                tb_projectpassword.Text = dr["pr_projectPassword"].ToString();
-
             tb_barrelid.Text = BarrelGateway.SearchShortweightBarrrelId().ToString();
             ahdr.WeightGetted += Ahdr_WeightGetted;
             tb_direction.Text = "入库";
@@ -127,7 +128,7 @@ namespace FireProductManager.GuiPackage
                 PrintAfterBagChange();
             RecordOperationGateway.ReturnPackage(packageid, int.Parse(tb_barrelid.Text), employeeid, projectid , tb_borrowName.Text, accountname,double.Parse(tb_packageweight.Text), tb_projectpassword.Text);
             ListViewShow();
-            AutoClosingMessageBox.Show("                入库成功", "入库", 1000);
+            AutoClosingMessageBox.Show("                入库成功", "入库", 2000);
             EmptyTextBox();
         }
 
@@ -143,7 +144,7 @@ namespace FireProductManager.GuiPackage
             packageid = int.Parse(tb_packageid.Text);
             if (!RecordOperationGateway.IsPackageIdValid(packageid))
             {
-                AutoClosingMessageBox.Show("                袋子不存在", "袋子不存在", 1000);
+                AutoClosingMessageBox.Show("                袋子不存在", "袋子不存在", 2000);
                 EmptyTextBox();
                 return;
             }
@@ -228,6 +229,23 @@ namespace FireProductManager.GuiPackage
             packageBorrowRecord.PackageIdSelected += PackageIdSelected;
             packageBorrowRecord.ShowDialog();
             packageBorrowRecord.PackageIdSelected -= PackageIdSelected;
+        }
+
+        private void btn_projectPassword_Click(object sender, EventArgs e)
+        {
+            selectProject = new ProjectManageme();
+            selectProject.FormBorderStyle = FormBorderStyle.FixedSingle;
+            selectProject.ProjectSelecteds += ProjectSelected;
+            selectProject.ShowDialog();
+            selectProject.ProjectSelecteds -= ProjectSelected;
+        }
+
+        private void ProjectSelected(int id, string projectPassword)
+        {
+            tb_projectpassword.Text = "";
+            tb_projectpassword.Text = projectPassword;
+            projectid = id;
+            RecordPackageOutboundInformation();
         }
     }
 }
