@@ -9,6 +9,7 @@ namespace FireProductManager.GuiPackage
     public partial class AdministratorManagement : Form
     {
         AddOrUpdateAministrator addOrUpdateAministrator;
+        Ahdr ahdr = new Ahdr();
 
         public AdministratorManagement()
         {

@@ -66,11 +66,11 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_projectPassword = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btn_projectPassword = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -273,7 +273,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "材料名称：";
+            this.label1.Text = "材料类型：";
             // 
             // label9
             // 
@@ -361,7 +361,7 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "材料名称";
+            this.columnHeader2.Text = "材料类型";
             this.columnHeader2.Width = 90;
             // 
             // columnHeader3
@@ -428,6 +428,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "出入库信息";
             // 
+            // btn_projectPassword
+            // 
+            this.btn_projectPassword.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_projectPassword.Location = new System.Drawing.Point(703, 184);
+            this.btn_projectPassword.Name = "btn_projectPassword";
+            this.btn_projectPassword.Size = new System.Drawing.Size(28, 23);
+            this.btn_projectPassword.TabIndex = 38;
+            this.btn_projectPassword.Text = "...";
+            this.btn_projectPassword.UseVisualStyleBackColor = true;
+            this.btn_projectPassword.Click += new System.EventHandler(this.btn_projectPassword_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lv_inoroutrecord);
@@ -470,17 +481,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(471, 475);
             this.panel1.TabIndex = 0;
-            // 
-            // btn_projectPassword
-            // 
-            this.btn_projectPassword.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_projectPassword.Location = new System.Drawing.Point(703, 184);
-            this.btn_projectPassword.Name = "btn_projectPassword";
-            this.btn_projectPassword.Size = new System.Drawing.Size(28, 23);
-            this.btn_projectPassword.TabIndex = 38;
-            this.btn_projectPassword.Text = "...";
-            this.btn_projectPassword.UseVisualStyleBackColor = true;
-            this.btn_projectPassword.Click += new System.EventHandler(this.btn_projectPassword_Click);
             // 
             // MainPage
             // 

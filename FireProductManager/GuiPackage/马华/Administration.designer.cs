@@ -42,6 +42,7 @@
             this.AccouuntShow = new System.Windows.Forms.Label();
             this.la_account = new System.Windows.Forms.Label();
             this.btn_logout = new System.Windows.Forms.Button();
+            this.仓库数据统计ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,6 +121,7 @@
             this.仓库管理ToolStripMenuItem,
             this.材料管理ToolStripMenuItem,
             this.材料出入记录ToolStripMenuItem,
+            this.仓库数据统计ToolStripMenuItem,
             this.管理员ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -158,6 +160,13 @@
             this.btn_logout.Text = "注销";
             this.btn_logout.UseVisualStyleBackColor = false;
             this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
+            // 
+            // 仓库数据统计ToolStripMenuItem
+            // 
+            this.仓库数据统计ToolStripMenuItem.Name = "仓库数据统计ToolStripMenuItem";
+            this.仓库数据统计ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
+            this.仓库数据统计ToolStripMenuItem.Text = "仓库数据统计";
+            this.仓库数据统计ToolStripMenuItem.Click += new System.EventHandler(this.仓库数据统计ToolStripMenuItem_Click);
             // 
             // Administration
             // 
@@ -198,5 +207,6 @@
         private System.Windows.Forms.Label AccouuntShow;
         private System.Windows.Forms.Label la_account;
         private System.Windows.Forms.Button btn_logout;
+        private System.Windows.Forms.ToolStripMenuItem 仓库数据统计ToolStripMenuItem;
     }
 }

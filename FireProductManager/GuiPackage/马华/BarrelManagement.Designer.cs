@@ -240,7 +240,7 @@
             // 
             // 类型1
             // 
-            this.类型1.HeaderText = "材料名称";
+            this.类型1.HeaderText = "材料类型";
             this.类型1.Name = "类型1";
             this.类型1.ReadOnly = true;
             this.类型1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -266,7 +266,7 @@
             // 
             // 类型2
             // 
-            this.类型2.HeaderText = "材料名称";
+            this.类型2.HeaderText = "材料类型";
             this.类型2.Name = "类型2";
             this.类型2.ReadOnly = true;
             this.类型2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
