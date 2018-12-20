@@ -229,6 +229,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="ServiceLogicPackage\燕廷\ProjectGateway.cs" />
+    <Compile Include="ServiceLogicPackage\燕廷\WebGateData.cs" />
     <Compile Include="ServiceLogicPackage\马华\AccountManager.cs" />
     <Compile Include="ServiceLogicPackage\马华\BarrelGateway.cs" />
     <Compile Include="ServiceLogicPackage\马华\ElectronicScaleDevice.cs" />

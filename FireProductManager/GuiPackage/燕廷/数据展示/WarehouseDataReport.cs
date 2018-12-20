@@ -12,17 +12,7 @@ namespace FireProductManager.GuiPackage
             InitializeComponent();
 
             //初始化浏览器
-            this.initWebBrowser();
-        }
-
-        private void tb_allprojectdata_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WarehouseDataReport_Load(object sender, EventArgs e)
-        {
-            
+            initWebBrowser();
         }
 
         private void initWebBrowser()
@@ -36,6 +26,18 @@ namespace FireProductManager.GuiPackage
             //以防止 WebBrowser 控件响应快捷键。
             webBrowser2.WebBrowserShortcutsEnabled = false;
         }
+
+        private void tb_allprojectdata_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void WarehouseDataReport_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+       
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
