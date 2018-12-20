@@ -1,6 +1,7 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
@@ -11,13 +12,13 @@ namespace FireProductManager.GuiPackage
     public partial class AddOrUpdatePackage : Form 
     {
         private int _id;
-        private string _name;
-        private string _model;
+        private string _type;
+        private string _specifications;
         private double _weigth;
         private int _barrelId;
         private string _isinWarehouse;
+        private string _productionCompany;
         private DateTime _purchaseTime;
-        private int _projectId;
 
         private void AddOrModifyInstrument_Load(object sender, EventArgs e)
         {
@@ -31,6 +32,8 @@ namespace FireProductManager.GuiPackage
             title.Text = "添加材料基本信息";
             cb_isInWareHouse.Text = "在库";
             bt_alterinstrument.Visible = false;
+            la_beginningweight.Visible = false;
+            tb_beginningweight.Visible = false;
         }
 
         //修改材料构造方法
@@ -39,22 +42,26 @@ namespace FireProductManager.GuiPackage
             InitializeComponent();
             title.Text = "修改材料基本信息";
             bt_addinstrument.Visible = false;
+
+            tb_beginningweight.ReadOnly = true;
+
             _id = packageid;
             InstrumentMessageDataTableShowTextBox();
         }
 
-        //仪器信息展示在页面组件中
+        //材料信息展示在页面组件中
         public void InstrumentMessageDataTableShowTextBox()
         {
             DataTable dataTable = PackageGateway.GetPackageInformation(_id);
             DataRow myDr = dataTable.Rows[0];
-            tb_name.Text = myDr["pa_name"].ToString();
-            tb_model.Text = myDr["pa_model"].ToString();
+            tb_type.Text = myDr["pa_type"].ToString();
+            tb_specifications.Text = myDr["pa_specifications"].ToString();
             tb_weigth.Text = myDr["pa_weight"].ToString();
             tb_barrel.Text = myDr["pa_barrelId"].ToString();
             cb_isInWareHouse.Text = PackageGateway.IsinWarehouseDataTypeChangeString((int)myDr["pa_isinWarehouse"]);
+            tb_productioncompany.Text = myDr["pa_productionCompany"].ToString();
             time_purchaseTime.Text = myDr["pa_purchaseTime"].ToString();
-            tb_projectpassword.Text = myDr["pa_projectId"].ToString(); 
+            tb_beginningweight.Text = myDr["pa_beginningweight"].ToString();
         }
 
         //取消按钮
@@ -63,12 +70,13 @@ namespace FireProductManager.GuiPackage
             Close();
         }
 
-        //仪器信息添加
+        //材料信息添加
         private void bt_addinstrument_Click(object sender, EventArgs e)    
         {
             GetPackageInformation();
-            PackageGateway.NewPackage(_name,_model,_weigth,_projectId,_isinWarehouse,_purchaseTime,_projectId);
-            AutoClosingMessageBox.Show("仪器信息保存成功", "仪器信息添加", 1000);
+            if (!FormValidation()) return;
+            PackageGateway.NewPackage(_type,_specifications,_weigth, _barrelId, _isinWarehouse,_productionCompany,_purchaseTime);
+            AutoClosingMessageBox.Show("材料信息保存成功", "仪器信息添加", 1000);
             ResetPageInformation();
             PrintQRCode printQRCode = new PrintQRCode(PackageGateway.GetLastPackage());
         }
@@ -86,14 +94,17 @@ namespace FireProductManager.GuiPackage
             cb_isInWareHouse.Text = "入库";
         }
 
-        //获取仪器信息
+        //获取材料信息
         public void GetPackageInformation()
         {
-            _name = tb_name.Text;
-            _model = tb_model.Text;
+            _type = tb_type.Text;
+            _specifications = tb_specifications.Text;
+            if (tb_weigth.Text.Equals("")) return;
             _weigth = Convert.ToDouble(tb_weigth.Text);
+            if (tb_barrel.Text.Equals("")) return;
             _barrelId = Convert.ToInt32(tb_barrel.Text);
             _isinWarehouse = cb_isInWareHouse.Text;
+            _productionCompany = tb_productioncompany.Text;
             _purchaseTime = Convert.ToDateTime(time_purchaseTime.Text);
         }
 
@@ -101,37 +112,74 @@ namespace FireProductManager.GuiPackage
         private void bt_alterpackage_Click(object sender, EventArgs e)
         {
             GetPackageInformation();
-            PackageGateway.UpdatePackage(_id,_name, _model, _weigth, _projectId, _isinWarehouse, _purchaseTime, _projectId);
-            AutoClosingMessageBox.Show("材料信息修改成功", "仪器信息修改", 1000);
+            if (!FormValidation()) return;
+            PackageGateway.UpdatePackage(_id,_type, _specifications, _weigth, _barrelId, _isinWarehouse, _productionCompany, _purchaseTime);
+            AutoClosingMessageBox.Show("材料信息修改成功", "材料信息修改", 1000);
             Close();
+        }
+
+        //表单验证
+        private bool FormValidation()
+        {
+            bool validation = true;
+
+            if (tb_type.Text.Trim().Equals(""))
+            {
+                la_errortype.Visible = true;
+                la_errortype.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errortype.Visible = false;
+
+            if (tb_specifications.Text.Trim().Equals(""))
+            {
+                la_errorspecifications.Visible = true;
+                la_errorspecifications.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorspecifications.Visible = false;
+
+            if (tb_weigth.Text.Trim().Equals(""))
+            {
+                la_errorweigth.Visible = true;
+                la_errorweigth.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorweigth.Visible = false;
+
+            if (tb_barrel.Text.Trim().Equals(""))
+            {
+                la_errorbarrel.Visible = true;
+                la_errorbarrel.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorbarrel.Visible = false;
+
+            if (tb_productioncompany.Text.Trim().Equals(""))
+            {
+                la_errorproductioncompany.Visible = true;
+                la_errorproductioncompany.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorproductioncompany.Visible = false;
+
+            return validation;
         }
 
         //选择通位置
         private void bt_showshelves_Click(object sender, EventArgs e)
         {
-            //ShelvesTreeView shelvesTreeView = new ShelvesTreeView();
-            //if (shelvesTreeView.ShowDialog() == DialogResult.OK)
-            //{
-            //    tb_position.Text = shelvesTreeView.locationName;
-            //    placeidcoding = shelvesTreeView.PlaceIdCoding;
-            //}
+            QueryBarrel queryBarrel = new QueryBarrel();
+            queryBarrel.FormBorderStyle = FormBorderStyle.FixedSingle;
+            queryBarrel.BarrelIdSelected += BarrelIdSelected;
+            queryBarrel.ShowDialog();
+            queryBarrel.BarrelIdSelected -= BarrelIdSelected;
         }
 
-        //选择项目令号
-        private void bt_changeprojectpassword_Click(object sender, EventArgs e)
+        //显示桶编号
+        private void BarrelIdSelected(int barrelid)
         {
-            ProjectManageme projectManageme = new ProjectManageme();
-            projectManageme.FormBorderStyle = FormBorderStyle.FixedSingle;
-            projectManageme.ProjectSelecteds += ProjectSelecteds;
-            projectManageme.ShowDialog();
-            projectManageme.ProjectSelecteds -= ProjectSelecteds;
-        }
-
-        //显示项目令号
-        private void ProjectSelecteds(int projectid, string projectpassword)
-        {
-            _projectId = projectid;
-            tb_projectpassword.Text = projectpassword;
+            tb_barrel.Text = barrelid.ToString();
         }
     }
 } 

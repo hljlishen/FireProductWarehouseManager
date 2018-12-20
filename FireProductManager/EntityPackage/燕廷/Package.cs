@@ -11,13 +11,14 @@ namespace FireProductManager.EntityPackage
     {
         //public uint? pa_id { get; set; }
         public int? pa_id { get; set; }
-        public string pa_name { get; set; }
-        public string pa_model { get; set; }
+        public string pa_type { get; set; }
+        public string pa_specifications { get; set; }
         public double? pa_weight { get; set; }
         public int? pa_barrelId { get; set; }
         public int? pa_isinWarehouse { get; set; }
+        public string pa_productionCompany { get; set; }
         public DateTime? pa_purchaseTime { get; set; }
-        public int? pa_projectId { get; set; }
+        public double? pa_beginningweight { get; set; }
 
         public Package() : base("package", "pa_id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {

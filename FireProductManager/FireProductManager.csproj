@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -102,6 +103,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\数据展示\WarehouseDataReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\数据展示\WarehouseDataReport.Designer.cs">
+      <DependentUpon>WarehouseDataReport.cs</DependentUpon>
     </Compile>
     <Compile Include="GuiPackage\燕廷\锂材料管理\PrintQrCode.cs">
       <SubType>Form</SubType>
@@ -240,6 +247,9 @@
     <EmbeddedResource Include="GuiPackage\燕廷\员工管理页面\EmployeeManagement.resx">
       <DependentUpon>EmployeeManagement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\燕廷\数据展示\WarehouseDataReport.resx">
+      <DependentUpon>WarehouseDataReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\燕廷\锂材料管理\AddOrUpdatePackage.resx">
       <DependentUpon>AddOrUpdatePackage.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,9 +311,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GuiPackage\燕廷\数据展示\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="MySql.Data.dll" />
   </ItemGroup>

@@ -13,7 +13,13 @@ namespace FireProductManager.GuiPackage
 {
     public partial class AddOrUpdateProject : Form
     {
-        private uint _projectid;
+        private int _projectid;
+
+        private enum Operation
+        {
+            Update,
+            New,
+        }
 
         //项目添加构造方法
         public AddOrUpdateProject()
@@ -30,7 +36,7 @@ namespace FireProductManager.GuiPackage
             InitializeComponent();
             la_addoralter.Text = "项目修改";
 
-            _projectid = (uint)projectid;
+            _projectid = projectid;
             ShowProjectInformation();
 
             bt_addproject.Visible = false;
@@ -39,7 +45,7 @@ namespace FireProductManager.GuiPackage
         //项目信息修改
         private void bt_updateproject_Click(object sender, EventArgs e)
         {
-            if (!FormValidation()) return;
+            if (!FormValidation(Operation.Update)) return;
             ProjectGateway.UpdateProject(_projectid,tb_name.Text, tb_projectpassword.Text, tb_note.Text);
             Close();
         }
@@ -47,15 +53,16 @@ namespace FireProductManager.GuiPackage
         //项目信息添加
         private void Bt_addproject_Click(object sender, EventArgs e)
         {
-            if (!FormValidation()) return;
+            if (!FormValidation(Operation.New)) return;
             ProjectGateway.NewProject(tb_name.Text,tb_projectpassword.Text,tb_note.Text);
             Close();
         }
 
         //表单验证
-        private bool FormValidation()
+        private bool FormValidation(Operation operation)
         {
             bool validation = true;
+
             if (tb_name.Text.Trim().Equals(""))
             {
                 la_errorname.Visible = true;
@@ -71,6 +78,29 @@ namespace FireProductManager.GuiPackage
                 validation = false;
             }
             else la_errorprojectpassword.Visible = false;
+
+            switch (operation)
+            {
+                case Operation.New:
+                    if (!(ProjectGateway.NewValidationProjectPassWord(tb_projectpassword.Text)))
+                    {
+                        la_projectpasswordrepeat.Visible = true;
+                        la_projectpasswordrepeat.ForeColor = Color.Red;
+                        validation = false;
+                    }
+                    else la_projectpasswordrepeat.Visible = false;
+                    break;
+
+                case Operation.Update:
+                    if (!(ProjectGateway.UpdateValidationProjectPassWord(_projectid, tb_projectpassword.Text)))
+                    {
+                        la_projectpasswordrepeat.Visible = true;
+                        la_projectpasswordrepeat.ForeColor = Color.Red;
+                        validation = false;
+                    }
+                    else la_projectpasswordrepeat.Visible = false;
+                    break;
+            }
 
             if (tb_note.Text.Trim().Equals(""))
             {

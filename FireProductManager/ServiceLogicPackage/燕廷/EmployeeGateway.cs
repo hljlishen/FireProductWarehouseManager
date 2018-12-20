@@ -52,11 +52,11 @@ namespace FireProductManager.ServiceLogicPackage
             employee.Insert();
         }
 
-        //添加EmployeeNumber
-        public static bool NewEmployeeNumber(string employeeNumber)
+        //添加-验证EmployeeNumber
+        public static bool NewValidationEmployeeNumber(string employeeNumber)
         {
             SelectSqlMaker maker = new SelectSqlMaker("employee");
-            maker.AddAndCondition(new IntEqual("em_employeenumber", employeeNumber));
+            maker.AddAndCondition(new StringEqual("em_employeenumber", employeeNumber));
             DataTable dataTable = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dataTable.Rows.Count != 0)
             {
@@ -65,8 +65,8 @@ namespace FireProductManager.ServiceLogicPackage
             return true;
         }
 
-        //更新EmployeeNumber
-        public static bool UpdateEmployeeNumber(int id,string employeeNumber)
+        //更新-验证EmployeeNumber
+        public static bool UpdateValidationEmployeeNumber(int id,string employeeNumber)
         {
             SelectSqlMaker maker = new SelectSqlMaker("employee");
             maker.AddAndCondition(new IntEqual("em_id", id));
@@ -76,7 +76,7 @@ namespace FireProductManager.ServiceLogicPackage
             if (em.em_employeenumber.Equals(employeeNumber)) return true;
 
             SelectSqlMaker maker1 = new SelectSqlMaker("employee");
-            maker.AddAndCondition(new IntEqual("em_employeenumber", employeeNumber));
+            maker.AddAndCondition(new StringEqual("em_employeenumber", employeeNumber));
             DataTable dataTable1 = ActiveRecord.Select(maker1.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dataTable1.Rows.Count != 0)
             {

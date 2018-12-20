@@ -51,9 +51,9 @@ namespace FireProductManager.ServiceLogicPackage
             {
                 foreach (string model in list)
                 {
-                    if (!model.Equals((string)dr["pa_modle"]))
+                    if (!model.Equals((string)dr["pa_specifications"]))
                     {
-                        list.Add((string)dr["pa_modle"]);
+                        list.Add((string)dr["pa_specifications"]);
                     }
                 }
             }
@@ -63,6 +63,26 @@ namespace FireProductManager.ServiceLogicPackage
 
         //获取仓库全部材料的类型与重量
         public static Dictionary<string, double> StatisticAllModelWeightsInWarehouse()
+        {
+            Package package = new Package();
+            SelectSqlMaker maker = new SelectSqlMaker("Package");
+            DataTable dataTable = package.Select(maker.MakeSelectSql());
+            Dictionary<string, double> keyValuePairs = GetModleOfWeight(dataTable);
+            return keyValuePairs;
+        }
+
+        //获取项目再库材料的类型与重量
+        public static Dictionary<string, double> StatisticAllModelWeightsProjectInWarehouse()
+        {
+            Package package = new Package();
+            SelectSqlMaker maker = new SelectSqlMaker("Package");
+            DataTable dataTable = package.Select(maker.MakeSelectSql());
+            Dictionary<string, double> keyValuePairs = GetModleOfWeight(dataTable);
+            return keyValuePairs;
+        }
+
+        //获取项目使用材料的类型与重量
+        public static Dictionary<string, double> StatisticAllModelWeightsProject()
         {
             Package package = new Package();
             SelectSqlMaker maker = new SelectSqlMaker("Package");
@@ -82,7 +102,7 @@ namespace FireProductManager.ServiceLogicPackage
 
             foreach (DataRow dr in dt.Rows)
             {
-                string model = dr["pa_modle"].ToString();
+                string model = dr["pa_specifications"].ToString();
                 if (allModel.Contains(model))
                     continue;
                 allModel.Add(model);
@@ -109,14 +129,14 @@ namespace FireProductManager.ServiceLogicPackage
             Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
             foreach (DataRow dr in dataTable.Rows)  
             {
-                string key = (string)dr["pa_modle"];
+                string key = (string)dr["pa_specifications"];
                 if (keyValuePairs.Keys.Contains(key))
                 {
                     keyValuePairs[key] += (double)dr["em_weight"];
                 }
                 else
                 {
-                    keyValuePairs.Add((string)dr["pa_modle"], (double)dr["em_weight"]);
+                    keyValuePairs.Add((string)dr["pa_specifications"], (double)dr["em_weight"]);
                 }
             }
             return keyValuePairs;
@@ -161,33 +181,32 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //添加材料 
-        public static void NewPackage(string name, string model, double weigth, int barrelId, string isinWarehouse, DateTime purchaseTime ,int projectId)
+        public static void NewPackage(string type, string specifications, double weigth, int barrelId, string isinWarehouse, string productionCompany, DateTime purchaseTime)
         {
             Package package = new Package();
-            package.pa_name = name;
-            package.pa_model = model;
+            package.pa_type = type;
+            package.pa_specifications = specifications;
             package.pa_weight = weigth;
             package.pa_barrelId = barrelId;
             package.pa_isinWarehouse = IsinWarehouseDataTypeChangeInt(isinWarehouse);
+            package.pa_productionCompany = productionCompany;
             package.pa_purchaseTime = purchaseTime;
-            package.pa_projectId = projectId;
-            FormValidation(package);
+            package.pa_beginningweight = weigth;
             package.Insert();
         }
 
         //修改材料 
-        public static void UpdatePackage(int id ,string name, string model, double weigth, int barrelId, string isinWarehouse, DateTime purchaseTime, int projectId)
+        public static void UpdatePackage(int id ,string type, string specifications, double weigth, int barrelId, string isinWarehouse,string productionCompany, DateTime purchaseTime)
         {
             Package package = new Package();
             package.pa_id = id;
-            package.pa_name = name;
-            package.pa_model = model;
+            package.pa_type = type;
+            package.pa_specifications = specifications;
             package.pa_weight = weigth;
             package.pa_barrelId = barrelId;
             package.pa_isinWarehouse = IsinWarehouseDataTypeChangeInt(isinWarehouse);
+            package.pa_productionCompany = productionCompany;
             package.pa_purchaseTime = purchaseTime;
-            package.pa_projectId = projectId;
-            FormValidation(package);
             package.Update();
         }
 
@@ -197,12 +216,6 @@ namespace FireProductManager.ServiceLogicPackage
             Package package = new Package();
             package.pa_id = packageId;
             package.Delete();
-        }
-
-        //表单验证
-        private static void FormValidation(Package package)
-        {
-            
         }
 
         //在库状态转化为int
@@ -223,15 +236,15 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //材料搜索
-        public static DataTable GetQueryPackage(string name, string model, string barrelId, string isinWarehouse, string projectId)
+        public static DataTable GetQueryPackage(string type, string specifications, string barrelId,string productioncompany, string isinWarehouse)
         {
             int _isInWareHouse = isinWarehouse.Equals("全部") ? -1 : IsinWarehouseDataTypeChangeInt(isinWarehouse);
             SelectSqlMaker maker = new SelectSqlMaker("package");
-            maker.AddAndCondition(new StringLike("pa_name", name));
-            maker.AddAndCondition(new StringLike("pa_model", model));
+            maker.AddAndCondition(new StringLike("pa_type", type));
+            maker.AddAndCondition(new StringLike("pa_specifications", specifications));
             maker.AddAndCondition(new IntEqual("pa_barrelId", barrelId));
-            if(_isInWareHouse !=-1) maker.AddAndCondition(new IntEqual("pa_isinWarehouse", _isInWareHouse));
-            maker.AddAndCondition(new IntEqual("pa_projectId", projectId));
+            maker.AddAndCondition(new StringLike("pa_productioncompany", productioncompany));
+            if (_isInWareHouse !=-1) maker.AddAndCondition(new IntEqual("pa_isinWarehouse", _isInWareHouse));
             return Query(maker.MakeSelectSql()); 
         }
 

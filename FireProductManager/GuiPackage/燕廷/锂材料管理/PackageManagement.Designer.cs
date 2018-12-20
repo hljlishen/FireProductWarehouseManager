@@ -31,14 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageManagement));
             this.la_barrrlid = new System.Windows.Forms.Label();
-            this.tb_barrdlid = new System.Windows.Forms.TextBox();
+            this.tb_barrelid = new System.Windows.Forms.TextBox();
             this.bt_querypackage = new System.Windows.Forms.Button();
             this.dgv_instrumentinformation = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.la_project = new System.Windows.Forms.Label();
-            this.tb_project = new System.Windows.Forms.TextBox();
-            this.la_name = new System.Windows.Forms.Label();
-            this.tb_name = new System.Windows.Forms.TextBox();
+            this.bt_changebarrel = new System.Windows.Forms.Button();
+            this.la_productioncompany = new System.Windows.Forms.Label();
+            this.tb_productioncompany = new System.Windows.Forms.TextBox();
+            this.la_type = new System.Windows.Forms.Label();
+            this.tb_type = new System.Windows.Forms.TextBox();
             this.tb_model = new System.Windows.Forms.TextBox();
             this.la_model = new System.Windows.Forms.Label();
             this.cb_IsInWareHouse = new System.Windows.Forms.ComboBox();
@@ -50,13 +51,14 @@
             this.tsm_deletepackage = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_newpackage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsm_new = new System.Windows.Forms.ToolStripMenuItem();
-            this.材料名称 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.材料类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.材料规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.型号规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.生产厂商 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.生产公司 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.货架位置 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.项目令号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.初始重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.在库状态 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_instrumentinformation)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -68,26 +70,26 @@
             // 
             this.la_barrrlid.AutoSize = true;
             this.la_barrrlid.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_barrrlid.Location = new System.Drawing.Point(529, 20);
+            this.la_barrrlid.Location = new System.Drawing.Point(523, 20);
             this.la_barrrlid.Name = "la_barrrlid";
             this.la_barrrlid.Size = new System.Drawing.Size(65, 20);
             this.la_barrrlid.TabIndex = 1;
             this.la_barrrlid.Text = "所在桶：";
             // 
-            // tb_barrdlid
+            // tb_barrelid
             // 
-            this.tb_barrdlid.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_barrdlid.Location = new System.Drawing.Point(608, 17);
-            this.tb_barrdlid.Name = "tb_barrdlid";
-            this.tb_barrdlid.Size = new System.Drawing.Size(120, 26);
-            this.tb_barrdlid.TabIndex = 2;
+            this.tb_barrelid.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_barrelid.Location = new System.Drawing.Point(594, 17);
+            this.tb_barrelid.Name = "tb_barrelid";
+            this.tb_barrelid.Size = new System.Drawing.Size(80, 26);
+            this.tb_barrelid.TabIndex = 2;
             // 
             // bt_querypackage
             // 
             this.bt_querypackage.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bt_querypackage.Location = new System.Drawing.Point(1183, 16);
+            this.bt_querypackage.Location = new System.Drawing.Point(1187, 18);
             this.bt_querypackage.Name = "bt_querypackage";
-            this.bt_querypackage.Size = new System.Drawing.Size(79, 30);
+            this.bt_querypackage.Size = new System.Drawing.Size(80, 26);
             this.bt_querypackage.TabIndex = 3;
             this.bt_querypackage.Text = "搜索";
             this.bt_querypackage.UseVisualStyleBackColor = true;
@@ -98,13 +100,14 @@
             this.dgv_instrumentinformation.AllowUserToAddRows = false;
             this.dgv_instrumentinformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_instrumentinformation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.材料名称,
-            this.ID,
+            this.材料类型,
+            this.材料规格,
             this.name,
             this.型号规格,
             this.生产厂商,
+            this.生产公司,
             this.货架位置,
-            this.项目令号,
+            this.初始重量,
             this.在库状态});
             this.dgv_instrumentinformation.Location = new System.Drawing.Point(73, 95);
             this.dgv_instrumentinformation.MultiSelect = false;
@@ -119,17 +122,18 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.la_project);
-            this.groupBox1.Controls.Add(this.tb_project);
-            this.groupBox1.Controls.Add(this.la_name);
-            this.groupBox1.Controls.Add(this.tb_name);
+            this.groupBox1.Controls.Add(this.bt_changebarrel);
+            this.groupBox1.Controls.Add(this.la_productioncompany);
+            this.groupBox1.Controls.Add(this.tb_productioncompany);
+            this.groupBox1.Controls.Add(this.la_type);
+            this.groupBox1.Controls.Add(this.tb_type);
             this.groupBox1.Controls.Add(this.tb_model);
             this.groupBox1.Controls.Add(this.la_model);
             this.groupBox1.Controls.Add(this.cb_IsInWareHouse);
             this.groupBox1.Controls.Add(this.la_IsInWareHouse);
             this.groupBox1.Controls.Add(this.bt_querypackage);
             this.groupBox1.Controls.Add(this.la_barrrlid);
-            this.groupBox1.Controls.Add(this.tb_barrdlid);
+            this.groupBox1.Controls.Add(this.tb_barrelid);
             this.groupBox1.Location = new System.Drawing.Point(73, 24);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1273, 55);
@@ -137,55 +141,66 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "材料搜索";
             // 
-            // la_project
+            // bt_changebarrel
             // 
-            this.la_project.AutoSize = true;
-            this.la_project.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_project.Location = new System.Drawing.Point(947, 20);
-            this.la_project.Name = "la_project";
-            this.la_project.Size = new System.Drawing.Size(79, 20);
-            this.la_project.TabIndex = 73;
-            this.la_project.Text = "项目命号：";
+            this.bt_changebarrel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.bt_changebarrel.Location = new System.Drawing.Point(682, 18);
+            this.bt_changebarrel.Name = "bt_changebarrel";
+            this.bt_changebarrel.Size = new System.Drawing.Size(30, 26);
+            this.bt_changebarrel.TabIndex = 78;
+            this.bt_changebarrel.Text = "...";
+            this.bt_changebarrel.UseVisualStyleBackColor = true;
+            this.bt_changebarrel.Click += new System.EventHandler(this.bt_changebarrel_Click);
             // 
-            // tb_project
+            // la_productioncompany
             // 
-            this.tb_project.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_project.Location = new System.Drawing.Point(1032, 17);
-            this.tb_project.Name = "tb_project";
-            this.tb_project.Size = new System.Drawing.Size(126, 26);
-            this.tb_project.TabIndex = 74;
+            this.la_productioncompany.AutoSize = true;
+            this.la_productioncompany.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_productioncompany.Location = new System.Drawing.Point(759, 20);
+            this.la_productioncompany.Name = "la_productioncompany";
+            this.la_productioncompany.Size = new System.Drawing.Size(79, 20);
+            this.la_productioncompany.TabIndex = 75;
+            this.la_productioncompany.Text = "生产公司：";
             // 
-            // la_name
+            // tb_productioncompany
             // 
-            this.la_name.AutoSize = true;
-            this.la_name.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_name.Location = new System.Drawing.Point(44, 20);
-            this.la_name.Name = "la_name";
-            this.la_name.Size = new System.Drawing.Size(79, 20);
-            this.la_name.TabIndex = 71;
-            this.la_name.Text = "材料名称：";
+            this.tb_productioncompany.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_productioncompany.Location = new System.Drawing.Point(844, 17);
+            this.tb_productioncompany.Name = "tb_productioncompany";
+            this.tb_productioncompany.Size = new System.Drawing.Size(120, 26);
+            this.tb_productioncompany.TabIndex = 76;
             // 
-            // tb_name
+            // la_type
             // 
-            this.tb_name.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_name.Location = new System.Drawing.Point(123, 17);
-            this.tb_name.Name = "tb_name";
-            this.tb_name.Size = new System.Drawing.Size(126, 26);
-            this.tb_name.TabIndex = 72;
+            this.la_type.AutoSize = true;
+            this.la_type.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_type.Location = new System.Drawing.Point(47, 20);
+            this.la_type.Name = "la_type";
+            this.la_type.Size = new System.Drawing.Size(79, 20);
+            this.la_type.TabIndex = 71;
+            this.la_type.Text = "材料类型：";
+            // 
+            // tb_type
+            // 
+            this.tb_type.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_type.Location = new System.Drawing.Point(132, 17);
+            this.tb_type.Name = "tb_type";
+            this.tb_type.Size = new System.Drawing.Size(110, 26);
+            this.tb_type.TabIndex = 72;
             // 
             // tb_model
             // 
             this.tb_model.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_model.Location = new System.Drawing.Point(370, 17);
             this.tb_model.Name = "tb_model";
-            this.tb_model.Size = new System.Drawing.Size(120, 26);
+            this.tb_model.Size = new System.Drawing.Size(110, 26);
             this.tb_model.TabIndex = 22;
             // 
             // la_model
             // 
             this.la_model.AutoSize = true;
             this.la_model.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_model.Location = new System.Drawing.Point(285, 20);
+            this.la_model.Location = new System.Drawing.Point(286, 20);
             this.la_model.Name = "la_model";
             this.la_model.Size = new System.Drawing.Size(79, 20);
             this.la_model.TabIndex = 21;
@@ -200,16 +215,16 @@
             "全部",
             "在库",
             "不在库"});
-            this.cb_IsInWareHouse.Location = new System.Drawing.Point(846, 20);
+            this.cb_IsInWareHouse.Location = new System.Drawing.Point(1082, 20);
             this.cb_IsInWareHouse.Name = "cb_IsInWareHouse";
-            this.cb_IsInWareHouse.Size = new System.Drawing.Size(66, 20);
+            this.cb_IsInWareHouse.Size = new System.Drawing.Size(58, 20);
             this.cb_IsInWareHouse.TabIndex = 19;
             // 
             // la_IsInWareHouse
             // 
             this.la_IsInWareHouse.AutoSize = true;
             this.la_IsInWareHouse.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_IsInWareHouse.Location = new System.Drawing.Point(766, 20);
+            this.la_IsInWareHouse.Location = new System.Drawing.Point(1002, 20);
             this.la_IsInWareHouse.Name = "la_IsInWareHouse";
             this.la_IsInWareHouse.Size = new System.Drawing.Size(79, 20);
             this.la_IsInWareHouse.TabIndex = 6;
@@ -270,18 +285,18 @@
             this.tsm_new.Text = "添加";
             this.tsm_new.Click += new System.EventHandler(this.tsm_newpackage_Click);
             // 
-            // 材料名称
+            // 材料类型
             // 
-            this.材料名称.HeaderText = "材料名称";
-            this.材料名称.Name = "材料名称";
-            this.材料名称.Width = 210;
+            this.材料类型.HeaderText = "材料类型";
+            this.材料类型.Name = "材料类型";
+            this.材料类型.Width = 150;
             // 
-            // ID
+            // 材料规格
             // 
-            this.ID.HeaderText = "材料型号";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 210;
+            this.材料规格.HeaderText = "材料规格";
+            this.材料规格.Name = "材料规格";
+            this.材料规格.ReadOnly = true;
+            this.材料规格.Width = 210;
             // 
             // name
             // 
@@ -303,18 +318,24 @@
             this.生产厂商.Name = "生产厂商";
             this.生产厂商.ReadOnly = true;
             // 
+            // 生产公司
+            // 
+            this.生产公司.HeaderText = "生产公司";
+            this.生产公司.Name = "生产公司";
+            this.生产公司.Width = 210;
+            // 
             // 货架位置
             // 
-            this.货架位置.HeaderText = "入库时间";
+            this.货架位置.HeaderText = "生产日期";
             this.货架位置.Name = "货架位置";
             this.货架位置.ReadOnly = true;
-            this.货架位置.Width = 250;
+            this.货架位置.Width = 150;
             // 
-            // 项目令号
+            // 初始重量
             // 
-            this.项目令号.HeaderText = "项目令号";
-            this.项目令号.Name = "项目令号";
-            this.项目令号.Width = 200;
+            this.初始重量.HeaderText = "初始重量(g)";
+            this.初始重量.Name = "初始重量";
+            this.初始重量.Width = 150;
             // 
             // 在库状态
             // 
@@ -350,7 +371,7 @@
 
         #endregion
         private System.Windows.Forms.Label la_barrrlid;
-        private System.Windows.Forms.TextBox tb_barrdlid;
+        private System.Windows.Forms.TextBox tb_barrelid;
         private System.Windows.Forms.Button bt_querypackage;
         public System.Windows.Forms.DataGridView dgv_instrumentinformation;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -358,24 +379,26 @@
         private System.Windows.Forms.ComboBox cb_IsInWareHouse;
         private System.Windows.Forms.Label la_model;
         private System.Windows.Forms.TextBox tb_model;
-        private System.Windows.Forms.Label la_name;
-        private System.Windows.Forms.TextBox tb_name;
+        private System.Windows.Forms.Label la_type;
+        private System.Windows.Forms.TextBox tb_type;
         private System.Windows.Forms.Button bt_dgvchangeexcel;
-        private System.Windows.Forms.Label la_project;
-        private System.Windows.Forms.TextBox tb_project;
         private System.Windows.Forms.ContextMenuStrip cms_packageoperation;
         private System.Windows.Forms.ToolStripMenuItem tsm_newpackage;
         private System.Windows.Forms.ToolStripMenuItem tsm_updatepackage;
         private System.Windows.Forms.ToolStripMenuItem tsm_deletepackage;
         private System.Windows.Forms.ContextMenuStrip cms_newpackage;
         private System.Windows.Forms.ToolStripMenuItem tsm_new;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 材料名称;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.Label la_productioncompany;
+        private System.Windows.Forms.TextBox tb_productioncompany;
+        private System.Windows.Forms.Button bt_changebarrel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 材料类型;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 材料规格;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn 型号规格;
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产厂商;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 生产公司;
         private System.Windows.Forms.DataGridViewTextBoxColumn 货架位置;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 项目令号;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 初始重量;
         private System.Windows.Forms.DataGridViewTextBoxColumn 在库状态;
     }
 }

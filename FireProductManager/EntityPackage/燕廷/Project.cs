@@ -9,7 +9,7 @@ namespace FireProductManager.EntityPackage
 {
     class Project : ActiveRecord
     {
-        public uint? pr_id { get; set; }
+        public int? pr_id { get; set; }
         public string pr_name { get; set; }
         public string pr_projectPassword { get; set; }
         public string pr_note { get; set; }
