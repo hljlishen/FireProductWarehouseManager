@@ -1,5 +1,4 @@
-﻿using FireProductManager.EntityPackage;
-using FireProductManager.ServiceLogicPackage;
+﻿using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
@@ -18,7 +17,6 @@ namespace FireProductManager.GuiPackage
         private MainPage mainPage = null;
         private AdminLogin login = null;
         private ProjectManageme projectManageme = null;
-        Administration administration = null;
 
         public Administration()
         {
@@ -43,15 +41,17 @@ namespace FireProductManager.GuiPackage
 
         private void btn_logout_Click(object sender, EventArgs e)
         {
+            this.Text = "";
             AccountManager.Logout();
             出入库登记ToolStripMenultem_Click(sender,e);
             ShowLoginWindow();
+            this.Text = "登录的管理员编号为：" + AccountManager.ReturnAccount();
         }
 
         private void Administration_Load(object sender, EventArgs e)
         {
             ShowLoginWindow();
-            this.Text ="登录的账号：" + AccountManager.ReturnAccount();
+            this.Text ="登录的管理员编号为：" + AccountManager.ReturnAccount();
             出入库登记ToolStripMenultem_Click(sender, e);
             
         }

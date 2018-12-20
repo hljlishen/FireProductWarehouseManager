@@ -27,45 +27,16 @@ namespace FireProductManager.GuiPackage
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_administrator.Rows.Add(row);
                 dgv_administrator.Rows[index].Cells[0].Value = dr["ac_id"];
-                dgv_administrator.Rows[index].Cells[1].Value = dr["ac_account"];
+                dgv_administrator.Rows[index].Cells[1].Value = dr["ac_accountNumber"];
                 dgv_administrator.Rows[index].Cells[2].Value = dr["ac_password"];
                 dgv_administrator.Rows[index].Cells[3].Value = dr["ac_authority"];
             }
         }
 
-        private void dgv_administrator_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //删除
-            if (e.ColumnIndex == 4)
-            {
-                if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    int accountid =(int)dgv_administrator.CurrentRow.Cells[0].Value;
-                    AccountManager.RemoveAccount(accountid);
-                    AutoClosingMessageBox.Show("            管理员删除成功", "删除管理员", 1000);
-                    dgv_administrator.Rows.RemoveAt(e.RowIndex);//从DGV移除
-                }
-            }
-            //修改
-            if (e.ColumnIndex == 5)
-            {
-                if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    int accountid = (int)dgv_administrator.CurrentRow.Cells[0].Value;
-                    string account = dgv_administrator.CurrentRow.Cells[1].Value.ToString();
-                    string password = dgv_administrator.CurrentRow.Cells[2].Value.ToString();
-                    int authority = (int)dgv_administrator.CurrentRow.Cells[3].Value;
-                    addOrUpdateAministrator.Close();
-                    RefreshDataGridViewShow();
-                    addOrUpdateAministrator = new AddOrUpdateAministrator(accountid, account, password, authority);
-                    AddOrUpdatePageSwitching(addOrUpdateAministrator);
-                }
-            }
-        }
-
-        private void AdministratorManagement_Load(object sender, EventArgs e)
+        public void AdministratorManagement_Load(object sender, EventArgs e)
         {
             addOrUpdateAministrator = new AddOrUpdateAministrator();
+            addOrUpdateAministrator.RefreshData += RefreshDataGridViewShow;
             AddOrUpdatePageSwitching(addOrUpdateAministrator);
         }
 
@@ -77,12 +48,69 @@ namespace FireProductManager.GuiPackage
             addOrUpdateAministrator.Show();
         }
 
-        private void btn_addaccount_Click(object sender, EventArgs e)
+        private void dgv_administrator_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+                contextMenuStrip2.Show(MousePosition);
+        }
+
+        private void AddAccount_Click(object sender, EventArgs e)
         {
             addOrUpdateAministrator.Close();
-            RefreshDataGridViewShow();
             addOrUpdateAministrator = new AddOrUpdateAministrator();
+            addOrUpdateAministrator.RefreshData += RefreshDataGridViewShow;
             AddOrUpdatePageSwitching(addOrUpdateAministrator);
+        }
+
+        private void UpdateAccount_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int accountid = (int)dgv_administrator.CurrentRow.Cells[0].Value;
+                string account = dgv_administrator.CurrentRow.Cells[1].Value.ToString();
+                string password = dgv_administrator.CurrentRow.Cells[2].Value.ToString();
+                int authority = (int)dgv_administrator.CurrentRow.Cells[3].Value;
+                addOrUpdateAministrator.Close();
+                addOrUpdateAministrator = new AddOrUpdateAministrator(accountid, account, password, authority);
+                addOrUpdateAministrator.RefreshData += RefreshDataGridViewShow;
+                AddOrUpdatePageSwitching(addOrUpdateAministrator);
+            }
+        }
+
+        private void DelectAccount_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int accountid = (int)dgv_administrator.CurrentRow.Cells[0].Value;
+                AccountManager.RemoveAccount(accountid);
+                AutoClosingMessageBox.Show("            管理员删除成功", "删除管理员", 1000);
+                RefreshDataGridViewShow();
+            }
+        }
+
+        private void dgv_administrator_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    //若行已是选中状态就不再进行设置
+                    if (dgv_administrator.Rows[e.RowIndex].Selected == false)
+                    {
+                        dgv_administrator.ClearSelection();
+                        dgv_administrator.Rows[e.RowIndex].Selected = true;
+                    }
+                    //只选中一行时设置活动单元格
+                    if (e.ColumnIndex < 0)
+                        return;
+                    if (dgv_administrator.SelectedRows.Count == 1)
+                    {
+                        dgv_administrator.CurrentCell = dgv_administrator.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    }
+                    //弹出操作菜单
+                    contextMenuStrip1.Show(MousePosition.X, MousePosition.Y);
+                }
+            }
         }
     }
 }

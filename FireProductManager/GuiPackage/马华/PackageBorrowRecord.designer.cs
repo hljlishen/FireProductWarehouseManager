@@ -40,13 +40,14 @@
             this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.方向 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.领用日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.领用人 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.领用项目 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.领用项目令号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.生产单位 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.生产日期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.管理员 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.项目id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.选择ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cb_directquery = new System.Windows.Forms.ComboBox();
@@ -130,23 +131,23 @@
             this.类型,
             this.规格,
             this.方向,
-            this.领用日期,
+            this.日期,
             this.领用人,
-            this.领用项目,
+            this.领用项目令号,
             this.重量,
             this.生产单位,
             this.生产日期,
-            this.管理员});
-            this.dgv_PackageInAndOutrecord.ContextMenuStrip = this.contextMenuStrip1;
+            this.管理员,
+            this.项目id});
             this.dgv_PackageInAndOutrecord.Location = new System.Drawing.Point(69, 97);
             this.dgv_PackageInAndOutrecord.Name = "dgv_PackageInAndOutrecord";
             this.dgv_PackageInAndOutrecord.ReadOnly = true;
             this.dgv_PackageInAndOutrecord.RowTemplate.Height = 23;
             this.dgv_PackageInAndOutrecord.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv_PackageInAndOutrecord.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_PackageInAndOutrecord.Size = new System.Drawing.Size(1279, 669);
+            this.dgv_PackageInAndOutrecord.Size = new System.Drawing.Size(1279, 657);
             this.dgv_PackageInAndOutrecord.TabIndex = 0;
-            this.dgv_PackageInAndOutrecord.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_PackageInAndOutrecord_CellMouseDown);
+            this.dgv_PackageInAndOutrecord.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_PackageInAndOutrecord_CellMouseDoubleClick);
             // 
             // 袋子id
             // 
@@ -160,11 +161,11 @@
             this.桶号.HeaderText = "所在桶";
             this.桶号.Name = "桶号";
             this.桶号.ReadOnly = true;
-            this.桶号.Width = 112;
+            this.桶号.Width = 102;
             // 
             // 类型
             // 
-            this.类型.HeaderText = "类型";
+            this.类型.HeaderText = "材料名称";
             this.类型.Name = "类型";
             this.类型.ReadOnly = true;
             this.类型.Width = 113;
@@ -183,12 +184,12 @@
             this.方向.ReadOnly = true;
             this.方向.Width = 112;
             // 
-            // 领用日期
+            // 日期
             // 
-            this.领用日期.HeaderText = "日期";
-            this.领用日期.Name = "领用日期";
-            this.领用日期.ReadOnly = true;
-            this.领用日期.Width = 135;
+            this.日期.HeaderText = "领用日期（归还日期）";
+            this.日期.Name = "日期";
+            this.日期.ReadOnly = true;
+            this.日期.Width = 155;
             // 
             // 领用人
             // 
@@ -197,12 +198,12 @@
             this.领用人.ReadOnly = true;
             this.领用人.Width = 112;
             // 
-            // 领用项目
+            // 领用项目令号
             // 
-            this.领用项目.HeaderText = "领用项目";
-            this.领用项目.Name = "领用项目";
-            this.领用项目.ReadOnly = true;
-            this.领用项目.Width = 113;
+            this.领用项目令号.HeaderText = "领用项目令号";
+            this.领用项目令号.Name = "领用项目令号";
+            this.领用项目令号.ReadOnly = true;
+            this.领用项目令号.Width = 103;
             // 
             // 重量
             // 
@@ -227,10 +228,17 @@
             // 
             // 管理员
             // 
-            this.管理员.HeaderText = "管理员";
+            this.管理员.HeaderText = "管理员编号";
             this.管理员.Name = "管理员";
             this.管理员.ReadOnly = true;
             this.管理员.Width = 90;
+            // 
+            // 项目id
+            // 
+            this.项目id.HeaderText = "项目id";
+            this.项目id.Name = "项目id";
+            this.项目id.ReadOnly = true;
+            this.项目id.Visible = false;
             // 
             // contextMenuStrip1
             // 
@@ -244,7 +252,6 @@
             this.选择ToolStripMenuItem.Name = "选择ToolStripMenuItem";
             this.选择ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.选择ToolStripMenuItem.Text = "选择";
-            this.选择ToolStripMenuItem.Click += new System.EventHandler(this.选择ToolStripMenuItem_Click);
             // 
             // cb_directquery
             // 
@@ -399,7 +406,7 @@
             // btn_exceloperator
             // 
             this.btn_exceloperator.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_exceloperator.Location = new System.Drawing.Point(1263, 772);
+            this.btn_exceloperator.Location = new System.Drawing.Point(1261, 760);
             this.btn_exceloperator.Name = "btn_exceloperator";
             this.btn_exceloperator.Size = new System.Drawing.Size(75, 23);
             this.btn_exceloperator.TabIndex = 28;
@@ -417,7 +424,7 @@
             this.Controls.Add(this.dgv_PackageInAndOutrecord);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PackageBorrowRecord";
-            this.Text = "InstrumentQuery";
+            this.Text = "出入库记录";
             this.Load += new System.EventHandler(this.PackageBorrowRecord_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PackageInAndOutrecord)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -448,19 +455,20 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_projectid;
         private System.Windows.Forms.Button btn_selectprojectid;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 选择ToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn 袋子id;
         private System.Windows.Forms.DataGridViewTextBoxColumn 桶号;
         private System.Windows.Forms.DataGridViewTextBoxColumn 类型;
         private System.Windows.Forms.DataGridViewTextBoxColumn 规格;
         private System.Windows.Forms.DataGridViewTextBoxColumn 方向;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 领用日期;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 日期;
         private System.Windows.Forms.DataGridViewTextBoxColumn 领用人;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 领用项目;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 领用项目令号;
         private System.Windows.Forms.DataGridViewTextBoxColumn 重量;
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产单位;
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产日期;
         private System.Windows.Forms.DataGridViewTextBoxColumn 管理员;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 选择ToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 项目id;
     }
 }

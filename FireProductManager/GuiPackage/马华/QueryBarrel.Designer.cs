@@ -34,7 +34,6 @@
             this.全重 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.选择ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_return = new System.Windows.Forms.Button();
             this.dgv_package = new System.Windows.Forms.DataGridView();
             this.袋子编号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,7 +54,6 @@
             this.dgv_existbarrelid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.桶编号,
             this.全重});
-            this.dgv_existbarrelid.ContextMenuStrip = this.contextMenuStrip1;
             this.dgv_existbarrelid.Location = new System.Drawing.Point(12, 12);
             this.dgv_existbarrelid.Name = "dgv_existbarrelid";
             this.dgv_existbarrelid.RowTemplate.Height = 23;
@@ -63,7 +61,8 @@
             this.dgv_existbarrelid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_existbarrelid.Size = new System.Drawing.Size(234, 474);
             this.dgv_existbarrelid.TabIndex = 0;
-            this.dgv_existbarrelid.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_existbarrelid_CellMouseDown);
+            this.dgv_existbarrelid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_existbarrelid_CellMouseClick);
+            this.dgv_existbarrelid.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_existbarrelid_CellMouseDoubleClick);
             // 
             // 桶编号
             // 
@@ -82,24 +81,15 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.选择ToolStripMenuItem,
-            this.查询ToolStripMenuItem});
+            this.选择ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 26);
             // 
             // 选择ToolStripMenuItem
             // 
             this.选择ToolStripMenuItem.Name = "选择ToolStripMenuItem";
             this.选择ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.选择ToolStripMenuItem.Text = "选择";
-            this.选择ToolStripMenuItem.Click += new System.EventHandler(this.选择ToolStripMenuItem_Click);
-            // 
-            // 查询ToolStripMenuItem
-            // 
-            this.查询ToolStripMenuItem.Name = "查询ToolStripMenuItem";
-            this.查询ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.查询ToolStripMenuItem.Text = "查询";
-            this.查询ToolStripMenuItem.Click += new System.EventHandler(this.查询ToolStripMenuItem_Click);
             // 
             // btn_return
             // 
@@ -137,7 +127,7 @@
             // 
             // 类型
             // 
-            this.类型.HeaderText = "类型";
+            this.类型.HeaderText = "材料名称";
             this.类型.Name = "类型";
             // 
             // 规格
@@ -185,6 +175,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 类型;
         private System.Windows.Forms.DataGridViewTextBoxColumn 规格;
         private System.Windows.Forms.DataGridViewTextBoxColumn 重量;
-        private System.Windows.Forms.ToolStripMenuItem 查询ToolStripMenuItem;
     }
 }
