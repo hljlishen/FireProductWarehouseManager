@@ -35,25 +35,26 @@
             this.bt_addinstrument = new System.Windows.Forms.Button();
             this.tb_barrel = new System.Windows.Forms.TextBox();
             this.tb_weigth = new System.Windows.Forms.TextBox();
-            this.tb_model = new System.Windows.Forms.TextBox();
-            this.tb_name = new System.Windows.Forms.TextBox();
+            this.tb_specifications = new System.Windows.Forms.TextBox();
+            this.tb_type = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.la_barrel = new System.Windows.Forms.Label();
             this.la_purchaseTime = new System.Windows.Forms.Label();
             this.la_weigth = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.la_name = new System.Windows.Forms.Label();
+            this.la_specifications = new System.Windows.Forms.Label();
+            this.la_type = new System.Windows.Forms.Label();
             this.bt_alterinstrument = new System.Windows.Forms.Button();
             this.cb_isInWareHouse = new System.Windows.Forms.ComboBox();
             this.bt_showbarrel = new System.Windows.Forms.Button();
-            this.tb_projectpassword = new System.Windows.Forms.TextBox();
-            this.la_projectpassword = new System.Windows.Forms.Label();
-            this.bt_changeprojectpassword = new System.Windows.Forms.Button();
-            this.la_errorname = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.la_errortype = new System.Windows.Forms.Label();
+            this.la_errorspecifications = new System.Windows.Forms.Label();
+            this.la_errorweigth = new System.Windows.Forms.Label();
+            this.la_errorbarrel = new System.Windows.Forms.Label();
+            this.la_errorproductioncompany = new System.Windows.Forms.Label();
+            this.tb_productioncompany = new System.Windows.Forms.TextBox();
+            this.la_productioncompany = new System.Windows.Forms.Label();
+            this.tb_beginningweight = new System.Windows.Forms.TextBox();
+            this.la_beginningweight = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // time_purchaseTime
@@ -112,27 +113,27 @@
             this.tb_weigth.Size = new System.Drawing.Size(183, 26);
             this.tb_weigth.TabIndex = 46;
             // 
-            // tb_model
+            // tb_specifications
             // 
-            this.tb_model.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_model.Location = new System.Drawing.Point(498, 111);
-            this.tb_model.Name = "tb_model";
-            this.tb_model.Size = new System.Drawing.Size(183, 26);
-            this.tb_model.TabIndex = 44;
+            this.tb_specifications.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_specifications.Location = new System.Drawing.Point(498, 111);
+            this.tb_specifications.Name = "tb_specifications";
+            this.tb_specifications.Size = new System.Drawing.Size(183, 26);
+            this.tb_specifications.TabIndex = 44;
             // 
-            // tb_name
+            // tb_type
             // 
-            this.tb_name.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_name.Location = new System.Drawing.Point(180, 111);
-            this.tb_name.Name = "tb_name";
-            this.tb_name.Size = new System.Drawing.Size(183, 26);
-            this.tb_name.TabIndex = 43;
+            this.tb_type.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_type.Location = new System.Drawing.Point(180, 111);
+            this.tb_type.Name = "tb_type";
+            this.tb_type.Size = new System.Drawing.Size(183, 26);
+            this.tb_type.TabIndex = 43;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(95, 265);
+            this.label8.Location = new System.Drawing.Point(95, 350);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(79, 20);
             this.label8.TabIndex = 38;
@@ -168,25 +169,25 @@
             this.la_weigth.TabIndex = 34;
             this.la_weigth.Text = "质量（g）：";
             // 
-            // label3
+            // la_specifications
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(413, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 20);
-            this.label3.TabIndex = 33;
-            this.label3.Text = "型号规格：";
+            this.la_specifications.AutoSize = true;
+            this.la_specifications.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_specifications.Location = new System.Drawing.Point(413, 114);
+            this.la_specifications.Name = "la_specifications";
+            this.la_specifications.Size = new System.Drawing.Size(79, 20);
+            this.la_specifications.TabIndex = 33;
+            this.la_specifications.Text = "材料规格：";
             // 
-            // la_name
+            // la_type
             // 
-            this.la_name.AutoSize = true;
-            this.la_name.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_name.Location = new System.Drawing.Point(95, 114);
-            this.la_name.Name = "la_name";
-            this.la_name.Size = new System.Drawing.Size(79, 20);
-            this.la_name.TabIndex = 32;
-            this.la_name.Text = "材料名称：";
+            this.la_type.AutoSize = true;
+            this.la_type.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_type.Location = new System.Drawing.Point(95, 114);
+            this.la_type.Name = "la_type";
+            this.la_type.Size = new System.Drawing.Size(79, 20);
+            this.la_type.TabIndex = 32;
+            this.la_type.Text = "材料类型：";
             // 
             // bt_alterinstrument
             // 
@@ -207,7 +208,7 @@
             this.cb_isInWareHouse.Items.AddRange(new object[] {
             "在库",
             "不在库"});
-            this.cb_isInWareHouse.Location = new System.Drawing.Point(181, 268);
+            this.cb_isInWareHouse.Location = new System.Drawing.Point(180, 350);
             this.cb_isInWareHouse.Name = "cb_isInWareHouse";
             this.cb_isInWareHouse.Size = new System.Drawing.Size(84, 20);
             this.cb_isInWareHouse.TabIndex = 59;
@@ -223,108 +224,116 @@
             this.bt_showbarrel.UseVisualStyleBackColor = true;
             this.bt_showbarrel.Click += new System.EventHandler(this.bt_showshelves_Click);
             // 
-            // tb_projectpassword
+            // la_errortype
             // 
-            this.tb_projectpassword.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_projectpassword.Location = new System.Drawing.Point(181, 342);
-            this.tb_projectpassword.Name = "tb_projectpassword";
-            this.tb_projectpassword.Size = new System.Drawing.Size(146, 26);
-            this.tb_projectpassword.TabIndex = 89;
+            this.la_errortype.AutoSize = true;
+            this.la_errortype.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_errortype.ForeColor = System.Drawing.Color.Red;
+            this.la_errortype.Location = new System.Drawing.Point(177, 140);
+            this.la_errortype.Name = "la_errortype";
+            this.la_errortype.Size = new System.Drawing.Size(97, 17);
+            this.la_errortype.TabIndex = 103;
+            this.la_errortype.Text = "*材料名不能为空";
+            this.la_errortype.Visible = false;
             // 
-            // la_projectpassword
+            // la_errorspecifications
             // 
-            this.la_projectpassword.AutoSize = true;
-            this.la_projectpassword.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_projectpassword.Location = new System.Drawing.Point(95, 345);
-            this.la_projectpassword.Name = "la_projectpassword";
-            this.la_projectpassword.Size = new System.Drawing.Size(79, 20);
-            this.la_projectpassword.TabIndex = 88;
-            this.la_projectpassword.Text = "项目令号：";
+            this.la_errorspecifications.AutoSize = true;
+            this.la_errorspecifications.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_errorspecifications.ForeColor = System.Drawing.Color.Red;
+            this.la_errorspecifications.Location = new System.Drawing.Point(495, 140);
+            this.la_errorspecifications.Name = "la_errorspecifications";
+            this.la_errorspecifications.Size = new System.Drawing.Size(109, 17);
+            this.la_errorspecifications.TabIndex = 104;
+            this.la_errorspecifications.Text = "*规格型号不能为空";
+            this.la_errorspecifications.Visible = false;
             // 
-            // bt_changeprojectpassword
+            // la_errorweigth
             // 
-            this.bt_changeprojectpassword.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bt_changeprojectpassword.Location = new System.Drawing.Point(333, 342);
-            this.bt_changeprojectpassword.Name = "bt_changeprojectpassword";
-            this.bt_changeprojectpassword.Size = new System.Drawing.Size(30, 26);
-            this.bt_changeprojectpassword.TabIndex = 90;
-            this.bt_changeprojectpassword.Text = "...";
-            this.bt_changeprojectpassword.UseVisualStyleBackColor = true;
-            this.bt_changeprojectpassword.Click += new System.EventHandler(this.bt_changeprojectpassword_Click);
+            this.la_errorweigth.AutoSize = true;
+            this.la_errorweigth.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_errorweigth.ForeColor = System.Drawing.Color.Red;
+            this.la_errorweigth.Location = new System.Drawing.Point(178, 213);
+            this.la_errorweigth.Name = "la_errorweigth";
+            this.la_errorweigth.Size = new System.Drawing.Size(97, 17);
+            this.la_errorweigth.TabIndex = 105;
+            this.la_errorweigth.Text = "*未获得材料重量";
+            this.la_errorweigth.Visible = false;
             // 
-            // la_errorname
+            // la_errorbarrel
             // 
-            this.la_errorname.AutoSize = true;
-            this.la_errorname.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_errorname.ForeColor = System.Drawing.Color.Red;
-            this.la_errorname.Location = new System.Drawing.Point(177, 140);
-            this.la_errorname.Name = "la_errorname";
-            this.la_errorname.Size = new System.Drawing.Size(97, 17);
-            this.la_errorname.TabIndex = 103;
-            this.la_errorname.Text = "*材料名不能为空";
-            this.la_errorname.Visible = false;
+            this.la_errorbarrel.AutoSize = true;
+            this.la_errorbarrel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_errorbarrel.ForeColor = System.Drawing.Color.Red;
+            this.la_errorbarrel.Location = new System.Drawing.Point(495, 213);
+            this.la_errorbarrel.Name = "la_errorbarrel";
+            this.la_errorbarrel.Size = new System.Drawing.Size(73, 17);
+            this.la_errorbarrel.TabIndex = 106;
+            this.la_errorbarrel.Text = "*未选择桶号";
+            this.la_errorbarrel.Visible = false;
             // 
-            // label1
+            // la_errorproductioncompany
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(495, 140);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 17);
-            this.label1.TabIndex = 104;
-            this.label1.Text = "*规格型号不能为空";
-            this.label1.Visible = false;
+            this.la_errorproductioncompany.AutoSize = true;
+            this.la_errorproductioncompany.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_errorproductioncompany.ForeColor = System.Drawing.Color.Red;
+            this.la_errorproductioncompany.Location = new System.Drawing.Point(178, 291);
+            this.la_errorproductioncompany.Name = "la_errorproductioncompany";
+            this.la_errorproductioncompany.Size = new System.Drawing.Size(109, 17);
+            this.la_errorproductioncompany.TabIndex = 112;
+            this.la_errorproductioncompany.Text = "*生产公司不能为空";
+            this.la_errorproductioncompany.Visible = false;
             // 
-            // label2
+            // tb_productioncompany
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(178, 213);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 17);
-            this.label2.TabIndex = 105;
-            this.label2.Text = "*项目名称不能为空";
-            this.label2.Visible = false;
+            this.tb_productioncompany.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_productioncompany.Location = new System.Drawing.Point(180, 262);
+            this.tb_productioncompany.Name = "tb_productioncompany";
+            this.tb_productioncompany.Size = new System.Drawing.Size(183, 26);
+            this.tb_productioncompany.TabIndex = 111;
             // 
-            // label4
+            // la_productioncompany
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(495, 213);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 17);
-            this.label4.TabIndex = 106;
-            this.label4.Text = "*未选择桶号";
-            this.label4.Visible = false;
+            this.la_productioncompany.AutoSize = true;
+            this.la_productioncompany.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_productioncompany.Location = new System.Drawing.Point(95, 265);
+            this.la_productioncompany.Name = "la_productioncompany";
+            this.la_productioncompany.Size = new System.Drawing.Size(79, 20);
+            this.la_productioncompany.TabIndex = 110;
+            this.la_productioncompany.Text = "生产公司：";
             // 
-            // label7
+            // tb_beginningweight
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(178, 371);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 17);
-            this.label7.TabIndex = 109;
-            this.label7.Text = "*未选择所属项目";
-            this.label7.Visible = false;
+            this.tb_beginningweight.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_beginningweight.Location = new System.Drawing.Point(498, 344);
+            this.tb_beginningweight.Name = "tb_beginningweight";
+            this.tb_beginningweight.Size = new System.Drawing.Size(183, 26);
+            this.tb_beginningweight.TabIndex = 114;
+            // 
+            // la_beginningweight
+            // 
+            this.la_beginningweight.AutoSize = true;
+            this.la_beginningweight.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_beginningweight.Location = new System.Drawing.Point(376, 347);
+            this.la_beginningweight.Name = "la_beginningweight";
+            this.la_beginningweight.Size = new System.Drawing.Size(116, 20);
+            this.la_beginningweight.TabIndex = 113;
+            this.la_beginningweight.Text = "初始质量（g）：";
             // 
             // AddOrUpdatePackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 513);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.la_errorname);
-            this.Controls.Add(this.bt_changeprojectpassword);
-            this.Controls.Add(this.tb_projectpassword);
-            this.Controls.Add(this.la_projectpassword);
+            this.Controls.Add(this.tb_beginningweight);
+            this.Controls.Add(this.la_beginningweight);
+            this.Controls.Add(this.la_errorproductioncompany);
+            this.Controls.Add(this.tb_productioncompany);
+            this.Controls.Add(this.la_productioncompany);
+            this.Controls.Add(this.la_errorbarrel);
+            this.Controls.Add(this.la_errorweigth);
+            this.Controls.Add(this.la_errorspecifications);
+            this.Controls.Add(this.la_errortype);
             this.Controls.Add(this.bt_showbarrel);
             this.Controls.Add(this.cb_isInWareHouse);
             this.Controls.Add(this.bt_alterinstrument);
@@ -334,14 +343,14 @@
             this.Controls.Add(this.bt_addinstrument);
             this.Controls.Add(this.tb_barrel);
             this.Controls.Add(this.tb_weigth);
-            this.Controls.Add(this.tb_model);
-            this.Controls.Add(this.tb_name);
+            this.Controls.Add(this.tb_specifications);
+            this.Controls.Add(this.tb_type);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.la_barrel);
             this.Controls.Add(this.la_purchaseTime);
             this.Controls.Add(this.la_weigth);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.la_name);
+            this.Controls.Add(this.la_specifications);
+            this.Controls.Add(this.la_type);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -361,24 +370,25 @@
         private System.Windows.Forms.Button bt_addinstrument;
         private System.Windows.Forms.TextBox tb_barrel;
         private System.Windows.Forms.TextBox tb_weigth;
-        private System.Windows.Forms.TextBox tb_model;
-        private System.Windows.Forms.TextBox tb_name;
+        private System.Windows.Forms.TextBox tb_specifications;
+        private System.Windows.Forms.TextBox tb_type;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label la_barrel;
         private System.Windows.Forms.Label la_purchaseTime;
         private System.Windows.Forms.Label la_weigth;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label la_name;
+        private System.Windows.Forms.Label la_specifications;
+        private System.Windows.Forms.Label la_type;
         private System.Windows.Forms.Button bt_alterinstrument;
         private System.Windows.Forms.ComboBox cb_isInWareHouse;
         private System.Windows.Forms.Button bt_showbarrel;
-        private System.Windows.Forms.TextBox tb_projectpassword;
-        private System.Windows.Forms.Label la_projectpassword;
-        private System.Windows.Forms.Button bt_changeprojectpassword;
-        private System.Windows.Forms.Label la_errorname;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label la_errortype;
+        private System.Windows.Forms.Label la_errorspecifications;
+        private System.Windows.Forms.Label la_errorweigth;
+        private System.Windows.Forms.Label la_errorbarrel;
+        private System.Windows.Forms.Label la_errorproductioncompany;
+        private System.Windows.Forms.TextBox tb_productioncompany;
+        private System.Windows.Forms.Label la_productioncompany;
+        private System.Windows.Forms.TextBox tb_beginningweight;
+        private System.Windows.Forms.Label la_beginningweight;
     }
 }

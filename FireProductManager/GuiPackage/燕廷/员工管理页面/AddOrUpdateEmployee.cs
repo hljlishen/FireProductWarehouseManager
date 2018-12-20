@@ -130,7 +130,7 @@ namespace FireProductManager.GuiPackage
             switch (operation)
             {
                 case Operation.New:
-                    if (!(EmployeeGateway.NewEmployeeNumber(_employeenumber)))
+                    if (!(EmployeeGateway.NewValidationEmployeeNumber(_employeenumber)))
                     {
                         la_errorexistnumber.Visible = true;
                         la_errorexistnumber.ForeColor = Color.Red;
@@ -140,7 +140,7 @@ namespace FireProductManager.GuiPackage
                     break;
 
                 case Operation.Update:
-                    if (!(EmployeeGateway.UpdateEmployeeNumber(_employeeid,_employeenumber)))
+                    if (!(EmployeeGateway.UpdateValidationEmployeeNumber(_employeeid,_employeenumber)))
                     {
                         la_errorexistnumber.Visible = true;
                         la_errorexistnumber.ForeColor = Color.Red;

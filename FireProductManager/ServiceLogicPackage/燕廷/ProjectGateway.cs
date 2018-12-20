@@ -51,7 +51,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //修改项目
-        public static void UpdateProject(uint id, string name, string projectPassword, string note)
+        public static void UpdateProject(int id, string name, string projectPassword, string note)
         {
             Project project = new Project();
             project.pr_id = id;
@@ -65,18 +65,59 @@ namespace FireProductManager.ServiceLogicPackage
         public static void DeleteProject(int projectId)
         {
             Project project = new Project();
-            project.pr_id = (uint)projectId;
+            project.pr_id = projectId;
             project.Delete();
         }
 
         //获取项目信息
-        public static DataTable GetProjectInformation(uint projectid)
+        public static DataTable GetProjectInformation(int projectid)
         {
             Project project = new Project();
             SelectSqlMaker maker = new SelectSqlMaker("project");
-            maker.AddAndCondition(new IntEqual("pr_id",(int)projectid));
+            maker.AddAndCondition(new IntEqual("pr_id",projectid));
             DataTable dataTable = project.Select(maker.MakeSelectSql());
             return dataTable;
+        }
+
+        //添加-验证Projectpassword
+        public static bool NewValidationProjectPassWord(string projectpassword)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("project");
+            maker.AddAndCondition(new StringEqual("pr_projectpassword", projectpassword));
+            DataTable dataTable = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
+            if (dataTable.Rows.Count != 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //更新-验证Projectpassword
+        public static bool UpdateValidationProjectPassWord(int projectid, string projectpassword)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("project");
+            maker.AddAndCondition(new IntEqual("pr_id", projectid));
+            DataTable dataTable = ActiveRecord.Select(maker.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
+            Project project = new Project();
+            project.LoadDataRow(dataTable.Rows[0]);
+            if (project.pr_projectPassword.Equals(projectpassword)) return true;
+
+            SelectSqlMaker maker1 = new SelectSqlMaker("project");
+            maker.AddAndCondition(new StringEqual("pr_projectpassword", projectpassword));
+            DataTable dataTable1 = ActiveRecord.Select(maker1.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
+            if (dataTable1.Rows.Count != 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //获取项目令号
+        public static string GetProjectPassword(int projectid)
+        {
+            DataTable dataTable = GetProjectInformation(projectid);
+            DataRow myDr = dataTable.Rows[0];
+            return myDr["pr_projectpassword"].ToString();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace FireProductManager.GuiPackage
             AddTextToImg(bitmap, msg);
             PictureBoxShow(bitmap);
 
-            InstrumentMessageDataTableShowTextBox();
+            PackageMessageDataTableShowTextBox();
             Print();
         }
 
@@ -108,13 +108,13 @@ namespace FireProductManager.GuiPackage
             graphics.DrawString(text, font, whiteBrush, textArea);
         }
 
-        //仪器信息展示在页面组件中
-        public void InstrumentMessageDataTableShowTextBox()
+        //材料信息展示在页面组件中
+        public void PackageMessageDataTableShowTextBox()
         {
             DataTable dataTable = PackageGateway.GetPackageInformation(_packageid);
             DataRow myDr = dataTable.Rows[0];
-            la_name.Text = myDr["pa_name"].ToString();
-            la_model.Text = myDr["pa_model"].ToString();
+            la_name.Text = myDr["pa_type"].ToString();
+            la_model.Text = myDr["pa_specifications"].ToString();
             la_purchaseTime.Text = myDr["pa_purchaseTime"].ToString();
         }
 

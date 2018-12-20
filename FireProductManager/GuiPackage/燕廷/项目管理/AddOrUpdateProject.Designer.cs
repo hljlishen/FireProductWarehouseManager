@@ -41,6 +41,7 @@
             this.la_errorname = new System.Windows.Forms.Label();
             this.la_errorprojectpassword = new System.Windows.Forms.Label();
             this.la_errornote = new System.Windows.Forms.Label();
+            this.la_projectpasswordrepeat = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bt_updateproject
@@ -165,11 +166,24 @@
             this.la_errornote.Text = "*未填写备注";
             this.la_errornote.Visible = false;
             // 
+            // la_projectpasswordrepeat
+            // 
+            this.la_projectpasswordrepeat.AutoSize = true;
+            this.la_projectpasswordrepeat.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_projectpasswordrepeat.ForeColor = System.Drawing.Color.Red;
+            this.la_projectpasswordrepeat.Location = new System.Drawing.Point(130, 191);
+            this.la_projectpasswordrepeat.Name = "la_projectpasswordrepeat";
+            this.la_projectpasswordrepeat.Size = new System.Drawing.Size(109, 17);
+            this.la_projectpasswordrepeat.TabIndex = 105;
+            this.la_projectpasswordrepeat.Text = "*已存在该项目令号";
+            this.la_projectpasswordrepeat.Visible = false;
+            // 
             // AddOrUpdateProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(551, 583);
+            this.Controls.Add(this.la_projectpasswordrepeat);
             this.Controls.Add(this.la_errornote);
             this.Controls.Add(this.la_errorprojectpassword);
             this.Controls.Add(this.la_errorname);
@@ -207,5 +221,6 @@
         private System.Windows.Forms.Label la_errorname;
         private System.Windows.Forms.Label la_errorprojectpassword;
         private System.Windows.Forms.Label la_errornote;
+        private System.Windows.Forms.Label la_projectpasswordrepeat;
     }
 }
