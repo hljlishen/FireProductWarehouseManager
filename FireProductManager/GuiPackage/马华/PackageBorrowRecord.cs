@@ -65,7 +65,7 @@ namespace FireProductManager.GuiPackage
         {
             string packagename = null;
             foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuerypackage(id).Rows)
-                packagename = dr["pa_name"].ToString();
+                packagename = dr["pa_type"].ToString();
             return packagename;
         }
 
@@ -73,7 +73,7 @@ namespace FireProductManager.GuiPackage
         {
             string packagemodel = null;
             foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQuerypackage(id).Rows)
-                packagemodel = dr["pa_model"].ToString();
+                packagemodel = dr["pa_specifications"].ToString();
             return packagemodel;
         }
 

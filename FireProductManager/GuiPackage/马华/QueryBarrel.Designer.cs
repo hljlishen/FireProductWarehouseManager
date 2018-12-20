@@ -127,7 +127,7 @@
             // 
             // 类型
             // 
-            this.类型.HeaderText = "材料名称";
+            this.类型.HeaderText = "材料类型";
             this.类型.Name = "类型";
             // 
             // 规格

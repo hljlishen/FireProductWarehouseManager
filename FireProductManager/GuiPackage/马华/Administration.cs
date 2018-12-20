@@ -17,6 +17,7 @@ namespace FireProductManager.GuiPackage
         private MainPage mainPage = null;
         private AdminLogin login = null;
         private ProjectManageme projectManageme = null;
+        private WarehouseDataReport warehouseDataReport = null;
 
         public Administration()
         {
@@ -169,6 +170,22 @@ namespace FireProductManager.GuiPackage
             projectManageme.MdiParent = this;
             projectManageme.Show();
             projectManageme.Activate();
+        }
+
+        private void 仓库数据统计ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (warehouseDataReport == null)
+            {
+                warehouseDataReport = new WarehouseDataReport();
+            }
+            else
+            {
+                warehouseDataReport.Close();
+                warehouseDataReport = new WarehouseDataReport();
+            }
+            warehouseDataReport.MdiParent = this;
+            warehouseDataReport.Show();
+            warehouseDataReport.Activate();
         }
     }
 }

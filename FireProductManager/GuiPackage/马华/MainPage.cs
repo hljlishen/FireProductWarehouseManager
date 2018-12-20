@@ -18,6 +18,8 @@ namespace FireProductManager.GuiPackage
         int employeeid = 0;
         int packageid = 0;
         int projectid = 0;
+        int outid = 0;
+        double consumption = 0;
         bool isPrint = false;
         string accountname = AccountManager.ReturnAccount();
 
@@ -69,8 +71,8 @@ namespace FireProductManager.GuiPackage
         {
             foreach (DataRow dr in PackageGateway.GetPackageInformation(packageid).Rows)
             {
-                tb_packagename.Text = dr["pa_name"].ToString();
-                tb_packagemodel.Text = dr["pa_model"].ToString();
+                tb_packagename.Text = dr["pa_type"].ToString();
+                tb_packagemodel.Text = dr["pa_specifications"].ToString();
                 tb_packageweight.Text = dr["pa_weight"].ToString();
                 tb_barrelid.Text = dr["pa_barrelId"].ToString();
             }
@@ -102,19 +104,23 @@ namespace FireProductManager.GuiPackage
         {
             foreach (DataRow dr in PackageGateway.GetPackageInformation(packageid).Rows)
             {
-                tb_packagename.Text = dr["pa_name"].ToString();
-                tb_packagemodel.Text = dr["pa_model"].ToString();
-            }
-
-            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQueryinoutrecord(packageid).Rows)
-            {
-                projectid = (int)dr["ior_projectId"];
-                tb_borrowName.Text = dr["ior_borrowName"].ToString();
+                tb_packagename.Text = dr["pa_type"].ToString();
+                tb_packagemodel.Text = dr["pa_specifications"].ToString();
             }
 
             tb_barrelid.Text = BarrelGateway.SearchShortweightBarrrelId().ToString();
             ahdr.WeightGetted += Ahdr_WeightGetted;
             tb_direction.Text = "入库";
+
+            foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQueryoutrecord(packageid).Rows)
+            {
+                outid = (int)dr["or_id"];
+                tb_borrowName.Text = dr["or_borrowName"].ToString();
+                if (tb_packageweight.Text != "")
+                    consumption = (double)dr["or_outWeight"] - double.Parse(tb_packageweight.Text);
+                tb_projectpassword.Text = dr["or_projectPassword"].ToString();
+            }
+
             RecordPackagePutInStorageInformation();
         }
 
@@ -126,7 +132,7 @@ namespace FireProductManager.GuiPackage
 
             if (isPrint)
                 PrintAfterBagChange();
-            RecordOperationGateway.ReturnPackage(packageid, int.Parse(tb_barrelid.Text), employeeid, projectid , tb_borrowName.Text, accountname,double.Parse(tb_packageweight.Text), tb_projectpassword.Text);
+            RecordOperationGateway.ReturnPackage(outid,packageid, int.Parse(tb_barrelid.Text), accountname , consumption, double.Parse(tb_packageweight.Text));
             ListViewShow();
             AutoClosingMessageBox.Show("                入库成功", "入库", 2000);
             EmptyTextBox();
@@ -195,7 +201,7 @@ namespace FireProductManager.GuiPackage
             listView.SubItems.Add(tb_packagemodel.Text);
             listView.SubItems.Add(tb_packageweight.Text);
             listView.SubItems.Add(tb_barrelid.Text);
-            listView.SubItems.Add("");
+            listView.SubItems.Add(tb_projectpassword.Text);
             listView.SubItems.Add(tb_direction.Text);
             listView.SubItems.Add(DateTime.Now.ToString());
             listView.SubItems.Add(tb_borrowName.Text);

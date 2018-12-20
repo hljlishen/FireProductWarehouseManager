@@ -47,20 +47,18 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //还包
-        public static void ReturnPackage(int packageid,int barrelid,int employeeid, int projectId, string borrowName, string accountNumber,double weight, string projectPassword)
+        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountNumber,double consumption, double returnWeight)
         {
-            PackageGateway.ReturnPackage(packageid, barrelid, weight);
+            PackageGateway.ReturnPackage(packageid, barrelid, returnWeight);
 
-            InOutRecord inOutRecord = new InOutRecord();
-            inOutRecord.ior_packageId = (uint)packageid;
-            inOutRecord.ior_employeeId = (uint)employeeid;
-            inOutRecord.ior_projectId = (uint)projectId;
-            inOutRecord.ior_borrowName = borrowName;
-            inOutRecord.ior_accountNumber = accountNumber;
-            inOutRecord.ior_projectPassword = projectPassword;
-            inOutRecord.ior_direction = "入库";
-            inOutRecord.ior_timeStmp = DateTime.Now;
-            inOutRecord.Insert();  
+            InRecord inRecord = new InRecord();
+            inRecord.ir_outid = (uint)outid;
+            inRecord.ir_accountNumber = accountNumber;
+            inRecord.ir_direction = "入库";
+            inRecord.ir_timeStmp = DateTime.Now;
+            inRecord.ir_consumption = consumption;
+            inRecord.ir_returnWeight = returnWeight;
+            inRecord.Insert();  
         }
 
         //判断packageid是否存在
@@ -101,10 +99,10 @@ namespace FireProductManager.ServiceLogicPackage
             return inWarehouse == 0;
         }
 
-        public static DataTable ThroughPackageIdQueryinoutrecord(int packageId)
+        public static DataTable ThroughPackageIdQueryoutrecord(int packageId)
         {
-            SelectSqlMaker maker = new SelectSqlMaker("inoutrecord");
-            maker.AddAndCondition(new IntEqual("ior_packageId", packageId));
+            SelectSqlMaker maker = new SelectSqlMaker("outrecord");
+            maker.AddAndCondition(new IntEqual("or_packageId", packageId));
             string sql = maker.MakeSelectSql();
             return Query(sql);
         }
