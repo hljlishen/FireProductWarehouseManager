@@ -275,9 +275,7 @@ namespace FireProductManager.GuiPackage
             dgv_AllowanceRemind.Rows.Clear();
             DataTable dt = new DataTable();
             foreach (var colName in dicDep.Keys)
-            {
                 dt.Columns.Add(colName, typeof(string));
-            }
             DataRow dr = dt.NewRow();
             foreach (KeyValuePair<string, double> item in dicDep)
             {

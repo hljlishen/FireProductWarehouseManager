@@ -92,7 +92,7 @@ namespace FireProductManager.ServiceLogicPackage
             return dt.Rows.Count > 0;
         }
 
-        //条件搜索
+        //出库条件搜索
         public static DataTable ConditionsSearchOutRecord(string packageId,string employeeId,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
         {
             SelectSqlMaker maker = new SelectSqlMaker("outrecord");
@@ -109,6 +109,7 @@ namespace FireProductManager.ServiceLogicPackage
             return Query(sql);
         }
 
+        //入库条件搜索
         public static DataTable ConditionsSearchInRecord(string outid,string direction, bool isChoiceTime, DateTime begintTime, DateTime endTime)
         {
             SelectSqlMaker maker = new SelectSqlMaker("inrecord");

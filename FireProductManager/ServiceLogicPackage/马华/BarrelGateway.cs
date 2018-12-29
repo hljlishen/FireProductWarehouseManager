@@ -1,7 +1,6 @@
 ﻿using DbLink;
 using FireProductManager.EntityPackage;
 using System.Data;
-using System.Windows.Forms;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -105,7 +104,7 @@ namespace FireProductManager.ServiceLogicPackage
             foreach (DataRow dr in NoRemoveBarrelId().Rows)
             {
                 barrelId = (int)dr["ba_id"];
-                if (WeightOfBarrel(barrelId) < 50)
+                if (WeightOfBarrel(barrelId) < 300)
                     return barrelId;
             }
             return  barrelId;
