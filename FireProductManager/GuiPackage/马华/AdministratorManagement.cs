@@ -9,7 +9,6 @@ namespace FireProductManager.GuiPackage
     public partial class AdministratorManagement : Form
     {
         AddOrUpdateAministrator addOrUpdateAministrator;
-        Ahdr ahdr = new Ahdr();
 
         public AdministratorManagement()
         {
@@ -29,8 +28,9 @@ namespace FireProductManager.GuiPackage
                 int index = dgv_administrator.Rows.Add(row);
                 dgv_administrator.Rows[index].Cells[0].Value = dr["ac_id"];
                 dgv_administrator.Rows[index].Cells[1].Value = dr["ac_accountNumber"];
-                dgv_administrator.Rows[index].Cells[2].Value = dr["ac_password"];
-                dgv_administrator.Rows[index].Cells[3].Value = dr["ac_authority"];
+                dgv_administrator.Rows[index].Cells[2].Value = dr["ac_accountName"];
+                dgv_administrator.Rows[index].Cells[3].Value = dr["ac_password"];
+                dgv_administrator.Rows[index].Cells[4].Value = dr["ac_authority"];
             }
         }
 
@@ -65,17 +65,15 @@ namespace FireProductManager.GuiPackage
 
         private void UpdateAccount_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                int accountid = (int)dgv_administrator.CurrentRow.Cells[0].Value;
-                string account = dgv_administrator.CurrentRow.Cells[1].Value.ToString();
-                string password = dgv_administrator.CurrentRow.Cells[2].Value.ToString();
-                int authority = (int)dgv_administrator.CurrentRow.Cells[3].Value;
-                addOrUpdateAministrator.Close();
-                addOrUpdateAministrator = new AddOrUpdateAministrator(accountid, account, password, authority);
-                addOrUpdateAministrator.RefreshData += RefreshDataGridViewShow;
-                AddOrUpdatePageSwitching(addOrUpdateAministrator);
-            }
+            int accountid = (int)dgv_administrator.CurrentRow.Cells[0].Value;
+            string account = dgv_administrator.CurrentRow.Cells[1].Value.ToString();
+            string name = dgv_administrator.CurrentRow.Cells[2].Value.ToString();
+            string password = dgv_administrator.CurrentRow.Cells[3].Value.ToString();
+            int authority = (int)dgv_administrator.CurrentRow.Cells[4].Value;
+            addOrUpdateAministrator.Close();
+            addOrUpdateAministrator = new AddOrUpdateAministrator(accountid, account, name ,password, authority);
+            addOrUpdateAministrator.RefreshData += RefreshDataGridViewShow;
+            AddOrUpdatePageSwitching(addOrUpdateAministrator);
         }
 
         private void DelectAccount_Click(object sender, EventArgs e)

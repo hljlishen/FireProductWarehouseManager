@@ -1,4 +1,5 @@
-﻿using FireProductManager.ServiceLogicPackage;
+﻿using FireProductManager.EntityPackage;
+using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
@@ -7,8 +8,9 @@ using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 namespace FireProductManager.GuiPackage
 {
-    public partial class Administration : Form
+    public partial class Administration : Form, LogoutIDataDisplayer
     {
+        delegate void AccountDataHandler(Fingerprint fingerprint);
         private PackageBorrowRecord packageBorrow = null;
         private BarrelManagement barrelManagement = null;
         private EmployeeManagement employeeManagement = null;
@@ -18,6 +20,7 @@ namespace FireProductManager.GuiPackage
         private AdminLogin login = null;
         private ProjectManageme projectManageme = null;
         private WarehouseDataReport warehouseDataReport = null;
+        ConnectFingerprint2 connectFingerprint = ConnectFingerprint2.GetInstance();
 
         public Administration()
         {
@@ -46,15 +49,16 @@ namespace FireProductManager.GuiPackage
             AccountManager.Logout();
             出入库登记ToolStripMenultem_Click(sender,e);
             ShowLoginWindow();
-            this.Text = "登录的管理员编号为：" + AccountManager.ReturnAccount();
+            this.Text = "当前登录的管理员为：" + AccountManager.ReturnAccount();
         }
 
         private void Administration_Load(object sender, EventArgs e)
         {
+            //connectFingerprint.GetIPConnect();
+            //connectFingerprint.AddDisplayer(this);
             ShowLoginWindow();
-            this.Text ="登录的管理员编号为：" + AccountManager.ReturnAccount();
+            this.Text ="当前登录的管理员为：" + AccountManager.ReturnAccount();
             出入库登记ToolStripMenultem_Click(sender, e);
-            
         }
 
 
@@ -186,6 +190,22 @@ namespace FireProductManager.GuiPackage
             warehouseDataReport.MdiParent = this;
             warehouseDataReport.Show();
             warehouseDataReport.Activate();
+        }
+
+        public void FingerprintLogout(Fingerprint fingerprint)
+        {
+            Invoke(new AccountDataHandler(LogoutAccount), new object[] { fingerprint });
+        }
+
+        private void LogoutAccount(Fingerprint fingerprint)
+        {
+            object sender = null ;
+            EventArgs e = null;
+            this.Text = "";
+            AccountManager.Logout();
+            出入库登记ToolStripMenultem_Click(sender, e);
+            ShowLoginWindow();
+            this.Text = "当前登录的管理员为：" + AccountManager.ReturnAccount();
         }
     }
 }

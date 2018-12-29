@@ -363,6 +363,7 @@
             this.日期.HeaderText = "领用日期（归还日期）";
             this.日期.Name = "日期";
             this.日期.ReadOnly = true;
+            this.日期.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.日期.Width = 155;
             // 
             // 领用人
@@ -391,18 +392,18 @@
             this.生产单位.HeaderText = "生产单位";
             this.生产单位.Name = "生产单位";
             this.生产单位.ReadOnly = true;
-            this.生产单位.Width = 112;
+            this.生产单位.Width = 102;
             // 
             // 生产日期
             // 
             this.生产日期.HeaderText = "生产日期";
             this.生产日期.Name = "生产日期";
             this.生产日期.ReadOnly = true;
-            this.生产日期.Width = 113;
+            this.生产日期.Width = 123;
             // 
             // 管理员
             // 
-            this.管理员.HeaderText = "管理员编号";
+            this.管理员.HeaderText = "管理员";
             this.管理员.Name = "管理员";
             this.管理员.ReadOnly = true;
             this.管理员.Width = 90;

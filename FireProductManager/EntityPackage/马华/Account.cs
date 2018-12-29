@@ -5,6 +5,7 @@ namespace FireProductManager.EntityPackage
     class Account: ActiveRecord
     {
         public int? ac_id { get; set; }
+        public string ac_accountName { get; set; }
         public string ac_accountNumber { get; set; }
         public string ac_password { get; set; }
         public int? ac_authority { get; set; }

@@ -12,8 +12,7 @@ namespace FireProductManager.EntityPackage
         public string or_direction { get; set; }
         public string or_borrowName { get; set; }
         public DateTime? or_timeStmp { get; set; }
-        public string or_accountNumber { get; set; }
-        public string or_projectPassword { get; set; } //项目令号可为空
+        public string or_accountName { get; set; }
         public double? or_outWeight { get; set; } //出库重量
 
         public OutRecord() : base("outrecord", "or_id", DbLinkManager.databaseType, DbLinkManager.connectString)

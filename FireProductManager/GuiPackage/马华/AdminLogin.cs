@@ -1,11 +1,14 @@
-﻿using FireProductManager.ServiceLogicPackage;
+﻿using FireProductManager.EntityPackage;
+using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Windows.Forms;
 
 namespace FireProductManager.GuiPackage
 {
-    public partial class AdminLogin : Form
+    public partial class AdminLogin : Form, LoginIDataDisplayer
     {
+        delegate void AccountDataHandler(Fingerprint fingerprint);
+        ConnectFingerprint connectFingerprint = ConnectFingerprint.GetInstance();
         public AdminLogin()
         {
             InitializeComponent();
@@ -32,8 +35,24 @@ namespace FireProductManager.GuiPackage
 
         private void AdminLogin_Load(object sender, EventArgs e)
         {
-           
+            //connectFingerprint.GetIPConnect();
+            //connectFingerprint.AddDisplayer(this);
         }
 
+        public void FingerprintLogin(Fingerprint fingerprint)
+        {
+            Invoke(new AccountDataHandler(LoginAccount), new object[] { fingerprint });
+        }
+
+        private void LoginAccount(Fingerprint fingerprint)
+        {
+            if (AccountManager.IsAccountNumberValid(fingerprint.fi_accountNumber))
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+                lab_tip.Text = "登陆失败，请重新输入";
+        }
     }
 }

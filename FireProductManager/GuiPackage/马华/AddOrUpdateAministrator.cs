@@ -13,7 +13,7 @@ namespace FireProductManager.GuiPackage
         int accountid;
 
         //修改管理员信息
-        public AddOrUpdateAministrator(int accountId,string account,string password,int authority)
+        public AddOrUpdateAministrator(int accountId,string account,string name,string password,int authority)
         {
             InitializeComponent();
             TextBoxVisibleIsFalse();
@@ -23,6 +23,7 @@ namespace FireProductManager.GuiPackage
             accountid = accountId;
             tb_accountnumber.Text = account;
             tb_accountnumber.ReadOnly = true;
+            tb_name.Text = name;
             tb_password.Text = password;
             if(authority == 1)
                 cb_authority.Text = "1(超级管理员)";
@@ -45,7 +46,7 @@ namespace FireProductManager.GuiPackage
             TextBoxVisibleIsFalse();
             if (!TextBoxCheck())
                 return;
-            AccountManager.UpdateAccount(accountid, tb_accountnumber.Text, tb_password.Text, AccountAuthority());
+            AccountManager.UpdateAccount(accountid, tb_accountnumber.Text, tb_name.Text ,tb_password.Text, AccountAuthority());
             AutoClosingMessageBox.Show("                修改成功", "修改管理员", 1000);
             EmptyTextBox();
             RefreshData?.Invoke();
@@ -54,6 +55,7 @@ namespace FireProductManager.GuiPackage
         private void EmptyTextBox()
         {
             tb_accountnumber.Text = "";
+            tb_name.Text = "";
             tb_password.Text = "";
             cb_authority.Text = "";
         }
@@ -68,6 +70,12 @@ namespace FireProductManager.GuiPackage
                 validation = false;
             }
             else la_accountcheck.Visible = false;
+            if (tb_name.Text == "")
+            {
+                la_namecheck.Visible = true;
+                validation = false;
+            }
+            else la_namecheck.Visible = false;
             if (tb_password.Text == "")
             {
                 la_passwordcheck.Visible = true;
@@ -86,6 +94,7 @@ namespace FireProductManager.GuiPackage
         private void TextBoxVisibleIsFalse()
         {
             la_accountcheck.Visible = false;
+            la_namecheck.Visible = false;
             la_authoritycheck.Visible = false;
             la_passwordcheck.Visible = false;
             la_accountnumber.Visible = false;
@@ -98,7 +107,7 @@ namespace FireProductManager.GuiPackage
                 return;
             if (!IsExistAccountNumber(tb_accountnumber.Text))
                 return;
-            AccountManager.AddAccount(tb_accountnumber.Text, tb_password.Text, AccountAuthority());
+            AccountManager.AddAccount(tb_accountnumber.Text, tb_name.Text ,tb_password.Text, AccountAuthority());
             AutoClosingMessageBox.Show("                添加成功", "添加管理员", 1000);
             EmptyTextBox();
             RefreshData?.Invoke();

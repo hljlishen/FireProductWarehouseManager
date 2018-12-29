@@ -63,20 +63,22 @@ namespace FireProductManager.ServiceLogicPackage
             return dt.Rows.Count > 0;
         }
 
-        public static void AddAccount(string accounts,string password,int authority)
+        public static void AddAccount(string accounts,string name ,string password,int authority)
         {
             Account account = new Account();
             account.ac_accountNumber = accounts;
+            account.ac_accountName = name;
             account.ac_password = password;
             account.ac_authority = authority;
             account.Insert();
         }
 
-        public static void UpdateAccount(int accountid,string accounts, string password, int authority)
+        public static void UpdateAccount(int accountid,string accounts,string name ,string password, int authority)
         {
             Account account = new Account();
             account.ac_id = accountid;
             account.ac_accountNumber = accounts;
+            account.ac_accountName = name;
             account.ac_password = password;
             account.ac_authority = authority;
             account.Update();
@@ -85,7 +87,7 @@ namespace FireProductManager.ServiceLogicPackage
         public static string ReturnAccount()
         {
             if (account == null) return null;
-            return account.ac_accountNumber;
+            return account.ac_accountName;
         }
 
         public static bool IsAccountNumberValid(string accountNumber)
@@ -94,7 +96,13 @@ namespace FireProductManager.ServiceLogicPackage
             maker.AddAndCondition(new StringEqual("ac_accountNumber", accountNumber));
             string sql = maker.MakeSelectSql();
             DataTable dt = Query(sql);
-            return dt.Rows.Count > 0;
+            if (dt.Rows.Count > 0)
+            {
+                account = new Account();
+                account.LoadDataRow(dt.Rows[0]);//改为uint后loaddatarow不支持
+                return true;
+            }
+            return false;
         }
     }
 }

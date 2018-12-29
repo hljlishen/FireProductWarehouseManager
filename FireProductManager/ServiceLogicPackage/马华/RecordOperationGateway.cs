@@ -13,9 +13,16 @@ namespace FireProductManager.ServiceLogicPackage
             return query;
         }
 
-        public static DataTable GetAllInOrOutRecord()
+        public static DataTable GetAllOutRecord()
         {
-            SelectSqlMaker maker = new SelectSqlMaker("inoutrecord");
+            SelectSqlMaker maker = new SelectSqlMaker("outrecord");
+            string sql = maker.MakeSelectSql();
+            return Query(sql);
+        }
+
+        public static DataTable GetAllInRecord()
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("inrecord");
             string sql = maker.MakeSelectSql();
             return Query(sql);
         }
@@ -28,8 +35,24 @@ namespace FireProductManager.ServiceLogicPackage
             return Query(sql);
         }
 
+        public static DataTable ThroughProjectIdQuery(int id)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("project");
+            maker.AddAndCondition(new IntEqual("pr_id", id));
+            string sql = maker.MakeSelectSql();
+            return Query(sql);
+        }
+
+        public static DataTable ThroughOutRecordIdQuery(int outId)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("outrecord");
+            maker.AddAndCondition(new IntEqual("or_id", outId));
+            string sql = maker.MakeSelectSql();
+            return Query(sql);
+        }
+
         //借包
-        public static void BorrowPackage(int packageid,int employeeid,int projectId,string borrowName,string accountName,string projectPassword,double outWeight)
+        public static void BorrowPackage(int packageid,int employeeid,int projectId,string borrowName,string accountName,double outWeight)
         {
             PackageGateway.BorrowPackage(packageid);
 
@@ -38,8 +61,7 @@ namespace FireProductManager.ServiceLogicPackage
             outRecord.or_employeeId = (uint)employeeid;
             outRecord.or_projectId = (uint)projectId;
             outRecord.or_borrowName = borrowName;
-            outRecord.or_accountNumber = accountName;
-            outRecord.or_projectPassword = projectPassword;
+            outRecord.or_accountName = accountName;
             outRecord.or_direction = "出库";
             outRecord.or_timeStmp = DateTime.Now;
             outRecord.or_outWeight = outWeight;
@@ -47,13 +69,13 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //还包
-        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountNumber,double consumption, double returnWeight)
+        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountName,double consumption, double returnWeight)
         {
             PackageGateway.ReturnPackage(packageid, barrelid, returnWeight);
 
             InRecord inRecord = new InRecord();
             inRecord.ir_outid = (uint)outid;
-            inRecord.ir_accountNumber = accountNumber;
+            inRecord.ir_accountName = accountName;
             inRecord.ir_direction = "入库";
             inRecord.ir_timeStmp = DateTime.Now;
             inRecord.ir_consumption = consumption;
@@ -71,18 +93,42 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //条件搜索
-        public static DataTable ConditionsSearchInOrOutRecord(string packageId,string employeeId,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
+        public static DataTable ConditionsSearchOutRecord(string packageId,string employeeId,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
         {
-            SelectSqlMaker maker = new SelectSqlMaker("inoutrecord");
-            maker.AddAndCondition(new StringEqual("ior_packageId", packageId));
-            maker.AddAndCondition(new StringEqual("ior_employeeId", employeeId));
-            maker.AddAndCondition(new IntEqual("ior_projectId", projectId));
+            SelectSqlMaker maker = new SelectSqlMaker("outrecord");
+            maker.AddAndCondition(new StringEqual("or_packageId", packageId));
+            maker.AddAndCondition(new StringEqual("or_employeeId", employeeId));
+            maker.AddAndCondition(new IntEqual("or_projectId", projectId));
             if (direction == "出入库")
-                maker.AddAndCondition(new StringLike("ior_direction", "库"));
+                maker.AddAndCondition(new StringLike("or_direction", "库"));
             else
-                maker.AddAndCondition(new StringEqual("ior_direction", direction));
-            if(isChoiceTime)
-                maker.AddAndCondition(new DateBetweenOpenInterval("ior_timeStmp", begintTime, endTime,DbLinkManager.databaseType));
+                maker.AddAndCondition(new StringEqual("or_direction", direction));
+            if (isChoiceTime)
+                maker.AddAndCondition(new DateBetweenOpenInterval("or_timeStmp", begintTime, endTime,DbLinkManager.databaseType));
+            string sql = maker.MakeSelectSql();
+            return Query(sql);
+        }
+
+        public static DataTable ConditionsSearchInRecord(string outid,string direction, bool isChoiceTime, DateTime begintTime, DateTime endTime)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("inrecord");
+            maker.AddAndCondition(new StringEqual("ir_outid", outid));
+            if (direction == "出入库")
+                maker.AddAndCondition(new StringLike("ir_direction", "库"));
+            else
+                maker.AddAndCondition(new StringEqual("ir_direction", direction));
+            if (isChoiceTime)
+                maker.AddAndCondition(new DateBetweenOpenInterval("ir_timeStmp", begintTime, endTime, DbLinkManager.databaseType));
+            string sql = maker.MakeSelectSql();
+            return Query(sql);
+        }
+
+        public static DataTable ConditionsSearchOutId(string packageId, string employeeId, string projectId)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("outrecord");
+            maker.AddAndCondition(new StringEqual("or_packageId", packageId));
+            maker.AddAndCondition(new StringEqual("or_employeeId", employeeId));
+            maker.AddAndCondition(new IntEqual("or_projectId", projectId));
             string sql = maker.MakeSelectSql();
             return Query(sql);
         }
