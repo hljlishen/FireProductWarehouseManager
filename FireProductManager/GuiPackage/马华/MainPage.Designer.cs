@@ -72,7 +72,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgv_AllowanceRemind = new System.Windows.Forms.DataGridView();
             this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.余量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -481,10 +480,12 @@
             // 
             // dgv_AllowanceRemind
             // 
+            this.dgv_AllowanceRemind.AllowUserToAddRows = false;
+            this.dgv_AllowanceRemind.AllowUserToDeleteRows = false;
+            this.dgv_AllowanceRemind.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_AllowanceRemind.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_AllowanceRemind.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.类型,
-            this.规格,
             this.余量});
             this.dgv_AllowanceRemind.Location = new System.Drawing.Point(6, 20);
             this.dgv_AllowanceRemind.Name = "dgv_AllowanceRemind";
@@ -497,19 +498,13 @@
             // 
             this.类型.HeaderText = "类型";
             this.类型.Name = "类型";
-            this.类型.Width = 143;
-            // 
-            // 规格
-            // 
-            this.规格.HeaderText = "规格（mm*mm）";
-            this.规格.Name = "规格";
-            this.规格.Width = 142;
+            this.类型.Width = 214;
             // 
             // 余量
             // 
             this.余量.HeaderText = "余量（g）";
             this.余量.Name = "余量";
-            this.余量.Width = 143;
+            this.余量.Width = 214;
             // 
             // MainPage
             // 
@@ -581,7 +576,6 @@
         private System.Windows.Forms.Button btn_projectPassword;
         private System.Windows.Forms.DataGridView dgv_AllowanceRemind;
         private System.Windows.Forms.DataGridViewTextBoxColumn 类型;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 规格;
         private System.Windows.Forms.DataGridViewTextBoxColumn 余量;
     }
 }

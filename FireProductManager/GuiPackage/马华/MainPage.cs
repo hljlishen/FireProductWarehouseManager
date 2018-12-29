@@ -1,5 +1,6 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
@@ -30,7 +31,7 @@ namespace FireProductManager.GuiPackage
             InitializeComponent();
             TextBoxCheckShow();
             StartPosition = FormStartPosition.CenterScreen;
-            //ShowDataGridView();
+            ShowDataGridView(PackageGateway.StatisticAllModelWeightsInWarehouse());
         }
 
         private void MainPage_Load(object sender, EventArgs e)
@@ -117,6 +118,8 @@ namespace FireProductManager.GuiPackage
             {
                 tb_packagename.Text = dr["pa_type"].ToString();
                 tb_packagemodel.Text = dr["pa_specifications"].ToString();
+                if (tb_packageweight.Text != "")
+                    consumption = (double)dr["pa_weight"] - double.Parse(tb_packageweight.Text);
             }
 
             tb_barrelid.Text = BarrelGateway.SearchShortweightBarrrelId().ToString();
@@ -127,8 +130,6 @@ namespace FireProductManager.GuiPackage
             {
                 outid = (int)dr["or_id"];
                 tb_borrowName.Text = dr["or_borrowName"].ToString();
-                if (tb_packageweight.Text != "")
-                    consumption = (double)dr["or_outWeight"] - double.Parse(tb_packageweight.Text);
                 projectid =(int) dr["or_projectId"];
             }
 
@@ -269,16 +270,21 @@ namespace FireProductManager.GuiPackage
         }
 
         //余量提醒
-        private void ShowDataGridView(DataTable dt)
+        private void ShowDataGridView(Dictionary<string, double> dicDep)
         {
             dgv_AllowanceRemind.Rows.Clear();
-            foreach (DataRow dr in dt.Rows)
+            DataTable dt = new DataTable();
+            foreach (var colName in dicDep.Keys)
+            {
+                dt.Columns.Add(colName, typeof(string));
+            }
+            DataRow dr = dt.NewRow();
+            foreach (KeyValuePair<string, double> item in dicDep)
             {
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_AllowanceRemind.Rows.Add(row);
-                dgv_AllowanceRemind.Rows[index].Cells[0].Value = dr["pa_type"];
-                dgv_AllowanceRemind.Rows[index].Cells[1].Value = dr["pa_specifications"];
-                dgv_AllowanceRemind.Rows[index].Cells[2].Value = dr["pa_weight"] + "g";
+                dgv_AllowanceRemind.Rows[index].Cells[0].Value = item.Key;
+                dgv_AllowanceRemind.Rows[index].Cells[1].Value = item.Value + "g";
             }
         }
     }
