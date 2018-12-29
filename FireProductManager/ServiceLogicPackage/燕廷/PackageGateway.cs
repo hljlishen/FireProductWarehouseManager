@@ -205,7 +205,7 @@ namespace FireProductManager.ServiceLogicPackage
                 }
                 else
                 {
-                    keyValuePairs.Add((string)dr["pa_type"], GetInRecordInformation((int)dr["or_id"]));
+                    keyValuePairs.Add((string)myDr["pa_type"], GetInRecordInformation((int)dr["or_id"]));
                 }
             }
             return keyValuePairs;
@@ -250,7 +250,7 @@ namespace FireProductManager.ServiceLogicPackage
                 }
                 else
                 {
-                    keyValuePairs.Add((string)dr["pa_type"], (double)dr["or_outWeight"]);
+                    keyValuePairs.Add((string)myDr["pa_type"], (double)dr["or_outWeight"]);
                 }
             }
             return keyValuePairs;

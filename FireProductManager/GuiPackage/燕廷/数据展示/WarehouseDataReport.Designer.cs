@@ -30,7 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tp_warehousemargi = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.wb_project = new System.Windows.Forms.WebBrowser();
             this.tp_warehouseprocurement = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -39,16 +41,14 @@
             this.tp_warehousemargin = new System.Windows.Forms.TabPage();
             this.wb_warehousemargin = new System.Windows.Forms.WebBrowser();
             this.tp_projectdosage = new System.Windows.Forms.TabPage();
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.bt_showbarrel = new System.Windows.Forms.Button();
+            this.tb_project = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.webBrowser2 = new System.Windows.Forms.WebBrowser();
             this.webBrowser3 = new System.Windows.Forms.WebBrowser();
-            this.bt_showbarrel = new System.Windows.Forms.Button();
-            this.tb_project = new System.Windows.Forms.TextBox();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tp_warehousemargi.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tp_warehouseprocurement.SuspendLayout();
@@ -56,8 +56,8 @@
             this.tc_datareport.SuspendLayout();
             this.tp_warehousemargin.SuspendLayout();
             this.tp_projectdosage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // tp_warehousemargi
@@ -73,6 +73,20 @@
             this.tp_warehousemargi.Text = "仓库用量";
             this.tp_warehousemargi.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "已归还用量",
+            "未归还材料"});
+            this.comboBox1.Location = new System.Drawing.Point(58, 46);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(95, 28);
+            this.comboBox1.TabIndex = 27;
+            this.comboBox1.Text = "已归还用量";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.webBrowser1);
@@ -81,6 +95,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1250, 600);
             this.panel2.TabIndex = 26;
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Location = new System.Drawing.Point(625, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.ScriptErrorsSuppressed = true;
+            this.webBrowser1.ScrollBarsEnabled = false;
+            this.webBrowser1.Size = new System.Drawing.Size(625, 600);
+            this.webBrowser1.TabIndex = 1;
             // 
             // wb_project
             // 
@@ -170,39 +194,24 @@
             this.tp_projectdosage.Text = "项目用量";
             this.tp_projectdosage.UseVisualStyleBackColor = true;
             // 
-            // fileSystemWatcher1
+            // bt_showbarrel
             // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
+            this.bt_showbarrel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.bt_showbarrel.Location = new System.Drawing.Point(213, 51);
+            this.bt_showbarrel.Name = "bt_showbarrel";
+            this.bt_showbarrel.Size = new System.Drawing.Size(30, 26);
+            this.bt_showbarrel.TabIndex = 70;
+            this.bt_showbarrel.Text = "...";
+            this.bt_showbarrel.UseVisualStyleBackColor = true;
+            this.bt_showbarrel.Click += new System.EventHandler(this.bt_showbarrel_Click);
             // 
-            // contextMenuStrip1
+            // tb_project
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Location = new System.Drawing.Point(625, 0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(625, 600);
-            this.webBrowser1.TabIndex = 1;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "已归还用量",
-            "未归还材料"});
-            this.comboBox1.Location = new System.Drawing.Point(58, 46);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(95, 28);
-            this.comboBox1.TabIndex = 27;
-            this.comboBox1.Text = "已归还用量";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.tb_project.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_project.Location = new System.Drawing.Point(60, 51);
+            this.tb_project.Name = "tb_project";
+            this.tb_project.Size = new System.Drawing.Size(147, 26);
+            this.tb_project.TabIndex = 69;
             // 
             // comboBox2
             // 
@@ -215,7 +224,6 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(95, 28);
             this.comboBox2.TabIndex = 29;
-            this.comboBox2.Text = "已归还用量";
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // panel3
@@ -246,24 +254,15 @@
             this.webBrowser3.Size = new System.Drawing.Size(625, 600);
             this.webBrowser3.TabIndex = 0;
             // 
-            // bt_showbarrel
+            // fileSystemWatcher1
             // 
-            this.bt_showbarrel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bt_showbarrel.Location = new System.Drawing.Point(213, 51);
-            this.bt_showbarrel.Name = "bt_showbarrel";
-            this.bt_showbarrel.Size = new System.Drawing.Size(30, 26);
-            this.bt_showbarrel.TabIndex = 70;
-            this.bt_showbarrel.Text = "...";
-            this.bt_showbarrel.UseVisualStyleBackColor = true;
-            this.bt_showbarrel.Click += new System.EventHandler(this.bt_showbarrel_Click);
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
             // 
-            // tb_project
+            // contextMenuStrip1
             // 
-            this.tb_project.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_project.Location = new System.Drawing.Point(60, 51);
-            this.tb_project.Name = "tb_project";
-            this.tb_project.Size = new System.Drawing.Size(147, 26);
-            this.tb_project.TabIndex = 69;
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // WarehouseDataReport
             // 
@@ -283,8 +282,8 @@
             this.tp_warehousemargin.ResumeLayout(false);
             this.tp_projectdosage.ResumeLayout(false);
             this.tp_projectdosage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
 
         }
