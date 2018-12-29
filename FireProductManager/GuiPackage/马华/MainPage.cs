@@ -15,7 +15,7 @@ namespace FireProductManager.GuiPackage
         ListViewItem listView = new ListViewItem();
         EmployeeManagement selectEmployees;
         ProjectManageme selectProject;
-        EvirmentRecordGateway erg = new EvirmentRecordGateway(new Apem5900());
+        //EvirmentRecordGateway erg = new EvirmentRecordGateway(new Apem5900());
 
         int employeeid = 0;
         int packageid = 0;
@@ -30,11 +30,12 @@ namespace FireProductManager.GuiPackage
             InitializeComponent();
             TextBoxCheckShow();
             StartPosition = FormStartPosition.CenterScreen;
+            //ShowDataGridView();
         }
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-            erg.NewEvirmentData += NewEvirmentData;
+            //erg.NewEvirmentData += NewEvirmentData;
         }
 
         private void NewEvirmentData(double temp, double humi) => Invoke(new TempHumiHandler(ShowTempAndHumiDate), new object[] { temp, humi });
@@ -265,6 +266,20 @@ namespace FireProductManager.GuiPackage
             tb_projectpassword.Text = projectPassword;
             projectid = id;
             RecordPackageOutboundInformation();
+        }
+
+        //余量提醒
+        private void ShowDataGridView(DataTable dt)
+        {
+            dgv_AllowanceRemind.Rows.Clear();
+            foreach (DataRow dr in dt.Rows)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+                int index = dgv_AllowanceRemind.Rows.Add(row);
+                dgv_AllowanceRemind.Rows[index].Cells[0].Value = dr["pa_type"];
+                dgv_AllowanceRemind.Rows[index].Cells[1].Value = dr["pa_specifications"];
+                dgv_AllowanceRemind.Rows[index].Cells[2].Value = dr["pa_weight"] + "g";
+            }
         }
     }
 }
