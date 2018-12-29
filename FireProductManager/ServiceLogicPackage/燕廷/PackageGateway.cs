@@ -110,12 +110,11 @@ namespace FireProductManager.ServiceLogicPackage
             return keyValuePairs;
         }
 
-        //获取材料入库重量
+        //获取材料采购重量
         public static Dictionary<string, double> StatisticAllModelBeginningWeightsInWarehouse()
         {
             Package package = new Package();
             SelectSqlMaker maker = new SelectSqlMaker("Package");
-            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
             DataTable dataTable = package.Select(maker.MakeSelectSql());
             Dictionary<string, double> keyValuePairs = GetModleOfBeginningWeight(dataTable);
             return keyValuePairs;
@@ -197,10 +196,10 @@ namespace FireProductManager.ServiceLogicPackage
             {
                 DataTable dt = GetPackageInformation((int)dr["or_packageId"]);
                 DataRow myDr = dt.Rows[0];
-                if ((int)myDr["pa_isinwarehouse"] == 1) continue;
                 string key = myDr["pa_type"].ToString();
                 if (keyValuePairs.Keys.Contains(key))
-                { 
+                {
+                    if (GetInRecordInformation((int)dr["or_id"]) == -1) continue;
                     keyValuePairs[key] += GetInRecordInformation((int)dr["or_id"]); ;
                 }
                 else
@@ -219,6 +218,7 @@ namespace FireProductManager.ServiceLogicPackage
             SelectSqlMaker maker = new SelectSqlMaker("inrecord");
             maker.AddAndCondition(new IntEqual("ir_outid", outrecordid));
             DataTable dataTable = inRecord.Select(maker.MakeSelectSql());
+            if (dataTable.Rows.Count <= 0) return -1;
             DataRow myDr = dataTable.Rows[0];
             double consumption = (double)myDr["ir_consumption"];
             return consumption;
