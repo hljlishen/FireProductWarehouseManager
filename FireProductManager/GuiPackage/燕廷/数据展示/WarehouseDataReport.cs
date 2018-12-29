@@ -3,103 +3,161 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using FireProductManager.ServiceLogicPackage;
-using System.Runtime.InteropServices;
 
 namespace FireProductManager.GuiPackage
 {
-    [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
-    [ComVisible(true)]
     public partial class WarehouseDataReport : Form
     {
-        static List<string> liststring = new List<string>();
-        static List<double> listdouble = new List<double>();
-
-        static int ArrayLenght;
+        List<string> list_X = new List<string>();
+        List<double> list_Y = new List<double>();
 
         string str = Directory.GetCurrentDirectory();
+
+        ProjectManageme selectProject;
+        private int projectid;
 
         public WarehouseDataReport()
         {
             InitializeComponent();
-
-            //获取Winfrom的WebBrowser
-            webBrowser1.ObjectForScripting = this;
-            webBrowser2.ObjectForScripting = this;
-
-            //初始化浏览器
-            initWebBrowser();
         }
 
-        private void initWebBrowser()
+        private void WarehouseDataReport_Load(object sender, EventArgs e)
         {
-            //防止 WebBrowser 控件打开拖放到其上的文件。
-            webBrowser2.AllowWebBrowserDrop = false;
-
-            //防止 WebBrowser 控件在用户右击它时显示其快捷菜单.
-            webBrowser2.IsWebBrowserContextMenuEnabled = false;
-
-            //以防止 WebBrowser 控件响应快捷键。
-            webBrowser2.WebBrowserShortcutsEnabled = false;
+            Top = 0;
+            Left = 0;
+            WarehouseProcurement();
         }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        
+        private void tc_datareport_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string webname = "html/index.html";
-
-            if (comboBox2.Text.Trim().Equals("入库材料"))
+            if (tc_datareport.SelectedTab.Name == "tp_warehouseprocurement")
             {
-                webname = "html/index.html";
-                ChangeArray(PackageGateway.StatisticAllModelWeightsInWarehouse());
+                WarehouseProcurement();
+            }
 
-            } 
+            if (tc_datareport.SelectedTab.Name == "tp_warehousemargi")
+            {
+                comboBox1.Text = "已归还用量";
+                PackageDosage();
+            }
 
-            if (comboBox2.Text.Trim().Equals("使用材料")) webname = "html/index6.html";
-            if (comboBox2.Text.Trim().Equals("剩余材料")) webname = "html/index3.html";
-            webBrowser2.Url = new Uri(str + "\\" + webname);
+            if (tc_datareport.SelectedTab.Name == "tp_warehousemargin")
+            {
+                WarehouseMargin();
+            }
         }
 
+        //仓库材料用量
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string webname = "html/index.html";
-
-            if (comboBox1.Text.Trim().Equals("入库材料"))
-            {
-                webname = "html/index.html";
-                webBrowser1.Navigate(str + "\\" + webname);
-                
-                ChangeArray(PackageGateway.StatisticAllModelWeightsInWarehouse());
-            }
-
-            if (comboBox1.Text.Trim().Equals("使用材料")) webname = "html/index6.html";
-            if (comboBox1.Text.Trim().Equals("剩余材料")) webname = "html/index3.html";
-            webBrowser1.Url = new Uri(str + "\\" + webname);
+            if (comboBox1.Text.Trim().Equals("已归还用量"))
+                PackageDosage();
+            if (comboBox1.Text.Trim().Equals("未归还材料"))
+                PackageOutbound();
         }
 
-        public static void ChangeArray(Dictionary<string, double> keyValuePairs)
+        //项目材料用量
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int i = 0;
+            if (comboBox2.Text.Trim().Equals("已归还用量"))
+                ProjectDosage();
+            if (comboBox2.Text.Trim().Equals("未归还材料"))
+                ProjectOutbound();
+        }
+
+        //材料入库量
+        private void WarehouseProcurement()
+        {
+            ClearData();
+            Dictionary<string, double> keyValuePairs = PackageGateway.StatisticAllModelBeginningWeightsInWarehouse();
+            ChangeArray(keyValuePairs);
+            TwoDimensionalTable a = new TwoDimensionalTable(wb_warehouse, "cylindrical", list_X, list_Y);
+        }
+
+        //材料用量
+        private void PackageDosage()
+        {
+            ClearData();
+            Dictionary<string, double> keyValuePairs = PackageGateway.GetPackageDosage();
+            ChangeArray(keyValuePairs);
+            TwoDimensionalTable a = new TwoDimensionalTable(wb_project, "cylindrical", list_X, list_Y);
+            TwoDimensionalTable a1 = new TwoDimensionalTable(webBrowser1, "sector", list_X, list_Y);
+        }
+
+        //材料出库量
+        private void PackageOutbound()
+        {
+            ClearData();
+            Dictionary<string, double> keyValuePairs = PackageGateway.GetPackageOutbound();
+            ChangeArray(keyValuePairs);
+            TwoDimensionalTable a = new TwoDimensionalTable(wb_project, "cylindrical", list_X, list_Y);
+            TwoDimensionalTable a1 = new TwoDimensionalTable(webBrowser1, "sector", list_X, list_Y);
+        }
+
+        //材料余量
+        private void WarehouseMargin()
+        {
+            ClearData();
+            Dictionary<string, double> keyValuePairs = PackageGateway.StatisticAllModelWeightsInWarehouse();
+            ChangeArray(keyValuePairs);
+            TwoDimensionalTable a = new TwoDimensionalTable(wb_warehousemargin , "cylindrical", list_X,list_Y);
+        }
+
+        //项目用量
+        private void ProjectDosage()
+        {
+            ClearData();
+            if (projectid == 0) return;
+            Dictionary<string, double> keyValuePairs = PackageGateway.GetProjectPackageDosage((uint)projectid);
+            ChangeArray(keyValuePairs);
+            TwoDimensionalTable a = new TwoDimensionalTable(webBrowser3, "cylindrical", list_X, list_Y);
+            TwoDimensionalTable a1 = new TwoDimensionalTable(webBrowser2, "sector", list_X, list_Y);
+            projectid = 0;
+
+        }
+
+        //项目出库量
+        private void ProjectOutbound()
+        {
+            ClearData();
+            if (projectid == 0) return;
+            Dictionary<string, double> keyValuePairs = PackageGateway.GetProjectPackageOutRecord((uint)projectid);
+            ChangeArray(keyValuePairs);
+            TwoDimensionalTable a = new TwoDimensionalTable(webBrowser3, "cylindrical", list_X, list_Y);
+            TwoDimensionalTable a1 = new TwoDimensionalTable(webBrowser2, "sector", list_X, list_Y);
+            projectid = 0;
+        }
+
+        private void ClearData()
+        {
+            list_X.Clear();
+            list_Y.Clear();
+        }
+
+        public void ChangeArray(Dictionary<string, double> keyValuePairs)
+        {
             foreach (var item in keyValuePairs)
             {
-                liststring.Add(item.Key);
-                listdouble.Add(item.Value);
-                i++;
+                list_X.Add(item.Key);
+                list_Y.Add(item.Value);
             }
-            ArrayLenght = i-1;
         }
 
-        public int GetArrayLenght()
+        private void bt_showbarrel_Click(object sender, EventArgs e)
         {
-            return ArrayLenght;
+            selectProject = new ProjectManageme();
+            selectProject.FormBorderStyle = FormBorderStyle.FixedSingle;
+            selectProject.ProjectSelecteds += ProjectSelected;
+            selectProject.ShowDialog();
+            selectProject.ProjectSelecteds -= ProjectSelected;
         }
 
-        public string GetDataString(int i)
+        private void ProjectSelected(int id, string projectPassword)
         {
-            return liststring[i];
-        }
-
-        public double GetDataDouble(int i)
-        {
-            return listdouble[i];
+            tb_project.Text = "";
+            tb_project.Text = projectPassword;
+            projectid = id;
+            comboBox2.Text = "";
         }
     }
 }
