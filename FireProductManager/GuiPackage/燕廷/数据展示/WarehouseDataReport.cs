@@ -112,7 +112,6 @@ namespace FireProductManager.GuiPackage
             ChangeArray(keyValuePairs);
             TwoDimensionalTable a = new TwoDimensionalTable(webBrowser3, "cylindrical", list_X, list_Y);
             TwoDimensionalTable a1 = new TwoDimensionalTable(webBrowser2, "sector", list_X, list_Y);
-            projectid = 0;
 
         }
 
@@ -125,7 +124,6 @@ namespace FireProductManager.GuiPackage
             ChangeArray(keyValuePairs);
             TwoDimensionalTable a = new TwoDimensionalTable(webBrowser3, "cylindrical", list_X, list_Y);
             TwoDimensionalTable a1 = new TwoDimensionalTable(webBrowser2, "sector", list_X, list_Y);
-            projectid = 0;
         }
 
         private void ClearData()
