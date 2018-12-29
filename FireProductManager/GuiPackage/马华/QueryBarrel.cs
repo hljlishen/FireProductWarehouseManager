@@ -75,8 +75,8 @@ namespace FireProductManager.GuiPackage
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_package.Rows.Add(row);
                 dgv_package.Rows[index].Cells[0].Value = dr["pa_id"];
-                dgv_package.Rows[index].Cells[1].Value = dr["pa_name"];
-                dgv_package.Rows[index].Cells[2].Value = dr["pa_model"];
+                dgv_package.Rows[index].Cells[1].Value = dr["pa_type"];
+                dgv_package.Rows[index].Cells[2].Value = dr["pa_specifications"];
                 dgv_package.Rows[index].Cells[3].Value = dr["pa_weight"] + "g";
             }
         }

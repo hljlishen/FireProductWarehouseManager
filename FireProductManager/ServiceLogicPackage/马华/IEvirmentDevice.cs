@@ -23,18 +23,17 @@ namespace FireProductManager.ServiceLogicPackage
 
         public Apem5900()
         {
-            IPEndPoint ip = new IPEndPoint(IPAddress.Any, 13001);
+            IPEndPoint ip = new IPEndPoint(IPAddress.Any, 10050);
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             _socket.Bind(ip);
         }
 
-        void IEvirmentDevice.Open()
+        public void Open()
         {
             _readThread = new Thread(Read);
             _readThread.IsBackground = true;
             _readThread.Start();
         }
-
 
         public void Close() => _readThread?.Abort();
 

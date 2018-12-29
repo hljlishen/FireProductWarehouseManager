@@ -66,6 +66,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\ThoughtWorks.QRCode.dll</HintPath>
     </Reference>
+    <Reference Include="ZedGraph, Version=1.0.1812.29779, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ZedGraph.dll</HintPath>
+    </Reference>
     <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\zxing.dll</HintPath>
@@ -106,6 +110,7 @@
     <Compile Include="EntityPackage\马华\Account.cs" />
     <Compile Include="EntityPackage\马华\Barrel.cs" />
     <Compile Include="EntityPackage\马华\EvirmentRecord.cs" />
+    <Compile Include="EntityPackage\马华\Fingerprint.cs" />
     <Compile Include="EntityPackage\马华\InOutRecord.cs" />
     <Compile Include="EntityPackage\马华\InRecord.cs" />
     <Compile Include="EntityPackage\马华\OutRecord.cs" />
@@ -245,7 +250,9 @@
     <Compile Include="ServiceLogicPackage\马华\BarrelGateway.cs" />
     <Compile Include="ServiceLogicPackage\马华\ElectronicScaleDevice.cs" />
     <Compile Include="ServiceLogicPackage\马华\EvirmentRecordGateway.cs" />
+    <Compile Include="ServiceLogicPackage\马华\LoginIDataDisplayer.cs" />
     <Compile Include="ServiceLogicPackage\马华\IEvirmentDevice.cs" />
+    <Compile Include="ServiceLogicPackage\马华\LogoutIDataDisplayer.cs" />
     <Compile Include="ServiceLogicPackage\马华\RecordOperationGateway.cs" />
     <EmbeddedResource Include="GuiPackage\燕廷\员工管理页面\AddOrUpdateEmployee.resx">
       <DependentUpon>AddOrUpdateEmployee.cs</DependentUpon>
@@ -324,7 +331,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="zkemkeeper">
+      <Guid>{FE9DED34-E159-408E-8490-B720A5E632C7}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="MySql.Data.dll" />
   </ItemGroup>

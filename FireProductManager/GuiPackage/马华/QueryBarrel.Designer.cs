@@ -124,21 +124,25 @@
             // 
             this.袋子编号.HeaderText = "袋子编号";
             this.袋子编号.Name = "袋子编号";
+            this.袋子编号.ReadOnly = true;
             // 
             // 类型
             // 
             this.类型.HeaderText = "材料类型";
             this.类型.Name = "类型";
+            this.类型.ReadOnly = true;
             // 
             // 规格
             // 
             this.规格.HeaderText = "规格（mm*mm）";
             this.规格.Name = "规格";
+            this.规格.ReadOnly = true;
             // 
             // 重量
             // 
             this.重量.HeaderText = "重量（g）";
             this.重量.Name = "重量";
+            this.重量.ReadOnly = true;
             // 
             // QueryBarrel
             // 

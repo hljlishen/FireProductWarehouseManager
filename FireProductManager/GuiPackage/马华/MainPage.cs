@@ -8,12 +8,14 @@ namespace FireProductManager.GuiPackage
 {
     public partial class MainPage : Form
     {
+        delegate void TempHumiHandler(double temp, double humi);
         delegate void WeightGettedHandler(double weight);
         Ahdr ahdr = new Ahdr();
         PackageBorrowRecord packageBorrowRecord = null;
         ListViewItem listView = new ListViewItem();
         EmployeeManagement selectEmployees;
         ProjectManageme selectProject;
+        EvirmentRecordGateway erg = new EvirmentRecordGateway(new Apem5900());
 
         int employeeid = 0;
         int packageid = 0;
@@ -32,7 +34,15 @@ namespace FireProductManager.GuiPackage
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-            
+            erg.NewEvirmentData += NewEvirmentData;
+        }
+
+        private void NewEvirmentData(double temp, double humi) => Invoke(new TempHumiHandler(ShowTempAndHumiDate), new object[] { temp, humi });
+
+        private void ShowTempAndHumiDate(double temp, double humi)
+        {
+            Tem_num.Text = temp.ToString()+ "℃";
+            Hum_num.Text = humi.ToString() + "％";
         }
 
         private void PackageIdSelected(int packageId)
@@ -94,7 +104,7 @@ namespace FireProductManager.GuiPackage
                 if (result != DialogResult.OK)
                     return;
             }
-            RecordOperationGateway.BorrowPackage(packageid, employeeid, projectid, tb_borrowName.Text, accountname, tb_projectpassword.Text, double.Parse(tb_packageweight.Text));
+            RecordOperationGateway.BorrowPackage(packageid, employeeid, projectid, tb_borrowName.Text, accountname, double.Parse(tb_packageweight.Text));
             ListViewShow();
             AutoClosingMessageBox.Show("                出库成功", "出库", 2000);
             EmptyTextBox();
@@ -118,8 +128,11 @@ namespace FireProductManager.GuiPackage
                 tb_borrowName.Text = dr["or_borrowName"].ToString();
                 if (tb_packageweight.Text != "")
                     consumption = (double)dr["or_outWeight"] - double.Parse(tb_packageweight.Text);
-                tb_projectpassword.Text = dr["or_projectPassword"].ToString();
+                projectid =(int) dr["or_projectId"];
             }
+
+            foreach (DataRow dr in RecordOperationGateway.ThroughProjectIdQuery(projectid).Rows)
+                tb_projectpassword.Text = dr["pr_projectPassword"].ToString();
 
             RecordPackagePutInStorageInformation();
         }

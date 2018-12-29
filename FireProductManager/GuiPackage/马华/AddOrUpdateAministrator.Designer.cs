@@ -41,6 +41,9 @@
             this.la_password = new System.Windows.Forms.Label();
             this.la_account = new System.Windows.Forms.Label();
             this.la_accountnumber = new System.Windows.Forms.Label();
+            this.la_namecheck = new System.Windows.Forms.Label();
+            this.tb_name = new System.Windows.Forms.TextBox();
+            this.la_name = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // la_authoritycheck
@@ -48,7 +51,7 @@
             this.la_authoritycheck.AutoSize = true;
             this.la_authoritycheck.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_authoritycheck.ForeColor = System.Drawing.Color.Red;
-            this.la_authoritycheck.Location = new System.Drawing.Point(206, 435);
+            this.la_authoritycheck.Location = new System.Drawing.Point(206, 464);
             this.la_authoritycheck.Name = "la_authoritycheck";
             this.la_authoritycheck.Size = new System.Drawing.Size(107, 20);
             this.la_authoritycheck.TabIndex = 31;
@@ -59,7 +62,7 @@
             this.la_passwordcheck.AutoSize = true;
             this.la_passwordcheck.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_passwordcheck.ForeColor = System.Drawing.Color.Red;
-            this.la_passwordcheck.Location = new System.Drawing.Point(216, 333);
+            this.la_passwordcheck.Location = new System.Drawing.Point(216, 386);
             this.la_passwordcheck.Name = "la_passwordcheck";
             this.la_passwordcheck.Size = new System.Drawing.Size(93, 20);
             this.la_passwordcheck.TabIndex = 30;
@@ -115,7 +118,7 @@
             this.cb_authority.Items.AddRange(new object[] {
             "1(超级管理员)",
             "2(普通管理员)"});
-            this.cb_authority.Location = new System.Drawing.Point(179, 402);
+            this.cb_authority.Location = new System.Drawing.Point(179, 431);
             this.cb_authority.Name = "cb_authority";
             this.cb_authority.Size = new System.Drawing.Size(162, 29);
             this.cb_authority.TabIndex = 25;
@@ -123,7 +126,7 @@
             // tb_password
             // 
             this.tb_password.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_password.Location = new System.Drawing.Point(179, 300);
+            this.tb_password.Location = new System.Drawing.Point(179, 353);
             this.tb_password.Name = "tb_password";
             this.tb_password.Size = new System.Drawing.Size(162, 29);
             this.tb_password.TabIndex = 24;
@@ -141,7 +144,7 @@
             // 
             this.la_authority.AutoSize = true;
             this.la_authority.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_authority.Location = new System.Drawing.Point(72, 405);
+            this.la_authority.Location = new System.Drawing.Point(72, 434);
             this.la_authority.Name = "la_authority";
             this.la_authority.Size = new System.Drawing.Size(105, 21);
             this.la_authority.TabIndex = 22;
@@ -151,7 +154,7 @@
             // 
             this.la_password.AutoSize = true;
             this.la_password.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_password.Location = new System.Drawing.Point(72, 303);
+            this.la_password.Location = new System.Drawing.Point(72, 356);
             this.la_password.Name = "la_password";
             this.la_password.Size = new System.Drawing.Size(98, 21);
             this.la_password.TabIndex = 21;
@@ -179,11 +182,44 @@
             this.la_accountnumber.Text = "管理员编号已存在";
             this.la_accountnumber.Visible = false;
             // 
+            // la_namecheck
+            // 
+            this.la_namecheck.AutoSize = true;
+            this.la_namecheck.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_namecheck.ForeColor = System.Drawing.Color.Red;
+            this.la_namecheck.Location = new System.Drawing.Point(217, 306);
+            this.la_namecheck.Name = "la_namecheck";
+            this.la_namecheck.Size = new System.Drawing.Size(93, 20);
+            this.la_namecheck.TabIndex = 35;
+            this.la_namecheck.Text = "姓名不能为空";
+            this.la_namecheck.Visible = false;
+            // 
+            // tb_name
+            // 
+            this.tb_name.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_name.Location = new System.Drawing.Point(180, 272);
+            this.tb_name.Name = "tb_name";
+            this.tb_name.Size = new System.Drawing.Size(162, 29);
+            this.tb_name.TabIndex = 34;
+            // 
+            // la_name
+            // 
+            this.la_name.AutoSize = true;
+            this.la_name.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_name.Location = new System.Drawing.Point(73, 275);
+            this.la_name.Name = "la_name";
+            this.la_name.Size = new System.Drawing.Size(98, 21);
+            this.la_name.TabIndex = 33;
+            this.la_name.Text = "姓        名：";
+            // 
             // AddOrUpdateAministrator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 587);
+            this.Controls.Add(this.la_namecheck);
+            this.Controls.Add(this.tb_name);
+            this.Controls.Add(this.la_name);
             this.Controls.Add(this.la_accountnumber);
             this.Controls.Add(this.la_authoritycheck);
             this.Controls.Add(this.la_passwordcheck);
@@ -222,5 +258,8 @@
         private System.Windows.Forms.Label la_password;
         private System.Windows.Forms.Label la_account;
         private System.Windows.Forms.Label la_accountnumber;
+        private System.Windows.Forms.Label la_namecheck;
+        private System.Windows.Forms.TextBox tb_name;
+        private System.Windows.Forms.Label la_name;
     }
 }

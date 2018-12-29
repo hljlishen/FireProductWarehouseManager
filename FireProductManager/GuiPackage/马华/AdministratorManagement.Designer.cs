@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgv_administrator = new System.Windows.Forms.DataGridView();
-            this.用户id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.用户名 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.密码 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.权限级别 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AddAccount = new System.Windows.Forms.ToolStripMenuItem();
             this.UpdateAccount = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +38,11 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.add = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.用户id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.用户名 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.姓名 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.密码 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.权限级别 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_administrator)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -55,6 +56,7 @@
             this.dgv_administrator.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.用户id,
             this.用户名,
+            this.姓名,
             this.密码,
             this.权限级别});
             this.dgv_administrator.Location = new System.Drawing.Point(558, 99);
@@ -66,37 +68,6 @@
             this.dgv_administrator.TabIndex = 1;
             this.dgv_administrator.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_administrator_CellMouseDown);
             this.dgv_administrator.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgv_administrator_MouseClick);
-            // 
-            // 用户id
-            // 
-            this.用户id.HeaderText = "用户id";
-            this.用户id.Name = "用户id";
-            this.用户id.ReadOnly = true;
-            this.用户id.Visible = false;
-            // 
-            // 用户名
-            // 
-            this.用户名.FillWeight = 85.5619F;
-            this.用户名.HeaderText = "用户名";
-            this.用户名.Name = "用户名";
-            this.用户名.ReadOnly = true;
-            this.用户名.Width = 246;
-            // 
-            // 密码
-            // 
-            this.密码.FillWeight = 85.5619F;
-            this.密码.HeaderText = "密码";
-            this.密码.Name = "密码";
-            this.密码.ReadOnly = true;
-            this.密码.Width = 245;
-            // 
-            // 权限级别
-            // 
-            this.权限级别.FillWeight = 85.5619F;
-            this.权限级别.HeaderText = "权限级别";
-            this.权限级别.Name = "权限级别";
-            this.权限级别.ReadOnly = true;
-            this.权限级别.Width = 246;
             // 
             // contextMenuStrip1
             // 
@@ -159,6 +130,43 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "注：1级为超级管理员；2级位普通管理员";
             // 
+            // 用户id
+            // 
+            this.用户id.HeaderText = "用户id";
+            this.用户id.Name = "用户id";
+            this.用户id.ReadOnly = true;
+            this.用户id.Visible = false;
+            // 
+            // 用户名
+            // 
+            this.用户名.FillWeight = 85.5619F;
+            this.用户名.HeaderText = "管理员编号";
+            this.用户名.Name = "用户名";
+            this.用户名.ReadOnly = true;
+            this.用户名.Width = 177;
+            // 
+            // 姓名
+            // 
+            this.姓名.HeaderText = "姓名";
+            this.姓名.Name = "姓名";
+            this.姓名.Width = 206;
+            // 
+            // 密码
+            // 
+            this.密码.FillWeight = 85.5619F;
+            this.密码.HeaderText = "密码";
+            this.密码.Name = "密码";
+            this.密码.ReadOnly = true;
+            this.密码.Width = 177;
+            // 
+            // 权限级别
+            // 
+            this.权限级别.FillWeight = 85.5619F;
+            this.权限级别.HeaderText = "权限级别";
+            this.权限级别.Name = "权限级别";
+            this.权限级别.ReadOnly = true;
+            this.权限级别.Width = 177;
+            // 
             // AdministratorManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -188,10 +196,11 @@
         private System.Windows.Forms.ToolStripMenuItem DelectAccount;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem add;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn 用户id;
         private System.Windows.Forms.DataGridViewTextBoxColumn 用户名;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 姓名;
         private System.Windows.Forms.DataGridViewTextBoxColumn 密码;
         private System.Windows.Forms.DataGridViewTextBoxColumn 权限级别;
-        private System.Windows.Forms.Label label1;
     }
 }

@@ -19,14 +19,16 @@ namespace FireProductManager.ServiceLogicPackage
         bool shouldRecord = true;
 
         //初始化函数
-        public EvirmentRecordGateway()
+        public EvirmentRecordGateway(IEvirmentDevice d)
         {
+            device = d;
             device.DataReceived += DataReceivedHandle;
             writeDatabaseInterval = 300000;
             writeDatabase = new Timer();
             writeDatabase.Interval = writeDatabaseInterval;
             writeDatabase.Tick += Timer_Tick;
             writeDatabase.Start();
+            device.Open();
         }
 
         //数据接收处理
