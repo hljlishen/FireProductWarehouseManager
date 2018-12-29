@@ -129,14 +129,14 @@ namespace FireProductManager.ServiceLogicPackage
             Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
             foreach (DataRow dr in dataTable.Rows)  
             {
-                string key = (string)dr["pa_specifications"];
+                string key = (string)dr["pa_type"];
                 if (keyValuePairs.Keys.Contains(key))
                 {
-                    keyValuePairs[key] += (double)dr["em_weight"];
+                    keyValuePairs[key] += (double)dr["pa_weight"];
                 }
                 else
                 {
-                    keyValuePairs.Add((string)dr["pa_specifications"], (double)dr["em_weight"]);
+                    keyValuePairs.Add((string)dr["pa_type"], (double)dr["pa_weight"]);
                 }
             }
             return keyValuePairs;

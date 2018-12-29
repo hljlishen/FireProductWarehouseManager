@@ -118,6 +118,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(146, 28);
             this.comboBox1.TabIndex = 25;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -133,6 +134,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.ScrollBarsEnabled = false;
             this.webBrowser1.Size = new System.Drawing.Size(1250, 600);
             this.webBrowser1.TabIndex = 0;
             // 
@@ -164,9 +166,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1404, 794);
             this.Controls.Add(this.tc_datareport);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WarehouseDataReport";
             this.Text = "WarehouseDataReport";
-            this.Load += new System.EventHandler(this.WarehouseDataReport_Load);
             this.tp_projectdata.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tp_warehousedata.ResumeLayout(false);

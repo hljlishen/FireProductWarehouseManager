@@ -1,15 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using FireProductManager.ServiceLogicPackage;
+using System.Runtime.InteropServices;
 
 namespace FireProductManager.GuiPackage
 {
+    [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
+    [ComVisible(true)]
     public partial class WarehouseDataReport : Form
     {
-        string str = System.IO.Directory.GetCurrentDirectory();
+        static List<string> liststring = new List<string>();
+        static List<double> listdouble = new List<double>();
+
+        static int ArrayLenght;
+
+        string str = Directory.GetCurrentDirectory();
+
         public WarehouseDataReport()
         {
             InitializeComponent();
+
+            //获取Winfrom的WebBrowser
+            webBrowser1.ObjectForScripting = this;
+            webBrowser2.ObjectForScripting = this;
 
             //初始化浏览器
             initWebBrowser();
@@ -27,25 +42,64 @@ namespace FireProductManager.GuiPackage
             webBrowser2.WebBrowserShortcutsEnabled = false;
         }
 
-        private void tb_allprojectdata_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WarehouseDataReport_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-       
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             string webname = "html/index.html";
-            if (comboBox2.Text.Trim().Equals("入库材料")) webname = "html/index.html";
+
+            if (comboBox2.Text.Trim().Equals("入库材料"))
+            {
+                webname = "html/index.html";
+                ChangeArray(PackageGateway.StatisticAllModelWeightsInWarehouse());
+
+            } 
+
             if (comboBox2.Text.Trim().Equals("使用材料")) webname = "html/index6.html";
             if (comboBox2.Text.Trim().Equals("剩余材料")) webname = "html/index3.html";
             webBrowser2.Url = new Uri(str + "\\" + webname);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string webname = "html/index.html";
+
+            if (comboBox1.Text.Trim().Equals("入库材料"))
+            {
+                webname = "html/index.html";
+                webBrowser1.Navigate(str + "\\" + webname);
+                
+                ChangeArray(PackageGateway.StatisticAllModelWeightsInWarehouse());
+            }
+
+            if (comboBox1.Text.Trim().Equals("使用材料")) webname = "html/index6.html";
+            if (comboBox1.Text.Trim().Equals("剩余材料")) webname = "html/index3.html";
+            webBrowser1.Url = new Uri(str + "\\" + webname);
+        }
+
+        public static void ChangeArray(Dictionary<string, double> keyValuePairs)
+        {
+            int i = 0;
+            foreach (var item in keyValuePairs)
+            {
+                liststring.Add(item.Key);
+                listdouble.Add(item.Value);
+                i++;
+            }
+            ArrayLenght = i-1;
+        }
+
+        public int GetArrayLenght()
+        {
+            return ArrayLenght;
+        }
+
+        public string GetDataString(int i)
+        {
+            return liststring[i];
+        }
+
+        public double GetDataDouble(int i)
+        {
+            return listdouble[i];
         }
     }
 }
