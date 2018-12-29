@@ -61,36 +61,6 @@ namespace FireProductManager.ServiceLogicPackage
             return list;
         }
 
-        //获取仓库全部材料的类型与重量
-        public static Dictionary<string, double> StatisticAllModelWeightsInWarehouse()
-        {
-            Package package = new Package();
-            SelectSqlMaker maker = new SelectSqlMaker("Package");
-            DataTable dataTable = package.Select(maker.MakeSelectSql());
-            Dictionary<string, double> keyValuePairs = GetModleOfWeight(dataTable);
-            return keyValuePairs;
-        }
-
-        //获取项目再库材料的类型与重量
-        public static Dictionary<string, double> StatisticAllModelWeightsProjectInWarehouse()
-        {
-            Package package = new Package();
-            SelectSqlMaker maker = new SelectSqlMaker("Package");
-            DataTable dataTable = package.Select(maker.MakeSelectSql());
-            Dictionary<string, double> keyValuePairs = GetModleOfWeight(dataTable);
-            return keyValuePairs;
-        }
-
-        //获取项目使用材料的类型与重量
-        public static Dictionary<string, double> StatisticAllModelWeightsProject()
-        {
-            Package package = new Package();
-            SelectSqlMaker maker = new SelectSqlMaker("Package");
-            DataTable dataTable = package.Select(maker.MakeSelectSql());
-            Dictionary<string, double> keyValuePairs = GetModleOfWeight(dataTable);
-            return keyValuePairs;
-        }
-
         //获取桶中材料的类型
         public static List<string> GetAllModelsInBarrelId(int barrelid)
         {
@@ -111,23 +81,21 @@ namespace FireProductManager.ServiceLogicPackage
             return allModel;
         }
 
-        //获取桶中材料的类型与重量
-        public static Dictionary<string, double> StatisticModelsWeightInBarrel(int barrelId)
+
+        //获取当前材料的类型与重量
+        public static Dictionary<string, double> StatisticAllModelWeightsInWarehouse()
         {
             Package package = new Package();
-            package.pa_barrelId = barrelId;
             SelectSqlMaker maker = new SelectSqlMaker("Package");
-            maker.AddAndCondition(new IntEqual("pa_id", package.pa_barrelId.Value));
             DataTable dataTable = package.Select(maker.MakeSelectSql());
             Dictionary<string, double> keyValuePairs = GetModleOfWeight(dataTable);
             return keyValuePairs;
         }
 
-        //获取材料的重量
         private static Dictionary<string, double> GetModleOfWeight(DataTable dataTable)
         {
             Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
-            foreach (DataRow dr in dataTable.Rows)  
+            foreach (DataRow dr in dataTable.Rows)
             {
                 string key = (string)dr["pa_type"];
                 if (keyValuePairs.Keys.Contains(key))
@@ -137,6 +105,152 @@ namespace FireProductManager.ServiceLogicPackage
                 else
                 {
                     keyValuePairs.Add((string)dr["pa_type"], (double)dr["pa_weight"]);
+                }
+            }
+            return keyValuePairs;
+        }
+
+        //获取材料入库重量
+        public static Dictionary<string, double> StatisticAllModelBeginningWeightsInWarehouse()
+        {
+            Package package = new Package();
+            SelectSqlMaker maker = new SelectSqlMaker("Package");
+            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
+            DataTable dataTable = package.Select(maker.MakeSelectSql());
+            Dictionary<string, double> keyValuePairs = GetModleOfBeginningWeight(dataTable);
+            return keyValuePairs;
+        }
+
+        private static Dictionary<string, double> GetModleOfBeginningWeight(DataTable dataTable)
+        {
+            Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                string key = (string)dr["pa_type"];
+                if (keyValuePairs.Keys.Contains(key))
+                {
+                    keyValuePairs[key] += (double)dr["pa_beginningweight"];
+                }
+                else
+                {
+                    keyValuePairs.Add((string)dr["pa_type"], (double)dr["pa_beginningweight"]);
+                }
+            }
+            return keyValuePairs;
+        }
+
+        //获取材料的用量
+        public static Dictionary<string, double> GetPackageDosage()
+        {
+            Package package = new Package();
+            SelectSqlMaker maker = new SelectSqlMaker("Package");
+            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
+            DataTable dataTable = package.Select(maker.MakeSelectSql());
+            Dictionary<string, double> keyValuePairs = GetPackageDosageModleOfWeight(dataTable);
+            return keyValuePairs;
+        }
+
+        private static Dictionary<string, double> GetPackageDosageModleOfWeight(DataTable dataTable)
+        {
+            Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                string key = (string)dr["pa_type"];
+                if (keyValuePairs.Keys.Contains(key))
+                {
+                    keyValuePairs[key] += ((double)dr["pa_beginningweight"] - (double)dr["pa_weight"]);
+                }
+                else
+                {
+                    keyValuePairs.Add((string)dr["pa_type"], ((double)dr["pa_beginningweight"] - (double)dr["pa_weight"]));
+                }
+            }
+            return keyValuePairs;
+        }
+
+        //获取出库材料
+        public static Dictionary<string, double> GetPackageOutbound()
+        {
+            Package package = new Package();
+            SelectSqlMaker maker = new SelectSqlMaker("Package");
+            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 1));
+            DataTable dataTable = package.Select(maker.MakeSelectSql());
+            Dictionary<string, double> keyValuePairs = GetModleOfWeight(dataTable);
+            return keyValuePairs;
+        }
+
+        //获取项目使用的材料的类型与重量
+        public static Dictionary<string, double> GetProjectPackageDosage(uint projectid)
+        {
+            OutRecord outRecord = new OutRecord();
+            SelectSqlMaker maker = new SelectSqlMaker("outrecord");
+            maker.AddAndCondition(new IntEqual("or_projectId", (int)projectid));
+            DataTable dataTable = outRecord.Select(maker.MakeSelectSql());
+            Dictionary<string, double> keyValuePairs = ProjectPackageDosageModleOfWeight(dataTable);
+            return keyValuePairs;
+        }
+
+        private static Dictionary<string, double> ProjectPackageDosageModleOfWeight(DataTable dataTable)
+        {
+            Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                DataTable dt = GetPackageInformation((int)dr["or_packageId"]);
+                DataRow myDr = dt.Rows[0];
+                if ((int)myDr["pa_isinwarehouse"] == 1) continue;
+                string key = myDr["pa_type"].ToString();
+                if (keyValuePairs.Keys.Contains(key))
+                { 
+                    keyValuePairs[key] += GetInRecordInformation((int)dr["or_id"]); ;
+                }
+                else
+                {
+                    keyValuePairs.Add((string)dr["pa_type"], GetInRecordInformation((int)dr["or_id"]));
+                }
+            }
+            return keyValuePairs;
+        }
+
+        //获取入库信息
+        private static double GetInRecordInformation(int outrecordid)
+        {
+            InRecord inRecord = new InRecord();
+            inRecord.ir_outid = (uint)outrecordid;
+            SelectSqlMaker maker = new SelectSqlMaker("inrecord");
+            maker.AddAndCondition(new IntEqual("ir_outid", outrecordid));
+            DataTable dataTable = inRecord.Select(maker.MakeSelectSql());
+            DataRow myDr = dataTable.Rows[0];
+            double consumption = (double)myDr["ir_consumption"];
+            return consumption;
+        }
+
+        //获取项目出库的材料的类型与重量
+        public static Dictionary<string, double> GetProjectPackageOutRecord(uint projectid)
+        {
+            OutRecord outRecord = new OutRecord();
+            SelectSqlMaker maker = new SelectSqlMaker("outrecord");
+            maker.AddAndCondition(new IntEqual("or_projectId", (int)projectid));
+            DataTable dataTable = outRecord.Select(maker.MakeSelectSql());
+            Dictionary<string, double> keyValuePairs = ProjectPackageOutRecordModleOfWeight(dataTable);
+            return keyValuePairs;
+        }
+
+        private static Dictionary<string, double> ProjectPackageOutRecordModleOfWeight(DataTable dataTable)
+        {
+            Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                DataTable dt = GetPackageInformation((int)dr["or_packageId"]);
+                DataRow myDr = dt.Rows[0];
+                if ((int)myDr["pa_isinwarehouse"] == 0) continue;
+                string key = myDr["pa_type"].ToString();
+                if (keyValuePairs.Keys.Contains(key))
+                {
+                    keyValuePairs[key] += (double)dr["or_outWeight"];
+                }
+                else
+                {
+                    keyValuePairs.Add((string)dr["pa_type"], (double)dr["or_outWeight"]);
                 }
             }
             return keyValuePairs;

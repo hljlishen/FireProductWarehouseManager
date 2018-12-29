@@ -231,6 +231,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceLogicPackage\燕廷\TwoDimensionalTable.cs" />
     <Compile Include="ServiceLogicPackage\燕廷\DepartmentGateway.cs" />
     <Compile Include="ServiceLogicPackage\燕廷\EmployeeGateway.cs" />
     <Compile Include="ServiceLogicPackage\燕廷\ExcelOperator.cs" />
