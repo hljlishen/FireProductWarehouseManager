@@ -61,6 +61,7 @@
             this.权限级别});
             this.dgv_administrator.Location = new System.Drawing.Point(558, 99);
             this.dgv_administrator.Name = "dgv_administrator";
+            this.dgv_administrator.ReadOnly = true;
             this.dgv_administrator.RowTemplate.Height = 23;
             this.dgv_administrator.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv_administrator.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -124,11 +125,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(1116, 775);
+            this.label1.Location = new System.Drawing.Point(1017, 771);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(226, 17);
+            this.label1.Size = new System.Drawing.Size(321, 17);
             this.label1.TabIndex = 5;
-            this.label1.Text = "注：1级为超级管理员；2级位普通管理员";
+            this.label1.Text = "注：1级为超级管理员；2级为普通管理员 ；3级为其他人员";
             // 
             // 用户id
             // 
@@ -149,6 +150,7 @@
             // 
             this.姓名.HeaderText = "姓名";
             this.姓名.Name = "姓名";
+            this.姓名.ReadOnly = true;
             this.姓名.Width = 206;
             // 
             // 密码

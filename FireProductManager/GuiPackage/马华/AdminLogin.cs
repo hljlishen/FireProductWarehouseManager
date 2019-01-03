@@ -24,23 +24,29 @@ namespace FireProductManager.GuiPackage
 
             if (AccountManager.Login(account, password))
             {
+                if (AccountManager.CanNotLogin())
+                {
+                    lab_tip.Text = "权限不足无法登录";
+                    return;
+                }
                 DialogResult = DialogResult.OK;
                 Close();
             }
             else
-                lab_tip.Text = "登陆失败，请重新输入";
+                lab_tip.Text = "登陆失败，请重新登录";
             tb_account.Text = "";
             tb_password.Text = "";
         }
 
         private void AdminLogin_Load(object sender, EventArgs e)
         {
-            //connectFingerprint.GetIPConnect();
-            //connectFingerprint.AddDisplayer(this);
+            connectFingerprint.GetIPConnect();
+            connectFingerprint.AddDisplayer(this);
         }
 
         public void FingerprintLogin(Fingerprint fingerprint)
         {
+            if(IsHandleCreated)
             Invoke(new AccountDataHandler(LoginAccount), new object[] { fingerprint });
         }
 
@@ -48,11 +54,16 @@ namespace FireProductManager.GuiPackage
         {
             if (AccountManager.IsAccountNumberValid(fingerprint.fi_accountNumber))
             {
+                if (AccountManager.CanNotLogin())
+                {
+                    lab_tip.Text = "权限不足无法登录";
+                    return;
+                }
                 DialogResult = DialogResult.OK;
                 Close();
             }
             else
-                lab_tip.Text = "登陆失败，请重新输入";
+                lab_tip.Text = "登陆失败，请重新登录";
         }
     }
 }

@@ -18,6 +18,7 @@ namespace FireProductManager.ServiceLogicPackage
         public zkemkeeper.CZKEMClass axCZKEM1 = new zkemkeeper.CZKEMClass();
         private bool bIsConnected1 = false;//连接状态
         private int iMachineNumber = 1;//设备连接的序列号
+        private string ipAddress = "192.168.1.201";
         List<LoginIDataDisplayer> displayers;
 
         private ConnectFingerprint()
@@ -32,15 +33,12 @@ namespace FireProductManager.ServiceLogicPackage
             displayers.Add(displayer);
         }
 
-        public static ConnectFingerprint GetInstance()
-        {
-            return connectFingerprint;
-        }
+        public static ConnectFingerprint GetInstance() => connectFingerprint;
 
         //TCP\IP连接
         public void GetIPConnect()
         {
-            bIsConnected1 = axCZKEM1.Connect_Net("192.168.1.201", 4370);//连接属性IP、端口号
+            bIsConnected1 = axCZKEM1.Connect_Net(ipAddress, 4370);//连接属性IP、端口号
             if (bIsConnected1 == true)
             {
                 iMachineNumber = 1;
@@ -52,7 +50,7 @@ namespace FireProductManager.ServiceLogicPackage
             }
             else
             {
-                MessageBox.Show("无法连接到指纹设备", "错误");
+                MessageBox.Show("无法连接到进库指纹设备", "错误");
             }
         }
 
@@ -62,6 +60,8 @@ namespace FireProductManager.ServiceLogicPackage
         private void axCZKEM1_OnAttTransactionEx(string sEnrollNumber, int iIsInValid, int iAttState, int iVerifyMethod, int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond, int iWorkCode)
         {
             fingerprint.fi_accountNumber = sEnrollNumber;
+            fingerprint.fi_ipAddress = ipAddress;
+            fingerprint.fi_direction = "进库";
             string passtime = iYear.ToString() + "-" + iMonth.ToString() + "-" + iDay.ToString() + " " + iHour.ToString() + ":" + iMinute.ToString() + ":" + iSecond.ToString();
             fingerprint.fi_passtime = Convert.ToDateTime(passtime);
             fingerprint.Insert();

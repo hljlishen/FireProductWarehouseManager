@@ -57,9 +57,9 @@ namespace FireProductManager.ServiceLogicPackage
             PackageGateway.BorrowPackage(packageid);
 
             OutRecord outRecord = new OutRecord();
-            outRecord.or_packageId = (uint)packageid; 
-            outRecord.or_employeeId = (uint)employeeid;
-            outRecord.or_projectId = (uint)projectId;
+            outRecord.or_packageId = packageid; 
+            outRecord.or_employeeId = employeeid;
+            outRecord.or_projectId = projectId;
             outRecord.or_borrowName = borrowName;
             outRecord.or_accountName = accountName;
             outRecord.or_direction = "出库";
@@ -74,7 +74,7 @@ namespace FireProductManager.ServiceLogicPackage
             PackageGateway.ReturnPackage(packageid, barrelid, returnWeight);
 
             InRecord inRecord = new InRecord();
-            inRecord.ir_outid = (uint)outid;
+            inRecord.ir_outid = outid;
             inRecord.ir_accountName = accountName;
             inRecord.ir_direction = "入库";
             inRecord.ir_timeStmp = DateTime.Now;

@@ -214,7 +214,7 @@ namespace FireProductManager.ServiceLogicPackage
         private static double GetInRecordInformation(int outrecordid)
         {
             InRecord inRecord = new InRecord();
-            inRecord.ir_outid = (uint)outrecordid;
+            inRecord.ir_outid = outrecordid;
             SelectSqlMaker maker = new SelectSqlMaker("inrecord");
             maker.AddAndCondition(new IntEqual("ir_outid", outrecordid));
             DataTable dataTable = inRecord.Select(maker.MakeSelectSql());

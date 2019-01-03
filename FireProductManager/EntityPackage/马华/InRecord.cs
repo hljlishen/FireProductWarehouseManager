@@ -5,8 +5,8 @@ namespace FireProductManager.EntityPackage
 {
     class InRecord : ActiveRecord
     {
-        public uint? ir_id { get; set; }
-        public uint? ir_outid { get; set; } 
+        public int? ir_id { get; set; }
+        public int? ir_outid { get; set; } 
         public string ir_direction { get; set; }
         public DateTime? ir_timeStmp { get; set; }
         public double? ir_consumption { get; set; } //消耗量

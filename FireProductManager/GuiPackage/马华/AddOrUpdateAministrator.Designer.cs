@@ -117,11 +117,13 @@
             this.cb_authority.FormattingEnabled = true;
             this.cb_authority.Items.AddRange(new object[] {
             "1(超级管理员)",
-            "2(普通管理员)"});
+            "2(普通管理员)",
+            "3(其他人员)"});
             this.cb_authority.Location = new System.Drawing.Point(179, 431);
             this.cb_authority.Name = "cb_authority";
             this.cb_authority.Size = new System.Drawing.Size(162, 29);
             this.cb_authority.TabIndex = 25;
+            this.cb_authority.SelectedIndexChanged += new System.EventHandler(this.cb_authority_SelectedIndexChanged);
             // 
             // tb_password
             // 

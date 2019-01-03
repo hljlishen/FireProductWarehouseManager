@@ -29,7 +29,24 @@ namespace FireProductManager.ServiceLogicPackage
         public static bool CanReadDatabase()     //用不到
 => (account.ac_authority == 1 || account.ac_authority == 2);//1为超级管理员，2为普通管理员
 
-        public static bool CanWriteDatabase() => account.ac_authority == 1;
+        public static bool CanWriteDatabase() => account.ac_authority == 1;  //只有1级管理员可操作
+
+        public static bool CanNotLogin() => account.ac_authority == 3;  //3级不能登录
+
+        //3级不能注销
+        public static bool CanNotLogout(string accountNumber)
+        {
+            int authority = 0;
+            SelectSqlMaker maker = new SelectSqlMaker("account");
+            maker.AddAndCondition(new StringEqual("ac_accountNumber", accountNumber));
+            string sql = maker.MakeSelectSql();
+            DataTable dt = Query(sql);
+            foreach (DataRow dr in dt.Rows)
+                authority = (int)dr["ac_authority"];
+            if (authority == 3)
+                return true;
+            return false;
+        }
 
         private static DataTable Query(string sql)
         {

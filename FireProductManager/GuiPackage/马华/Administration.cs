@@ -21,6 +21,7 @@ namespace FireProductManager.GuiPackage
         private ProjectManageme projectManageme = null;
         private WarehouseDataReport warehouseDataReport = null;
         ConnectFingerprint2 connectFingerprint = ConnectFingerprint2.GetInstance();
+        bool isLogout = false;
 
         public Administration()
         {
@@ -47,6 +48,7 @@ namespace FireProductManager.GuiPackage
         {
             this.Text = "";
             AccountManager.Logout();
+            isLogout = true;
             出入库登记ToolStripMenultem_Click(sender,e);
             ShowLoginWindow();
             this.Text = "当前登录的管理员为：" + AccountManager.ReturnAccount();
@@ -54,19 +56,19 @@ namespace FireProductManager.GuiPackage
 
         private void Administration_Load(object sender, EventArgs e)
         {
-            //connectFingerprint.GetIPConnect();
-            //connectFingerprint.AddDisplayer(this);
+            connectFingerprint.GetIPConnect();
+            connectFingerprint.AddDisplayer(this);
             ShowLoginWindow();
             this.Text ="当前登录的管理员为：" + AccountManager.ReturnAccount();
             出入库登记ToolStripMenultem_Click(sender, e);
         }
-
 
         private void ShowLoginWindow()
         {
             login = new AdminLogin();
             if (login.ShowDialog() != DialogResult.OK)
                 Close();
+            isLogout = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -146,15 +148,20 @@ namespace FireProductManager.GuiPackage
 
         private void 出入库登记ToolStripMenultem_Click(object sender, EventArgs e)
         {
-            if (mainPage == null)
-            {
-                mainPage = new MainPage();
-            }
-            else
-            {
-                mainPage.Close();
-                mainPage = new MainPage();
-            }
+            //if (mainPage == null)
+            //{
+            //    mainPage = new MainPage();
+            //}
+            //else
+            //{
+            //    mainPage.Close();
+            //    mainPage.Dispose();
+            //    GC.Collect();
+            //    mainPage = new MainPage();
+            //}
+            //mainPage?.Dispose();
+            mainPage = new MainPage();
+            GC.Collect();
             mainPage.MdiParent = this;
             mainPage.Show();
             mainPage.Activate();
@@ -199,10 +206,15 @@ namespace FireProductManager.GuiPackage
 
         private void LogoutAccount(Fingerprint fingerprint)
         {
+            if (AccountManager.CanNotLogout(fingerprint.fi_accountNumber))
+                return;
+            if (isLogout)
+                return;
             object sender = null ;
             EventArgs e = null;
             this.Text = "";
             AccountManager.Logout();
+            isLogout = true;
             出入库登记ToolStripMenultem_Click(sender, e);
             ShowLoginWindow();
             this.Text = "当前登录的管理员为：" + AccountManager.ReturnAccount();

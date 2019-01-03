@@ -5,10 +5,10 @@ namespace FireProductManager.EntityPackage
 {
     class OutRecord : ActiveRecord
     {
-        public uint? or_id { get; set; }
-        public uint? or_packageId { get; set; }
-        public uint? or_employeeId { get; set; }
-        public uint? or_projectId { get; set; }
+        public int? or_id { get; set; }
+        public int? or_packageId { get; set; }
+        public int? or_employeeId { get; set; }
+        public int? or_projectId { get; set; }
         public string or_direction { get; set; }
         public string or_borrowName { get; set; }
         public DateTime? or_timeStmp { get; set; }

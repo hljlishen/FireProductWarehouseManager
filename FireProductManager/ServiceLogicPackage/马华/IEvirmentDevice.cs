@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -20,8 +21,25 @@ namespace FireProductManager.ServiceLogicPackage
         private Thread _readThread;
         private Socket _socket;
         public event DataReceivedHandler DataReceived;
+        private static Apem5900 _instance = null;
+        private static object locker = new object();
 
-        public Apem5900()
+        public static IEvirmentDevice CreateInstance()
+        {
+            if(_instance == null)
+            {
+                lock (locker)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new Apem5900();
+                    }
+                }
+            }
+            return _instance;
+        }
+
+        private Apem5900()
         {
             IPEndPoint ip = new IPEndPoint(IPAddress.Any, 10050);
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);

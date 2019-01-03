@@ -11,12 +11,12 @@ namespace FireProductManager.GuiPackage
     {
         delegate void TempHumiHandler(double temp, double humi);
         delegate void WeightGettedHandler(double weight);
-        Ahdr ahdr = new Ahdr();
+        Ahdr ahdr;
         PackageBorrowRecord packageBorrowRecord = null;
         ListViewItem listView = new ListViewItem();
         EmployeeManagement selectEmployees;
         ProjectManageme selectProject;
-        //EvirmentRecordGateway erg = new EvirmentRecordGateway(new Apem5900());
+        EvirmentRecordGateway erg;
 
         int employeeid = 0;
         int packageid = 0;
@@ -32,14 +32,21 @@ namespace FireProductManager.GuiPackage
             TextBoxCheckShow();
             StartPosition = FormStartPosition.CenterScreen;
             ShowDataGridView(PackageGateway.StatisticAllModelWeightsInWarehouse());
+            erg = new EvirmentRecordGateway(Apem5900.CreateInstance());
+            erg.NewEvirmentData += NewEvirmentData;
+            instanceCount++;
         }
 
         private void MainPage_Load(object sender, EventArgs e)
         {
-            //erg.NewEvirmentData += NewEvirmentData;
+            
         }
 
-        private void NewEvirmentData(double temp, double humi) => Invoke(new TempHumiHandler(ShowTempAndHumiDate), new object[] { temp, humi });
+        private void NewEvirmentData(double temp, double humi)
+        {
+            if (IsHandleCreated)
+                Invoke(new TempHumiHandler(ShowTempAndHumiDate), new object[] { temp, humi });
+        }
 
         private void ShowTempAndHumiDate(double temp, double humi)
         {
@@ -114,6 +121,7 @@ namespace FireProductManager.GuiPackage
 
         private void PackagePutInStorageShow()
         {
+            ahdr = new Ahdr();
             foreach (DataRow dr in PackageGateway.GetPackageInformation(packageid).Rows)
             {
                 tb_packagename.Text = dr["pa_type"].ToString();
@@ -151,25 +159,6 @@ namespace FireProductManager.GuiPackage
             ListViewShow();
             AutoClosingMessageBox.Show("                入库成功", "入库", 2000);
             EmptyTextBox();
-        }
-
-        private void tb_packageid_TextChanged(object sender, EventArgs e)
-        {
-            TextBoxCheck();
-            TextBoxCheckShow();
-            if (tb_packageid.Text == "")
-            {
-                EmptyTextBox();
-                return;
-            }
-            packageid = int.Parse(tb_packageid.Text);
-            if (!RecordOperationGateway.IsPackageIdValid(packageid))
-            {
-                AutoClosingMessageBox.Show("                袋子不存在", "袋子不存在", 2000);
-                EmptyTextBox();
-                return;
-            }
-            InOrOutInformationShow();
         }
 
         //表单验证
@@ -283,6 +272,33 @@ namespace FireProductManager.GuiPackage
                 int index = dgv_AllowanceRemind.Rows.Add(row);
                 dgv_AllowanceRemind.Rows[index].Cells[0].Value = item.Key;
                 dgv_AllowanceRemind.Rows[index].Cells[1].Value = item.Value + "g";
+            }
+        }
+
+        private void MainPage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            erg.NewEvirmentData -= NewEvirmentData;
+        }
+
+        private void tb_packageid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                TextBoxCheck();
+                TextBoxCheckShow();
+                if (tb_packageid.Text == "")
+                {
+                    EmptyTextBox();
+                    return;
+                }
+                packageid = int.Parse(tb_packageid.Text);
+                if (!RecordOperationGateway.IsPackageIdValid(packageid))
+                {
+                    AutoClosingMessageBox.Show("                袋子不存在", "袋子不存在", 2000);
+                    EmptyTextBox();
+                    return;
+                }
+                InOrOutInformationShow();
             }
         }
     }
