@@ -1,6 +1,5 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
-using System.Data;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
@@ -29,6 +28,8 @@ namespace FireProductManager.GuiPackage
                 cb_authority.Text = "1(超级管理员)";
             else if(authority == 2)
                 cb_authority.Text = "2(普通管理员)";
+            else if (authority == 3)
+                cb_authority.Text = "3(其他人员)";
         }
 
         //添加管理员信息
@@ -78,6 +79,8 @@ namespace FireProductManager.GuiPackage
             else la_namecheck.Visible = false;
             if (tb_password.Text == "")
             {
+                if (cb_authority.Text == "3(其他人员)")
+                    return true;
                 la_passwordcheck.Visible = true;
                 validation = false;
             }
@@ -86,7 +89,7 @@ namespace FireProductManager.GuiPackage
             {
                 la_authoritycheck.Visible = true;
                 validation = false;
-            }
+            }   
             else la_passwordcheck.Visible = false;
             return validation;
         }
@@ -117,7 +120,9 @@ namespace FireProductManager.GuiPackage
         {
             if (cb_authority.Text == "1(超级管理员)")
                 return 1;
-            return 2;
+            else if(cb_authority.Text == "2(普通管理员)")
+                return 2;
+            return 3;
         }
 
         //只能输入数字
@@ -172,6 +177,17 @@ namespace FireProductManager.GuiPackage
             }
             la_accountnumber.Visible = false;
             return true;
+        }
+
+        private void cb_authority_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cb_authority.Text == "3(其他人员)")
+            {
+                tb_password.Enabled = false;
+                tb_password.Text = "";
+            }
+            else if(cb_authority.Text == "1(超级管理员)" || cb_authority.Text == "2(普通管理员)")
+                tb_password.Enabled = true;
         }
     }
 }

@@ -7,6 +7,18 @@ using System.Windows.Forms;
 
 namespace FireProductManager.ServiceLogicPackage
 {
+    //interface ParseStrategy
+    //{
+    //    (double, double) Cal(byte[] data);
+    //}
+
+    //class APEM5900 : ParseStrategy
+    //{
+    //    public (double, double) Cal(byte[] data)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
     class EvirmentRecordGateway
     {
         public delegate void NewEvirmentDataHandler(double temp, double humi);
@@ -16,6 +28,7 @@ namespace FireProductManager.ServiceLogicPackage
         private Timer writeDatabase;//写数据库
         private int writeDatabaseInterval;//写数据库的时间间隔
         private IEvirmentDevice device;
+        //private ParseStrategy strategy;
         bool shouldRecord = true;
 
         //初始化函数

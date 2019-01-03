@@ -2,6 +2,7 @@
 {
     partial class MainPage
     {
+        private static int instanceCount = 0;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -18,6 +19,8 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+
+            instanceCount--;
         }
 
         #region Windows Form Designer generated code
@@ -133,7 +136,7 @@
             this.tb_packageid.Name = "tb_packageid";
             this.tb_packageid.Size = new System.Drawing.Size(140, 23);
             this.tb_packageid.TabIndex = 16;
-            this.tb_packageid.TextChanged += new System.EventHandler(this.tb_packageid_TextChanged);
+            this.tb_packageid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_packageid_KeyPress);
             // 
             // tb_borrowName
             // 
@@ -498,12 +501,14 @@
             // 
             this.类型.HeaderText = "类型";
             this.类型.Name = "类型";
+            this.类型.ReadOnly = true;
             this.类型.Width = 214;
             // 
             // 余量
             // 
             this.余量.HeaderText = "余量（g）";
             this.余量.Name = "余量";
+            this.余量.ReadOnly = true;
             this.余量.Width = 214;
             // 
             // MainPage
@@ -518,6 +523,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainPage";
             this.Text = "MainPage";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainPage_FormClosing);
             this.Load += new System.EventHandler(this.MainPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();

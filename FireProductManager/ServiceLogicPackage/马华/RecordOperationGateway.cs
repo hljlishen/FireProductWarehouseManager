@@ -57,9 +57,9 @@ namespace FireProductManager.ServiceLogicPackage
             PackageGateway.BorrowPackage(packageid);
 
             OutRecord outRecord = new OutRecord();
-            outRecord.or_packageId = (uint)packageid; 
-            outRecord.or_employeeId = (uint)employeeid;
-            outRecord.or_projectId = (uint)projectId;
+            outRecord.or_packageId = packageid; 
+            outRecord.or_employeeId = employeeid;
+            outRecord.or_projectId = projectId;
             outRecord.or_borrowName = borrowName;
             outRecord.or_accountName = accountName;
             outRecord.or_direction = "出库";
@@ -74,7 +74,7 @@ namespace FireProductManager.ServiceLogicPackage
             PackageGateway.ReturnPackage(packageid, barrelid, returnWeight);
 
             InRecord inRecord = new InRecord();
-            inRecord.ir_outid = (uint)outid;
+            inRecord.ir_outid = outid;
             inRecord.ir_accountName = accountName;
             inRecord.ir_direction = "入库";
             inRecord.ir_timeStmp = DateTime.Now;
@@ -92,7 +92,7 @@ namespace FireProductManager.ServiceLogicPackage
             return dt.Rows.Count > 0;
         }
 
-        //条件搜索
+        //出库条件搜索
         public static DataTable ConditionsSearchOutRecord(string packageId,string employeeId,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
         {
             SelectSqlMaker maker = new SelectSqlMaker("outrecord");
@@ -109,6 +109,7 @@ namespace FireProductManager.ServiceLogicPackage
             return Query(sql);
         }
 
+        //入库条件搜索
         public static DataTable ConditionsSearchInRecord(string outid,string direction, bool isChoiceTime, DateTime begintTime, DateTime endTime)
         {
             SelectSqlMaker maker = new SelectSqlMaker("inrecord");

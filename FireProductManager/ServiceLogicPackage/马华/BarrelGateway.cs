@@ -1,7 +1,6 @@
 ﻿using DbLink;
 using FireProductManager.EntityPackage;
 using System.Data;
-using System.Windows.Forms;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -37,7 +36,7 @@ namespace FireProductManager.ServiceLogicPackage
             Barrel barrel = new Barrel();//id自加
             barrel.ba_isRemoved = 0; //0为存在，1为不存在
             barrel.Insert();
-            barrel.ba_id = (uint)FindMaxBarrelId();
+            barrel.ba_id = FindMaxBarrelId();
             return (int)barrel.ba_id;
         }
 
@@ -47,7 +46,7 @@ namespace FireProductManager.ServiceLogicPackage
             if (!IsBarrelIdValid(barrelid)) return false;
 
             Barrel barrel = new Barrel();
-            barrel.ba_id = (uint)barrelid;
+            barrel.ba_id = barrelid;
             barrel.ba_isRemoved = 1;
             barrel.Update();
             return true;
@@ -105,7 +104,7 @@ namespace FireProductManager.ServiceLogicPackage
             foreach (DataRow dr in NoRemoveBarrelId().Rows)
             {
                 barrelId = (int)dr["ba_id"];
-                if (WeightOfBarrel(barrelId) < 50)
+                if (WeightOfBarrel(barrelId) < 300)
                     return barrelId;
             }
             return  barrelId;
