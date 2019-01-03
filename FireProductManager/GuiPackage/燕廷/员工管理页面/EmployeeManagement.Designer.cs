@@ -53,13 +53,13 @@
             this.tsm_deleteemployee = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_newemployee = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tms_new = new System.Windows.Forms.ToolStripMenuItem();
+            this.员工Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.姓名 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.性别 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.公司 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.部门 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.小组 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.员工Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_employeeinformation)).BeginInit();
             this.gb_foundemployees.SuspendLayout();
             this.cms_employeetreeview.SuspendLayout();
@@ -84,13 +84,13 @@
             this.dgv_employeeinformation.AllowUserToAddRows = false;
             this.dgv_employeeinformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_employeeinformation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.员工Id,
             this.ID,
             this.姓名,
             this.性别,
             this.公司,
             this.部门,
-            this.小组,
-            this.员工Id});
+            this.小组});
             resources.ApplyResources(this.dgv_employeeinformation, "dgv_employeeinformation");
             this.dgv_employeeinformation.MultiSelect = false;
             this.dgv_employeeinformation.Name = "dgv_employeeinformation";
@@ -239,6 +239,12 @@
             resources.ApplyResources(this.tms_new, "tms_new");
             this.tms_new.Click += new System.EventHandler(this.tsm_newemployee_Click);
             // 
+            // 员工Id
+            // 
+            resources.ApplyResources(this.员工Id, "员工Id");
+            this.员工Id.Name = "员工Id";
+            this.员工Id.ReadOnly = true;
+            // 
             // ID
             // 
             this.ID.DataPropertyName = "01";
@@ -275,12 +281,6 @@
             resources.ApplyResources(this.小组, "小组");
             this.小组.Name = "小组";
             this.小组.ReadOnly = true;
-            // 
-            // 员工Id
-            // 
-            resources.ApplyResources(this.员工Id, "员工Id");
-            this.员工Id.Name = "员工Id";
-            this.员工Id.ReadOnly = true;
             // 
             // EmployeeManagement
             // 
@@ -327,12 +327,12 @@
         private System.Windows.Forms.ToolStripMenuItem tsm_newemployee;
         private System.Windows.Forms.ContextMenuStrip cms_newemployee;
         private System.Windows.Forms.ToolStripMenuItem tms_new;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 员工Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn 姓名;
         private System.Windows.Forms.DataGridViewTextBoxColumn 性别;
         private System.Windows.Forms.DataGridViewTextBoxColumn 公司;
         private System.Windows.Forms.DataGridViewTextBoxColumn 部门;
         private System.Windows.Forms.DataGridViewTextBoxColumn 小组;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 员工Id;
     }
 }

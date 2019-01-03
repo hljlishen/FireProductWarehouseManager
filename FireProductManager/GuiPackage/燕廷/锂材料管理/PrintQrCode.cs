@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 using ZXing;
 
@@ -18,14 +19,13 @@ namespace FireProductManager.GuiPackage
         {
             InitializeComponent();
             _packageid = packageid;
-            string msg = packageid.ToString();
+            string msg = PackageMessageDataTableShowTextBox();
 
             Bitmap bitmap = GenByZXingNet(msg);
             bitmap = NewLabelSize(bitmap);
             AddTextToImg(bitmap, msg);
             PictureBoxShow(bitmap);
 
-            PackageMessageDataTableShowTextBox();
             Print();
         }
 
@@ -33,6 +33,7 @@ namespace FireProductManager.GuiPackage
         {
             PrintDialog printDialog = new PrintDialog();
             printDialog.Document = printDocument;
+            printDocument.DefaultPageSettings.PaperSize = new PaperSize("123", 150, 110);
             if (printDialog.ShowDialog(this) == DialogResult.OK) //到这里会出现选择打印项的窗口
             {
                 printDocument.Print(); //到这里会出现给文件命名的窗口，点击确定后进行打印并完成打印
@@ -109,18 +110,15 @@ namespace FireProductManager.GuiPackage
         }
 
         //材料信息展示在页面组件中
-        public void PackageMessageDataTableShowTextBox()
+        public string PackageMessageDataTableShowTextBox()
         {
             DataTable dataTable = PackageGateway.GetPackageInformation(_packageid);
             DataRow myDr = dataTable.Rows[0];
             la_name.Text = myDr["pa_type"].ToString();
             la_model.Text = myDr["pa_specifications"].ToString();
             la_purchaseTime.Text = myDr["pa_purchaseTime"].ToString();
-        }
-
-        private void PrintQRCode_Load(object sender, EventArgs e)
-        {
-
+            string tagname = myDr["pa_type"].ToString() + "-" + myDr["pa_specifications"].ToString() + "-" + _packageid;
+            return tagname;
         }
     }
 }

@@ -14,12 +14,14 @@ namespace DbLink
 
         private DataSet ExecuteQuery(string querySql)
         {
-            if(!IsConnectionOpen())
-                throw new Exception("ExecuteQuery()执行时，DatabaseConnection的状态不是Open");
+            if (!IsConnectionOpen())
+                //throw new Exception("ExecuteQuery()执行时，DatabaseConnection的状态不是Open");
+                OpenDatabaseConnection();
             DataSet queryResult = new DataSet();
             DbCommand dbCmd = CreateCommand(querySql);
             DbDataAdapter adapter = CreateAdapter(dbCmd);
             adapter.Fill(queryResult);
+            CloseDatabaseConnection();
             return queryResult;
         }
 
@@ -34,10 +36,12 @@ namespace DbLink
 
         private void ExecuteNonQuery(string nonQuerySql)
         {
-            if(!IsConnectionOpen())
-                throw new Exception(@"ExecuteNonQuery()执行时，DatabaseConnection的状态不是Open");
+            if (!IsConnectionOpen())
+                //throw new Exception(@"ExecuteNonQuery()执行时，DatabaseConnection的状态不是Open");
+                OpenDatabaseConnection();
             DbCommand dbCmd = CreateCommand(nonQuerySql);
             var ret = dbCmd.ExecuteNonQuery();
+            CloseDatabaseConnection();
             if(ret <= 0)
                 throw new Exception($"ExecuteNonQuery()的影响行数为{ret}\r\n 输入参数为：<{nonQuerySql}>");
         }

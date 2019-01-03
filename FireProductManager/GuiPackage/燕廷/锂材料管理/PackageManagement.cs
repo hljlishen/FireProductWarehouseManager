@@ -3,7 +3,6 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 //材料管理
 
@@ -15,6 +14,7 @@ namespace FireProductManager.GuiPackage
         public event PackageIdSelectedHandler PackageIdSelected;
 
         string _barrelid;
+        private int _index;
 
         public PackageManagement()
         {
@@ -26,27 +26,35 @@ namespace FireProductManager.GuiPackage
             cb_IsInWareHouse.Text = "全部";
             Left = 0;
             Top = 0;
+
+            ShowAllPackage();
+        }
+
+        //显示全部材料
+        public void ShowAllPackage()
+        {
             DataTable dataTable = PackageGateway.GetAllPackage();
             ShowDataGridView(dataTable);
         }
 
         //DataGridView显示数据
-        public void ShowDataGridView(DataTable dt)
+        private void ShowDataGridView(DataTable dt)
         {
             dgv_instrumentinformation.Rows.Clear();
             foreach (DataRow dr in dt.Rows)
             {
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_instrumentinformation.Rows.Add(row);
-                dgv_instrumentinformation.Rows[index].Cells[0].Value = dr["pa_type"];
-                dgv_instrumentinformation.Rows[index].Cells[1].Value = dr["pa_specifications"];
-                dgv_instrumentinformation.Rows[index].Cells[2].Value = dr["pa_weight"];
-                dgv_instrumentinformation.Rows[index].Cells[3].Value = dr["pa_barrelid"];
-                dgv_instrumentinformation.Rows[index].Cells[4].Value = PackageGateway.IsinWarehouseDataTypeChangeString((int)dr["pa_isinwarehouse"]);
-                dgv_instrumentinformation.Rows[index].Cells[5].Value = dr["pa_productionCompany"];
-                dgv_instrumentinformation.Rows[index].Cells[6].Value = dr["pa_purchasetime"];
-                dgv_instrumentinformation.Rows[index].Cells[7].Value = dr["pa_beginningweight"];
-                dgv_instrumentinformation.Rows[index].Cells[8].Value = dr["pa_id"];
+                dgv_instrumentinformation.Rows[index].Cells[0].Value = dr["pa_id"];
+                dgv_instrumentinformation.Rows[index].Cells[1].Value = dr["pa_type"];
+                dgv_instrumentinformation.Rows[index].Cells[2].Value = dr["pa_specifications"];
+                dgv_instrumentinformation.Rows[index].Cells[3].Value = dr["pa_weight"];
+                dgv_instrumentinformation.Rows[index].Cells[4].Value = dr["pa_barrelid"];
+                dgv_instrumentinformation.Rows[index].Cells[5].Value = PackageGateway.IsinWarehouseDataTypeChangeString((int)dr["pa_isinwarehouse"]);
+                dgv_instrumentinformation.Rows[index].Cells[6].Value = dr["pa_productionCompany"];
+                dgv_instrumentinformation.Rows[index].Cells[7].Value = dr["pa_purchasetime"];
+                dgv_instrumentinformation.Rows[index].Cells[8].Value = dr["pa_beginningweight"];
+                
             }
         }
 
@@ -90,9 +98,10 @@ namespace FireProductManager.GuiPackage
                 int x = e.X;
                 int y = e.Y;
                 int a = e.RowIndex;
-                dgv_instrumentinformation.CurrentCell = dgv_instrumentinformation.Rows[e.RowIndex].Cells[0];
+                dgv_instrumentinformation.CurrentCell = dgv_instrumentinformation.Rows[e.RowIndex].Cells[1];
                 dgv_instrumentinformation.Rows[e.RowIndex].Selected = true;
                 cms_packageoperation.Show(MousePosition);
+                _index = e.RowIndex;
             }
         }
 
@@ -110,7 +119,7 @@ namespace FireProductManager.GuiPackage
         //添加材料
         private void NewPackage()
         {
-            AddOrUpdatePackage add = new AddOrUpdatePackage();
+            AddOrUpdatePackage add = new AddOrUpdatePackage(this);
             add.ShowDialog();
         }
 
@@ -119,8 +128,8 @@ namespace FireProductManager.GuiPackage
         //修改材料
         private void UpdatePackage()
         {
-            int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[8].Value;
-            AddOrUpdatePackage Update = new AddOrUpdatePackage(packageid);
+            int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[0].Value;
+            AddOrUpdatePackage Update = new AddOrUpdatePackage(packageid, this);
             Update.ShowDialog();
         }
 
@@ -131,9 +140,9 @@ namespace FireProductManager.GuiPackage
         {
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[8].Value;
+                int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[0].Value;
                 PackageGateway.DeletePackage(packageid);
-                AutoClosingMessageBox.Show("材料信息删除成功", "材料信息删除", 1000);
+                dgv_instrumentinformation.Rows.RemoveAt(_index);//从DGV移除
             }
         }
         #endregion
@@ -152,7 +161,7 @@ namespace FireProductManager.GuiPackage
         {
             if (FormBorderStyle == FormBorderStyle.FixedSingle)
             {
-                PackageIdSelected?.Invoke((int)(dgv_instrumentinformation.SelectedRows[0]).Cells[8].Value);
+                PackageIdSelected?.Invoke((int)(dgv_instrumentinformation.SelectedRows[0]).Cells[0].Value);
                 Close();
             }
         }

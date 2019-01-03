@@ -14,6 +14,7 @@ namespace FireProductManager.GuiPackage
     public partial class AddOrUpdateProject : Form
     {
         private int _projectid;
+        private ProjectManageme _projectfrom;
 
         private enum Operation
         {
@@ -22,20 +23,23 @@ namespace FireProductManager.GuiPackage
         }
 
         //项目添加构造方法
-        public AddOrUpdateProject()
+        public AddOrUpdateProject(ProjectManageme projectManageme)
         {
             InitializeComponent();
             la_addoralter.Text = "项目添加";
+
+            _projectfrom = projectManageme;
 
             bt_updateproject.Visible = false;
         }
 
         //项目修改构造方法
-        public AddOrUpdateProject(int projectid)
+        public AddOrUpdateProject(int projectid, ProjectManageme projectManageme)
         {
             InitializeComponent();
             la_addoralter.Text = "项目修改";
 
+            _projectfrom = projectManageme;
             _projectid = projectid;
             ShowProjectInformation();
 
@@ -47,6 +51,7 @@ namespace FireProductManager.GuiPackage
         {
             if (!FormValidation(Operation.Update)) return;
             ProjectGateway.UpdateProject(_projectid,tb_name.Text, tb_projectpassword.Text, tb_note.Text);
+            _projectfrom.ShowAllProject();
             Close();
         }
 
@@ -55,6 +60,7 @@ namespace FireProductManager.GuiPackage
         {
             if (!FormValidation(Operation.New)) return;
             ProjectGateway.NewProject(tb_name.Text,tb_projectpassword.Text,tb_note.Text);
+            _projectfrom.ShowAllProject();
             Close();
         }
 
@@ -121,11 +127,6 @@ namespace FireProductManager.GuiPackage
             tb_name.Text = myDr["pr_name"].ToString();
             tb_projectpassword.Text = myDr["pr_projectpassword"].ToString();
             tb_note.Text = myDr["pr_note"].ToString();
-        }
-
-        private void AddOrUpdateProject_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

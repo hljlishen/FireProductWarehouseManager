@@ -103,9 +103,9 @@ namespace FireProductManager.ServiceLogicPackage
             if (project.pr_projectPassword.Equals(projectpassword)) return true;
 
             SelectSqlMaker maker1 = new SelectSqlMaker("project");
-            maker.AddAndCondition(new StringEqual("pr_projectpassword", projectpassword));
+            maker1.AddAndCondition(new StringEqual("pr_projectpassword", projectpassword));
             DataTable dataTable1 = ActiveRecord.Select(maker1.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
-            if (dataTable1.Rows.Count != 0)
+            if (dataTable1.Rows.Count > 0)
             {
                 return false;
             }

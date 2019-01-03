@@ -3,7 +3,6 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 namespace FireProductManager.GuiPackage
 {
@@ -11,7 +10,7 @@ namespace FireProductManager.GuiPackage
     {
         public delegate void ProjectSelectedHandler(int id,string projectPassword);
         public event ProjectSelectedHandler ProjectSelecteds;
-
+        private int _index;
 
         public ProjectManageme()
         {
@@ -26,18 +25,26 @@ namespace FireProductManager.GuiPackage
             ShowDataGridView(dataTable);
         }
 
+        //显示全部项目
+        public void ShowAllProject()
+        {
+            DataTable dataTable = ProjectGateway.GetAllProject();
+            ShowDataGridView(dataTable);
+        }
+
         //DataGridView显示数据
-        public void ShowDataGridView(DataTable dataTable)
+        private void ShowDataGridView(DataTable dataTable)
         {
             dgv_projectinformation.Rows.Clear();
             foreach (DataRow dr in dataTable.Rows)
             {
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_projectinformation.Rows.Add(row);
-                dgv_projectinformation.Rows[index].Cells[0].Value = dr["pr_name"];
-                dgv_projectinformation.Rows[index].Cells[1].Value = dr["pr_projectPassword"];
-                dgv_projectinformation.Rows[index].Cells[2].Value = dr["pr_note"];
-                dgv_projectinformation.Rows[index].Cells[3].Value = dr["pr_id"];
+                dgv_projectinformation.Rows[index].Cells[0].Value = dr["pr_id"];
+                dgv_projectinformation.Rows[index].Cells[1].Value = dr["pr_name"];
+                dgv_projectinformation.Rows[index].Cells[2].Value = dr["pr_projectPassword"];
+                dgv_projectinformation.Rows[index].Cells[3].Value = dr["pr_note"];
+                
             }
         }
 
@@ -46,12 +53,6 @@ namespace FireProductManager.GuiPackage
         {
             DataTable dataTable = ProjectGateway.GetQueryProject(tb_name.Text, tb_projectpassword.Text);
             ShowDataGridView(dataTable);
-        }
-
-        //dgv导出Excel
-        private void bt_dgvchangeexcel_Click(object sender, EventArgs e)
-        {
-            ExcelOperator.DataGridViewToExcel(dgv_projectinformation, true);
         }
 
         //右键单击表格数据
@@ -63,9 +64,10 @@ namespace FireProductManager.GuiPackage
                 int x = e.X;
                 int y = e.Y;
                 int a = e.RowIndex;
-                dgv_projectinformation.CurrentCell = dgv_projectinformation.Rows[e.RowIndex].Cells[0];
+                dgv_projectinformation.CurrentCell = dgv_projectinformation.Rows[e.RowIndex].Cells[1];
                 dgv_projectinformation.Rows[e.RowIndex].Selected = true;
                 cms_projectoperation.Show(MousePosition);
+                _index = e.RowIndex;
             }
         }
 
@@ -84,7 +86,7 @@ namespace FireProductManager.GuiPackage
         //添加项目
         private void NewProject()
         {
-            AddOrUpdateProject addProject = new AddOrUpdateProject();
+            AddOrUpdateProject addProject = new AddOrUpdateProject(this);
             addProject.ShowDialog();
         }
 
@@ -94,8 +96,8 @@ namespace FireProductManager.GuiPackage
         //修改项目
         private void UpdateProject()
         {
-            int projectid = (int)dgv_projectinformation.CurrentRow.Cells[3].Value;
-            AddOrUpdateProject UpdateProject = new AddOrUpdateProject(projectid);
+            int projectid = (int)dgv_projectinformation.CurrentRow.Cells[0].Value;
+            AddOrUpdateProject UpdateProject = new AddOrUpdateProject(projectid,this);
             UpdateProject.ShowDialog();
         }
 
@@ -107,9 +109,9 @@ namespace FireProductManager.GuiPackage
         {
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                int projectid = (int)dgv_projectinformation.CurrentRow.Cells[3].Value;
+                int projectid = (int)dgv_projectinformation.CurrentRow.Cells[0].Value;
                 ProjectGateway.DeleteProject(projectid);
-                AutoClosingMessageBox.Show("项目信息删除成功", "项目信息删除", 1000);
+                dgv_projectinformation.Rows.RemoveAt(_index);//从DGV移除
             }
         }
 
@@ -118,11 +120,17 @@ namespace FireProductManager.GuiPackage
         {
             if (FormBorderStyle == FormBorderStyle.FixedSingle)
             {
-                int projectid = (int)(dgv_projectinformation.SelectedRows[0]).Cells[3].Value;
-                string projectPassword = (dgv_projectinformation.SelectedRows[0]).Cells[1].Value.ToString();
+                int projectid = (int)(dgv_projectinformation.SelectedRows[0]).Cells[0].Value;
+                string projectPassword = (dgv_projectinformation.SelectedRows[0]).Cells[2].Value.ToString();
                 ProjectSelecteds?.Invoke(projectid,projectPassword);
                 Close();
             }
+        }
+
+        //dgv导出Excel
+        private void bt_dgvchangeexcel_Click(object sender, EventArgs e)
+        {
+            ExcelOperator.DataGridViewToExcel(dgv_projectinformation, true);
         }
     }
 }
