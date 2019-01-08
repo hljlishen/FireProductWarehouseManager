@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 //材料管理
 
@@ -68,6 +69,9 @@ namespace FireProductManager.GuiPackage
             string isInWareHouse = cb_IsInWareHouse.Text;
             DataTable dataTable = PackageGateway.GetQueryPackage(type, model, _barrelid, productioncompany, isInWareHouse);
             ShowDataGridView(dataTable);
+
+            tb_barrelid.Text = "";
+            _barrelid = "";
         }
 
         //选择桶
@@ -138,6 +142,11 @@ namespace FireProductManager.GuiPackage
         //删除材料
         private void DeletePackage()
         {
+            if (!AccountManager.CanReadDatabase()) //没有用
+            {
+                AutoClosingMessageBox.Show("        权限不足", "权限", 2000);
+                return;
+            }
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[0].Value;

@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 namespace FireProductManager.GuiPackage
 {
@@ -107,11 +108,21 @@ namespace FireProductManager.GuiPackage
         //删除项目
         private void DeleteProject()
         {
+            //if (!AccountManager.CanReadDatabase()) 
+            //{
+            //    AutoClosingMessageBox.Show("        权限不足", "权限", 2000);
+            //    return;
+            //}
+
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int projectid = (int)dgv_projectinformation.CurrentRow.Cells[0].Value;
-                ProjectGateway.DeleteProject(projectid);
-                dgv_projectinformation.Rows.RemoveAt(_index);//从DGV移除
+                if (ProjectGateway.DeleteProject(projectid))
+                {
+                    dgv_projectinformation.Rows.RemoveAt(_index);//从DGV移除
+                    return;
+                }
+                AutoClosingMessageBox.Show("该项目存在出入库记录，无法删除", "删除失败", 2000);
             }
         }
 

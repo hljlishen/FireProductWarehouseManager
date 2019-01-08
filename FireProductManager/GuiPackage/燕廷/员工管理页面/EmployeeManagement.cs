@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
 using FireProductManager.ServiceLogicPackage;
+using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 //员工信息管理页面
 
@@ -110,8 +111,13 @@ namespace FireProductManager.GuiPackage
         }
 
         //删除员工
-        private bool DeleteEmployee()
+        private void DeleteEmployee()
         {
+            if (!AccountManager.CanReadDatabase()) //没有用
+            {
+                AutoClosingMessageBox.Show("        权限不足", "权限", 2000);
+                return;
+            }
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[6].Value;
@@ -120,9 +126,7 @@ namespace FireProductManager.GuiPackage
                 ImageManager getSetImagePath = new ImageManager();
                 getSetImagePath.DeleteEmployeeImage(employeenumber);
                 dgv_employeeinformation.Rows.RemoveAt(_index);//从DGV移除
-                return true;
             }
-            return false;
         }
 
         //修改员工
@@ -266,6 +270,11 @@ namespace FireProductManager.GuiPackage
         //删除
         private void tsm_delete_Click(object sender, EventArgs e)
         {
+            if (!AccountManager.CanReadDatabase()) //没有用
+            {
+                AutoClosingMessageBox.Show("        权限不足", "权限", 2000);
+                return;
+            }
             if (MessageBox.Show("确定删除该节点？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int nodeid = (int)tv_department.SelectedNode.Tag;

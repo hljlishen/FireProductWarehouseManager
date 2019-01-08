@@ -111,6 +111,7 @@
             this.tb_weigth.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_weigth.Location = new System.Drawing.Point(180, 184);
             this.tb_weigth.Name = "tb_weigth";
+            this.tb_weigth.ReadOnly = true;
             this.tb_weigth.Size = new System.Drawing.Size(183, 26);
             this.tb_weigth.TabIndex = 46;
             // 

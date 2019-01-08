@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tp_warehousemargi = new System.Windows.Forms.TabPage();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.wb_project = new System.Windows.Forms.WebBrowser();
@@ -43,7 +42,6 @@
             this.tp_projectdosage = new System.Windows.Forms.TabPage();
             this.bt_showbarrel = new System.Windows.Forms.Button();
             this.tb_project = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.webBrowser2 = new System.Windows.Forms.WebBrowser();
             this.webBrowser3 = new System.Windows.Forms.WebBrowser();
@@ -62,7 +60,6 @@
             // 
             // tp_warehousemargi
             // 
-            this.tp_warehousemargi.Controls.Add(this.comboBox1);
             this.tp_warehousemargi.Controls.Add(this.panel2);
             this.tp_warehousemargi.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tp_warehousemargi.Location = new System.Drawing.Point(4, 34);
@@ -72,20 +69,6 @@
             this.tp_warehousemargi.TabIndex = 2;
             this.tp_warehousemargi.Text = "仓库用量";
             this.tp_warehousemargi.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "已归还用量",
-            "未归还材料"});
-            this.comboBox1.Location = new System.Drawing.Point(58, 46);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(95, 28);
-            this.comboBox1.TabIndex = 27;
-            this.comboBox1.Text = "已归还用量";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // panel2
             // 
@@ -184,7 +167,6 @@
             // 
             this.tp_projectdosage.Controls.Add(this.bt_showbarrel);
             this.tp_projectdosage.Controls.Add(this.tb_project);
-            this.tp_projectdosage.Controls.Add(this.comboBox2);
             this.tp_projectdosage.Controls.Add(this.panel3);
             this.tp_projectdosage.Location = new System.Drawing.Point(4, 34);
             this.tp_projectdosage.Name = "tp_projectdosage";
@@ -213,20 +195,6 @@
             this.tb_project.ReadOnly = true;
             this.tb_project.Size = new System.Drawing.Size(147, 26);
             this.tb_project.TabIndex = 69;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "已归还用量",
-            "未归还材料"});
-            this.comboBox2.Location = new System.Drawing.Point(259, 51);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(95, 28);
-            this.comboBox2.TabIndex = 29;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // panel3
             // 
@@ -305,8 +273,6 @@
         private System.Windows.Forms.TabPage tp_projectdosage;
         private System.Windows.Forms.WebBrowser wb_warehousemargin;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.WebBrowser webBrowser2;
         private System.Windows.Forms.WebBrowser webBrowser3;

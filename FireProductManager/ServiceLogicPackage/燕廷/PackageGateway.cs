@@ -22,7 +22,6 @@ namespace FireProductManager.ServiceLogicPackage
             Package package = new Package();
             package.pa_id = packageId;
             package.pa_barrelId = barrelId;
-            //if (!HasBarrel(barrelId)) throw new Exception("不存在该桶");
             package.Update();
         }
 
@@ -143,7 +142,6 @@ namespace FireProductManager.ServiceLogicPackage
         {
             Package package = new Package();
             SelectSqlMaker maker = new SelectSqlMaker("Package");
-            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
             DataTable dataTable = package.Select(maker.MakeSelectSql());
             Dictionary<string, double> keyValuePairs = GetPackageDosageModleOfWeight(dataTable);
             return keyValuePairs;
@@ -157,24 +155,27 @@ namespace FireProductManager.ServiceLogicPackage
                 string key = (string)dr["pa_type"];
                 if (keyValuePairs.Keys.Contains(key))
                 {
-                    keyValuePairs[key] += ((double)dr["pa_beginningweight"] - (double)dr["pa_weight"]);
+                    if ((int)dr["pa_isinWarehouse"] == 0)
+                    {
+                        keyValuePairs[key] += ((double)dr["pa_beginningweight"] - (double)dr["pa_weight"]);
+                    }
+                    else if ((int)dr["pa_isinWarehouse"] == 1)
+                    {
+                        keyValuePairs[key] += (double)dr["pa_beginningweight"];
+                    }
                 }
                 else
                 {
-                    keyValuePairs.Add((string)dr["pa_type"], ((double)dr["pa_beginningweight"] - (double)dr["pa_weight"]));
+                    if ((int)dr["pa_isinWarehouse"] == 0)
+                    {
+                        keyValuePairs.Add((string)dr["pa_type"], ((double)dr["pa_beginningweight"] - (double)dr["pa_weight"]));
+                    }
+                    else if ((int)dr["pa_isinWarehouse"] == 1)
+                    {
+                        keyValuePairs.Add((string)dr["pa_type"], (double)dr["pa_beginningweight"]);
+                    }
                 }
             }
-            return keyValuePairs;
-        }
-
-        //获取出库材料
-        public static Dictionary<string, double> GetPackageOutbound()
-        {
-            Package package = new Package();
-            SelectSqlMaker maker = new SelectSqlMaker("Package");
-            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 1));
-            DataTable dataTable = package.Select(maker.MakeSelectSql());
-            Dictionary<string, double> keyValuePairs = GetModleOfWeight(dataTable);
             return keyValuePairs;
         }
 
@@ -199,12 +200,25 @@ namespace FireProductManager.ServiceLogicPackage
                 string key = myDr["pa_type"].ToString();
                 if (keyValuePairs.Keys.Contains(key))
                 {
-                    if (GetInRecordInformation((int)dr["or_id"]) == -1) continue;
-                    keyValuePairs[key] += GetInRecordInformation((int)dr["or_id"]); ;
+                    if (GetInRecordInformation((int)dr["or_id"]) == -1)
+                    {
+                        keyValuePairs[key] += (double)myDr["pa_weight"];
+                    }
+                    else
+                    {
+                        keyValuePairs[key] += GetInRecordInformation((int)dr["or_id"]);
+                    }
                 }
                 else
                 {
-                    keyValuePairs.Add((string)myDr["pa_type"], GetInRecordInformation((int)dr["or_id"]));
+                    if (GetInRecordInformation((int)dr["or_id"]) == -1)
+                    {
+                        keyValuePairs.Add((string)myDr["pa_type"], (double)myDr["pa_weight"]);
+                    }
+                    else
+                    {
+                        keyValuePairs.Add((string)myDr["pa_type"], GetInRecordInformation((int)dr["or_id"]));
+                    }
                 }
             }
             return keyValuePairs;
@@ -222,38 +236,6 @@ namespace FireProductManager.ServiceLogicPackage
             DataRow myDr = dataTable.Rows[0];
             double consumption = (double)myDr["ir_consumption"];
             return consumption;
-        }
-
-        //获取项目出库的材料的类型与重量
-        public static Dictionary<string, double> GetProjectPackageOutRecord(uint projectid)
-        {
-            OutRecord outRecord = new OutRecord();
-            SelectSqlMaker maker = new SelectSqlMaker("outrecord");
-            maker.AddAndCondition(new IntEqual("or_projectId", (int)projectid));
-            DataTable dataTable = outRecord.Select(maker.MakeSelectSql());
-            Dictionary<string, double> keyValuePairs = ProjectPackageOutRecordModleOfWeight(dataTable);
-            return keyValuePairs;
-        }
-
-        private static Dictionary<string, double> ProjectPackageOutRecordModleOfWeight(DataTable dataTable)
-        {
-            Dictionary<string, double> keyValuePairs = new Dictionary<string, double>();
-            foreach (DataRow dr in dataTable.Rows)
-            {
-                DataTable dt = GetPackageInformation((int)dr["or_packageId"]);
-                DataRow myDr = dt.Rows[0];
-                if ((int)myDr["pa_isinwarehouse"] == 0) continue;
-                string key = myDr["pa_type"].ToString();
-                if (keyValuePairs.Keys.Contains(key))
-                {
-                    keyValuePairs[key] += (double)dr["or_outWeight"];
-                }
-                else
-                {
-                    keyValuePairs.Add((string)myDr["pa_type"], (double)dr["or_outWeight"]);
-                }
-            }
-            return keyValuePairs;
         }
 
         internal static void ReturnPackage(int packageid, int barrelid , double weigth)
