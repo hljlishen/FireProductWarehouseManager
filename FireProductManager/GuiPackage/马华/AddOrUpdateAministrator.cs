@@ -1,5 +1,8 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
@@ -10,6 +13,9 @@ namespace FireProductManager.GuiPackage
         public delegate void RefreshDataHandler();
         public event RefreshDataHandler RefreshData;
         int accountid;
+        LiveDevice liveDevice;
+        ConnectFingerprint connectFingerprint = ConnectFingerprint.GetInstance();
+        Bitmap bitmap = null;
 
         //修改管理员信息
         public AddOrUpdateAministrator(int accountId,string account,string name,string password,int authority)
@@ -32,14 +38,23 @@ namespace FireProductManager.GuiPackage
                 cb_authority.Text = "3(其他人员)";
         }
 
+        private void FingerprintData(Bitmap bmp)
+        {
+            picFPImg.Image = bmp;
+            bitmap = bmp;
+        }
+
         //添加管理员信息
         public AddOrUpdateAministrator()
         {
             InitializeComponent();
+            liveDevice = Live.CreateInstance(Handle);
+            liveDevice.Open();
             TextBoxVisibleIsFalse();
             btn_add.Visible = true;
             btn_update.Visible = false;
             la_title.Text = "添加管理员信息";
+            liveDevice.FingerprintData += FingerprintData;
         }
 
         private void btn_update_Click(object sender, EventArgs e)
@@ -91,6 +106,12 @@ namespace FireProductManager.GuiPackage
                 validation = false;
             }   
             else la_passwordcheck.Visible = false;
+            if (picFPImg.Image == null)
+            {
+                la_fin.Visible = true;
+                validation = false;
+            }
+            else la_fin.Visible = false;
             return validation;
         }
 
@@ -101,6 +122,7 @@ namespace FireProductManager.GuiPackage
             la_authoritycheck.Visible = false;
             la_passwordcheck.Visible = false;
             la_accountnumber.Visible = false;
+            la_fin.Visible = false;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -110,7 +132,14 @@ namespace FireProductManager.GuiPackage
                 return;
             if (!IsExistAccountNumber(tb_accountnumber.Text))
                 return;
+
+            MemoryStream ms = new MemoryStream();
+            bitmap.Save(ms, ImageFormat.Bmp);
+            byte[] bytes = ms.GetBuffer();
+            string str = System.Text.Encoding.Default.GetString(bytes);
+
             AccountManager.AddAccount(tb_accountnumber.Text, tb_name.Text ,tb_password.Text, AccountAuthority());
+            connectFingerprint.UploadUserInformation(tb_accountnumber.Text, tb_name.Text, tb_password.Text,str);
             AutoClosingMessageBox.Show("                添加成功", "添加管理员", 1000);
             EmptyTextBox();
             RefreshData?.Invoke();
@@ -188,6 +217,11 @@ namespace FireProductManager.GuiPackage
             }
             else if(cb_authority.Text == "1(超级管理员)" || cb_authority.Text == "2(普通管理员)")
                 tb_password.Enabled = true;
+        }
+
+        private void AddOrUpdateAministrator_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

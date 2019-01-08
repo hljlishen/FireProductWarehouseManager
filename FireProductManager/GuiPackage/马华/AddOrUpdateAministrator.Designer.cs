@@ -44,6 +44,9 @@
             this.la_namecheck = new System.Windows.Forms.Label();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.la_name = new System.Windows.Forms.Label();
+            this.picFPImg = new System.Windows.Forms.PictureBox();
+            this.la_fin = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.picFPImg)).BeginInit();
             this.SuspendLayout();
             // 
             // la_authoritycheck
@@ -214,11 +217,33 @@
             this.la_name.TabIndex = 33;
             this.la_name.Text = "姓        名：";
             // 
+            // picFPImg
+            // 
+            this.picFPImg.Location = new System.Drawing.Point(66, 458);
+            this.picFPImg.Name = "picFPImg";
+            this.picFPImg.Size = new System.Drawing.Size(104, 154);
+            this.picFPImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFPImg.TabIndex = 36;
+            this.picFPImg.TabStop = false;
+            // 
+            // la_fin
+            // 
+            this.la_fin.AutoSize = true;
+            this.la_fin.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_fin.ForeColor = System.Drawing.Color.Red;
+            this.la_fin.Location = new System.Drawing.Point(83, 615);
+            this.la_fin.Name = "la_fin";
+            this.la_fin.Size = new System.Drawing.Size(65, 20);
+            this.la_fin.TabIndex = 37;
+            this.la_fin.Text = "请刷指纹";
+            // 
             // AddOrUpdateAministrator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 587);
+            this.ClientSize = new System.Drawing.Size(372, 634);
+            this.Controls.Add(this.la_fin);
+            this.Controls.Add(this.picFPImg);
             this.Controls.Add(this.la_namecheck);
             this.Controls.Add(this.tb_name);
             this.Controls.Add(this.la_name);
@@ -240,6 +265,8 @@
             this.MinimizeBox = false;
             this.Name = "AddOrUpdateAministrator";
             this.Text = "编辑管理员信息";
+            this.Load += new System.EventHandler(this.AddOrUpdateAministrator_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picFPImg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,5 +290,7 @@
         private System.Windows.Forms.Label la_namecheck;
         private System.Windows.Forms.TextBox tb_name;
         private System.Windows.Forms.Label la_name;
+        private System.Windows.Forms.PictureBox picFPImg;
+        private System.Windows.Forms.Label la_fin;
     }
 }

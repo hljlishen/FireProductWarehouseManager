@@ -9,6 +9,7 @@ namespace FireProductManager.GuiPackage
     public partial class AdministratorManagement : Form
     {
         AddOrUpdateAministrator addOrUpdateAministrator;
+        ConnectFingerprint connectFingerprint = ConnectFingerprint.GetInstance();
 
         public AdministratorManagement()
         {
@@ -44,7 +45,9 @@ namespace FireProductManager.GuiPackage
         private void AddOrUpdatePageSwitching(AddOrUpdateAministrator addOrUpdateAministrator)
         {
             addOrUpdateAministrator.TopLevel = false;
+            addOrUpdateAministrator.Dock = DockStyle.Fill;
             addOrUpdateAministrator.FormBorderStyle = FormBorderStyle.None;
+            pa_addorupdate.Controls.Clear();
             pa_addorupdate.Controls.Add(addOrUpdateAministrator);
             addOrUpdateAministrator.Show();
         }
@@ -81,7 +84,9 @@ namespace FireProductManager.GuiPackage
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int accountid = (int)dgv_administrator.CurrentRow.Cells[0].Value;
+                string accountNumber = dgv_administrator.CurrentRow.Cells[1].Value.ToString();
                 AccountManager.RemoveAccount(accountid);
+                connectFingerprint.DeleteUserInformation(accountNumber);
                 AutoClosingMessageBox.Show("            管理员删除成功", "删除管理员", 1000);
                 RefreshDataGridViewShow();
             }

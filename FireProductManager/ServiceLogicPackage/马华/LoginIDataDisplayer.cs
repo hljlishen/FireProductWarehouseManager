@@ -18,7 +18,11 @@ namespace FireProductManager.ServiceLogicPackage
         public zkemkeeper.CZKEMClass axCZKEM1 = new zkemkeeper.CZKEMClass();
         private bool bIsConnected1 = false;//连接状态
         private int iMachineNumber = 1;//设备连接的序列号
+        private bool IsUploadFingerprint = true;
+        private bool IsUploadUser = true;
+        private bool IsDeleteUser = true;
         private string ipAddress = "192.168.1.201";
+        int dwMachineNumber = 1;//设备机号
         List<LoginIDataDisplayer> displayers;
 
         private ConnectFingerprint()
@@ -69,6 +73,32 @@ namespace FireProductManager.ServiceLogicPackage
                 From1.FingerprintLogin(fingerprint);
         }
         #endregion
+
+        //上传用户信息
+        public bool UploadUserInformation(string dwEnrollNumber,string Name,string Password,string TmpData)
+        {
+            int Privilege = 0;//用户权限
+            bool Enabled = true;//用户启用标志
+            IsUploadUser = axCZKEM1.SSR_SetUserInfo(dwMachineNumber, dwEnrollNumber,Name, Password, Privilege, Enabled);
+            UploadFingerprintTemplate(dwEnrollNumber, TmpData);
+            return IsUploadUser;
+        }
+
+        //上传指纹模板
+        private bool UploadFingerprintTemplate(string dwEnrollNumber, string TmpData)
+        {
+            int dwFingerIndex = 4;
+            IsUploadFingerprint = axCZKEM1.SSR_SetUserTmpStr(dwMachineNumber,dwEnrollNumber,dwFingerIndex,TmpData);
+            return IsUploadFingerprint;
+        }
+
+        //删除用户信息和指纹信息
+        public bool DeleteUserInformation(string dwEnrollNumber)
+        {
+            int dwBackupNumber = 12;//删除该用户（包括所有指纹和卡号、密码数据）
+            IsDeleteUser = axCZKEM1.SSR_DeleteEnrollData(dwMachineNumber,dwEnrollNumber,dwBackupNumber);
+            return IsDeleteUser;
+        }
 
         //关闭连接
         public void CloseConnect()
