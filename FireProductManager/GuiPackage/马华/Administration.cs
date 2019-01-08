@@ -56,8 +56,8 @@ namespace FireProductManager.GuiPackage
 
         private void Administration_Load(object sender, EventArgs e)
         {
-            connectFingerprint.GetIPConnect();
-            connectFingerprint.AddDisplayer(this);
+            //connectFingerprint.GetIPConnect();
+            //connectFingerprint.AddDisplayer(this);
             ShowLoginWindow();
             this.Text ="当前登录的管理员为：" + AccountManager.ReturnAccount();
             出入库登记ToolStripMenultem_Click(sender, e);
@@ -125,7 +125,10 @@ namespace FireProductManager.GuiPackage
                 administratorManagement.Close();
                 administratorManagement = new AdministratorManagement();
             }
-            administratorManagement.MdiParent = this;
+            administratorManagement = new AdministratorManagement
+            {
+                MdiParent = this
+            };
             administratorManagement.Show();
             administratorManagement.Activate();
         }

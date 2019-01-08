@@ -41,6 +41,10 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="libzkfpcsharp, Version=1.0.0.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\libzkfpcsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -243,8 +247,10 @@
     <Compile Include="ServiceLogicPackage\燕廷\ProjectGateway.cs" />
     <Compile Include="ServiceLogicPackage\马华\AccountManager.cs" />
     <Compile Include="ServiceLogicPackage\马华\BarrelGateway.cs" />
+    <Compile Include="ServiceLogicPackage\马华\BitmapFormat.cs" />
     <Compile Include="ServiceLogicPackage\马华\ElectronicScaleDevice.cs" />
     <Compile Include="ServiceLogicPackage\马华\EvirmentRecordGateway.cs" />
+    <Compile Include="ServiceLogicPackage\马华\LiveDevice.cs" />
     <Compile Include="ServiceLogicPackage\马华\LoginIDataDisplayer.cs" />
     <Compile Include="ServiceLogicPackage\马华\IEvirmentDevice.cs" />
     <Compile Include="ServiceLogicPackage\马华\LogoutIDataDisplayer.cs" />
