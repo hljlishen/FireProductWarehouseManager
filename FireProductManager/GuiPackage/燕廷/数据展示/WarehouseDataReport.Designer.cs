@@ -210,11 +210,13 @@
             this.tb_project.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_project.Location = new System.Drawing.Point(60, 51);
             this.tb_project.Name = "tb_project";
+            this.tb_project.ReadOnly = true;
             this.tb_project.Size = new System.Drawing.Size(147, 26);
             this.tb_project.TabIndex = 69;
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {

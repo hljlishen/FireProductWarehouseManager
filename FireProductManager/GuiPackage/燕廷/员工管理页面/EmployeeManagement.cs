@@ -13,6 +13,7 @@ namespace FireProductManager.GuiPackage
     {
         private TreeNode _treenode;
         private int _level;
+        private int _index;
         public delegate void EmployeesSelectedHandler(int employeesIds,string emNumbers,string name);
         public event EmployeesSelectedHandler EmployeesSelected;
 
@@ -41,7 +42,7 @@ namespace FireProductManager.GuiPackage
         }
 
         //显示数据库员工
-        private void ShowAllEmployee()
+        public void ShowAllEmployee()
         {
             DataTable dataTable = EmployeeGateway.GetAllEmployees();
             ShowDataGridView(dataTable);
@@ -55,14 +56,15 @@ namespace FireProductManager.GuiPackage
             {
                 DataGridViewRow row2 = new DataGridViewRow();
                 int index = dgv_employeeinformation.Rows.Add(row2);
-                dgv_employeeinformation.Rows[index].Cells[0].Value = dr["em_employeenumber"];
-                dgv_employeeinformation.Rows[index].Cells[1].Value = dr["em_name"];
-                dgv_employeeinformation.Rows[index].Cells[2].Value = dr["em_sex"];
+                dgv_employeeinformation.Rows[index].Cells[0].Value = dr["em_id"];
+                dgv_employeeinformation.Rows[index].Cells[1].Value = dr["em_employeenumber"];
+                dgv_employeeinformation.Rows[index].Cells[2].Value = dr["em_name"];
+                dgv_employeeinformation.Rows[index].Cells[3].Value = dr["em_sex"];
                 List<string> mList = DepartmentGateway.ReadDepartmentNodeName((int)dr["em_departmentid"]);
-                dgv_employeeinformation.Rows[index].Cells[3].Value = mList[2];
-                dgv_employeeinformation.Rows[index].Cells[4].Value = mList[1];
-                dgv_employeeinformation.Rows[index].Cells[5].Value = mList[0];
-                dgv_employeeinformation.Rows[index].Cells[6].Value = dr["em_id"];
+                dgv_employeeinformation.Rows[index].Cells[4].Value = mList[2];
+                dgv_employeeinformation.Rows[index].Cells[5].Value = mList[1];
+                dgv_employeeinformation.Rows[index].Cells[6].Value = mList[0];
+                
             }
         }
         #endregion
@@ -78,9 +80,10 @@ namespace FireProductManager.GuiPackage
                 int x = e.X;
                 int y = e.Y;
                 int a = e.RowIndex;
-                dgv_employeeinformation.CurrentCell = dgv_employeeinformation.Rows[e.RowIndex].Cells[0]; 
+                dgv_employeeinformation.CurrentCell = dgv_employeeinformation.Rows[e.RowIndex].Cells[1]; 
                 dgv_employeeinformation.Rows[e.RowIndex].Selected = true;
                 cms_employeeoperation.Show(MousePosition);
+                _index = e.RowIndex;
             }
         }
 
@@ -102,9 +105,8 @@ namespace FireProductManager.GuiPackage
         //添加员工
         private void NewEmployee()
         {
-            AddOrUpdateEmployee add = new AddOrUpdateEmployee();
+            AddOrUpdateEmployee add = new AddOrUpdateEmployee(this);
             add.Show();
-            ShowAllEmployee();
         }
 
         //删除员工
@@ -117,6 +119,7 @@ namespace FireProductManager.GuiPackage
                 EmployeeGateway.DeleteEmployee(employeeid);
                 ImageManager getSetImagePath = new ImageManager();
                 getSetImagePath.DeleteEmployeeImage(employeenumber);
+                dgv_employeeinformation.Rows.RemoveAt(_index);//从DGV移除
                 return true;
             }
             return false;
@@ -127,8 +130,8 @@ namespace FireProductManager.GuiPackage
         {
             if (MessageBox.Show("是否确认修改？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-               int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[6].Value;
-               AddOrUpdateEmployee update = new AddOrUpdateEmployee(employeeid);
+               int employeeid = (int)dgv_employeeinformation.CurrentRow.Cells[0].Value;
+               AddOrUpdateEmployee update = new AddOrUpdateEmployee(employeeid,this);
                update.Show();
                return true;
             }
@@ -298,9 +301,9 @@ namespace FireProductManager.GuiPackage
         {
             if (FormBorderStyle == FormBorderStyle.FixedSingle)
             {
-                int employeeId = (int)(dgv_employeeinformation.SelectedRows[0]).Cells[6].Value;
-                string emNumbers = (dgv_employeeinformation.SelectedRows[0]).Cells[0].Value.ToString();
-                string name = (dgv_employeeinformation.SelectedRows[0]).Cells[1].Value.ToString();
+                int employeeId = (int)(dgv_employeeinformation.SelectedRows[0]).Cells[0].Value;
+                string emNumbers = (dgv_employeeinformation.SelectedRows[0]).Cells[1].Value.ToString();
+                string name = (dgv_employeeinformation.SelectedRows[0]).Cells[2].Value.ToString();
                 EmployeesSelected?.Invoke(employeeId, emNumbers, name);
                 Close();
             }

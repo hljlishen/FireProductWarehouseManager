@@ -5,12 +5,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
-//添加仪器  观察者模式
+//材料的添加、修改
 
 namespace FireProductManager.GuiPackage
 {
     public partial class AddOrUpdatePackage : Form 
     {
+        private PackageManagement _packagefrom;
+
         private int _id;
         private string _type;
         private string _specifications;
@@ -26,10 +28,13 @@ namespace FireProductManager.GuiPackage
         }
 
         //添加材料构造方法
-        public AddOrUpdatePackage()
+        public AddOrUpdatePackage(PackageManagement packageManagement)
         {
             InitializeComponent();
             title.Text = "添加材料基本信息";
+
+            _packagefrom = packageManagement;
+
             cb_isInWareHouse.Text = "在库";
             bt_alterinstrument.Visible = false;
             la_beginningweight.Visible = false;
@@ -37,12 +42,14 @@ namespace FireProductManager.GuiPackage
         }
 
         //修改材料构造方法
-        public AddOrUpdatePackage(int packageid)
+        public AddOrUpdatePackage(int packageid, PackageManagement packageManagement)
         {
             InitializeComponent();
             title.Text = "修改材料基本信息";
-            bt_addinstrument.Visible = false;
 
+            _packagefrom = packageManagement;
+
+            bt_addinstrument.Visible = false;
             tb_beginningweight.ReadOnly = true;
 
             _id = packageid;
@@ -50,7 +57,7 @@ namespace FireProductManager.GuiPackage
         }
 
         //材料信息展示在页面组件中
-        public void InstrumentMessageDataTableShowTextBox()
+        private void InstrumentMessageDataTableShowTextBox()
         {
             DataTable dataTable = PackageGateway.GetPackageInformation(_id);
             DataRow myDr = dataTable.Rows[0];
@@ -79,10 +86,11 @@ namespace FireProductManager.GuiPackage
             AutoClosingMessageBox.Show("材料信息保存成功", "仪器信息添加", 1000);
             ResetPageInformation();
             PrintQRCode printQRCode = new PrintQRCode(PackageGateway.GetLastPackage());
+            _packagefrom.ShowAllPackage();
         }
 
         //重置页面信息
-        public void ResetPageInformation()
+        private void ResetPageInformation()
         {
             foreach (Control ctr in Controls)
             {
@@ -95,7 +103,7 @@ namespace FireProductManager.GuiPackage
         }
 
         //获取材料信息
-        public void GetPackageInformation()
+        private void GetPackageInformation()
         {
             _type = tb_type.Text;
             _specifications = tb_specifications.Text;
@@ -115,6 +123,7 @@ namespace FireProductManager.GuiPackage
             if (!FormValidation()) return;
             PackageGateway.UpdatePackage(_id,_type, _specifications, _weigth, _barrelId, _isinWarehouse, _productionCompany, _purchaseTime);
             AutoClosingMessageBox.Show("材料信息修改成功", "材料信息修改", 1000);
+            _packagefrom.ShowAllPackage();
             Close();
         }
 

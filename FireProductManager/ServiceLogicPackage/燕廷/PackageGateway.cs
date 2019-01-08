@@ -81,12 +81,12 @@ namespace FireProductManager.ServiceLogicPackage
             return allModel;
         }
 
-
         //获取当前材料的类型与重量
         public static Dictionary<string, double> StatisticAllModelWeightsInWarehouse()
         {
             Package package = new Package();
             SelectSqlMaker maker = new SelectSqlMaker("Package");
+            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
             DataTable dataTable = package.Select(maker.MakeSelectSql());
             Dictionary<string, double> keyValuePairs = GetModleOfWeight(dataTable);
             return keyValuePairs;

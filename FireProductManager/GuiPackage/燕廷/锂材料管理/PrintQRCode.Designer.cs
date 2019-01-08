@@ -129,7 +129,6 @@
             this.MaximizeBox = false;
             this.Name = "PrintQRCode";
             this.Text = "打印二维码";
-            this.Load += new System.EventHandler(this.PrintQRCode_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_qrcode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

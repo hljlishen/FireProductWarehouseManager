@@ -13,6 +13,8 @@ namespace FireProductManager.GuiPackage
     {
         ImageManager getSetImagePath = new ImageManager();
 
+        private EmployeeManagement _employeefrom;
+
         private int _employeeid;
         private string _employeenumber;
         private string _name;
@@ -29,18 +31,20 @@ namespace FireProductManager.GuiPackage
         }
 
         //添加页面状态
-        public AddOrUpdateEmployee()
+        public AddOrUpdateEmployee(EmployeeManagement employeeManagement)
         {
             InitializeComponent();
             bt_updateemployee.Visible = false;
             pb_employeephoto.Image = Image.FromFile(getSetImagePath.DefualtEmployeeImagePath);
+            _employeefrom = employeeManagement;
         }
 
         //修改页面状态
-        public AddOrUpdateEmployee(int employeeid)
+        public AddOrUpdateEmployee(int employeeid, EmployeeManagement employeeManagement)
         {
             InitializeComponent();
             La_addoralter.Text = "修改员工";
+            _employeefrom = employeeManagement;
             _employeeid = employeeid;
             ShowEmployeeInformation(_employeeid);
             Bt_addemployee.Visible = false; 
@@ -91,7 +95,20 @@ namespace FireProductManager.GuiPackage
             EmployeeGateway.NewEmployee(_employeenumber,_name,_sex,_departmentid);
             getSetImagePath.SaveEmployeeImage(_employeenumber);
             AutoClosingMessageBox.Show("员工信息添加成功", "员工信息添加", 1000);
-            Close();
+            _employeefrom.ShowAllEmployee();
+            ResetPageInformation();
+        }
+
+        //重置页面信息
+        private void ResetPageInformation()
+        {
+            foreach (Control ctr in Controls)
+            {
+                if (ctr is TextBox)//考虑是文本框的话
+                {
+                    ((TextBox)ctr).Text = String.Empty;
+                }
+            }
         }
 
         //员工信息修改
@@ -103,6 +120,7 @@ namespace FireProductManager.GuiPackage
             pb_employeephoto.Image.Dispose();
             getSetImagePath.SaveEmployeeImage(_employeenumber);
             AutoClosingMessageBox.Show("员工信息修改成功", "员工信息修改", 1000);
+            _employeefrom.ShowAllEmployee();
             Close();
         }
 
