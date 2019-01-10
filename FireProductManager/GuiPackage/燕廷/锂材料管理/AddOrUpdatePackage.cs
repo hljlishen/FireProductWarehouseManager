@@ -65,7 +65,7 @@ namespace FireProductManager.GuiPackage
             DataRow myDr = dataTable.Rows[0];
             tb_type.Text = myDr["pa_type"].ToString();
             tb_specifications.Text = myDr["pa_specifications"].ToString();
-            tb_weigth.Text = myDr["pa_weight"].ToString();
+            tb_weight.Text = myDr["pa_weight"].ToString();
             tb_barrel.Text = myDr["pa_barrelId"].ToString();
             cb_isInWareHouse.Text = PackageGateway.IsinWarehouseDataTypeChangeString((int)myDr["pa_isinWarehouse"]);
             tb_productioncompany.Text = myDr["pa_productionCompany"].ToString();
@@ -83,7 +83,7 @@ namespace FireProductManager.GuiPackage
 
         private void UpdateWeight(double weight)
         {     
-            tb_weigth.Text = weight.ToString();
+            tb_weight.Text = weight.ToString();
         }
 
         //材料信息添加
@@ -116,8 +116,8 @@ namespace FireProductManager.GuiPackage
         {
             _type = tb_type.Text;
             _specifications = tb_specifications.Text;
-            if (tb_weigth.Text.Equals("")) return;
-            _weigth = Convert.ToDouble(tb_weigth.Text);
+            if (tb_weight.Text.Equals("")) return;
+            _weigth = Convert.ToDouble(tb_weight.Text)- Convert.ToDouble(tb_packageweight.Text);
             if (tb_barrel.Text.Equals("")) return;
             _barrelId = Convert.ToInt32(tb_barrel.Text);
             _isinWarehouse = cb_isInWareHouse.Text;
@@ -157,7 +157,7 @@ namespace FireProductManager.GuiPackage
             }
             else la_errorspecifications.Visible = false;
 
-            if (tb_weigth.Text.Trim().Equals(""))
+            if (tb_weight.Text.Trim().Equals(""))
             {
                 la_errorweigth.Visible = true;
                 la_errorweigth.ForeColor = Color.Red;
@@ -180,6 +180,22 @@ namespace FireProductManager.GuiPackage
                 validation = false;
             }
             else la_errorproductioncompany.Visible = false;
+
+            if (tb_packageweight.Text.Trim().Equals(""))
+            {
+                la_errorpackageweightnull.Visible = true;
+                la_errorpackageweightnull.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorpackageweightnull.Visible = false;
+
+            if (!(System.Text.RegularExpressions.Regex.IsMatch(tb_packageweight.Text.Trim(), "^\\d+$")))
+            {
+                la_errorpackageweight.Visible = true;
+                la_errorpackageweight.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorpackageweight.Visible = false;
 
             return validation;
         }
