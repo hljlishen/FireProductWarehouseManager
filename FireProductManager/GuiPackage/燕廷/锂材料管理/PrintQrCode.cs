@@ -19,11 +19,11 @@ namespace FireProductManager.GuiPackage
         {
             InitializeComponent();
             _packageid = packageid;
-            string msg = PackageMessageDataTableShowTextBox();
+            string msg = packageid.ToString();  
 
             Bitmap bitmap = GenByZXingNet(msg);
             bitmap = NewLabelSize(bitmap);
-            AddTextToImg(bitmap, msg);
+            AddTextToImg(bitmap, PackageMessageDataTableShowTextBox());
             PictureBoxShow(bitmap);
 
             Print();
