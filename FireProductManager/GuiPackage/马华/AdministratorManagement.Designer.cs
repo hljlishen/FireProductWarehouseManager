@@ -51,6 +51,7 @@
             // dgv_administrator
             // 
             this.dgv_administrator.AllowUserToAddRows = false;
+            this.dgv_administrator.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgv_administrator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgv_administrator.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_administrator.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

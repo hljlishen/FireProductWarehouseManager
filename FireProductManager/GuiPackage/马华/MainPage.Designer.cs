@@ -491,6 +491,7 @@
             // 
             this.dgv_AllowanceRemind.AllowUserToAddRows = false;
             this.dgv_AllowanceRemind.AllowUserToDeleteRows = false;
+            this.dgv_AllowanceRemind.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgv_AllowanceRemind.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_AllowanceRemind.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_AllowanceRemind.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
