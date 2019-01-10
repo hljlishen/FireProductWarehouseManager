@@ -62,11 +62,26 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //删除项目
-        public static void DeleteProject(int projectId)
+        public static bool DeleteProject(int projectId)
         {
+            if (HasProjectOutRecord(projectId))
+            {
+                return false;
+            }
             Project project = new Project();
             project.pr_id = projectId;
             project.Delete();
+            return true;
+        }
+
+        //查询项目是否存在出库记录
+        public static bool HasProjectOutRecord(int projectId)
+        {
+            OutRecord outRecord = new OutRecord();
+            SelectSqlMaker maker = new SelectSqlMaker("outrecord");
+            maker.AddAndCondition(new IntEqual("or_projectId",projectId));
+            DataTable dataTable = outRecord.Select(maker.MakeSelectSql());
+            return dataTable.Rows.Count > 0;
         }
 
         //获取项目信息

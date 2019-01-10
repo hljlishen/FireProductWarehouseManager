@@ -37,7 +37,6 @@ namespace FireProductManager.GuiPackage
 
             if (tc_datareport.SelectedTab.Name == "tp_warehousemargi")
             {
-                comboBox1.Text = "已归还用量";
                 PackageDosage();
             }
 
@@ -45,24 +44,11 @@ namespace FireProductManager.GuiPackage
             {
                 WarehouseMargin();
             }
-        }
 
-        //仓库材料用量
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox1.Text.Trim().Equals("已归还用量"))
-                PackageDosage();
-            if (comboBox1.Text.Trim().Equals("未归还材料"))
-                PackageOutbound();
-        }
-
-        //项目材料用量
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox2.Text.Trim().Equals("已归还用量"))
+            if (tc_datareport.SelectedTab.Name == "tp_projectdosage")
+            {
                 ProjectDosage();
-            if (comboBox2.Text.Trim().Equals("未归还材料"))
-                ProjectOutbound();
+            }
         }
 
         //材料入库量
@@ -79,16 +65,6 @@ namespace FireProductManager.GuiPackage
         {
             ClearData();
             Dictionary<string, double> keyValuePairs = PackageGateway.GetPackageDosage();
-            ChangeArray(keyValuePairs);
-            TwoDimensionalTable a = new TwoDimensionalTable(wb_project, "cylindrical", list_X, list_Y);
-            TwoDimensionalTable a1 = new TwoDimensionalTable(webBrowser1, "sector", list_X, list_Y);
-        }
-
-        //材料出库量
-        private void PackageOutbound()
-        {
-            ClearData();
-            Dictionary<string, double> keyValuePairs = PackageGateway.GetPackageOutbound();
             ChangeArray(keyValuePairs);
             TwoDimensionalTable a = new TwoDimensionalTable(wb_project, "cylindrical", list_X, list_Y);
             TwoDimensionalTable a1 = new TwoDimensionalTable(webBrowser1, "sector", list_X, list_Y);
@@ -113,17 +89,6 @@ namespace FireProductManager.GuiPackage
             TwoDimensionalTable a = new TwoDimensionalTable(webBrowser3, "cylindrical", list_X, list_Y);
             TwoDimensionalTable a1 = new TwoDimensionalTable(webBrowser2, "sector", list_X, list_Y);
 
-        }
-
-        //项目出库量
-        private void ProjectOutbound()
-        {
-            ClearData();
-            if (projectid == 0) return;
-            Dictionary<string, double> keyValuePairs = PackageGateway.GetProjectPackageOutRecord((uint)projectid);
-            ChangeArray(keyValuePairs);
-            TwoDimensionalTable a = new TwoDimensionalTable(webBrowser3, "cylindrical", list_X, list_Y);
-            TwoDimensionalTable a1 = new TwoDimensionalTable(webBrowser2, "sector", list_X, list_Y);
         }
 
         private void ClearData()
@@ -155,7 +120,7 @@ namespace FireProductManager.GuiPackage
             tb_project.Text = "";
             tb_project.Text = projectPassword;
             projectid = id;
-            comboBox2.Text = "";
+            ProjectDosage();
         }
     }
 }

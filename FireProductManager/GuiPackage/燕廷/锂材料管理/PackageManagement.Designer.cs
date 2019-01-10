@@ -51,6 +51,7 @@
             this.tsm_deletepackage = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_newpackage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsm_new = new System.Windows.Forms.ToolStripMenuItem();
+            this.在库状态 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.材料类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.材料规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,7 +60,6 @@
             this.生产公司 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.货架位置 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.初始重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.在库状态 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_instrumentinformation)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.cms_packageoperation.SuspendLayout();
@@ -100,6 +100,7 @@
             this.dgv_instrumentinformation.AllowUserToAddRows = false;
             this.dgv_instrumentinformation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_instrumentinformation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.在库状态,
             this.材料类型,
             this.材料规格,
             this.name,
@@ -107,8 +108,7 @@
             this.生产厂商,
             this.生产公司,
             this.货架位置,
-            this.初始重量,
-            this.在库状态});
+            this.初始重量});
             this.dgv_instrumentinformation.Location = new System.Drawing.Point(73, 95);
             this.dgv_instrumentinformation.MultiSelect = false;
             this.dgv_instrumentinformation.Name = "dgv_instrumentinformation";
@@ -285,6 +285,14 @@
             this.tsm_new.Text = "添加";
             this.tsm_new.Click += new System.EventHandler(this.tsm_newpackage_Click);
             // 
+            // 在库状态
+            // 
+            this.在库状态.HeaderText = "材料ID";
+            this.在库状态.Name = "在库状态";
+            this.在库状态.ReadOnly = true;
+            this.在库状态.Visible = false;
+            this.在库状态.Width = 90;
+            // 
             // 材料类型
             // 
             this.材料类型.HeaderText = "材料类型";
@@ -337,14 +345,6 @@
             this.初始重量.Name = "初始重量";
             this.初始重量.Width = 150;
             // 
-            // 在库状态
-            // 
-            this.在库状态.HeaderText = "材料ID";
-            this.在库状态.Name = "在库状态";
-            this.在库状态.ReadOnly = true;
-            this.在库状态.Visible = false;
-            this.在库状态.Width = 90;
-            // 
             // PackageManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -391,6 +391,7 @@
         private System.Windows.Forms.Label la_productioncompany;
         private System.Windows.Forms.TextBox tb_productioncompany;
         private System.Windows.Forms.Button bt_changebarrel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 在库状态;
         private System.Windows.Forms.DataGridViewTextBoxColumn 材料类型;
         private System.Windows.Forms.DataGridViewTextBoxColumn 材料规格;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
@@ -399,6 +400,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 生产公司;
         private System.Windows.Forms.DataGridViewTextBoxColumn 货架位置;
         private System.Windows.Forms.DataGridViewTextBoxColumn 初始重量;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 在库状态;
     }
 }

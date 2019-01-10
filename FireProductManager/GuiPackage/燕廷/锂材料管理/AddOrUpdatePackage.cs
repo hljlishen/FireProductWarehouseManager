@@ -12,6 +12,8 @@ namespace FireProductManager.GuiPackage
     public partial class AddOrUpdatePackage : Form 
     {
         private PackageManagement _packagefrom;
+        Ahdr ahdr = new Ahdr();
+        delegate void WeightGettedHandler(double weight);
 
         private int _id;
         private string _type;
@@ -24,7 +26,7 @@ namespace FireProductManager.GuiPackage
 
         private void AddOrModifyInstrument_Load(object sender, EventArgs e)
         {
-
+            ahdr.WeightGetted += Ahdr_WeightGetted;
         }
 
         //添加材料构造方法
@@ -75,6 +77,13 @@ namespace FireProductManager.GuiPackage
         private void bt_close_Click_1(object sender, EventArgs e)     
         {
             Close();
+        }
+
+        private void Ahdr_WeightGetted(double weight) => Invoke(new WeightGettedHandler(UpdateWeight), new object[] { weight });
+
+        private void UpdateWeight(double weight)
+        {     
+            tb_weigth.Text = weight.ToString();
         }
 
         //材料信息添加
