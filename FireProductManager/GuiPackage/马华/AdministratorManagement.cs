@@ -10,6 +10,7 @@ namespace FireProductManager.GuiPackage
     {
         AddOrUpdateAministrator addOrUpdateAministrator;
         ConnectFingerprint connectFingerprint = ConnectFingerprint.GetInstance();
+        ConnectFingerprint2 connectFingerprint2 = ConnectFingerprint2.GetInstance();
 
         public AdministratorManagement()
         {
@@ -86,7 +87,13 @@ namespace FireProductManager.GuiPackage
                 int accountid = (int)dgv_administrator.CurrentRow.Cells[0].Value;
                 string accountNumber = dgv_administrator.CurrentRow.Cells[1].Value.ToString();
                 AccountManager.RemoveAccount(accountid);
+                if (!connectFingerprint.IsConnectionFingerprint() || !connectFingerprint2.IsConnectionFingerprint())
+                {
+                    AutoClosingMessageBox.Show("            管理员删除失败", "删除管理员", 1000);
+                    return;
+                }
                 connectFingerprint.DeleteUserInformation(accountNumber);
+                connectFingerprint2.DeleteUserInformation(accountNumber);
                 AutoClosingMessageBox.Show("            管理员删除成功", "删除管理员", 1000);
                 RefreshDataGridViewShow();
             }

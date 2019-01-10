@@ -109,8 +109,8 @@ namespace FireProductManager.GuiPackage
 
             if (tb_projectpassword.Text == "")
             {
-                DialogResult result = MessageBox.Show("不选择项目令号", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                if (result != DialogResult.OK)
+                DialogResult result = MessageBox.Show("选择项目令号", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (result == DialogResult.OK)
                     return;
             }
             RecordOperationGateway.BorrowPackage(packageid, employeeid, projectid, tb_borrowName.Text, accountname, double.Parse(tb_packageweight.Text));
