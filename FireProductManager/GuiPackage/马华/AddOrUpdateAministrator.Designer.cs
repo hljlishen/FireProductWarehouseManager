@@ -219,9 +219,9 @@
             // 
             // picFPImg
             // 
-            this.picFPImg.Location = new System.Drawing.Point(66, 458);
+            this.picFPImg.Location = new System.Drawing.Point(98, 458);
             this.picFPImg.Name = "picFPImg";
-            this.picFPImg.Size = new System.Drawing.Size(104, 154);
+            this.picFPImg.Size = new System.Drawing.Size(75, 105);
             this.picFPImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFPImg.TabIndex = 36;
             this.picFPImg.TabStop = false;
@@ -231,7 +231,7 @@
             this.la_fin.AutoSize = true;
             this.la_fin.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_fin.ForeColor = System.Drawing.Color.Red;
-            this.la_fin.Location = new System.Drawing.Point(83, 615);
+            this.la_fin.Location = new System.Drawing.Point(105, 566);
             this.la_fin.Name = "la_fin";
             this.la_fin.Size = new System.Drawing.Size(65, 20);
             this.la_fin.TabIndex = 37;

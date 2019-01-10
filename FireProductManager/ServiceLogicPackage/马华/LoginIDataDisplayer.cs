@@ -80,15 +80,18 @@ namespace FireProductManager.ServiceLogicPackage
             int Privilege = 0;//用户权限
             bool Enabled = true;//用户启用标志
             IsUploadUser = axCZKEM1.SSR_SetUserInfo(dwMachineNumber, dwEnrollNumber,Name, Password, Privilege, Enabled);
-            UploadFingerprintTemplate(dwEnrollNumber, TmpData);
+            if (!UploadFingerprintTemplate(dwEnrollNumber, TmpData))
+                IsUploadUser = false;
+            //FingerprintTemplateConversion(TmpData);
             return IsUploadUser;
         }
 
         //上传指纹模板
         private bool UploadFingerprintTemplate(string dwEnrollNumber, string TmpData)
         {
-            int dwFingerIndex = 4;
-            IsUploadFingerprint = axCZKEM1.SSR_SetUserTmpStr(dwMachineNumber,dwEnrollNumber,dwFingerIndex,TmpData);
+            int dwFingerIndex = 5;
+            int Flag = 1;
+            IsUploadFingerprint = axCZKEM1.SetUserTmpExStr(dwMachineNumber,dwEnrollNumber,dwFingerIndex,Flag,TmpData);
             return IsUploadFingerprint;
         }
 
@@ -99,6 +102,27 @@ namespace FireProductManager.ServiceLogicPackage
             IsDeleteUser = axCZKEM1.SSR_DeleteEnrollData(dwMachineNumber,dwEnrollNumber,dwBackupNumber);
             return IsDeleteUser;
         }
+
+        //以字符串形式将将 BIOKEY 指纹模板转换为脱机指纹模板
+        private bool FingerprintTemplateConversion(string TmpData1)
+        {
+            int Size = 0;
+            string TmpData2 = "";
+            bool IsFPTC = axCZKEM1.FPTempConvertNewStr(TmpData1,ref TmpData2,ref Size);
+            return IsFPTC;
+        }
+
+        //获取指纹模板
+        public string GetFingerprintTemplate(string sdwEnrollNumber,int idwFingerIndex)
+        {
+            string sTmpData = "";
+            int iTmpLength = 0;
+            int iFlag = 0;
+            axCZKEM1.GetUserTmpExStr(iMachineNumber, sdwEnrollNumber, idwFingerIndex, out iFlag, out sTmpData, out iTmpLength);
+            return sTmpData;
+        }
+
+        public bool IsConnectionFingerprint() => axCZKEM1.Connect_Net(ipAddress, 4370);
 
         //关闭连接
         public void CloseConnect()
