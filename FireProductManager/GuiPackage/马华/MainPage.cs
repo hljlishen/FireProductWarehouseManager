@@ -30,6 +30,7 @@ namespace FireProductManager.GuiPackage
         {
             InitializeComponent();
             TextBoxCheckShow();
+            PackageTareWeightNoShow();
             StartPosition = FormStartPosition.CenterScreen;
             ShowDataGridView(PackageGateway.StatisticAllModelWeightsInWarehouse());
             erg = new EvirmentRecordGateway(Apem5900.CreateInstance());
@@ -121,6 +122,7 @@ namespace FireProductManager.GuiPackage
 
         private void PackagePutInStorageShow()
         {
+            PackageTareWeightShow();
             ahdr = new Ahdr();
             foreach (DataRow dr in PackageGateway.GetPackageInformation(packageid).Rows)
             {
@@ -155,10 +157,11 @@ namespace FireProductManager.GuiPackage
 
             if (isPrint)
                 PrintAfterBagChange();
-            RecordOperationGateway.ReturnPackage(outid,packageid, int.Parse(tb_barrelid.Text), accountname , consumption, double.Parse(tb_packageweight.Text));
+            RecordOperationGateway.ReturnPackage(outid,packageid, int.Parse(tb_barrelid.Text), accountname , consumption, double.Parse(tb_packageweight.Text)- double.Parse(tb_packagebackweigth.Text));
             ListViewShow();
             AutoClosingMessageBox.Show("                入库成功", "入库", 2000);
             EmptyTextBox();
+            PackageTareWeightNoShow();
         }
 
         //表单验证
@@ -177,6 +180,12 @@ namespace FireProductManager.GuiPackage
                 validation = false;
             }
             else la_borrow.Visible = false;
+            if (tb_packagebackweigth.Visible && tb_packagebackweigth.Text == "")
+            {
+                la_packagewigth2.Visible = true;
+                validation = false;
+            }
+            else la_packagewigth2.Visible = false;
             return validation;
         }
 
@@ -184,6 +193,19 @@ namespace FireProductManager.GuiPackage
         {
             la_packagewigth.Visible = false;
             la_borrow.Visible = false;
+            la_packagewigth2.Visible = false;
+        }
+
+        private void PackageTareWeightNoShow()
+        {
+            la_packagebackweight.Visible = false;
+            tb_packagebackweigth.Visible = false;
+        }
+
+        private void PackageTareWeightShow()
+        {
+            la_packagebackweight.Visible = true;
+            tb_packagebackweigth.Visible = true;
         }
 
         private void EmptyTextBox()
@@ -196,6 +218,7 @@ namespace FireProductManager.GuiPackage
             tb_direction.Text = "";
             tb_borrowName.Text = "";
             tb_packageid.Text = "";
+            tb_packagebackweigth.Text = "";
         }
 
         private void ListViewShow()
@@ -275,17 +298,15 @@ namespace FireProductManager.GuiPackage
             }
         }
 
-        private void MainPage_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            erg.NewEvirmentData -= NewEvirmentData;
-        }
+        private void MainPage_FormClosing(object sender, FormClosingEventArgs e) => erg.NewEvirmentData -= NewEvirmentData;
 
         private void tb_packageid_KeyPress(object sender, KeyPressEventArgs e)
         {
+            TextBoxCheckShow();
+            PackageTareWeightNoShow();
             if (e.KeyChar == 13)
             {
                 TextBoxCheck();
-                TextBoxCheckShow();
                 if (tb_packageid.Text == "")
                 {
                     EmptyTextBox();
@@ -300,6 +321,8 @@ namespace FireProductManager.GuiPackage
                 }
                 InOrOutInformationShow();
             }
+            if (e.KeyChar == 8)
+                EmptyTextBox();
         }
     }
 }

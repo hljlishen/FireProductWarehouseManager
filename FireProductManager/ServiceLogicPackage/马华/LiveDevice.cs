@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FireProductManager.ServiceLogicPackage
 {
-    public delegate void FingerprintDataHandler(Bitmap bmp);
+    public delegate void FingerprintDataHandler(Bitmap bmp,string s);
     public interface LiveDevice
     {
         event FingerprintDataHandler FingerprintData;
@@ -58,49 +58,21 @@ namespace FireProductManager.ServiceLogicPackage
         [DllImport("user32.dll", EntryPoint = "SendMessageA")]
         private static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
 
-        private void DefWndProc(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam)
-        {
-            if (wMsg == 1030)
-            {
-                MemoryStream ms = new MemoryStream();
-                BitmapFormat.GetBitmap(FPBuffer, mfpWidth, mfpHeight, ref ms);
-                Bitmap bmp = new Bitmap(ms);
-                FingerprintData?.Invoke(bmp);
-            }
-        }
-
         public void Open()
         {
             int ret1 = zkfperrdef.ZKFP_ERR_OK;
             int index = 0;
             if (!isInitialized)
             {
-                if ((ret1 = zkfp2.Init()) == zkfperrdef.ZKFP_ERR_OK)
+                if ((ret1 = zkfp2.Init()) != zkfperrdef.ZKFP_ERR_OK)
                 {
-                    isInitialized = true;
-                    int nCount = zkfp2.GetDeviceCount();
-                    if (nCount > 0)
-                    {
-                        for (int i = 0; i < nCount; i++)
-                        {
-                            index = i;
-                        }
-                    }
-                    else
-                    {
-                        zkfp2.Terminate();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("未连接指纹采集器");
+                    return;
+                    //throw new Exception("未连接指纹采集器");
                 }
 
                 int ret = zkfp.ZKFP_ERR_OK;
                 if (IntPtr.Zero == (mDevHandle = zkfp2.OpenDevice(index)))
-                {
                     return;
-                }
                 if (IntPtr.Zero == (mDBHandle = zkfp2.DBInit()))
                 {
                     zkfp2.CloseDevice(mDevHandle);
@@ -111,7 +83,7 @@ namespace FireProductManager.ServiceLogicPackage
                 {
                     RegTmps[i] = new byte[2048];
                 }
-                byte[] paramValue = new byte[4];
+                byte[] paramValue = new byte[8];
                 int size = 4;
                 zkfp2.GetParameters(mDevHandle, 1, paramValue, ref size);
                 zkfp2.ByteArray2Int(paramValue, ref mfpWidth);
@@ -136,7 +108,11 @@ namespace FireProductManager.ServiceLogicPackage
                 int ret = zkfp2.AcquireFingerprint(mDevHandle, FPBuffer, CapTmp, ref cbCapTmp);
                 if (ret == zkfp.ZKFP_ERR_OK)
                 {
-                    DefWndProc(FormHandle, MESSAGE_CAPTURED_OK, IntPtr.Zero, IntPtr.Zero);
+                    string s = Convert.ToBase64String(CapTmp);
+                    MemoryStream ms = new MemoryStream();
+                    BitmapFormat.GetBitmap(FPBuffer, mfpWidth, mfpHeight, ref ms);
+                    Bitmap bmp = new Bitmap(ms);
+                    FingerprintData?.Invoke(bmp,s);
                 } 
                 Thread.Sleep(200);
             }

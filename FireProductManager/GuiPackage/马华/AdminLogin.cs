@@ -26,14 +26,14 @@ namespace FireProductManager.GuiPackage
             {
                 if (AccountManager.CanNotLogin())
                 {
-                    lab_tip.Text = "权限不足无法登录";
+                    lab_tip.Text = "*用户权限不足无法登录";
                     return;
                 }
                 DialogResult = DialogResult.OK;
                 Close();
             }
             else
-                lab_tip.Text = "登陆失败，请重新登录";
+                lab_tip.Text = "*登陆失败，请重新登录";
             tb_account.Text = "";
             tb_password.Text = "";
         }
@@ -56,14 +56,14 @@ namespace FireProductManager.GuiPackage
             {
                 if (AccountManager.CanNotLogin())
                 {
-                    lab_tip.Text = "权限不足无法登录";
+                    lab_tip.Text = "*用户权限不足无法登录";
                     return;
                 }
                 DialogResult = DialogResult.OK;
                 Close();
             }
             else
-                lab_tip.Text = "登陆失败，请重新登录";
+                lab_tip.Text = "*登陆失败，请重新登录";
         }
     }
 }

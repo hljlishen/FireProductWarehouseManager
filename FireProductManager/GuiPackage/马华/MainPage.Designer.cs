@@ -76,6 +76,9 @@
             this.dgv_AllowanceRemind = new System.Windows.Forms.DataGridView();
             this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.余量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.la_packagebackweight = new System.Windows.Forms.Label();
+            this.tb_packagebackweigth = new System.Windows.Forms.TextBox();
+            this.la_packagewigth2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -101,16 +104,16 @@
             this.la_borrow.AutoSize = true;
             this.la_borrow.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_borrow.ForeColor = System.Drawing.Color.Red;
-            this.la_borrow.Location = new System.Drawing.Point(186, 214);
+            this.la_borrow.Location = new System.Drawing.Point(168, 214);
             this.la_borrow.Name = "la_borrow";
-            this.la_borrow.Size = new System.Drawing.Size(92, 17);
+            this.la_borrow.Size = new System.Drawing.Size(97, 17);
             this.la_borrow.TabIndex = 36;
-            this.la_borrow.Text = "领用人不能为空";
+            this.la_borrow.Text = "*领用人不能为空";
             // 
             // btn_borrowemployee
             // 
             this.btn_borrowemployee.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_borrowemployee.Location = new System.Drawing.Point(317, 184);
+            this.btn_borrowemployee.Location = new System.Drawing.Point(299, 184);
             this.btn_borrowemployee.Name = "btn_borrowemployee";
             this.btn_borrowemployee.Size = new System.Drawing.Size(28, 23);
             this.btn_borrowemployee.TabIndex = 35;
@@ -123,11 +126,11 @@
             this.la_packagewigth.AutoSize = true;
             this.la_packagewigth.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_packagewigth.ForeColor = System.Drawing.Color.Red;
-            this.la_packagewigth.Location = new System.Drawing.Point(216, 144);
+            this.la_packagewigth.Location = new System.Drawing.Point(194, 144);
             this.la_packagewigth.Name = "la_packagewigth";
-            this.la_packagewigth.Size = new System.Drawing.Size(80, 17);
+            this.la_packagewigth.Size = new System.Drawing.Size(85, 17);
             this.la_packagewigth.TabIndex = 34;
-            this.la_packagewigth.Text = "重量不能为空";
+            this.la_packagewigth.Text = "*重量不能为空";
             // 
             // tb_packageid
             // 
@@ -141,7 +144,7 @@
             // tb_borrowName
             // 
             this.tb_borrowName.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_borrowName.Location = new System.Drawing.Point(162, 184);
+            this.tb_borrowName.Location = new System.Drawing.Point(144, 184);
             this.tb_borrowName.Name = "tb_borrowName";
             this.tb_borrowName.ReadOnly = true;
             this.tb_borrowName.Size = new System.Drawing.Size(140, 23);
@@ -159,7 +162,7 @@
             // tb_packageweight
             // 
             this.tb_packageweight.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_packageweight.Location = new System.Drawing.Point(181, 116);
+            this.tb_packageweight.Location = new System.Drawing.Point(163, 116);
             this.tb_packageweight.Name = "tb_packageweight";
             this.tb_packageweight.ReadOnly = true;
             this.tb_packageweight.Size = new System.Drawing.Size(140, 23);
@@ -177,7 +180,7 @@
             // tb_packagemodel
             // 
             this.tb_packagemodel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_packagemodel.Location = new System.Drawing.Point(232, 253);
+            this.tb_packagemodel.Location = new System.Drawing.Point(214, 253);
             this.tb_packagemodel.Name = "tb_packagemodel";
             this.tb_packagemodel.ReadOnly = true;
             this.tb_packagemodel.Size = new System.Drawing.Size(140, 23);
@@ -195,7 +198,7 @@
             // tb_packagename
             // 
             this.tb_packagename.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_packagename.Location = new System.Drawing.Point(171, 46);
+            this.tb_packagename.Location = new System.Drawing.Point(153, 46);
             this.tb_packagename.Name = "tb_packagename";
             this.tb_packagename.ReadOnly = true;
             this.tb_packagename.Size = new System.Drawing.Size(140, 23);
@@ -245,7 +248,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(91, 187);
+            this.label4.Location = new System.Drawing.Point(73, 187);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 20);
             this.label4.TabIndex = 3;
@@ -255,7 +258,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(89, 116);
+            this.label3.Location = new System.Drawing.Point(71, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 20);
             this.label3.TabIndex = 2;
@@ -265,7 +268,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(89, 256);
+            this.label2.Location = new System.Drawing.Point(71, 256);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(137, 20);
             this.label2.TabIndex = 1;
@@ -275,7 +278,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(89, 47);
+            this.label1.Location = new System.Drawing.Point(71, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 0;
@@ -405,6 +408,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.la_packagewigth2);
+            this.groupBox1.Controls.Add(this.tb_packagebackweigth);
+            this.groupBox1.Controls.Add(this.la_packagebackweight);
             this.groupBox1.Controls.Add(this.btn_projectPassword);
             this.groupBox1.Controls.Add(this.tb_borrowName);
             this.groupBox1.Controls.Add(this.btn_packageid);
@@ -511,6 +517,35 @@
             this.余量.ReadOnly = true;
             this.余量.Width = 214;
             // 
+            // la_packagebackweight
+            // 
+            this.la_packagebackweight.AutoSize = true;
+            this.la_packagebackweight.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_packagebackweight.Location = new System.Drawing.Point(307, 117);
+            this.la_packagebackweight.Name = "la_packagebackweight";
+            this.la_packagebackweight.Size = new System.Drawing.Size(79, 20);
+            this.la_packagebackweight.TabIndex = 39;
+            this.la_packagebackweight.Text = "袋子皮重：";
+            // 
+            // tb_packagebackweigth
+            // 
+            this.tb_packagebackweigth.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_packagebackweigth.Location = new System.Drawing.Point(390, 116);
+            this.tb_packagebackweigth.Name = "tb_packagebackweigth";
+            this.tb_packagebackweigth.Size = new System.Drawing.Size(78, 23);
+            this.tb_packagebackweigth.TabIndex = 40;
+            // 
+            // la_packagewigth2
+            // 
+            this.la_packagewigth2.AutoSize = true;
+            this.la_packagewigth2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_packagewigth2.ForeColor = System.Drawing.Color.Red;
+            this.la_packagewigth2.Location = new System.Drawing.Point(376, 142);
+            this.la_packagewigth2.Name = "la_packagewigth2";
+            this.la_packagewigth2.Size = new System.Drawing.Size(109, 17);
+            this.la_packagewigth2.TabIndex = 41;
+            this.la_packagewigth2.Text = "*袋子皮重不能为空";
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -583,5 +618,8 @@
         private System.Windows.Forms.DataGridView dgv_AllowanceRemind;
         private System.Windows.Forms.DataGridViewTextBoxColumn 类型;
         private System.Windows.Forms.DataGridViewTextBoxColumn 余量;
+        private System.Windows.Forms.Label la_packagebackweight;
+        private System.Windows.Forms.TextBox tb_packagebackweigth;
+        private System.Windows.Forms.Label la_packagewigth2;
     }
 }

@@ -82,7 +82,6 @@ namespace FireProductManager.ServiceLogicPackage
             IsUploadUser = axCZKEM1.SSR_SetUserInfo(dwMachineNumber, dwEnrollNumber,Name, Password, Privilege, Enabled);
             if (!UploadFingerprintTemplate(dwEnrollNumber, TmpData))
                 IsUploadUser = false;
-            //FingerprintTemplateConversion(TmpData);
             return IsUploadUser;
         }
 
@@ -101,25 +100,6 @@ namespace FireProductManager.ServiceLogicPackage
             int dwBackupNumber = 12;//删除该用户（包括所有指纹和卡号、密码数据）
             IsDeleteUser = axCZKEM1.SSR_DeleteEnrollData(dwMachineNumber,dwEnrollNumber,dwBackupNumber);
             return IsDeleteUser;
-        }
-
-        //以字符串形式将将 BIOKEY 指纹模板转换为脱机指纹模板
-        private bool FingerprintTemplateConversion(string TmpData1)
-        {
-            int Size = 0;
-            string TmpData2 = "";
-            bool IsFPTC = axCZKEM1.FPTempConvertNewStr(TmpData1,ref TmpData2,ref Size);
-            return IsFPTC;
-        }
-
-        //获取指纹模板
-        public string GetFingerprintTemplate(string sdwEnrollNumber,int idwFingerIndex)
-        {
-            string sTmpData = "";
-            int iTmpLength = 0;
-            int iFlag = 0;
-            axCZKEM1.GetUserTmpExStr(iMachineNumber, sdwEnrollNumber, idwFingerIndex, out iFlag, out sTmpData, out iTmpLength);
-            return sTmpData;
         }
 
         public bool IsConnectionFingerprint() => axCZKEM1.Connect_Net(ipAddress, 4370);
