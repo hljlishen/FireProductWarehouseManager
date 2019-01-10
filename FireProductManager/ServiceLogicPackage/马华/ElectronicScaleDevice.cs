@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO.Ports;
-using System.Windows.Forms;
+﻿using System.IO.Ports;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -25,13 +23,17 @@ namespace FireProductManager.ServiceLogicPackage
                 return;
                 //throw new Exception("未连接电子秤设备");
             }
-            
-            string portName = names[0];
 
-            serialPort = new SerialPort(portName, baudRate) { DataBits = 8, Parity = Parity.None, StopBits = StopBits.One };
-            serialPort.ReceivedBytesThreshold = 1;
-            serialPort.DataReceived += SerialPort_DataReceived;
-            serialPort.Open();
+            for (int i = 1; i < names.Length; i++)
+            {
+                string portName = names[i];
+
+                serialPort = new SerialPort(portName, baudRate) { DataBits = 8, Parity = Parity.None, StopBits = StopBits.One };
+                serialPort.ReceivedBytesThreshold = 1;
+                serialPort.DataReceived += SerialPort_DataReceived;
+                serialPort.Open();
+                return;
+            }
         }
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)

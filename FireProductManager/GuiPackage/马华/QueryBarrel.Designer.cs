@@ -50,6 +50,7 @@
             this.dgv_existbarrelid.AllowUserToAddRows = false;
             this.dgv_existbarrelid.AllowUserToDeleteRows = false;
             this.dgv_existbarrelid.AllowUserToResizeColumns = false;
+            this.dgv_existbarrelid.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgv_existbarrelid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_existbarrelid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.桶编号,
@@ -107,6 +108,7 @@
             this.dgv_package.AllowUserToDeleteRows = false;
             this.dgv_package.AllowUserToResizeColumns = false;
             this.dgv_package.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_package.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgv_package.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_package.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.袋子编号,

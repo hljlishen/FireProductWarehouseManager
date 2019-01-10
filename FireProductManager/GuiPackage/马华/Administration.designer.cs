@@ -39,10 +39,10 @@
             this.锂合金ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.管理员ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.仓库数据统计ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AccouuntShow = new System.Windows.Forms.Label();
             this.la_account = new System.Windows.Forms.Label();
             this.btn_logout = new System.Windows.Forms.Button();
-            this.仓库数据统计ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,6 +129,13 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // 仓库数据统计ToolStripMenuItem
+            // 
+            this.仓库数据统计ToolStripMenuItem.Name = "仓库数据统计ToolStripMenuItem";
+            this.仓库数据统计ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
+            this.仓库数据统计ToolStripMenuItem.Text = "仓库数据统计";
+            this.仓库数据统计ToolStripMenuItem.Click += new System.EventHandler(this.仓库数据统计ToolStripMenuItem_Click);
+            // 
             // AccouuntShow
             // 
             this.AccouuntShow.AutoSize = true;
@@ -161,29 +168,24 @@
             this.btn_logout.UseVisualStyleBackColor = false;
             this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
             // 
-            // 仓库数据统计ToolStripMenuItem
-            // 
-            this.仓库数据统计ToolStripMenuItem.Name = "仓库数据统计ToolStripMenuItem";
-            this.仓库数据统计ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
-            this.仓库数据统计ToolStripMenuItem.Text = "仓库数据统计";
-            this.仓库数据统计ToolStripMenuItem.Click += new System.EventHandler(this.仓库数据统计ToolStripMenuItem_Click);
-            // 
             // Administration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1424, 862);
             this.Controls.Add(this.la_account);
             this.Controls.Add(this.AccouuntShow);
             this.Controls.Add(this.btn_logout);
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Administration";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Administration_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

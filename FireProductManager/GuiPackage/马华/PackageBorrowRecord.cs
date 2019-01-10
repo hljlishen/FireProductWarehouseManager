@@ -16,6 +16,9 @@ namespace FireProductManager.GuiPackage
         PackageManagement selectPackages;
         ProjectManageme selectProject;
 
+        string emid = "";
+        string prid = "";
+
         public PackageBorrowRecord()
         {
             InitializeComponent();
@@ -143,8 +146,8 @@ namespace FireProductManager.GuiPackage
         {
             string outid = null;
             string packageId = tb_packageid.Text;
-            string employeeId = tb_employeeid.Text;
-            string projectId = tb_projectid.Text;
+            string employeeId = emid;
+            string projectId = prid;
             string direction = cb_directquery.Text;
             bool isChoiceTime = false;
             DateTime begintTime = dtp_begin.Value;
@@ -173,6 +176,8 @@ namespace FireProductManager.GuiPackage
             tb_packageid.Text = "";
             tb_employeeid.Text = "";
             tb_projectid.Text = "";
+            emid = "";
+            prid = "";
         }
 
         //查询员工
@@ -188,7 +193,8 @@ namespace FireProductManager.GuiPackage
         private void EmployeesSelected(int employeesId, string emNumbers,string name)
         {
             tb_employeeid.Text = "";
-            tb_employeeid.Text = employeesId.ToString();
+            emid = employeesId.ToString();
+            tb_employeeid.Text = emNumbers.ToString();
         }
 
         //查询袋子
@@ -214,7 +220,8 @@ namespace FireProductManager.GuiPackage
         private void ProjectSelected(int projectid,string projectPassword)
         {
             tb_projectid.Text = "";
-            tb_projectid.Text = projectid.ToString();
+            prid = projectid.ToString();
+            tb_projectid.Text = projectPassword.ToString();
         }
 
         private void PackagesSelected(int packageId)

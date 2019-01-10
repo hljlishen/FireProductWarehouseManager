@@ -44,15 +44,7 @@ namespace FireProductManager.GuiPackage
             employeeManagement.Activate();
         }
 
-        private void btn_logout_Click(object sender, EventArgs e)
-        {
-            this.Text = "";
-            AccountManager.Logout();
-            isLogout = true;
-            出入库登记ToolStripMenultem_Click(sender,e);
-            ShowLoginWindow();
-            this.Text = "当前登录的管理员为：" + AccountManager.ReturnAccount();
-        }
+        private void btn_logout_Click(object sender, EventArgs e) => Logout(sender, e);
 
         private void Administration_Load(object sender, EventArgs e)
         {
@@ -71,10 +63,7 @@ namespace FireProductManager.GuiPackage
             isLogout = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            BarrelGateway.RecordNewBarrel();
-        }
+        private void button1_Click(object sender, EventArgs e) => BarrelGateway.RecordNewBarrel();
 
         private void 锂合金ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -202,19 +191,21 @@ namespace FireProductManager.GuiPackage
             warehouseDataReport.Activate();
         }
 
-        public void FingerprintLogout(Fingerprint fingerprint)
-        {
-            Invoke(new AccountDataHandler(LogoutAccount), new object[] { fingerprint });
-        }
+        public void FingerprintLogout(Fingerprint fingerprint) => Invoke(new AccountDataHandler(LogoutAccount), new object[] { fingerprint });
 
         private void LogoutAccount(Fingerprint fingerprint)
         {
             if (AccountManager.CanNotLogout(fingerprint.fi_accountNumber))
                 return;
-            if (isLogout)
-                return;
             object sender = null ;
             EventArgs e = null;
+            Logout(sender, e);
+        }
+
+        private void Logout(object sender, EventArgs e)
+        {
+            if (isLogout)
+                return;
             this.Text = "";
             AccountManager.Logout();
             isLogout = true;

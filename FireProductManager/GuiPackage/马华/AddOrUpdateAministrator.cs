@@ -2,8 +2,6 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
@@ -18,7 +16,6 @@ namespace FireProductManager.GuiPackage
         ConnectFingerprint connectFingerprint = ConnectFingerprint.GetInstance();
         ConnectFingerprint2 connectFingerprint2 = ConnectFingerprint2.GetInstance();
         string str = "";
-        Bitmap bitmap = null;
 
         //修改管理员信息
         public AddOrUpdateAministrator(int accountId,string account,string name,string password,int authority)
@@ -41,10 +38,11 @@ namespace FireProductManager.GuiPackage
                 cb_authority.Text = "3(其他人员)";
         }
 
-        private void FingerprintData(Bitmap bmp)
+        private void FingerprintData(Bitmap bmp,string picString)
         {
             picFPImg.Image = bmp;
-            bitmap = bmp;
+
+            str = picString;
         }
 
         //添加管理员信息
@@ -77,6 +75,7 @@ namespace FireProductManager.GuiPackage
             tb_name.Text = "";
             tb_password.Text = "";
             cb_authority.Text = "";
+            picFPImg.Image = null;
         }
 
         //表单验证
@@ -136,7 +135,6 @@ namespace FireProductManager.GuiPackage
             if (!IsExistAccountNumber(tb_accountnumber.Text))
                 return;
 
-            PictureTurnString();
             if (!connectFingerprint.IsConnectionFingerprint() || !connectFingerprint2.IsConnectionFingerprint())
             {
                 AutoClosingMessageBox.Show("                添加失败", "添加管理员", 1000);
@@ -224,18 +222,9 @@ namespace FireProductManager.GuiPackage
                 tb_password.Enabled = true;
         }
 
-        private void PictureTurnString()
-        {
-            MemoryStream ms = new MemoryStream();
-            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);  
-            byte[] bytess = ms.ToArray();
-            str = Convert.ToBase64String(bytess);
-            //str = "S5FTUzIxAAAC0tIECAUHCc7QAAAa02kBAAAAgn8QotIxAI0PYADwAIDdsgCSAJIP6ACW0mwPXgCWALMP19KjABwPlgBrABvdwQCvABwPlgDc0vsPewDuANgPJ9L5AOYPhQA/AJfduwANASwPqgAZ0ygOtQAwAfAOuNI+ATsOcw/q/03J/vdDD1cX23gAqFN6F/hDd56LjdoeX1N/zQI/jt3VS4pq//uniAIUXucHlt/zFVpmi1r3J6/0h+1qv5UZkHhGbvtqX/mVI+aaMpYjDMIzgy4TCe+j+QjCEdnF6nUgLwEBNxmJ1QGIGw9Z/TsDAq4jBv8DAHriEMDeAVEoBsD/n/9GLAUApDEPNM4AZuQIwGDAwP79AwKONnr/EAApgvQyE/9lRP5MEMUsTCg/V1f/wDbUACGy8TBKPsExmBAC4mT3wP3B/zpFNy1xEgAXfO2D/cMS////XsBi1AASXub/Njb+TDr9b9wBsZCTfHJGwITCATGR8P/+Bf/8EkX+wMBDB8VZlKXAg8ADANdjHsPZAZGsjIuIBXMN0r2sl8DD/wSFwFtyCQCZrRM6Q2LWAcSuGsD/zACUYBtTwP9XBMXBsczBwBQAFsQn//0SNypU/v/ArhMCztDpwMA7NfRYVtgBVtrxJ/39/gbSTuBpWQ0AkuD4Evz9/v7A/zvAwhIIAH/vHP/+QRHSJPPg/sDAO//+LS/B/cDCM9AADCXWwP7/NcDvM1GGCgCC+ZfEBsLAE8B5FQAT/h/A/SzB/jv+M0OH/QbCvw4nRAUQfBEvEsHABxBrGrLEwbAHEHMaHCA4BRLbHUDAWQUQtR8mLiIGEG0kdwCHB8JkLFzBVhbVsy5je8HAxMLDQ3jDEMTAWwMQbOtD/dYRci46JBLVHj8C/jX//iMhOv8rwxEiRdrC/YL9/Cn//P7//v04DhL+StZU//z/3SFQkAELQwEAAM5FUNIAAAAAAAA=";
-        }
-
         private void AddOrUpdateAministrator_Load(object sender, EventArgs e)
         {
-            byte[] byteArray = System.Text.Encoding.Default.GetBytes(connectFingerprint.GetFingerprintTemplate("2", 6));
+            //byte[] byteArray = System.Text.Encoding.Default.GetBytes(connectFingerprint.GetFingerprintTemplate("2", 6));
 
             //改变图片形状
             GraphicsPath gp = new GraphicsPath();

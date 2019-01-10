@@ -56,9 +56,9 @@
             this.la_authoritycheck.ForeColor = System.Drawing.Color.Red;
             this.la_authoritycheck.Location = new System.Drawing.Point(206, 464);
             this.la_authoritycheck.Name = "la_authoritycheck";
-            this.la_authoritycheck.Size = new System.Drawing.Size(107, 20);
+            this.la_authoritycheck.Size = new System.Drawing.Size(113, 20);
             this.la_authoritycheck.TabIndex = 31;
-            this.la_authoritycheck.Text = "未选择权限级别";
+            this.la_authoritycheck.Text = "*未选择权限级别";
             // 
             // la_passwordcheck
             // 
@@ -67,9 +67,9 @@
             this.la_passwordcheck.ForeColor = System.Drawing.Color.Red;
             this.la_passwordcheck.Location = new System.Drawing.Point(216, 386);
             this.la_passwordcheck.Name = "la_passwordcheck";
-            this.la_passwordcheck.Size = new System.Drawing.Size(93, 20);
+            this.la_passwordcheck.Size = new System.Drawing.Size(99, 20);
             this.la_passwordcheck.TabIndex = 30;
-            this.la_passwordcheck.Text = "密码不能为空";
+            this.la_passwordcheck.Text = "*密码不能为空";
             // 
             // la_accountcheck
             // 
@@ -78,9 +78,9 @@
             this.la_accountcheck.ForeColor = System.Drawing.Color.Red;
             this.la_accountcheck.Location = new System.Drawing.Point(196, 231);
             this.la_accountcheck.Name = "la_accountcheck";
-            this.la_accountcheck.Size = new System.Drawing.Size(135, 20);
+            this.la_accountcheck.Size = new System.Drawing.Size(141, 20);
             this.la_accountcheck.TabIndex = 29;
-            this.la_accountcheck.Text = "管理员编号不能为空";
+            this.la_accountcheck.Text = "*管理员编号不能为空";
             // 
             // btn_update
             // 
@@ -182,9 +182,9 @@
             this.la_accountnumber.ForeColor = System.Drawing.Color.Red;
             this.la_accountnumber.Location = new System.Drawing.Point(196, 231);
             this.la_accountnumber.Name = "la_accountnumber";
-            this.la_accountnumber.Size = new System.Drawing.Size(121, 20);
+            this.la_accountnumber.Size = new System.Drawing.Size(127, 20);
             this.la_accountnumber.TabIndex = 32;
-            this.la_accountnumber.Text = "管理员编号已存在";
+            this.la_accountnumber.Text = "*管理员编号已存在";
             this.la_accountnumber.Visible = false;
             // 
             // la_namecheck
@@ -194,9 +194,9 @@
             this.la_namecheck.ForeColor = System.Drawing.Color.Red;
             this.la_namecheck.Location = new System.Drawing.Point(217, 306);
             this.la_namecheck.Name = "la_namecheck";
-            this.la_namecheck.Size = new System.Drawing.Size(93, 20);
+            this.la_namecheck.Size = new System.Drawing.Size(99, 20);
             this.la_namecheck.TabIndex = 35;
-            this.la_namecheck.Text = "姓名不能为空";
+            this.la_namecheck.Text = "*姓名不能为空";
             this.la_namecheck.Visible = false;
             // 
             // tb_name
@@ -233,9 +233,9 @@
             this.la_fin.ForeColor = System.Drawing.Color.Red;
             this.la_fin.Location = new System.Drawing.Point(105, 566);
             this.la_fin.Name = "la_fin";
-            this.la_fin.Size = new System.Drawing.Size(65, 20);
+            this.la_fin.Size = new System.Drawing.Size(71, 20);
             this.la_fin.TabIndex = 37;
-            this.la_fin.Text = "请刷指纹";
+            this.la_fin.Text = "*请刷指纹";
             // 
             // AddOrUpdateAministrator
             // 
