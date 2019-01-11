@@ -106,6 +106,7 @@
             this.Controls.Add(this.tb_account);
             this.Controls.Add(this.AdminPassWord);
             this.Controls.Add(this.AdminName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
