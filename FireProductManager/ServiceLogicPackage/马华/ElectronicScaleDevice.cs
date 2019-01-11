@@ -1,4 +1,5 @@
-﻿using System.IO.Ports;
+﻿using System;
+using System.IO.Ports;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -20,8 +21,7 @@ namespace FireProductManager.ServiceLogicPackage
             string[] names = SerialPort.GetPortNames();
             if (!IsConnection(names))
             {
-                return;
-                //throw new Exception("未连接电子秤设备");
+                throw new Exception("未连接电子秤设备");
             }
 
             for (int i = 1; i < names.Length; i++)

@@ -69,6 +69,9 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.la_errorpackageweight = new System.Windows.Forms.Label();
+            this.tb_packagebackweigth = new System.Windows.Forms.TextBox();
+            this.la_packagebackweight = new System.Windows.Forms.Label();
             this.btn_projectPassword = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -76,9 +79,6 @@
             this.dgv_AllowanceRemind = new System.Windows.Forms.DataGridView();
             this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.余量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.la_packagebackweight = new System.Windows.Forms.Label();
-            this.tb_packagebackweigth = new System.Windows.Forms.TextBox();
-            this.la_packagewigth2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -408,7 +408,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.la_packagewigth2);
+            this.groupBox1.Controls.Add(this.la_errorpackageweight);
             this.groupBox1.Controls.Add(this.tb_packagebackweigth);
             this.groupBox1.Controls.Add(this.la_packagebackweight);
             this.groupBox1.Controls.Add(this.btn_projectPassword);
@@ -439,6 +439,36 @@
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "出入库信息";
+            // 
+            // la_errorpackageweight
+            // 
+            this.la_errorpackageweight.AutoSize = true;
+            this.la_errorpackageweight.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_errorpackageweight.ForeColor = System.Drawing.Color.Red;
+            this.la_errorpackageweight.Location = new System.Drawing.Point(387, 144);
+            this.la_errorpackageweight.Name = "la_errorpackageweight";
+            this.la_errorpackageweight.Size = new System.Drawing.Size(73, 17);
+            this.la_errorpackageweight.TabIndex = 119;
+            this.la_errorpackageweight.Text = "*请输入数字";
+            this.la_errorpackageweight.Visible = false;
+            // 
+            // tb_packagebackweigth
+            // 
+            this.tb_packagebackweigth.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_packagebackweigth.Location = new System.Drawing.Point(390, 116);
+            this.tb_packagebackweigth.Name = "tb_packagebackweigth";
+            this.tb_packagebackweigth.Size = new System.Drawing.Size(78, 23);
+            this.tb_packagebackweigth.TabIndex = 40;
+            // 
+            // la_packagebackweight
+            // 
+            this.la_packagebackweight.AutoSize = true;
+            this.la_packagebackweight.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_packagebackweight.Location = new System.Drawing.Point(307, 117);
+            this.la_packagebackweight.Name = "la_packagebackweight";
+            this.la_packagebackweight.Size = new System.Drawing.Size(79, 20);
+            this.la_packagebackweight.TabIndex = 39;
+            this.la_packagebackweight.Text = "袋子皮重：";
             // 
             // btn_projectPassword
             // 
@@ -518,35 +548,6 @@
             this.余量.ReadOnly = true;
             this.余量.Width = 214;
             // 
-            // la_packagebackweight
-            // 
-            this.la_packagebackweight.AutoSize = true;
-            this.la_packagebackweight.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_packagebackweight.Location = new System.Drawing.Point(307, 117);
-            this.la_packagebackweight.Name = "la_packagebackweight";
-            this.la_packagebackweight.Size = new System.Drawing.Size(79, 20);
-            this.la_packagebackweight.TabIndex = 39;
-            this.la_packagebackweight.Text = "袋子皮重：";
-            // 
-            // tb_packagebackweigth
-            // 
-            this.tb_packagebackweigth.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_packagebackweigth.Location = new System.Drawing.Point(390, 116);
-            this.tb_packagebackweigth.Name = "tb_packagebackweigth";
-            this.tb_packagebackweigth.Size = new System.Drawing.Size(78, 23);
-            this.tb_packagebackweigth.TabIndex = 40;
-            // 
-            // la_packagewigth2
-            // 
-            this.la_packagewigth2.AutoSize = true;
-            this.la_packagewigth2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_packagewigth2.ForeColor = System.Drawing.Color.Red;
-            this.la_packagewigth2.Location = new System.Drawing.Point(376, 142);
-            this.la_packagewigth2.Name = "la_packagewigth2";
-            this.la_packagewigth2.Size = new System.Drawing.Size(109, 17);
-            this.la_packagewigth2.TabIndex = 41;
-            this.la_packagewigth2.Text = "*袋子皮重不能为空";
-            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -621,6 +622,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 余量;
         private System.Windows.Forms.Label la_packagebackweight;
         private System.Windows.Forms.TextBox tb_packagebackweigth;
-        private System.Windows.Forms.Label la_packagewigth2;
+        private System.Windows.Forms.Label la_errorpackageweight;
     }
 }

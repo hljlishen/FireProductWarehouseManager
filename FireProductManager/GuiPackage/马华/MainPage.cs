@@ -174,18 +174,21 @@ namespace FireProductManager.GuiPackage
                 validation = false;
             }
             else la_packagewigth.Visible = false;
+
             if (tb_borrowName.Text == "")
             {
                 la_borrow.Visible = true;
                 validation = false;
             }
             else la_borrow.Visible = false;
-            if (tb_packagebackweigth.Visible && tb_packagebackweigth.Text == "")
+
+            if (tb_packagebackweigth.Visible && (tb_packagebackweigth.Text == "" || (!(System.Text.RegularExpressions.Regex.IsMatch(tb_packagebackweigth.Text.Trim(), "^\\d+$")) && !(System.Text.RegularExpressions.Regex.IsMatch(tb_packagebackweigth.Text.Trim(), "^([0-9]{1,}[.][0-9]*)$")))))
             {
-                la_packagewigth2.Visible = true;
+                la_errorpackageweight.Visible = true;
                 validation = false;
             }
-            else la_packagewigth2.Visible = false;
+            else la_errorpackageweight.Visible = false;
+                
             return validation;
         }
 
@@ -193,7 +196,7 @@ namespace FireProductManager.GuiPackage
         {
             la_packagewigth.Visible = false;
             la_borrow.Visible = false;
-            la_packagewigth2.Visible = false;
+            la_errorpackageweight.Visible = false;
         }
 
         private void PackageTareWeightNoShow()
@@ -302,13 +305,13 @@ namespace FireProductManager.GuiPackage
 
         private void tb_packageid_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBoxCheckShow();
-            PackageTareWeightNoShow();
             if (e.KeyChar == 13)
             {
                 TextBoxCheck();
                 if (tb_packageid.Text == "")
                 {
+                    TextBoxCheckShow();
+                    PackageTareWeightNoShow();
                     EmptyTextBox();
                     return;
                 }
@@ -317,12 +320,18 @@ namespace FireProductManager.GuiPackage
                 {
                     AutoClosingMessageBox.Show("                袋子不存在", "袋子不存在", 2000);
                     EmptyTextBox();
+                    TextBoxCheckShow();
+                    PackageTareWeightNoShow();
                     return;
                 }
                 InOrOutInformationShow();
             }
             if (e.KeyChar == 8)
+            {
+                TextBoxCheckShow();
+                PackageTareWeightNoShow();
                 EmptyTextBox();
+            }   
         }
     }
 }

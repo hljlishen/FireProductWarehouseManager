@@ -67,18 +67,7 @@ namespace FireProductManager.GuiPackage
 
         private void 锂合金ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (packageBorrow == null)
-            {
-                packageBorrow = new PackageBorrowRecord();
-            }
-            else
-            {
-                packageBorrow.Close();
-                packageBorrow = new PackageBorrowRecord();
-            }
-            packageBorrow.MdiParent = this;
-            packageBorrow.Show();
-            packageBorrow.Activate();
+            
         }
 
         private void 仓库管理ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -124,18 +113,7 @@ namespace FireProductManager.GuiPackage
 
         private void 锂合金材料管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (packageManagement == null)
-            {
-                packageManagement = new PackageManagement();
-            }
-            else
-            {
-                packageManagement.Close();
-                packageManagement = new PackageManagement();
-            }
-            packageManagement.MdiParent = this;
-            packageManagement.Show();
-            packageManagement.Activate();
+           
         }
 
         private void 出入库登记ToolStripMenultem_Click(object sender, EventArgs e)
@@ -212,6 +190,38 @@ namespace FireProductManager.GuiPackage
             出入库登记ToolStripMenultem_Click(sender, e);
             ShowLoginWindow();
             this.Text = "当前登录的管理员为：" + AccountManager.ReturnAccount();
+        }
+
+        private void 材料管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (packageManagement == null)
+            {
+                packageManagement = new PackageManagement();
+            }
+            else
+            {
+                packageManagement.Close();
+                packageManagement = new PackageManagement();
+            }
+            packageManagement.MdiParent = this;
+            packageManagement.Show();
+            packageManagement.Activate();
+        }
+
+        private void 材料出入记录ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (packageBorrow == null)
+            {
+                packageBorrow = new PackageBorrowRecord();
+            }
+            else
+            {
+                packageBorrow.Close();
+                packageBorrow = new PackageBorrowRecord();
+            }
+            packageBorrow.MdiParent = this;
+            packageBorrow.Show();
+            packageBorrow.Activate();
         }
     }
 }

@@ -66,8 +66,7 @@ namespace FireProductManager.ServiceLogicPackage
             {
                 if ((ret1 = zkfp2.Init()) != zkfperrdef.ZKFP_ERR_OK)
                 {
-                    return;
-                    //throw new Exception("未连接指纹采集器");
+                    throw new Exception("未连接指纹采集器");
                 }
 
                 int ret = zkfp.ZKFP_ERR_OK;
