@@ -54,7 +54,7 @@ namespace FireProductManager.ServiceLogicPackage
             }
             else
             {
-                throw new Exception("无法连接到出库指纹设备");
+                //throw new Exception("无法连接到出库指纹设备");
             }
         }
 
