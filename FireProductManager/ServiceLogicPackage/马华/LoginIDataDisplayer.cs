@@ -54,7 +54,7 @@ namespace FireProductManager.ServiceLogicPackage
             }
             else
             {
-                MessageBox.Show("无法连接到进库指纹设备", "错误");
+                throw new Exception("无法连接到进库指纹设备");
             }
         }
 

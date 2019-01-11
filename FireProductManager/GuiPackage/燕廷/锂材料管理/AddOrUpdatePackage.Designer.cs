@@ -361,7 +361,7 @@
             this.la_errorpackageweightnull.AutoSize = true;
             this.la_errorpackageweightnull.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_errorpackageweightnull.ForeColor = System.Drawing.Color.Red;
-            this.la_errorpackageweightnull.Location = new System.Drawing.Point(532, 376);
+            this.la_errorpackageweightnull.Location = new System.Drawing.Point(536, 376);
             this.la_errorpackageweightnull.Name = "la_errorpackageweightnull";
             this.la_errorpackageweightnull.Size = new System.Drawing.Size(109, 17);
             this.la_errorpackageweightnull.TabIndex = 118;
