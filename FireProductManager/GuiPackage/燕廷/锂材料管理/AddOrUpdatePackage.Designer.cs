@@ -57,7 +57,6 @@
             this.la_beginningweight = new System.Windows.Forms.Label();
             this.tb_packageweight = new System.Windows.Forms.TextBox();
             this.la_packageweight = new System.Windows.Forms.Label();
-            this.la_errorpackageweight = new System.Windows.Forms.Label();
             this.la_errorpackageweightnull = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -82,7 +81,7 @@
             // bt_close
             // 
             this.bt_close.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bt_close.Location = new System.Drawing.Point(446, 484);
+            this.bt_close.Location = new System.Drawing.Point(446, 442);
             this.bt_close.Name = "bt_close";
             this.bt_close.Size = new System.Drawing.Size(80, 30);
             this.bt_close.TabIndex = 52;
@@ -93,7 +92,7 @@
             // bt_addinstrument
             // 
             this.bt_addinstrument.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bt_addinstrument.Location = new System.Drawing.Point(236, 484);
+            this.bt_addinstrument.Location = new System.Drawing.Point(236, 442);
             this.bt_addinstrument.Name = "bt_addinstrument";
             this.bt_addinstrument.Size = new System.Drawing.Size(80, 30);
             this.bt_addinstrument.TabIndex = 51;
@@ -139,7 +138,7 @@
             // 
             this.la_isInWareHouse.AutoSize = true;
             this.la_isInWareHouse.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_isInWareHouse.Location = new System.Drawing.Point(95, 350);
+            this.la_isInWareHouse.Location = new System.Drawing.Point(95, 345);
             this.la_isInWareHouse.Name = "la_isInWareHouse";
             this.la_isInWareHouse.Size = new System.Drawing.Size(79, 20);
             this.la_isInWareHouse.TabIndex = 38;
@@ -198,7 +197,7 @@
             // bt_alterinstrument
             // 
             this.bt_alterinstrument.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bt_alterinstrument.Location = new System.Drawing.Point(236, 484);
+            this.bt_alterinstrument.Location = new System.Drawing.Point(236, 442);
             this.bt_alterinstrument.Name = "bt_alterinstrument";
             this.bt_alterinstrument.Size = new System.Drawing.Size(80, 30);
             this.bt_alterinstrument.TabIndex = 58;
@@ -214,7 +213,7 @@
             this.cb_isInWareHouse.Items.AddRange(new object[] {
             "在库",
             "不在库"});
-            this.cb_isInWareHouse.Location = new System.Drawing.Point(180, 350);
+            this.cb_isInWareHouse.Location = new System.Drawing.Point(180, 345);
             this.cb_isInWareHouse.Name = "cb_isInWareHouse";
             this.cb_isInWareHouse.Size = new System.Drawing.Size(84, 20);
             this.cb_isInWareHouse.TabIndex = 59;
@@ -311,7 +310,7 @@
             // tb_beginningweight
             // 
             this.tb_beginningweight.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_beginningweight.Location = new System.Drawing.Point(217, 416);
+            this.tb_beginningweight.Location = new System.Drawing.Point(535, 342);
             this.tb_beginningweight.Name = "tb_beginningweight";
             this.tb_beginningweight.Size = new System.Drawing.Size(146, 26);
             this.tb_beginningweight.TabIndex = 114;
@@ -320,7 +319,7 @@
             // 
             this.la_beginningweight.AutoSize = true;
             this.la_beginningweight.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_beginningweight.Location = new System.Drawing.Point(95, 419);
+            this.la_beginningweight.Location = new System.Drawing.Point(413, 345);
             this.la_beginningweight.Name = "la_beginningweight";
             this.la_beginningweight.Size = new System.Drawing.Size(116, 20);
             this.la_beginningweight.TabIndex = 113;
@@ -329,32 +328,21 @@
             // tb_packageweight
             // 
             this.tb_packageweight.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_packageweight.Location = new System.Drawing.Point(535, 347);
+            this.tb_packageweight.Location = new System.Drawing.Point(535, 342);
             this.tb_packageweight.Name = "tb_packageweight";
             this.tb_packageweight.Size = new System.Drawing.Size(146, 26);
             this.tb_packageweight.TabIndex = 116;
+            this.tb_packageweight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_packageweight_KeyPress);
             // 
             // la_packageweight
             // 
             this.la_packageweight.AutoSize = true;
             this.la_packageweight.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_packageweight.Location = new System.Drawing.Point(413, 350);
+            this.la_packageweight.Location = new System.Drawing.Point(413, 345);
             this.la_packageweight.Name = "la_packageweight";
             this.la_packageweight.Size = new System.Drawing.Size(116, 20);
             this.la_packageweight.TabIndex = 115;
             this.la_packageweight.Text = "袋子皮重（g）：";
-            // 
-            // la_errorpackageweight
-            // 
-            this.la_errorpackageweight.AutoSize = true;
-            this.la_errorpackageweight.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_errorpackageweight.ForeColor = System.Drawing.Color.Red;
-            this.la_errorpackageweight.Location = new System.Drawing.Point(532, 376);
-            this.la_errorpackageweight.Name = "la_errorpackageweight";
-            this.la_errorpackageweight.Size = new System.Drawing.Size(73, 17);
-            this.la_errorpackageweight.TabIndex = 117;
-            this.la_errorpackageweight.Text = "*请输入数字";
-            this.la_errorpackageweight.Visible = false;
             // 
             // la_errorpackageweightnull
             // 
@@ -372,9 +360,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 548);
+            this.ClientSize = new System.Drawing.Size(772, 509);
             this.Controls.Add(this.la_errorpackageweightnull);
-            this.Controls.Add(this.la_errorpackageweight);
             this.Controls.Add(this.tb_packageweight);
             this.Controls.Add(this.la_packageweight);
             this.Controls.Add(this.tb_beginningweight);
@@ -444,7 +431,6 @@
         private System.Windows.Forms.Label la_beginningweight;
         private System.Windows.Forms.TextBox tb_packageweight;
         private System.Windows.Forms.Label la_packageweight;
-        private System.Windows.Forms.Label la_errorpackageweight;
         private System.Windows.Forms.Label la_errorpackageweightnull;
     }
 }

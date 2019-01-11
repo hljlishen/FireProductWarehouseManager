@@ -52,6 +52,8 @@ namespace FireProductManager.GuiPackage
             _packagefrom = packageManagement;
 
             bt_addinstrument.Visible = false;
+            la_packageweight.Visible = false;
+            tb_packageweight.Visible = false;
             tb_beginningweight.ReadOnly = true;
 
             _id = packageid;
@@ -117,7 +119,10 @@ namespace FireProductManager.GuiPackage
             _type = tb_type.Text;
             _specifications = tb_specifications.Text;
             if (tb_weight.Text.Equals("")) return;
-            _weigth = Convert.ToDouble(tb_weight.Text)- Convert.ToDouble(tb_packageweight.Text);
+            if (title.Text.Equals("修改材料基本信息"))
+                _weigth = Convert.ToDouble(tb_weight.Text);
+            else
+                _weigth = Convert.ToDouble(tb_weight.Text) - Convert.ToDouble(tb_packageweight.Text);
             if (tb_barrel.Text.Equals("")) return;
             _barrelId = Convert.ToInt32(tb_barrel.Text);
             _isinWarehouse = cb_isInWareHouse.Text;
@@ -181,6 +186,8 @@ namespace FireProductManager.GuiPackage
             }
             else la_errorproductioncompany.Visible = false;
 
+            if(title.Text.Equals("修改材料基本信息")) return validation;
+
             if (tb_packageweight.Text.Trim().Equals(""))
             {
                 la_errorpackageweightnull.Visible = true;
@@ -188,14 +195,6 @@ namespace FireProductManager.GuiPackage
                 validation = false;
             }
             else la_errorpackageweightnull.Visible = false;
-
-            if (!(System.Text.RegularExpressions.Regex.IsMatch(tb_packageweight.Text.Trim(), "^\\d+$")))
-            {
-                la_errorpackageweight.Visible = true;
-                la_errorpackageweight.ForeColor = Color.Red;
-                validation = false;
-            }
-            else la_errorpackageweight.Visible = false;
 
             return validation;
         }
@@ -214,6 +213,15 @@ namespace FireProductManager.GuiPackage
         private void BarrelIdSelected(int barrelid)
         {
             tb_barrel.Text = barrelid.ToString();
+        }
+
+        //设置文本框只能输入数字
+        private void tb_packageweight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46) && (e.KeyChar != 127))
+            {
+                e.Handled = true;
+            }
         }
     }
 } 
