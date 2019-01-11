@@ -683,6 +683,48 @@
   <data name="$this.Text" xml:space="preserve">
     <value>员工信息管理</value>
   </data>
+  <data name="&gt;&gt;员工Id.Name" xml:space="preserve">
+    <value>员工Id</value>
+  </data>
+  <data name="&gt;&gt;员工Id.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ID.Name" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="&gt;&gt;ID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;姓名.Name" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="&gt;&gt;姓名.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;性别.Name" xml:space="preserve">
+    <value>性别</value>
+  </data>
+  <data name="&gt;&gt;性别.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;公司.Name" xml:space="preserve">
+    <value>公司</value>
+  </data>
+  <data name="&gt;&gt;公司.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;部门.Name" xml:space="preserve">
+    <value>部门</value>
+  </data>
+  <data name="&gt;&gt;部门.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;小组.Name" xml:space="preserve">
+    <value>小组</value>
+  </data>
+  <data name="&gt;&gt;小组.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;tsm_newcompany.Name" xml:space="preserve">
     <value>tsm_newcompany</value>
   </data>
@@ -736,48 +778,6 @@
   </data>
   <data name="&gt;&gt;tms_new.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;员工Id.Name" xml:space="preserve">
-    <value>员工Id</value>
-  </data>
-  <data name="&gt;&gt;员工Id.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ID.Name" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;ID.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;姓名.Name" xml:space="preserve">
-    <value>姓名</value>
-  </data>
-  <data name="&gt;&gt;姓名.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;性别.Name" xml:space="preserve">
-    <value>性别</value>
-  </data>
-  <data name="&gt;&gt;性别.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;公司.Name" xml:space="preserve">
-    <value>公司</value>
-  </data>
-  <data name="&gt;&gt;公司.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;部门.Name" xml:space="preserve">
-    <value>部门</value>
-  </data>
-  <data name="&gt;&gt;部门.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;小组.Name" xml:space="preserve">
-    <value>小组</value>
-  </data>
-  <data name="&gt;&gt;小组.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>EmployeeManagement</value>
