@@ -11,7 +11,8 @@ namespace FireProductManager.GuiPackage
     {
         delegate void TempHumiHandler(double temp, double humi);
         delegate void WeightGettedHandler(double weight);
-        Ahdr ahdr;
+        //Ahdr ahdr = new Ahdr();
+        ElectronicScaleDevice scaleDevice;
         PackageBorrowRecord packageBorrowRecord = null;
         ListViewItem listView = new ListViewItem();
         EmployeeManagement selectEmployees;
@@ -35,6 +36,8 @@ namespace FireProductManager.GuiPackage
             ShowDataGridView(PackageGateway.StatisticAllModelWeightsInWarehouse());
             erg = new EvirmentRecordGateway(Apem5900.CreateInstance());
             erg.NewEvirmentData += NewEvirmentData;
+            scaleDevice = Ahdr.CreateInstance();
+            scaleDevice.Open();
             instanceCount++;
         }
 
@@ -123,7 +126,6 @@ namespace FireProductManager.GuiPackage
         private void PackagePutInStorageShow()
         {
             PackageTareWeightShow();
-            ahdr = new Ahdr();
             foreach (DataRow dr in PackageGateway.GetPackageInformation(packageid).Rows)
             {
                 tb_packagename.Text = dr["pa_type"].ToString();
@@ -133,7 +135,7 @@ namespace FireProductManager.GuiPackage
             }
 
             tb_barrelid.Text = BarrelGateway.SearchShortweightBarrrelId().ToString();
-            ahdr.WeightGetted += Ahdr_WeightGetted;
+            scaleDevice.WeightGetted += Ahdr_WeightGetted;
             tb_direction.Text = "入库";
 
             foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQueryoutrecord(packageid).Rows)

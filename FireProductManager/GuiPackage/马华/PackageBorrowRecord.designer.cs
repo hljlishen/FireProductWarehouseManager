@@ -414,6 +414,7 @@
             this.btn_exceloperator.TabIndex = 28;
             this.btn_exceloperator.Text = "导出Excel";
             this.btn_exceloperator.UseVisualStyleBackColor = true;
+            this.btn_exceloperator.Visible = false;
             this.btn_exceloperator.Click += new System.EventHandler(this.btn_exceloperator_Click);
             // 
             // PackageBorrowRecord

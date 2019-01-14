@@ -65,11 +65,6 @@ namespace FireProductManager.GuiPackage
 
         private void button1_Click(object sender, EventArgs e) => BarrelGateway.RecordNewBarrel();
 
-        private void 锂合金ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void 仓库管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (barrelManagement == null)
@@ -109,11 +104,6 @@ namespace FireProductManager.GuiPackage
             };
             administratorManagement.Show();
             administratorManagement.Activate();
-        }
-
-        private void 锂合金材料管理ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
         }
 
         private void 出入库登记ToolStripMenultem_Click(object sender, EventArgs e)
