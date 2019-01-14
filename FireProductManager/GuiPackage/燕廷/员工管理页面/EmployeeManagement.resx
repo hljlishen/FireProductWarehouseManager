@@ -522,6 +522,9 @@
   <data name="bt_dgvchangexcel.Text" xml:space="preserve">
     <value>导出Excel</value>
   </data>
+  <data name="bt_dgvchangexcel.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;bt_dgvchangexcel.Name" xml:space="preserve">
     <value>bt_dgvchangexcel</value>
   </data>

@@ -304,6 +304,7 @@
             this.bt_dgvchangeexcel.TabIndex = 6;
             this.bt_dgvchangeexcel.Text = "导出Excel";
             this.bt_dgvchangeexcel.UseVisualStyleBackColor = true;
+            this.bt_dgvchangeexcel.Visible = false;
             this.bt_dgvchangeexcel.Click += new System.EventHandler(this.bt_dgvchangeexcel_Click);
             // 
             // cms_packageoperation

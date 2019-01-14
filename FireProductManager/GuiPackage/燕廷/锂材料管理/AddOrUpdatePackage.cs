@@ -12,7 +12,7 @@ namespace FireProductManager.GuiPackage
     public partial class AddOrUpdatePackage : Form 
     {
         private PackageManagement _packagefrom;
-        Ahdr ahdr = new Ahdr();
+        ElectronicScaleDevice ScaleDevice;
         delegate void WeightGettedHandler(double weight);
 
         private int _id;
@@ -26,7 +26,8 @@ namespace FireProductManager.GuiPackage
 
         private void AddOrModifyInstrument_Load(object sender, EventArgs e)
         {
-            ahdr.WeightGetted += Ahdr_WeightGetted;
+            ScaleDevice = Ahdr.CreateInstance();
+            ScaleDevice.WeightGetted += Ahdr_WeightGetted;
         }
 
         //添加材料构造方法
@@ -81,7 +82,11 @@ namespace FireProductManager.GuiPackage
             Close();
         }
 
-        private void Ahdr_WeightGetted(double weight) => Invoke(new WeightGettedHandler(UpdateWeight), new object[] { weight });
+        private void Ahdr_WeightGetted(double weight)
+        {
+            if (IsHandleCreated)
+                Invoke(new WeightGettedHandler(UpdateWeight), new object[] { weight });
+        }
 
         private void UpdateWeight(double weight)
         {     
