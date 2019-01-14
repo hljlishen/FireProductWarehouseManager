@@ -321,7 +321,9 @@
             this.Controls.Add(this.la_employeesname);
             this.Controls.Add(this.la_number);
             this.Controls.Add(this.La_addoralter);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "AddOrUpdateEmployee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "编辑员工信息";

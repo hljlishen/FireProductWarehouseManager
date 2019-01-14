@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Confirm));
             this.la_text = new System.Windows.Forms.Label();
             this.Btn_yes = new System.Windows.Forms.Button();
             this.Btn_no = new System.Windows.Forms.Button();
@@ -73,6 +74,9 @@
             this.Controls.Add(this.Btn_no);
             this.Controls.Add(this.Btn_yes);
             this.Controls.Add(this.la_text);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Confirm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "确认";
