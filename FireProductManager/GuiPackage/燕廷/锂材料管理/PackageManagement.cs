@@ -150,8 +150,12 @@ namespace FireProductManager.GuiPackage
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[0].Value;
-                PackageGateway.DeletePackage(packageid);
-                dgv_instrumentinformation.Rows.RemoveAt(_index);//从DGV移除
+                if (PackageGateway.DeletePackage(packageid))
+                {
+                    dgv_instrumentinformation.Rows.RemoveAt(_index);//从DGV移除
+                    return;
+                }
+                AutoClosingMessageBox.Show("该材料存在出入库记录，无法删除", "删除失败", 2000);
             }
         }
         #endregion
