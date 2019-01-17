@@ -307,11 +307,26 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //删除材料 
-        public static void DeletePackage(int packageId)
+        public static bool DeletePackage(int packageId)
         {
+            if (HasPackageOutRecord(packageId))
+            {
+                return false;
+            }
             Package package = new Package();
             package.pa_id = packageId;
             package.Delete();
+            return true;
+        }
+
+        //查询项目是否存在出库记录
+        public static bool HasPackageOutRecord(int packageId)
+        {
+            OutRecord outRecord = new OutRecord();
+            SelectSqlMaker maker = new SelectSqlMaker("outrecord");
+            maker.AddAndCondition(new IntEqual("or_packageId", packageId));
+            DataTable dataTable = outRecord.Select(maker.MakeSelectSql());
+            return dataTable.Rows.Count > 0;
         }
 
         //在库状态转化为int

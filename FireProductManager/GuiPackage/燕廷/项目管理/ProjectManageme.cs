@@ -108,11 +108,11 @@ namespace FireProductManager.GuiPackage
         //删除项目
         private void DeleteProject()
         {
-            //if (!AccountManager.CanReadDatabase()) 
-            //{
-            //    AutoClosingMessageBox.Show("        权限不足", "权限", 2000);
-            //    return;
-            //}
+            if (!AccountManager.CanReadDatabase())
+            {
+                AutoClosingMessageBox.Show("        权限不足", "权限", 2000);
+                return;
+            }
 
             if (MessageBox.Show("是否确认删除？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using static FireProductManager.GuiPackage.AutoCloseMassageBox;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -55,17 +56,30 @@ namespace FireProductManager.ServiceLogicPackage
         {
             Department department = new Department();
             department.de_id = departmentId;
-            DeleteDepartmentVerification(department);
+            if(!DeleteDepartmentVerification(department))return false;
             department.Delete();
             return true;
         }
 
         //部门删除验证
-        private static void DeleteDepartmentVerification(Department department)
+        private static bool DeleteDepartmentVerification(Department department)
         {
-            if(!HasDepartment(department)) throw new Exception("不存在该小组");
-            if(HasSonDepartment(department)) throw new Exception("该部门之下还有子部门");
-            if(HasEmployee(department)) throw new Exception("该部门之下存在员工");
+            if (!HasDepartment(department))
+            {
+                AutoClosingMessageBox.Show("不存在该小组", "不存在该小组", 2000);
+                return false;
+            }
+            if(HasSonDepartment(department))
+            {
+                AutoClosingMessageBox.Show("该部门之下还有子部门", "存在子部门", 2000);
+                return false;
+            }
+            if(HasEmployee(department))
+            {
+                AutoClosingMessageBox.Show("该部门之下存在员工", "存在员工", 2000);
+                return false;
+            }
+            return true;
         }
 
         //该部门是否存在
@@ -102,7 +116,11 @@ namespace FireProductManager.ServiceLogicPackage
             Department department = new Department();
             department.de_name = name;
             department.de_belongId = belongId;
-            if (!NodeDuplicateChecking(department)) throw new Exception("该部门名字已经存在");
+            if (!NodeDuplicateChecking(department))
+            {
+                AutoClosingMessageBox.Show("该部门名字已经存在", "存在部门", 2000);
+                return;
+            }
             department.Insert();
         }
 

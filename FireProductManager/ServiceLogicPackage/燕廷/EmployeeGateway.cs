@@ -76,7 +76,7 @@ namespace FireProductManager.ServiceLogicPackage
             if (em.em_employeenumber.Equals(employeeNumber)) return true;
 
             SelectSqlMaker maker1 = new SelectSqlMaker("employee");
-            maker.AddAndCondition(new StringEqual("em_employeenumber", employeeNumber));
+            maker1.AddAndCondition(new StringEqual("em_employeenumber", employeeNumber));
             DataTable dataTable1 = ActiveRecord.Select(maker1.MakeSelectSql(), DbLinkManager.databaseType, DbLinkManager.connectString);
             if (dataTable1.Rows.Count != 0)
             {
