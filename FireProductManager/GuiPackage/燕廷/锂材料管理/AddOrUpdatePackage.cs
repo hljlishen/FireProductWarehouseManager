@@ -217,7 +217,7 @@ namespace FireProductManager.GuiPackage
         //显示桶编号
         private void BarrelIdSelected(int barrelid,int packagenumber)
         {
-            if(packagenumber+1 <= BarrelGateway.SelectBarrelidPackageNumber(barrelid))
+            if(BarrelGateway.SelectBarrelidPackageNumber(barrelid) + 1 <= packagenumber)
             {
                 tb_barrel.Text = barrelid.ToString();
                 return;
