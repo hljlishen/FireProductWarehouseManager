@@ -215,9 +215,14 @@ namespace FireProductManager.GuiPackage
         }
 
         //显示桶编号
-        private void BarrelIdSelected(int barrelid)
+        private void BarrelIdSelected(int barrelid,int packagenumber)
         {
-            tb_barrel.Text = barrelid.ToString();
+            if(packagenumber+1 <= BarrelGateway.SelectBarrelidPackageNumber(barrelid))
+            {
+                tb_barrel.Text = barrelid.ToString();
+                return;
+            }
+            AutoClosingMessageBox.Show("该桶存带数已达上限", "袋子已满", 2000);
         }
 
         //设置文本框只能输入数字

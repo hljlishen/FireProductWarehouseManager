@@ -85,7 +85,7 @@ namespace FireProductManager.GuiPackage
         }
 
         //显示桶编号
-        private void BarrelIdSelected(int barrelid)
+        private void BarrelIdSelected(int barrelid,int packagenumber)
         {
             _barrelid = barrelid.ToString();
             tb_barrelid.Text = barrelid.ToString();
