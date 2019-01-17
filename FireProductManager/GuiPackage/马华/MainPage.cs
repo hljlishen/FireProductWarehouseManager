@@ -11,7 +11,6 @@ namespace FireProductManager.GuiPackage
     {
         delegate void TempHumiHandler(double temp, double humi);
         delegate void WeightGettedHandler(double weight);
-        //Ahdr ahdr = new Ahdr();
         ElectronicScaleDevice scaleDevice;
         PackageBorrowRecord packageBorrowRecord = null;
         ListViewItem listView = new ListViewItem();
@@ -199,6 +198,7 @@ namespace FireProductManager.GuiPackage
             la_packagewigth.Visible = false;
             la_borrow.Visible = false;
             la_errorpackageweight.Visible = false;
+            la_packageid.Visible = false;
         }
 
         private void PackageTareWeightNoShow()
@@ -315,6 +315,11 @@ namespace FireProductManager.GuiPackage
                     TextBoxCheckShow();
                     PackageTareWeightNoShow();
                     EmptyTextBox();
+                    return;
+                }
+                if (!(System.Text.RegularExpressions.Regex.IsMatch(tb_packageid.Text.Trim(), "^\\d+$")))
+                {
+                    la_packageid.Visible = true;
                     return;
                 }
                 packageid = int.Parse(tb_packageid.Text);

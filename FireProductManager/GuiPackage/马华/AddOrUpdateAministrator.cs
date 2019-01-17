@@ -24,6 +24,7 @@ namespace FireProductManager.GuiPackage
             TextBoxVisibleIsFalse();
             btn_add.Visible = false;
             btn_update.Visible = true;
+            picFPImg.Visible = false;
             la_title.Text = "修改管理员信息";
             accountid = accountId;
             tb_accountnumber.Text = account;
@@ -54,6 +55,7 @@ namespace FireProductManager.GuiPackage
             TextBoxVisibleIsFalse();
             btn_add.Visible = true;
             btn_update.Visible = false;
+            picFPImg.Visible = true;
             la_title.Text = "添加管理员信息";
             liveDevice.FingerprintData += FingerprintData;
         }
@@ -108,7 +110,7 @@ namespace FireProductManager.GuiPackage
                 validation = false;
             }   
             else la_passwordcheck.Visible = false;
-            if (picFPImg.Image == null)
+            if (picFPImg.Visible && picFPImg.Image == null)
             {
                 la_fin.Visible = true;
                 validation = false;

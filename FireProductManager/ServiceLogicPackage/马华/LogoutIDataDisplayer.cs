@@ -102,7 +102,7 @@ namespace FireProductManager.ServiceLogicPackage
             return IsDeleteUser;
         }
 
-        public bool IsConnectionFingerprint() => axCZKEM1.Connect_Net(ipAddress, 4370);
+        public bool IsConnectionFingerprint() => bIsConnected1;
 
         //关闭连接
         public void CloseConnect()

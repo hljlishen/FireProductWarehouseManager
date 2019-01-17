@@ -28,15 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_addbarrel = new System.Windows.Forms.Button();
             this.tb_showaddbarrelid = new System.Windows.Forms.TextBox();
             this.btn_removebarrel1 = new System.Windows.Forms.Button();
             this.dgv_packageshow1 = new System.Windows.Forms.DataGridView();
+            this.包id1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.类型1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.规格1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.重量1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_packageshow2 = new System.Windows.Forms.DataGridView();
+            this.包id2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.类型2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.规格2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.重量2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_querybarrel1 = new System.Windows.Forms.Button();
             this.btn_querybarrel2 = new System.Windows.Forms.Button();
             this.lab_showbarrelid1 = new System.Windows.Forms.Label();
@@ -44,14 +52,19 @@
             this.btn_exchangepackageid1 = new System.Windows.Forms.Button();
             this.btn_exchangepackageid2 = new System.Windows.Forms.Button();
             this.btn_removebarrel2 = new System.Windows.Forms.Button();
-            this.包id1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.类型1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.规格1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.重量1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.包id2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.类型2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.规格2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.重量2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.la_barrelLoadingCapacity = new System.Windows.Forms.Label();
+            this.tb_barrelLoadingCapacity = new System.Windows.Forms.TextBox();
+            this.btn_barrelLoadingCapacity = new System.Windows.Forms.Button();
+            this.tb_delectbarrelLoadingCapacity1 = new System.Windows.Forms.TextBox();
+            this.tb_delectbarrelLoadingCapacity2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btn_delectbarrelLoadingCapacity1 = new System.Windows.Forms.Button();
+            this.btn_delectbarrelLoadingCapacity2 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.la_number1 = new System.Windows.Forms.Label();
+            this.la_number2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_packageshow1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_packageshow2)).BeginInit();
             this.SuspendLayout();
@@ -72,6 +85,7 @@
             this.tb_showaddbarrelid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tb_showaddbarrelid.Location = new System.Drawing.Point(159, 43);
             this.tb_showaddbarrelid.Name = "tb_showaddbarrelid";
+            this.tb_showaddbarrelid.ReadOnly = true;
             this.tb_showaddbarrelid.Size = new System.Drawing.Size(100, 23);
             this.tb_showaddbarrelid.TabIndex = 26;
             // 
@@ -92,28 +106,28 @@
             this.dgv_packageshow1.AllowUserToDeleteRows = false;
             this.dgv_packageshow1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_packageshow1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_packageshow1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_packageshow1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgv_packageshow1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_packageshow1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.包id1,
             this.类型1,
             this.规格1,
             this.重量1});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_packageshow1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_packageshow1.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgv_packageshow1.Location = new System.Drawing.Point(253, 158);
             this.dgv_packageshow1.Name = "dgv_packageshow1";
             this.dgv_packageshow1.RowTemplate.Height = 23;
@@ -122,34 +136,60 @@
             this.dgv_packageshow1.Size = new System.Drawing.Size(364, 558);
             this.dgv_packageshow1.TabIndex = 28;
             // 
+            // 包id1
+            // 
+            this.包id1.HeaderText = "袋子id";
+            this.包id1.Name = "包id1";
+            this.包id1.ReadOnly = true;
+            this.包id1.Visible = false;
+            // 
+            // 类型1
+            // 
+            this.类型1.HeaderText = "材料类型";
+            this.类型1.Name = "类型1";
+            this.类型1.ReadOnly = true;
+            this.类型1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // 规格1
+            // 
+            this.规格1.HeaderText = "规格（mm*mm）";
+            this.规格1.Name = "规格1";
+            this.规格1.ReadOnly = true;
+            // 
+            // 重量1
+            // 
+            this.重量1.HeaderText = "重量";
+            this.重量1.Name = "重量1";
+            this.重量1.ReadOnly = true;
+            // 
             // dgv_packageshow2
             // 
             this.dgv_packageshow2.AllowUserToAddRows = false;
             this.dgv_packageshow2.AllowUserToDeleteRows = false;
             this.dgv_packageshow2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_packageshow2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_packageshow2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_packageshow2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dgv_packageshow2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_packageshow2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.包id2,
             this.类型2,
             this.规格2,
             this.重量2});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_packageshow2.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_packageshow2.DefaultCellStyle = dataGridViewCellStyle16;
             this.dgv_packageshow2.Location = new System.Drawing.Point(762, 158);
             this.dgv_packageshow2.Name = "dgv_packageshow2";
             this.dgv_packageshow2.RowTemplate.Height = 23;
@@ -157,6 +197,32 @@
             this.dgv_packageshow2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_packageshow2.Size = new System.Drawing.Size(364, 558);
             this.dgv_packageshow2.TabIndex = 29;
+            // 
+            // 包id2
+            // 
+            this.包id2.HeaderText = "袋子id";
+            this.包id2.Name = "包id2";
+            this.包id2.ReadOnly = true;
+            this.包id2.Visible = false;
+            // 
+            // 类型2
+            // 
+            this.类型2.HeaderText = "材料类型";
+            this.类型2.Name = "类型2";
+            this.类型2.ReadOnly = true;
+            this.类型2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // 规格2
+            // 
+            this.规格2.HeaderText = "规格（mm*mm）";
+            this.规格2.Name = "规格2";
+            this.规格2.ReadOnly = true;
+            // 
+            // 重量2
+            // 
+            this.重量2.HeaderText = "重量";
+            this.重量2.Name = "重量2";
+            this.重量2.ReadOnly = true;
             // 
             // btn_querybarrel1
             // 
@@ -184,7 +250,7 @@
             // 
             this.lab_showbarrelid1.AutoSize = true;
             this.lab_showbarrelid1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_showbarrelid1.Location = new System.Drawing.Point(405, 133);
+            this.lab_showbarrelid1.Location = new System.Drawing.Point(396, 130);
             this.lab_showbarrelid1.Name = "lab_showbarrelid1";
             this.lab_showbarrelid1.Size = new System.Drawing.Size(0, 21);
             this.lab_showbarrelid1.TabIndex = 32;
@@ -193,7 +259,7 @@
             // 
             this.lab_showbarrelid2.AutoSize = true;
             this.lab_showbarrelid2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lab_showbarrelid2.Location = new System.Drawing.Point(913, 134);
+            this.lab_showbarrelid2.Location = new System.Drawing.Point(904, 131);
             this.lab_showbarrelid2.Name = "lab_showbarrelid2";
             this.lab_showbarrelid2.Size = new System.Drawing.Size(0, 21);
             this.lab_showbarrelid2.TabIndex = 33;
@@ -231,63 +297,150 @@
             this.btn_removebarrel2.UseVisualStyleBackColor = true;
             this.btn_removebarrel2.Click += new System.EventHandler(this.btn_removebarrel2_Click);
             // 
-            // 包id1
+            // la_barrelLoadingCapacity
             // 
-            this.包id1.HeaderText = "袋子id";
-            this.包id1.Name = "包id1";
-            this.包id1.ReadOnly = true;
-            this.包id1.Visible = false;
+            this.la_barrelLoadingCapacity.AutoSize = true;
+            this.la_barrelLoadingCapacity.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_barrelLoadingCapacity.Location = new System.Drawing.Point(269, 46);
+            this.la_barrelLoadingCapacity.Name = "la_barrelLoadingCapacity";
+            this.la_barrelLoadingCapacity.Size = new System.Drawing.Size(68, 17);
+            this.la_barrelLoadingCapacity.TabIndex = 37;
+            this.la_barrelLoadingCapacity.Text = "存储数量：";
             // 
-            // 类型1
+            // tb_barrelLoadingCapacity
             // 
-            this.类型1.HeaderText = "材料类型";
-            this.类型1.Name = "类型1";
-            this.类型1.ReadOnly = true;
-            this.类型1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.tb_barrelLoadingCapacity.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_barrelLoadingCapacity.Location = new System.Drawing.Point(340, 43);
+            this.tb_barrelLoadingCapacity.Name = "tb_barrelLoadingCapacity";
+            this.tb_barrelLoadingCapacity.Size = new System.Drawing.Size(100, 23);
+            this.tb_barrelLoadingCapacity.TabIndex = 38;
+            this.tb_barrelLoadingCapacity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_barrelLoadingCapacity_KeyPress);
             // 
-            // 规格1
+            // btn_barrelLoadingCapacity
             // 
-            this.规格1.HeaderText = "规格（mm*mm）";
-            this.规格1.Name = "规格1";
-            this.规格1.ReadOnly = true;
+            this.btn_barrelLoadingCapacity.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_barrelLoadingCapacity.Location = new System.Drawing.Point(459, 43);
+            this.btn_barrelLoadingCapacity.Name = "btn_barrelLoadingCapacity";
+            this.btn_barrelLoadingCapacity.Size = new System.Drawing.Size(91, 23);
+            this.btn_barrelLoadingCapacity.TabIndex = 39;
+            this.btn_barrelLoadingCapacity.Text = "设置存储数量";
+            this.btn_barrelLoadingCapacity.UseVisualStyleBackColor = true;
+            this.btn_barrelLoadingCapacity.Click += new System.EventHandler(this.btn_barrelLoadingCapacity_Click);
             // 
-            // 重量1
+            // tb_delectbarrelLoadingCapacity1
             // 
-            this.重量1.HeaderText = "重量";
-            this.重量1.Name = "重量1";
-            this.重量1.ReadOnly = true;
+            this.tb_delectbarrelLoadingCapacity1.Location = new System.Drawing.Point(320, 731);
+            this.tb_delectbarrelLoadingCapacity1.Name = "tb_delectbarrelLoadingCapacity1";
+            this.tb_delectbarrelLoadingCapacity1.Size = new System.Drawing.Size(75, 21);
+            this.tb_delectbarrelLoadingCapacity1.TabIndex = 41;
+            this.tb_delectbarrelLoadingCapacity1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_delectbarrelLoadingCapacity1_KeyPress);
             // 
-            // 包id2
+            // tb_delectbarrelLoadingCapacity2
             // 
-            this.包id2.HeaderText = "袋子id";
-            this.包id2.Name = "包id2";
-            this.包id2.ReadOnly = true;
-            this.包id2.Visible = false;
+            this.tb_delectbarrelLoadingCapacity2.Location = new System.Drawing.Point(835, 731);
+            this.tb_delectbarrelLoadingCapacity2.Name = "tb_delectbarrelLoadingCapacity2";
+            this.tb_delectbarrelLoadingCapacity2.Size = new System.Drawing.Size(75, 21);
+            this.tb_delectbarrelLoadingCapacity2.TabIndex = 42;
+            this.tb_delectbarrelLoadingCapacity2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_delectbarrelLoadingCapacity2_KeyPress);
             // 
-            // 类型2
+            // label1
             // 
-            this.类型2.HeaderText = "材料类型";
-            this.类型2.Name = "类型2";
-            this.类型2.ReadOnly = true;
-            this.类型2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(249, 734);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 17);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "存储数量：";
             // 
-            // 规格2
+            // label2
             // 
-            this.规格2.HeaderText = "规格（mm*mm）";
-            this.规格2.Name = "规格2";
-            this.规格2.ReadOnly = true;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(763, 733);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 17);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "存储数量：";
             // 
-            // 重量2
+            // btn_delectbarrelLoadingCapacity1
             // 
-            this.重量2.HeaderText = "重量";
-            this.重量2.Name = "重量2";
-            this.重量2.ReadOnly = true;
+            this.btn_delectbarrelLoadingCapacity1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_delectbarrelLoadingCapacity1.Location = new System.Drawing.Point(402, 730);
+            this.btn_delectbarrelLoadingCapacity1.Name = "btn_delectbarrelLoadingCapacity1";
+            this.btn_delectbarrelLoadingCapacity1.Size = new System.Drawing.Size(75, 23);
+            this.btn_delectbarrelLoadingCapacity1.TabIndex = 45;
+            this.btn_delectbarrelLoadingCapacity1.Text = "修改";
+            this.btn_delectbarrelLoadingCapacity1.UseVisualStyleBackColor = true;
+            this.btn_delectbarrelLoadingCapacity1.Click += new System.EventHandler(this.btn_delectbarrelLoadingCapacity1_Click);
+            // 
+            // btn_delectbarrelLoadingCapacity2
+            // 
+            this.btn_delectbarrelLoadingCapacity2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_delectbarrelLoadingCapacity2.Location = new System.Drawing.Point(917, 729);
+            this.btn_delectbarrelLoadingCapacity2.Name = "btn_delectbarrelLoadingCapacity2";
+            this.btn_delectbarrelLoadingCapacity2.Size = new System.Drawing.Size(75, 23);
+            this.btn_delectbarrelLoadingCapacity2.TabIndex = 46;
+            this.btn_delectbarrelLoadingCapacity2.Text = "修改";
+            this.btn_delectbarrelLoadingCapacity2.UseVisualStyleBackColor = true;
+            this.btn_delectbarrelLoadingCapacity2.Click += new System.EventHandler(this.btn_delectbarrelLoadingCapacity2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(501, 132);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(116, 17);
+            this.label3.TabIndex = 47;
+            this.label3.Text = "当前桶内存储数量：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.Location = new System.Drawing.Point(1010, 132);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 17);
+            this.label4.TabIndex = 48;
+            this.label4.Text = "当前桶内存储数量：";
+            // 
+            // la_number1
+            // 
+            this.la_number1.AutoSize = true;
+            this.la_number1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_number1.Location = new System.Drawing.Point(623, 132);
+            this.la_number1.Name = "la_number1";
+            this.la_number1.Size = new System.Drawing.Size(0, 17);
+            this.la_number1.TabIndex = 49;
+            // 
+            // la_number2
+            // 
+            this.la_number2.AutoSize = true;
+            this.la_number2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_number2.Location = new System.Drawing.Point(1132, 132);
+            this.la_number2.Name = "la_number2";
+            this.la_number2.Size = new System.Drawing.Size(0, 17);
+            this.la_number2.TabIndex = 50;
             // 
             // BarrelManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1420, 832);
+            this.Controls.Add(this.la_number2);
+            this.Controls.Add(this.la_number1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btn_delectbarrelLoadingCapacity2);
+            this.Controls.Add(this.btn_delectbarrelLoadingCapacity1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tb_delectbarrelLoadingCapacity2);
+            this.Controls.Add(this.tb_delectbarrelLoadingCapacity1);
+            this.Controls.Add(this.btn_barrelLoadingCapacity);
+            this.Controls.Add(this.tb_barrelLoadingCapacity);
+            this.Controls.Add(this.la_barrelLoadingCapacity);
             this.Controls.Add(this.btn_removebarrel2);
             this.Controls.Add(this.btn_exchangepackageid2);
             this.Controls.Add(this.btn_exchangepackageid1);
@@ -333,5 +486,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 类型2;
         private System.Windows.Forms.DataGridViewTextBoxColumn 规格2;
         private System.Windows.Forms.DataGridViewTextBoxColumn 重量2;
+        private System.Windows.Forms.Label la_barrelLoadingCapacity;
+        private System.Windows.Forms.TextBox tb_barrelLoadingCapacity;
+        private System.Windows.Forms.Button btn_barrelLoadingCapacity;
+        private System.Windows.Forms.TextBox tb_delectbarrelLoadingCapacity1;
+        private System.Windows.Forms.TextBox tb_delectbarrelLoadingCapacity2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_delectbarrelLoadingCapacity1;
+        private System.Windows.Forms.Button btn_delectbarrelLoadingCapacity2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label la_number1;
+        private System.Windows.Forms.Label la_number2;
     }
 }

@@ -64,39 +64,39 @@ namespace FireProductManager.ServiceLogicPackage
             int index = 0;
             if (!isInitialized)
             {
-                if ((ret1 = zkfp2.Init()) != zkfperrdef.ZKFP_ERR_OK)
-                {
-                    throw new Exception("未连接指纹采集器");
-                }
-
-                int ret = zkfp.ZKFP_ERR_OK;
-                if (IntPtr.Zero == (mDevHandle = zkfp2.OpenDevice(index)))
-                    return;
-                if (IntPtr.Zero == (mDBHandle = zkfp2.DBInit()))
-                {
-                    zkfp2.CloseDevice(mDevHandle);
-                    mDevHandle = IntPtr.Zero;
-                    return;
-                }
-                for (int i = 0; i < 3; i++)
-                {
-                    RegTmps[i] = new byte[2048];
-                }
-                byte[] paramValue = new byte[8];
-                int size = 4;
-                zkfp2.GetParameters(mDevHandle, 1, paramValue, ref size);
-                zkfp2.ByteArray2Int(paramValue, ref mfpWidth);
-
-                size = 4;
-                zkfp2.GetParameters(mDevHandle, 2, paramValue, ref size);
-                zkfp2.ByteArray2Int(paramValue, ref mfpHeight);
-
-                FPBuffer = new byte[mfpWidth * mfpHeight];
-                Thread captureThread = new Thread(new ThreadStart(DoCapture));
-                captureThread.IsBackground = true;
-                captureThread.Start();
-                bIsTimeToDie = false;
+                 if ((ret1 = zkfp2.Init()) != zkfperrdef.ZKFP_ERR_OK)
+                 {
+                     throw new Exception("未连接指纹采集器");
+                 }
+            isInitialized = true;
             }
+            int ret = zkfp.ZKFP_ERR_OK;
+            if (IntPtr.Zero == (mDevHandle = zkfp2.OpenDevice(index)))
+                return;
+            if (IntPtr.Zero == (mDBHandle = zkfp2.DBInit()))
+            {
+                zkfp2.CloseDevice(mDevHandle);
+                mDevHandle = IntPtr.Zero;
+                return;
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                RegTmps[i] = new byte[2048];
+            }
+            byte[] paramValue = new byte[8];
+            int size = 4;
+            zkfp2.GetParameters(mDevHandle, 1, paramValue, ref size);
+            zkfp2.ByteArray2Int(paramValue, ref mfpWidth);
+
+            size = 4;
+            zkfp2.GetParameters(mDevHandle, 2, paramValue, ref size);
+            zkfp2.ByteArray2Int(paramValue, ref mfpHeight);
+
+            FPBuffer = new byte[mfpWidth * mfpHeight];
+            Thread captureThread = new Thread(new ThreadStart(DoCapture));
+            captureThread.IsBackground = true;
+            captureThread.Start();
+            bIsTimeToDie = false;
         }
 
         private void DoCapture()

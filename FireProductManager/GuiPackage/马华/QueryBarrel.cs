@@ -8,7 +8,7 @@ namespace FireProductManager.GuiPackage
     public partial class QueryBarrel : Form
     {
 
-        public delegate void BarrelIdSelectedHandler(int barrelid);
+        public delegate void BarrelIdSelectedHandler(int barrelid,int loadingCapacity);
         public event BarrelIdSelectedHandler BarrelIdSelected;
 
         public QueryBarrel()
@@ -27,7 +27,8 @@ namespace FireProductManager.GuiPackage
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_existbarrelid.Rows.Add(row);
                 dgv_existbarrelid.Rows[index].Cells[0].Value = dr["ba_id"];
-                dgv_existbarrelid.Rows[index].Cells[1].Value = SelectWeightOfBarrel((int)dr["ba_id"]) + "g";
+                dgv_existbarrelid.Rows[index].Cells[1].Value = dr["ba_loadingCapacity"];
+                dgv_existbarrelid.Rows[index].Cells[2].Value = SelectWeightOfBarrel((int)dr["ba_id"]) + "g";
             }
         }
 
@@ -89,7 +90,7 @@ namespace FireProductManager.GuiPackage
 
         private void dgv_existbarrelid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            BarrelIdSelected?.Invoke((int)(dgv_existbarrelid.SelectedRows[0]).Cells[0].Value);
+            BarrelIdSelected?.Invoke((int)(dgv_existbarrelid.SelectedRows[0]).Cells[0].Value, (int)(dgv_existbarrelid.SelectedRows[0]).Cells[1].Value);
             Close();
         }
     }

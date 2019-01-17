@@ -79,6 +79,7 @@
             this.dgv_AllowanceRemind = new System.Windows.Forms.DataGridView();
             this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.余量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.la_packageid = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -408,6 +409,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.la_packageid);
             this.groupBox1.Controls.Add(this.la_errorpackageweight);
             this.groupBox1.Controls.Add(this.tb_packagebackweigth);
             this.groupBox1.Controls.Add(this.la_packagebackweight);
@@ -548,6 +550,17 @@
             this.余量.ReadOnly = true;
             this.余量.Width = 214;
             // 
+            // la_packageid
+            // 
+            this.la_packageid.AutoSize = true;
+            this.la_packageid.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_packageid.ForeColor = System.Drawing.Color.Red;
+            this.la_packageid.Location = new System.Drawing.Point(554, 279);
+            this.la_packageid.Name = "la_packageid";
+            this.la_packageid.Size = new System.Drawing.Size(133, 17);
+            this.la_packageid.TabIndex = 120;
+            this.la_packageid.Text = "*请输入正确的袋子编号";
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -623,5 +636,6 @@
         private System.Windows.Forms.Label la_packagebackweight;
         private System.Windows.Forms.TextBox tb_packagebackweigth;
         private System.Windows.Forms.Label la_errorpackageweight;
+        private System.Windows.Forms.Label la_packageid;
     }
 }

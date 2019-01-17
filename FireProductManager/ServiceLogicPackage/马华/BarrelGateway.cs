@@ -35,9 +35,18 @@ namespace FireProductManager.ServiceLogicPackage
         {
             Barrel barrel = new Barrel();//id自加
             barrel.ba_isRemoved = 0; //0为存在，1为不存在
+            barrel.ba_loadingCapacity = 0;
             barrel.Insert();
             barrel.ba_id = FindMaxBarrelId();
             return (int)barrel.ba_id;
+        }
+
+        public static void UpdateLoadingCapacity(int barrelid,int loadingCapacity)
+        {
+            Barrel barrel = new Barrel();
+            barrel.ba_id = barrelid;
+            barrel.ba_loadingCapacity = loadingCapacity;
+            barrel.Update();
         }
 
         //删除桶
@@ -97,17 +106,42 @@ namespace FireProductManager.ServiceLogicPackage
             return dt.Rows.Count > 0;
         }
 
-        //找到的桶内重量不足桶id
+        //找到的桶内存储数量不足的桶id
         public static int SearchShortweightBarrrelId()
         {
             int barrelId = 0;
             foreach (DataRow dr in NoRemoveBarrelId().Rows)
             {
                 barrelId = (int)dr["ba_id"];
-                if (WeightOfBarrel(barrelId) < 300)
+                if (SelectBarrelidPackageNumber(barrelId) < SelectBarrelLoadingCapacit(barrelId))
                     return barrelId;
             }
             return  barrelId;
+        }
+
+        //查询桶内袋子的数量
+        public static int SelectBarrelidPackageNumber(int barrelid)
+        {
+            int count = 0;
+            SelectSqlMaker maker = new SelectSqlMaker("package");
+            maker.AddAndCondition(new IntEqual("pa_barrelId", barrelid));
+            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 0));
+            DataTable dt = Query(maker.MakeSelectSql());
+            foreach (DataRow dr in dt.Rows)
+                count++;
+            return count;
+        }
+
+        //通过桶id查该桶的存储数量
+        private static int SelectBarrelLoadingCapacit(int barrelid)
+        {
+            int loadingCapacity = 0;
+            SelectSqlMaker maker = new SelectSqlMaker("barrel");
+            maker.AddAndCondition(new IntEqual("ba_id", barrelid));
+            DataTable dt = Query(maker.MakeSelectSql());
+            foreach (DataRow dr in dt.Rows)
+                loadingCapacity = (int)dr["ba_loadingCapacity"];
+            return loadingCapacity;
         }
     }
 }

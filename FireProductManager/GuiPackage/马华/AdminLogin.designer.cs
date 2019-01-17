@@ -41,17 +41,17 @@
             // 
             this.AdminName.AutoSize = true;
             this.AdminName.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AdminName.Location = new System.Drawing.Point(78, 79);
+            this.AdminName.Location = new System.Drawing.Point(60, 82);
             this.AdminName.Name = "AdminName";
-            this.AdminName.Size = new System.Drawing.Size(74, 21);
+            this.AdminName.Size = new System.Drawing.Size(90, 21);
             this.AdminName.TabIndex = 0;
-            this.AdminName.Text = "用户名：";
+            this.AdminName.Text = "用户编号：";
             // 
             // AdminPassWord
             // 
             this.AdminPassWord.AutoSize = true;
             this.AdminPassWord.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AdminPassWord.Location = new System.Drawing.Point(78, 142);
+            this.AdminPassWord.Location = new System.Drawing.Point(60, 142);
             this.AdminPassWord.Name = "AdminPassWord";
             this.AdminPassWord.Size = new System.Drawing.Size(58, 21);
             this.AdminPassWord.TabIndex = 1;
@@ -64,7 +64,6 @@
             this.tb_account.Name = "tb_account";
             this.tb_account.Size = new System.Drawing.Size(156, 29);
             this.tb_account.TabIndex = 2;
-            this.tb_account.Text = "123456789";
             // 
             // tb_password
             // 
@@ -73,7 +72,6 @@
             this.tb_password.Name = "tb_password";
             this.tb_password.Size = new System.Drawing.Size(156, 29);
             this.tb_password.TabIndex = 3;
-            this.tb_password.Text = "123456789";
             this.tb_password.TextChanged += new System.EventHandler(this.tb_password_TextChanged);
             // 
             // but_login

@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgv_existbarrelid = new System.Windows.Forms.DataGridView();
-            this.桶编号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.全重 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.选择ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_return = new System.Windows.Forms.Button();
@@ -40,6 +38,9 @@
             this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.桶编号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.存储数量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.全重 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_existbarrelid)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_package)).BeginInit();
@@ -54,30 +55,17 @@
             this.dgv_existbarrelid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_existbarrelid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.桶编号,
+            this.存储数量,
             this.全重});
             this.dgv_existbarrelid.Location = new System.Drawing.Point(12, 12);
             this.dgv_existbarrelid.Name = "dgv_existbarrelid";
             this.dgv_existbarrelid.RowTemplate.Height = 23;
             this.dgv_existbarrelid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgv_existbarrelid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_existbarrelid.Size = new System.Drawing.Size(234, 474);
+            this.dgv_existbarrelid.Size = new System.Drawing.Size(304, 474);
             this.dgv_existbarrelid.TabIndex = 0;
             this.dgv_existbarrelid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_existbarrelid_CellMouseClick);
             this.dgv_existbarrelid.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_existbarrelid_CellMouseDoubleClick);
-            // 
-            // 桶编号
-            // 
-            this.桶编号.HeaderText = "桶编号";
-            this.桶编号.Name = "桶编号";
-            this.桶编号.ReadOnly = true;
-            this.桶编号.Width = 99;
-            // 
-            // 全重
-            // 
-            this.全重.HeaderText = "全重(g)";
-            this.全重.Name = "全重";
-            this.全重.ReadOnly = true;
-            this.全重.Width = 98;
             // 
             // contextMenuStrip1
             // 
@@ -115,11 +103,11 @@
             this.类型,
             this.规格,
             this.重量});
-            this.dgv_package.Location = new System.Drawing.Point(252, 12);
+            this.dgv_package.Location = new System.Drawing.Point(322, 12);
             this.dgv_package.Name = "dgv_package";
             this.dgv_package.RowTemplate.Height = 23;
             this.dgv_package.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgv_package.Size = new System.Drawing.Size(467, 474);
+            this.dgv_package.Size = new System.Drawing.Size(397, 474);
             this.dgv_package.TabIndex = 2;
             // 
             // 袋子编号
@@ -136,7 +124,7 @@
             // 
             // 规格
             // 
-            this.规格.HeaderText = "规格（mm*mm）";
+            this.规格.HeaderText = "规格";
             this.规格.Name = "规格";
             this.规格.ReadOnly = true;
             // 
@@ -145,6 +133,27 @@
             this.重量.HeaderText = "重量（g）";
             this.重量.Name = "重量";
             this.重量.ReadOnly = true;
+            // 
+            // 桶编号
+            // 
+            this.桶编号.HeaderText = "桶编号";
+            this.桶编号.Name = "桶编号";
+            this.桶编号.ReadOnly = true;
+            this.桶编号.Width = 87;
+            // 
+            // 存储数量
+            // 
+            this.存储数量.HeaderText = "存储数量";
+            this.存储数量.Name = "存储数量";
+            this.存储数量.ReadOnly = true;
+            this.存储数量.Width = 87;
+            // 
+            // 全重
+            // 
+            this.全重.HeaderText = "全重(g)";
+            this.全重.Name = "全重";
+            this.全重.ReadOnly = true;
+            this.全重.Width = 87;
             // 
             // QueryBarrel
             // 
@@ -172,11 +181,12 @@
 
         private System.Windows.Forms.DataGridView dgv_existbarrelid;
         private System.Windows.Forms.Button btn_return;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 桶编号;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 全重;
         private System.Windows.Forms.DataGridView dgv_package;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 选择ToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 桶编号;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 存储数量;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 全重;
         private System.Windows.Forms.DataGridViewTextBoxColumn 袋子编号;
         private System.Windows.Forms.DataGridViewTextBoxColumn 类型;
         private System.Windows.Forms.DataGridViewTextBoxColumn 规格;
