@@ -13,26 +13,28 @@ namespace FireProductManager.ServiceLogicPackage
         //获取部门下全部员工
         public static DataTable AllEmpolyeesOf(TreeNode treeNode)
         {
-            Department department = new Department();
-            List<int> DepartmentId = readNode(treeNode);
-            DataTable datatable = new DataTable();
-            for (int i = 0; i < DepartmentId.Count; i++)
+            if (treeNode.Nodes.Count > 0)
+            {
+                DataTable all = null;
+                foreach (TreeNode node in treeNode.Nodes)
+                {
+                    DataTable tb = AllEmpolyeesOf(node);
+                    if (all == null)
+                    {
+                        all = tb.Clone();
+                    }
+
+                    all.Merge(tb);
+                }
+                return all;
+            }
+            else
             {
                 SelectSqlMaker maker = new SelectSqlMaker("employee");
-                maker.AddAndCondition(new IntEqual("em_departmentid", DepartmentId[i]));
-                DataTable datatable1 = department.Select(maker.MakeSelectSql());
-                if (i == 0)
-                {
-                    datatable = datatable1.Copy();
-                    continue;
-                }     
-                foreach (DataRow dr in datatable1.Rows)
-                {
-                    datatable.ImportRow(dr);
-                }
-                datatable1 = null;
+                maker.AddAndCondition(new IntEqual("em_departmentid",(int)treeNode.Tag));
+                DataTable datatable1 = new Department().Select(maker.MakeSelectSql());
+                return datatable1;
             }
-            return datatable;
         }
 
         //读取节点的叶子节点ID
