@@ -39,6 +39,16 @@ namespace FireProductManager.ServiceLogicPackage
 
         public static ConnectFingerprint2 GetInstance() => connectFingerprint;
 
+        private void HandleExceptions()
+        {
+            try { GetIPConnect(); }
+            catch
+            {
+                MessageBox.Show("无法连接到出库指纹设备");
+                Application.Exit();
+            }
+        }
+
         //TCP\IP连接
         public void GetIPConnect()
         {

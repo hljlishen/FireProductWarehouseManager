@@ -116,7 +116,7 @@ namespace FireProductManager.ServiceLogicPackage
                 if (SelectBarrelidPackageNumber(barrelId) < SelectBarrelLoadingCapacit(barrelId))
                     return barrelId;
             }
-            return  barrelId;
+            return  -1;
         }
 
         //查询桶内袋子的数量

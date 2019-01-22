@@ -40,6 +40,9 @@ namespace FireProductManager.GuiPackage
             {
                 ConfirmRemoveBarrel(barrelid1);
                 lab_showbarrelid1.Text = "";
+                tb_delectbarrelLoadingCapacity1.Text = "";
+                tb_barrelLoadingCapacity.Text = "";
+                tb_showaddbarrelid.Text = "";
                 la_number1.Text = "";
                 barrelid1 = 0;
                 dgv_packageshow1.Rows.Clear();
@@ -51,6 +54,8 @@ namespace FireProductManager.GuiPackage
         private void btn_querybarrel1_Click(object sender, EventArgs e)
         {
             lab_showbarrelid1.Text = "";
+            tb_barrelLoadingCapacity.Text = "";
+            tb_showaddbarrelid.Text = "";
             queryBarrel = new QueryBarrel();
             queryBarrel.FormBorderStyle = FormBorderStyle.FixedSingle;
             queryBarrel.BarrelIdSelected += BarrelIdSelected1;
@@ -61,6 +66,8 @@ namespace FireProductManager.GuiPackage
         private void btn_querybarrel2_Click(object sender, EventArgs e)
         {
             lab_showbarrelid2.Text = "";
+            tb_barrelLoadingCapacity.Text = "";
+            tb_showaddbarrelid.Text = "";
             queryBarrel = new QueryBarrel();
             queryBarrel.FormBorderStyle = FormBorderStyle.FixedSingle;
             queryBarrel.BarrelIdSelected += BarrelIdSelected2;
@@ -133,6 +140,11 @@ namespace FireProductManager.GuiPackage
                 lab_showbarrelid2.Text = "";
                 return;
             }
+            if (loadingCapacity2 <= int.Parse(la_number2.Text))
+            {
+                AutoClosingMessageBox.Show("该桶存带数已达上限", "袋子已满", 2000);
+                return;
+            }
             for (int i = 0; i < dgv_packageshow1.Rows.Count; i++)
             {
                 if (dgv_packageshow1.Rows[i].Selected)
@@ -150,6 +162,9 @@ namespace FireProductManager.GuiPackage
             {
                 ConfirmRemoveBarrel(barrelid2);
                 lab_showbarrelid2.Text = "";
+                tb_delectbarrelLoadingCapacity2.Text = "";
+                tb_barrelLoadingCapacity.Text = "";
+                tb_showaddbarrelid.Text = "";
                 la_number2.Text = "";
                 barrelid2 = 0;
                 dgv_packageshow2.Rows.Clear();
@@ -168,6 +183,11 @@ namespace FireProductManager.GuiPackage
             if (barrelid2 == 0)
             {
                 lab_showbarrelid2.Text = "";
+                return;
+            }
+            if (loadingCapacity1 <= int.Parse(la_number1.Text))
+            {
+                AutoClosingMessageBox.Show("该桶存带数已达上限", "袋子已满", 2000);
                 return;
             }
             for (int i = 0; i < dgv_packageshow2.Rows.Count; i++)
@@ -206,6 +226,8 @@ namespace FireProductManager.GuiPackage
 
         private void btn_barrelLoadingCapacity_Click(object sender, EventArgs e)
         {
+            if (tb_barrelLoadingCapacity.Text == "")
+                return;
             BarrelGateway.UpdateLoadingCapacity(insertbarrelid,int.Parse(tb_barrelLoadingCapacity.Text));
             AutoClosingMessageBox.Show("                   设置成功", "设置成功", 1000);
             tb_barrelLoadingCapacity.Text = "";
@@ -261,12 +283,26 @@ namespace FireProductManager.GuiPackage
 
         private void btn_delectbarrelLoadingCapacity1_Click(object sender, EventArgs e)
         {
+            if (tb_delectbarrelLoadingCapacity1.Text == "")
+                return;
+            if (int.Parse(la_number1.Text) > int.Parse(tb_delectbarrelLoadingCapacity1.Text))
+            {
+                AutoClosingMessageBox.Show("  修改失败，存储数量小于当前数量", "修改失败", 1000);
+                return;
+            }
             BarrelGateway.UpdateLoadingCapacity(barrelid1,int.Parse(tb_delectbarrelLoadingCapacity1.Text));
             AutoClosingMessageBox.Show("                   修改成功", "修改成功", 1000);
         }
 
         private void btn_delectbarrelLoadingCapacity2_Click(object sender, EventArgs e)
         {
+            if (tb_delectbarrelLoadingCapacity2.Text == "")
+                return;
+            if (int.Parse(la_number2.Text) > int.Parse(tb_delectbarrelLoadingCapacity2.Text))
+            {
+                AutoClosingMessageBox.Show("  修改失败，存储数量小于当前数量", "修改失败", 1000);
+                return;
+            }
             BarrelGateway.UpdateLoadingCapacity(barrelid2,int.Parse(tb_delectbarrelLoadingCapacity2.Text));
             AutoClosingMessageBox.Show("                   修改成功", "修改成功", 1000);
         }

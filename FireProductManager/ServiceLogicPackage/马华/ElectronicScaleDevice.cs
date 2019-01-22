@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO.Ports;
+using System.Windows.Forms;
 
 namespace FireProductManager.ServiceLogicPackage
 {
@@ -34,6 +35,12 @@ namespace FireProductManager.ServiceLogicPackage
                 }
             }
             return _instance;
+        }
+
+        private void HandleExceptions()
+        {
+            try { Open(); }
+            catch { MessageBox.Show("未连接电子秤设备"); }
         }
 
         public void Open()
