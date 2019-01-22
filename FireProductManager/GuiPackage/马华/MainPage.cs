@@ -125,6 +125,11 @@ namespace FireProductManager.GuiPackage
         private void PackagePutInStorageShow()
         {
             PackageTareWeightShow();
+            if (BarrelGateway.SearchShortweightBarrrelId() == -1)
+            {
+                AutoClosingMessageBox.Show("                没有存储位置", "入库", 2000);
+                return;
+            }
             foreach (DataRow dr in PackageGateway.GetPackageInformation(packageid).Rows)
             {
                 tb_packagename.Text = dr["pa_type"].ToString();
@@ -267,6 +272,8 @@ namespace FireProductManager.GuiPackage
             packageBorrowRecord.PackageIdSelected += PackageIdSelected;
             packageBorrowRecord.ShowDialog();
             packageBorrowRecord.PackageIdSelected -= PackageIdSelected;
+            tb_packageid.Focus();
+            SendKeys.Send("{Enter}");
         }
 
         private void btn_projectPassword_Click(object sender, EventArgs e)
@@ -339,6 +346,15 @@ namespace FireProductManager.GuiPackage
                 PackageTareWeightNoShow();
                 EmptyTextBox();
             }   
+        }
+
+        private void tb_packagebackweigth_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                TextBoxCheck();
+                RecordPackagePutInStorageInformation();
+            }
         }
     }
 }
