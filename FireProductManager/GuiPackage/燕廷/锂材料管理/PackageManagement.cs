@@ -20,14 +20,12 @@ namespace FireProductManager.GuiPackage
         public PackageManagement()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void index_instrument_Load(object sender, EventArgs e)
         {
             cb_IsInWareHouse.Text = "全部";
-            Left = 0;
-            Top = 0;
-
             ShowAllPackage();
         }
 

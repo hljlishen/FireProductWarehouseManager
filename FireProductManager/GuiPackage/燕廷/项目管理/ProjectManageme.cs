@@ -16,12 +16,11 @@ namespace FireProductManager.GuiPackage
         public ProjectManageme()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void ProjectManageme_Load(object sender, EventArgs e)
         {
-            Top = 0;
-            Left = 0;
             DataTable dataTable = ProjectGateway.GetAllProject();
             ShowDataGridView(dataTable);
         }

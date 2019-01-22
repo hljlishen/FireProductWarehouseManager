@@ -293,6 +293,8 @@
             this.Controls.Add(this.tv_department);
             this.Controls.Add(this.dgv_employeeinformation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EmployeeManagement";
             this.Load += new System.EventHandler(this.index_employees_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_employeeinformation)).EndInit();

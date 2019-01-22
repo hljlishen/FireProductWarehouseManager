@@ -21,14 +21,13 @@ namespace FireProductManager.GuiPackage
         public EmployeeManagement()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         #region 员工页面信息展示
         //初始化页面信息
         public void index_employees_Load(object sender, EventArgs e)
         {
-            Top = 0;
-            Left = 0;
             ShowTreeView();
             ShowAllEmployee();
             cb_foundsex.Text = "男/女";
@@ -270,11 +269,11 @@ namespace FireProductManager.GuiPackage
         //删除
         private void tsm_delete_Click(object sender, EventArgs e)
         {
-            //if (!AccountManager.CanReadDatabase()) //没有用
-            //{
-            //    AutoClosingMessageBox.Show("        权限不足", "权限", 2000);
-            //    return;
-            //}
+            if (!AccountManager.CanReadDatabase()) //没有用
+            {
+                AutoClosingMessageBox.Show("        权限不足", "权限", 2000);
+                return;
+            }
             if (MessageBox.Show("确定删除该节点？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int nodeid = (int)tv_department.SelectedNode.Tag;

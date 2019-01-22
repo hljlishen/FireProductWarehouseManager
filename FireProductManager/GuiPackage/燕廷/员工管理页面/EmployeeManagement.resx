@@ -177,6 +177,48 @@
   <metadata name="员工Id.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="ID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="姓名.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="性别.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="公司.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="部门.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="小组.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="dgv_employeeinformation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>440, 103</value>
+  </data>
+  <data name="dgv_employeeinformation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>913, 657</value>
+  </data>
+  <data name="dgv_employeeinformation.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;dgv_employeeinformation.Name" xml:space="preserve">
+    <value>dgv_employeeinformation</value>
+  </data>
+  <data name="&gt;&gt;dgv_employeeinformation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dgv_employeeinformation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dgv_employeeinformation.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <metadata name="员工Id.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="员工Id.HeaderText" xml:space="preserve">
     <value>员工Id</value>
   </data>
@@ -236,27 +278,6 @@
   </data>
   <data name="小组.Width" type="System.Int32, mscorlib">
     <value>160</value>
-  </data>
-  <data name="dgv_employeeinformation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>440, 103</value>
-  </data>
-  <data name="dgv_employeeinformation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>913, 657</value>
-  </data>
-  <data name="dgv_employeeinformation.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;dgv_employeeinformation.Name" xml:space="preserve">
-    <value>dgv_employeeinformation</value>
-  </data>
-  <data name="&gt;&gt;dgv_employeeinformation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dgv_employeeinformation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;dgv_employeeinformation.ZOrder" xml:space="preserve">
-    <value>6</value>
   </data>
   <data name="tv_department.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 18pt</value>
@@ -465,6 +486,15 @@
   <metadata name="cms_employeetreeview.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>32, 16</value>
   </metadata>
+  <data name="cms_employeetreeview.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 114</value>
+  </data>
+  <data name="&gt;&gt;cms_employeetreeview.Name" xml:space="preserve">
+    <value>cms_employeetreeview</value>
+  </data>
+  <data name="&gt;&gt;cms_employeetreeview.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="tsm_newcompany.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
@@ -494,15 +524,6 @@
   </data>
   <data name="tsm_rename.Text" xml:space="preserve">
     <value>重命名</value>
-  </data>
-  <data name="cms_employeetreeview.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 114</value>
-  </data>
-  <data name="&gt;&gt;cms_employeetreeview.Name" xml:space="preserve">
-    <value>cms_employeetreeview</value>
-  </data>
-  <data name="&gt;&gt;cms_employeetreeview.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="bt_dgvchangexcel.Font" type="System.Drawing.Font, System.Drawing">
     <value>微软雅黑, 9pt</value>
@@ -540,6 +561,15 @@
   <metadata name="cms_employeeoperation.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>221, 16</value>
   </metadata>
+  <data name="cms_employeeoperation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 70</value>
+  </data>
+  <data name="&gt;&gt;cms_employeeoperation.Name" xml:space="preserve">
+    <value>cms_employeeoperation</value>
+  </data>
+  <data name="&gt;&gt;cms_employeeoperation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="tsm_newemployee.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 22</value>
   </data>
@@ -558,24 +588,9 @@
   <data name="tsm_deleteemployee.Text" xml:space="preserve">
     <value>删除</value>
   </data>
-  <data name="cms_employeeoperation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 70</value>
-  </data>
-  <data name="&gt;&gt;cms_employeeoperation.Name" xml:space="preserve">
-    <value>cms_employeeoperation</value>
-  </data>
-  <data name="&gt;&gt;cms_employeeoperation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <metadata name="cms_newemployee.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>417, 16</value>
   </metadata>
-  <data name="tms_new.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="tms_new.Text" xml:space="preserve">
-    <value>添加</value>
-  </data>
   <data name="cms_newemployee.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 26</value>
   </data>
@@ -584,6 +599,12 @@
   </data>
   <data name="&gt;&gt;cms_newemployee.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tms_new.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 22</value>
+  </data>
+  <data name="tms_new.Text" xml:space="preserve">
+    <value>添加</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -681,7 +702,7 @@
 </value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
+    <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>员工信息管理</value>
