@@ -292,6 +292,7 @@ namespace FireProductManager.GuiPackage
             }
             BarrelGateway.UpdateLoadingCapacity(barrelid1,int.Parse(tb_delectbarrelLoadingCapacity1.Text));
             AutoClosingMessageBox.Show("                   修改成功", "修改成功", 1000);
+            loadingCapacity1 = int.Parse(tb_delectbarrelLoadingCapacity1.Text);
         }
 
         private void btn_delectbarrelLoadingCapacity2_Click(object sender, EventArgs e)
@@ -305,6 +306,7 @@ namespace FireProductManager.GuiPackage
             }
             BarrelGateway.UpdateLoadingCapacity(barrelid2,int.Parse(tb_delectbarrelLoadingCapacity2.Text));
             AutoClosingMessageBox.Show("                   修改成功", "修改成功", 1000);
+            loadingCapacity2 = int.Parse(tb_delectbarrelLoadingCapacity2.Text);
         }
     }
 }

@@ -139,7 +139,7 @@
             this.tb_packageid.Location = new System.Drawing.Point(557, 253);
             this.tb_packageid.Name = "tb_packageid";
             this.tb_packageid.Size = new System.Drawing.Size(140, 23);
-            this.tb_packageid.TabIndex = 16;
+            this.tb_packageid.TabIndex = 1;
             this.tb_packageid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_packageid_KeyPress);
             // 
             // tb_borrowName

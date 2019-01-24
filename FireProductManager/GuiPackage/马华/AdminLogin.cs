@@ -40,8 +40,14 @@ namespace FireProductManager.GuiPackage
 
         private void AdminLogin_Load(object sender, EventArgs e)
         {
-            //connectFingerprint.GetIPConnect();
-            //connectFingerprint.AddDisplayer(this);
+            try { connectFingerprint.GetIPConnect(); }
+            catch (Exception)
+            {
+                MessageBox.Show("无法连接到进库指纹设备");
+                Application.Exit();
+            }
+            
+            connectFingerprint.AddDisplayer(this);
         }
 
         public void FingerprintLogin(Fingerprint fingerprint)

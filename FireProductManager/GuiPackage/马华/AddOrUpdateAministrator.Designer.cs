@@ -54,7 +54,7 @@
             this.la_authoritycheck.AutoSize = true;
             this.la_authoritycheck.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_authoritycheck.ForeColor = System.Drawing.Color.Red;
-            this.la_authoritycheck.Location = new System.Drawing.Point(206, 464);
+            this.la_authoritycheck.Location = new System.Drawing.Point(178, 464);
             this.la_authoritycheck.Name = "la_authoritycheck";
             this.la_authoritycheck.Size = new System.Drawing.Size(113, 20);
             this.la_authoritycheck.TabIndex = 31;
@@ -65,7 +65,7 @@
             this.la_passwordcheck.AutoSize = true;
             this.la_passwordcheck.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_passwordcheck.ForeColor = System.Drawing.Color.Red;
-            this.la_passwordcheck.Location = new System.Drawing.Point(216, 386);
+            this.la_passwordcheck.Location = new System.Drawing.Point(180, 386);
             this.la_passwordcheck.Name = "la_passwordcheck";
             this.la_passwordcheck.Size = new System.Drawing.Size(99, 20);
             this.la_passwordcheck.TabIndex = 30;
@@ -76,7 +76,7 @@
             this.la_accountcheck.AutoSize = true;
             this.la_accountcheck.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_accountcheck.ForeColor = System.Drawing.Color.Red;
-            this.la_accountcheck.Location = new System.Drawing.Point(196, 231);
+            this.la_accountcheck.Location = new System.Drawing.Point(178, 231);
             this.la_accountcheck.Name = "la_accountcheck";
             this.la_accountcheck.Size = new System.Drawing.Size(141, 20);
             this.la_accountcheck.TabIndex = 29;
@@ -180,7 +180,7 @@
             this.la_accountnumber.AutoSize = true;
             this.la_accountnumber.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_accountnumber.ForeColor = System.Drawing.Color.Red;
-            this.la_accountnumber.Location = new System.Drawing.Point(196, 231);
+            this.la_accountnumber.Location = new System.Drawing.Point(178, 231);
             this.la_accountnumber.Name = "la_accountnumber";
             this.la_accountnumber.Size = new System.Drawing.Size(127, 20);
             this.la_accountnumber.TabIndex = 32;
@@ -192,7 +192,7 @@
             this.la_namecheck.AutoSize = true;
             this.la_namecheck.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_namecheck.ForeColor = System.Drawing.Color.Red;
-            this.la_namecheck.Location = new System.Drawing.Point(217, 306);
+            this.la_namecheck.Location = new System.Drawing.Point(182, 306);
             this.la_namecheck.Name = "la_namecheck";
             this.la_namecheck.Size = new System.Drawing.Size(99, 20);
             this.la_namecheck.TabIndex = 35;

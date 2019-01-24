@@ -55,16 +55,6 @@ namespace FireProductManager.ServiceLogicPackage
             return _instance;
         }
 
-        private void HandleExceptions()
-        {
-            try { Open(); }
-            catch
-            {
-                MessageBox.Show("未连接指纹采集器");
-                Application.Exit();
-            }
-        }
-
         [DllImport("user32.dll", EntryPoint = "SendMessageA")]
         private static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, IntPtr lParam);
 
