@@ -37,12 +37,6 @@ namespace FireProductManager.ServiceLogicPackage
             return _instance;
         }
 
-        private void HandleExceptions()
-        {
-            try { Open(); }
-            catch { MessageBox.Show("未连接电子秤设备"); }
-        }
-
         public void Open()
         {
             if (IsOpen) return;
@@ -82,7 +76,7 @@ namespace FireProductManager.ServiceLogicPackage
         private bool IsConnection(string[] names)
         {
             int i = names.Length;
-            return i>0;
+            return i>1;
         }
     }
 }

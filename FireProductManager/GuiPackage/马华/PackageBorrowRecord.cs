@@ -32,7 +32,7 @@ namespace FireProductManager.GuiPackage
             cb_choicetime.MouseClick += cb_choicetime_MouseClick;
             ShowOutDataGridView(RecordOperationGateway.GetAllOutRecord());
             ShowInDataGridView(RecordOperationGateway.GetAllInRecord());
-            dgv_PackageInAndOutrecord.Sort(dgv_PackageInAndOutrecord.Columns[5], ListSortDirection.Ascending);
+            dgv_PackageInAndOutrecord.Sort(dgv_PackageInAndOutrecord.Columns[5], ListSortDirection.Descending);
         }
 
         //DataGridView显示数据

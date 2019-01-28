@@ -36,7 +36,14 @@ namespace FireProductManager.GuiPackage
             erg = new EvirmentRecordGateway(Apem5900.CreateInstance());
             erg.NewEvirmentData += NewEvirmentData;
             scaleDevice = Ahdr.CreateInstance();
-            scaleDevice.Open();
+            
+            try { scaleDevice.Open(); }
+            catch (Exception)
+            {
+                MessageBox.Show("未连接电子秤设备");
+                Application.Exit();
+            }
+
             instanceCount++;
         }
 
@@ -98,7 +105,7 @@ namespace FireProductManager.GuiPackage
                 tb_packageweight.Text = dr["pa_weight"].ToString();
                 tb_barrelid.Text = dr["pa_barrelId"].ToString();
             }
-
+            scaleDevice.WeightGetted -= Ahdr_WeightGetted;
             tb_direction.Text = "出库";
             RecordPackageOutboundInformation();
         }
@@ -138,6 +145,9 @@ namespace FireProductManager.GuiPackage
                     consumption = (double)dr["pa_weight"] - double.Parse(tb_packageweight.Text);
             }
 
+            foreach (DataRow dr in RecordOperationGateway.SelectInRecord().Rows)
+                tb_packagebackweigth.Text = dr["ir_packageTare"].ToString();
+
             tb_barrelid.Text = BarrelGateway.SearchShortweightBarrrelId().ToString();
             scaleDevice.WeightGetted += Ahdr_WeightGetted;
             tb_direction.Text = "入库";
@@ -163,7 +173,7 @@ namespace FireProductManager.GuiPackage
 
             if (isPrint)
                 PrintAfterBagChange();
-            RecordOperationGateway.ReturnPackage(outid,packageid, int.Parse(tb_barrelid.Text), accountname , consumption, double.Parse(tb_packageweight.Text)- double.Parse(tb_packagebackweigth.Text));
+            RecordOperationGateway.ReturnPackage(outid,packageid, int.Parse(tb_barrelid.Text), accountname , consumption, double.Parse(tb_packageweight.Text)- double.Parse(tb_packagebackweigth.Text),double.Parse(tb_packagebackweigth.Text));
             ListViewShow();
             AutoClosingMessageBox.Show("                入库成功", "入库", 2000);
             EmptyTextBox();

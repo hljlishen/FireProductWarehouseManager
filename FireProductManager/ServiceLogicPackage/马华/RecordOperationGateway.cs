@@ -69,7 +69,7 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //还包
-        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountName,double consumption, double returnWeight)
+        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountName,double consumption, double returnWeight,double packageTare)
         {
             PackageGateway.ReturnPackage(packageid, barrelid, returnWeight);
 
@@ -80,6 +80,7 @@ namespace FireProductManager.ServiceLogicPackage
             inRecord.ir_timeStmp = DateTime.Now;
             inRecord.ir_consumption = consumption;
             inRecord.ir_returnWeight = returnWeight;
+            inRecord.ir_packageTare = packageTare;
             inRecord.Insert();  
         }
 
@@ -150,6 +151,13 @@ namespace FireProductManager.ServiceLogicPackage
         {
             SelectSqlMaker maker = new SelectSqlMaker("outrecord");
             maker.AddAndCondition(new IntEqual("or_packageId", packageId));
+            string sql = maker.MakeSelectSql();
+            return Query(sql);
+        }
+
+        public static DataTable SelectInRecord()
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("inrecord");
             string sql = maker.MakeSelectSql();
             return Query(sql);
         }
