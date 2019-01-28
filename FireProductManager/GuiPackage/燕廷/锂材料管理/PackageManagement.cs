@@ -51,7 +51,7 @@ namespace FireProductManager.GuiPackage
                 dgv_instrumentinformation.Rows[index].Cells[4].Value = dr["pa_barrelid"];
                 dgv_instrumentinformation.Rows[index].Cells[5].Value = PackageGateway.IsinWarehouseDataTypeChangeString((int)dr["pa_isinwarehouse"]);
                 dgv_instrumentinformation.Rows[index].Cells[6].Value = dr["pa_productionCompany"];
-                dgv_instrumentinformation.Rows[index].Cells[7].Value = dr["pa_purchasetime"];
+                dgv_instrumentinformation.Rows[index].Cells[7].Value = ((DateTime)dr["pa_purchasetime"]).ToString("yyyy-MM-dd");
                 dgv_instrumentinformation.Rows[index].Cells[8].Value = dr["pa_beginningweight"];
                 
             }
