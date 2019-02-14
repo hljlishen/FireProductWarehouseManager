@@ -30,6 +30,7 @@ namespace FireProductManager.GuiPackage
 
         private void 员工管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            BackgroundNavigationBar();
             if (employeeManagement == null)
             {
                 employeeManagement = new EmployeeManagement();
@@ -41,6 +42,7 @@ namespace FireProductManager.GuiPackage
             }
             employeeManagement.MdiParent = this;
             employeeManagement.Show();
+            员工管理ToolStripMenuItem.BackColor = System.Drawing.Color.DodgerBlue;
             employeeManagement.Activate();
         }
 
@@ -55,9 +57,9 @@ namespace FireProductManager.GuiPackage
             //    Application.Exit();
             //}
 
-            connectFingerprint.AddDisplayer(this);
+            //connectFingerprint.AddDisplayer(this);
             ShowLoginWindow();
-            this.Text ="当前登录的管理员为：" + AccountManager.ReturnAccount();
+            this.Text ="当前登录的管理员为：" + AccountManager.ReturnAccount() +"    "+ "锂带仓管1.0";
             出入库登记ToolStripMenultem_Click(sender, e);
         }
 
@@ -73,6 +75,7 @@ namespace FireProductManager.GuiPackage
 
         private void 仓库管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            BackgroundNavigationBar();
             if (barrelManagement == null)
             {
                 barrelManagement = new BarrelManagement();
@@ -84,11 +87,13 @@ namespace FireProductManager.GuiPackage
             }
             barrelManagement.MdiParent = this;
             barrelManagement.Show();
+            仓库管理ToolStripMenuItem.BackColor = System.Drawing.Color.DodgerBlue;
             barrelManagement.Activate();
         }
 
         public void 管理员ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            BackgroundNavigationBar();
             if (!AccountManager.CanWriteDatabase())
             {
                 AutoClosingMessageBox.Show("          用户权限级别不足", "权限", 1000);
@@ -109,11 +114,13 @@ namespace FireProductManager.GuiPackage
                 MdiParent = this
             };
             administratorManagement.Show();
+            管理员ToolStripMenuItem.BackColor = System.Drawing.Color.DodgerBlue;
             administratorManagement.Activate();
         }
 
         private void 出入库登记ToolStripMenultem_Click(object sender, EventArgs e)
         {
+            BackgroundNavigationBar();
             //if (mainPage == null)
             //{
             //    mainPage = new MainPage();
@@ -129,18 +136,20 @@ namespace FireProductManager.GuiPackage
             mainPage = new MainPage();
             GC.Collect();
 
-            //try { mainPage.MdiParent = this; }
-            //catch (Exception)
-            //{
-            //    Application.Exit();
-            //}
+            try { mainPage.MdiParent = this; }
+            catch (Exception)
+            {
+                Application.Exit();
+            }
 
             mainPage.Show();
+            出入库登记ToolStripMenultem.BackColor = System.Drawing.Color.DodgerBlue;
             mainPage.Activate();
         }
 
         private void 项目令号ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            BackgroundNavigationBar();
             if (projectManageme == null)
             {
                 projectManageme = new ProjectManageme();
@@ -152,11 +161,13 @@ namespace FireProductManager.GuiPackage
             }
             projectManageme.MdiParent = this;
             projectManageme.Show();
+            项目令号ToolStripMenuItem.BackColor = System.Drawing.Color.DodgerBlue;
             projectManageme.Activate();
         }
 
         private void 仓库数据统计ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            BackgroundNavigationBar();
             if (warehouseDataReport == null)
             {
                 warehouseDataReport = new WarehouseDataReport();
@@ -168,6 +179,7 @@ namespace FireProductManager.GuiPackage
             }
             warehouseDataReport.MdiParent = this;
             warehouseDataReport.Show();
+            仓库数据统计ToolStripMenuItem.BackColor = System.Drawing.Color.DodgerBlue;
             warehouseDataReport.Activate();
         }
 
@@ -191,11 +203,12 @@ namespace FireProductManager.GuiPackage
             isLogout = true;
             出入库登记ToolStripMenultem_Click(sender, e);
             ShowLoginWindow();
-            this.Text = "当前登录的管理员为：" + AccountManager.ReturnAccount();
+            this.Text = "当前登录的管理员为：" + AccountManager.ReturnAccount() + "    " + "锂带仓管1.0";
         }
 
         private void 材料管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            BackgroundNavigationBar();
             if (packageManagement == null)
             {
                 packageManagement = new PackageManagement();
@@ -207,11 +220,13 @@ namespace FireProductManager.GuiPackage
             }
             packageManagement.MdiParent = this;
             packageManagement.Show();
+            材料管理ToolStripMenuItem.BackColor = System.Drawing.Color.DodgerBlue;
             packageManagement.Activate();
         }
 
         private void 材料出入记录ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            BackgroundNavigationBar();
             if (packageBorrow == null)
             {
                 packageBorrow = new PackageBorrowRecord();
@@ -223,7 +238,20 @@ namespace FireProductManager.GuiPackage
             }
             packageBorrow.MdiParent = this;
             packageBorrow.Show();
+            材料出入记录ToolStripMenuItem.BackColor = System.Drawing.Color.DodgerBlue;
             packageBorrow.Activate();
+        }
+
+        private void BackgroundNavigationBar()
+        {
+            出入库登记ToolStripMenultem.BackColor = System.Drawing.Color.White;
+            员工管理ToolStripMenuItem.BackColor = System.Drawing.Color.White;
+            项目令号ToolStripMenuItem.BackColor = System.Drawing.Color.White;
+            仓库管理ToolStripMenuItem.BackColor = System.Drawing.Color.White;
+            材料管理ToolStripMenuItem.BackColor = System.Drawing.Color.White;
+            材料出入记录ToolStripMenuItem.BackColor = System.Drawing.Color.White;
+            仓库数据统计ToolStripMenuItem.BackColor = System.Drawing.Color.White;
+            管理员ToolStripMenuItem.BackColor = System.Drawing.Color.White;
         }
     }
 }

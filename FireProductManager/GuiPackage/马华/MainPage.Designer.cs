@@ -69,6 +69,7 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_destruction = new System.Windows.Forms.Button();
             this.la_packageid = new System.Windows.Forms.Label();
             this.la_errorpackageweight = new System.Windows.Forms.Label();
             this.tb_packagebackweigth = new System.Windows.Forms.TextBox();
@@ -409,6 +410,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_destruction);
             this.groupBox1.Controls.Add(this.la_packageid);
             this.groupBox1.Controls.Add(this.la_errorpackageweight);
             this.groupBox1.Controls.Add(this.tb_packagebackweigth);
@@ -441,6 +443,16 @@
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "出入库信息";
+            // 
+            // btn_destruction
+            // 
+            this.btn_destruction.Location = new System.Drawing.Point(696, 304);
+            this.btn_destruction.Name = "btn_destruction";
+            this.btn_destruction.Size = new System.Drawing.Size(75, 23);
+            this.btn_destruction.TabIndex = 121;
+            this.btn_destruction.Text = "销毁";
+            this.btn_destruction.UseVisualStyleBackColor = true;
+            this.btn_destruction.Click += new System.EventHandler(this.btn_destruction_Click);
             // 
             // la_packageid
             // 
@@ -638,5 +650,6 @@
         private System.Windows.Forms.TextBox tb_packagebackweigth;
         private System.Windows.Forms.Label la_errorpackageweight;
         private System.Windows.Forms.Label la_packageid;
+        private System.Windows.Forms.Button btn_destruction;
     }
 }

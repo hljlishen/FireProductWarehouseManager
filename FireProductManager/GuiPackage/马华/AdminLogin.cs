@@ -22,13 +22,8 @@ namespace FireProductManager.GuiPackage
             String account = tb_account.Text;
             String password = tb_password.Text;
 
-            if (AccountManager.Login(account, password))
+            if (AccountManager.Login(account, password) && account != "" && password != "")
             {
-                if (AccountManager.CanNotLogin())
-                {
-                    lab_tip.Text = "*用户权限不足无法登录";
-                    return;
-                }
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -46,8 +41,8 @@ namespace FireProductManager.GuiPackage
             //    MessageBox.Show("无法连接到进库指纹设备");
             //    Application.Exit();
             //}
-            
-            connectFingerprint.AddDisplayer(this);
+
+            //connectFingerprint.AddDisplayer(this);
         }
 
         public void FingerprintLogin(Fingerprint fingerprint)

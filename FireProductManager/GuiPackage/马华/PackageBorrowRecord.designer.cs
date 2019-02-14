@@ -85,7 +85,7 @@
             this.btn_search.Location = new System.Drawing.Point(1192, 32);
             this.btn_search.Name = "btn_search";
             this.btn_search.Size = new System.Drawing.Size(75, 23);
-            this.btn_search.TabIndex = 6;
+            this.btn_search.TabIndex = 0;
             this.btn_search.Text = "查询";
             this.btn_search.UseVisualStyleBackColor = true;
             this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
@@ -269,6 +269,7 @@
             this.cb_directquery.Name = "cb_directquery";
             this.cb_directquery.Size = new System.Drawing.Size(100, 25);
             this.cb_directquery.TabIndex = 17;
+            this.cb_directquery.SelectedIndexChanged += new System.EventHandler(this.cb_directquery_SelectedIndexChanged);
             // 
             // cb_choicetime
             // 

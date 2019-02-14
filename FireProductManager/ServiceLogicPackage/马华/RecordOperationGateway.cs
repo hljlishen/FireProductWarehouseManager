@@ -69,9 +69,10 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //还包
-        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountName,double consumption, double returnWeight,double packageTare)
+        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountName,double consumption, double returnWeight,double tareWeigh)
         {
-            PackageGateway.ReturnPackage(packageid, barrelid, returnWeight);
+            //增加皮重
+            PackageGateway.ReturnPackage(packageid, barrelid, returnWeight, tareWeigh);
 
             InRecord inRecord = new InRecord();
             inRecord.ir_outid = outid;
@@ -80,18 +81,29 @@ namespace FireProductManager.ServiceLogicPackage
             inRecord.ir_timeStmp = DateTime.Now;
             inRecord.ir_consumption = consumption;
             inRecord.ir_returnWeight = returnWeight;
-            inRecord.ir_packageTare = packageTare;
             inRecord.Insert();  
         }
 
-        //判断packageid是否存在
+        //判断packageid是否存在   
         public static bool IsPackageIdValid(int packageid)
         {
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_id", packageid));
+            //增加未销毁0、1，销毁2
             DataTable dt = Query(maker.MakeSelectSql());
             return dt.Rows.Count > 0;
         }
+
+        //判断袋子是否被销毁
+        public static bool IsPackageIdDeface(int packageid)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("package");
+            maker.AddAndCondition(new IntEqual("pa_id", packageid));
+            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 2));
+            DataTable dt = Query(maker.MakeSelectSql());
+            return dt.Rows.Count > 0;
+        }
+
 
         //出库条件搜索
         public static DataTable ConditionsSearchOutRecord(string packageId,string employeeId,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
@@ -155,11 +167,13 @@ namespace FireProductManager.ServiceLogicPackage
             return Query(sql);
         }
 
-        public static DataTable SelectInRecord()
+        public static bool DefacePackage(int packageId)
         {
-            SelectSqlMaker maker = new SelectSqlMaker("inrecord");
-            string sql = maker.MakeSelectSql();
-            return Query(sql);
+            Package package = new Package();
+            package.pa_id = packageId;
+            package.pa_isinWarehouse = 2;
+            package.Update();
+            return true;
         }
     }
 }

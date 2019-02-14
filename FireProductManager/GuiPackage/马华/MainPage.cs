@@ -1,6 +1,7 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using static FireProductManager.GuiPackage.AutoCloseMassageBox;
@@ -33,6 +34,7 @@ namespace FireProductManager.GuiPackage
             PackageTareWeightNoShow();
             StartPosition = FormStartPosition.CenterScreen;
             ShowDataGridView(PackageGateway.StatisticAllModelWeightsInWarehouse());
+            dgv_AllowanceRemind.Sort(dgv_AllowanceRemind.Columns[1], ListSortDirection.Ascending);
             erg = new EvirmentRecordGateway(Apem5900.CreateInstance());
             erg.NewEvirmentData += NewEvirmentData;
             scaleDevice = Ahdr.CreateInstance();
@@ -102,7 +104,7 @@ namespace FireProductManager.GuiPackage
             {
                 tb_packagename.Text = dr["pa_type"].ToString();
                 tb_packagemodel.Text = dr["pa_specifications"].ToString();
-                tb_packageweight.Text = dr["pa_weight"].ToString();
+                tb_packageweight.Text = dr["pa_suttle"].ToString();
                 tb_barrelid.Text = dr["pa_barrelId"].ToString();
             }
             scaleDevice.WeightGetted -= Ahdr_WeightGetted;
@@ -114,6 +116,10 @@ namespace FireProductManager.GuiPackage
         private void RecordPackageOutboundInformation()
         {
             TextBoxCheckShow();
+            btn_borrowemployee.Visible = true;
+            btn_projectPassword.Visible = true;
+            btn_destruction.Visible = true;
+            btn_packageid.Visible = false;
             if (!TextBoxCheck())
                 return;
 
@@ -126,42 +132,46 @@ namespace FireProductManager.GuiPackage
             RecordOperationGateway.BorrowPackage(packageid, employeeid, projectid, tb_borrowName.Text, accountname, double.Parse(tb_packageweight.Text));
             ListViewShow();
             AutoClosingMessageBox.Show("                出库成功", "出库", 2000);
+            btn_destruction.Visible = false;
+            btn_packageid.Visible = true;
             EmptyTextBox();
         }
 
         private void PackagePutInStorageShow()
         {
             PackageTareWeightShow();
-            if (BarrelGateway.SearchShortweightBarrrelId() == -1)
-            {
-                AutoClosingMessageBox.Show("                没有存储位置", "入库", 2000);
-                return;
-            }
+
             foreach (DataRow dr in PackageGateway.GetPackageInformation(packageid).Rows)
             {
                 tb_packagename.Text = dr["pa_type"].ToString();
                 tb_packagemodel.Text = dr["pa_specifications"].ToString();
+                tb_barrelid.Text = dr["pa_barrelId"].ToString();
+                //皮重
+                tb_packagebackweigth.Text = dr["pa_tareweight"].ToString();
                 if (tb_packageweight.Text != "")
-                    consumption = (double)dr["pa_weight"] - double.Parse(tb_packageweight.Text);
+                    consumption = (double)dr["pa_suttle"] - double.Parse(tb_packageweight.Text);
             }
-
-            foreach (DataRow dr in RecordOperationGateway.SelectInRecord().Rows)
-                tb_packagebackweigth.Text = dr["ir_packageTare"].ToString();
-
-            tb_barrelid.Text = BarrelGateway.SearchShortweightBarrrelId().ToString();
-            scaleDevice.WeightGetted += Ahdr_WeightGetted;
             tb_direction.Text = "入库";
 
             foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQueryoutrecord(packageid).Rows)
             {
                 outid = (int)dr["or_id"];
                 tb_borrowName.Text = dr["or_borrowName"].ToString();
-                projectid =(int) dr["or_projectId"];
+                projectid = (int)dr["or_projectId"];
             }
 
             foreach (DataRow dr in RecordOperationGateway.ThroughProjectIdQuery(projectid).Rows)
                 tb_projectpassword.Text = dr["pr_projectPassword"].ToString();
 
+            if (BarrelGateway.SearchShortweightBarrrelId( int.Parse(tb_barrelid.Text)))
+            {
+                AutoClosingMessageBox.Show("             该桶存袋数已达上限", "入库", 3000);
+                EmptyTextBox();
+                TextBoxCheckShow();
+                PackageTareWeightNoShow();
+                return;
+            }
+            scaleDevice.WeightGetted += Ahdr_WeightGetted;
             RecordPackagePutInStorageInformation();
         }
 
@@ -214,6 +224,9 @@ namespace FireProductManager.GuiPackage
             la_borrow.Visible = false;
             la_errorpackageweight.Visible = false;
             la_packageid.Visible = false;
+            btn_destruction.Visible = false;
+            btn_borrowemployee.Visible = false;
+            btn_projectPassword.Visible = false;
         }
 
         private void PackageTareWeightNoShow()
@@ -263,6 +276,7 @@ namespace FireProductManager.GuiPackage
             selectEmployees.FormBorderStyle = FormBorderStyle.FixedSingle;
             selectEmployees.EmployeesSelected += EmployeesSelected;
             selectEmployees.ShowDialog();
+            tb_packageid.Focus();
             selectEmployees.EmployeesSelected -= EmployeesSelected;
         }
 
@@ -292,6 +306,7 @@ namespace FireProductManager.GuiPackage
             selectProject.FormBorderStyle = FormBorderStyle.FixedSingle;
             selectProject.ProjectSelecteds += ProjectSelected;
             selectProject.ShowDialog();
+            tb_packageid.Focus();
             selectProject.ProjectSelecteds -= ProjectSelected;
         }
 
@@ -340,7 +355,7 @@ namespace FireProductManager.GuiPackage
                     return;
                 }
                 packageid = int.Parse(tb_packageid.Text);
-                if (!RecordOperationGateway.IsPackageIdValid(packageid))
+                if (!RecordOperationGateway.IsPackageIdValid(packageid) || RecordOperationGateway.IsPackageIdDeface(packageid))
                 {
                     AutoClosingMessageBox.Show("                袋子不存在", "袋子不存在", 2000);
                     EmptyTextBox();
@@ -355,6 +370,7 @@ namespace FireProductManager.GuiPackage
                 TextBoxCheckShow();
                 PackageTareWeightNoShow();
                 EmptyTextBox();
+                btn_packageid.Visible = true;
             }   
         }
 
@@ -364,7 +380,22 @@ namespace FireProductManager.GuiPackage
             {
                 TextBoxCheck();
                 RecordPackagePutInStorageInformation();
+            }   
+        }
+
+        private void btn_destruction_Click(object sender, EventArgs e)
+        {
+            if (tb_packageid.Text == "")
+                return;
+            if(RecordOperationGateway.DefacePackage(int.Parse(tb_packageid.Text)))
+            {
+                AutoClosingMessageBox.Show("                袋子销毁", "袋子销毁", 2000);
+                EmptyTextBox();
+                TextBoxCheckShow();
+                PackageTareWeightNoShow();
             }
+                
+            tb_packageid.Focus();
         }
     }
 }
