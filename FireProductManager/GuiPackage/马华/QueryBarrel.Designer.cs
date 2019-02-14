@@ -29,7 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryBarrel));
             this.dgv_existbarrelid = new System.Windows.Forms.DataGridView();
+            this.桶编号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.存储数量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.全重 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.选择ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_return = new System.Windows.Forms.Button();
@@ -38,9 +42,6 @@
             this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.桶编号 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.存储数量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.全重 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_existbarrelid)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_package)).BeginInit();
@@ -66,6 +67,27 @@
             this.dgv_existbarrelid.TabIndex = 0;
             this.dgv_existbarrelid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_existbarrelid_CellMouseClick);
             this.dgv_existbarrelid.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_existbarrelid_CellMouseDoubleClick);
+            // 
+            // 桶编号
+            // 
+            this.桶编号.HeaderText = "桶编号";
+            this.桶编号.Name = "桶编号";
+            this.桶编号.ReadOnly = true;
+            this.桶编号.Width = 87;
+            // 
+            // 存储数量
+            // 
+            this.存储数量.HeaderText = "存储数量";
+            this.存储数量.Name = "存储数量";
+            this.存储数量.ReadOnly = true;
+            this.存储数量.Width = 87;
+            // 
+            // 全重
+            // 
+            this.全重.HeaderText = "全重(g)";
+            this.全重.Name = "全重";
+            this.全重.ReadOnly = true;
+            this.全重.Width = 87;
             // 
             // contextMenuStrip1
             // 
@@ -134,27 +156,6 @@
             this.重量.Name = "重量";
             this.重量.ReadOnly = true;
             // 
-            // 桶编号
-            // 
-            this.桶编号.HeaderText = "桶编号";
-            this.桶编号.Name = "桶编号";
-            this.桶编号.ReadOnly = true;
-            this.桶编号.Width = 87;
-            // 
-            // 存储数量
-            // 
-            this.存储数量.HeaderText = "存储数量";
-            this.存储数量.Name = "存储数量";
-            this.存储数量.ReadOnly = true;
-            this.存储数量.Width = 87;
-            // 
-            // 全重
-            // 
-            this.全重.HeaderText = "全重(g)";
-            this.全重.Name = "全重";
-            this.全重.ReadOnly = true;
-            this.全重.Width = 87;
-            // 
             // QueryBarrel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -165,6 +166,7 @@
             this.Controls.Add(this.btn_return);
             this.Controls.Add(this.dgv_existbarrelid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "QueryBarrel";

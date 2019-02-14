@@ -104,7 +104,7 @@ namespace FireProductManager.GuiPackage
             {
                 tb_packagename.Text = dr["pa_type"].ToString();
                 tb_packagemodel.Text = dr["pa_specifications"].ToString();
-                tb_packageweight.Text = dr["pa_weight"].ToString();
+                tb_packageweight.Text = dr["pa_suttle"].ToString();
                 tb_barrelid.Text = dr["pa_barrelId"].ToString();
             }
             scaleDevice.WeightGetted -= Ahdr_WeightGetted;
@@ -147,9 +147,9 @@ namespace FireProductManager.GuiPackage
                 tb_packagemodel.Text = dr["pa_specifications"].ToString();
                 tb_barrelid.Text = dr["pa_barrelId"].ToString();
                 //皮重
-                //tb_packagebackweigth.Text = dr["ir_packageTare"].ToString();
+                tb_packagebackweigth.Text = dr["pa_tareweight"].ToString();
                 if (tb_packageweight.Text != "")
-                    consumption = (double)dr["pa_weight"] - double.Parse(tb_packageweight.Text);
+                    consumption = (double)dr["pa_suttle"] - double.Parse(tb_packageweight.Text);
             }
             tb_direction.Text = "入库";
 
@@ -165,7 +165,10 @@ namespace FireProductManager.GuiPackage
 
             if (BarrelGateway.SearchShortweightBarrrelId( int.Parse(tb_barrelid.Text)))
             {
-                AutoClosingMessageBox.Show("             该桶存带数已达上限", "入库", 2000);
+                AutoClosingMessageBox.Show("             该桶存袋数已达上限", "入库", 3000);
+                EmptyTextBox();
+                TextBoxCheckShow();
+                PackageTareWeightNoShow();
                 return;
             }
             scaleDevice.WeightGetted += Ahdr_WeightGetted;
@@ -180,7 +183,7 @@ namespace FireProductManager.GuiPackage
 
             if (isPrint)
                 PrintAfterBagChange();
-            RecordOperationGateway.ReturnPackage(outid,packageid, int.Parse(tb_barrelid.Text), accountname , consumption, double.Parse(tb_packageweight.Text)- double.Parse(tb_packagebackweigth.Text));
+            RecordOperationGateway.ReturnPackage(outid,packageid, int.Parse(tb_barrelid.Text), accountname , consumption, double.Parse(tb_packageweight.Text)- double.Parse(tb_packagebackweigth.Text),double.Parse(tb_packagebackweigth.Text));
             ListViewShow();
             AutoClosingMessageBox.Show("                入库成功", "入库", 2000);
             EmptyTextBox();
@@ -352,7 +355,7 @@ namespace FireProductManager.GuiPackage
                     return;
                 }
                 packageid = int.Parse(tb_packageid.Text);
-                if (!RecordOperationGateway.IsPackageIdValid(packageid))
+                if (!RecordOperationGateway.IsPackageIdValid(packageid) || RecordOperationGateway.IsPackageIdDeface(packageid))
                 {
                     AutoClosingMessageBox.Show("                袋子不存在", "袋子不存在", 2000);
                     EmptyTextBox();
@@ -382,7 +385,16 @@ namespace FireProductManager.GuiPackage
 
         private void btn_destruction_Click(object sender, EventArgs e)
         {
-
+            if (tb_packageid.Text == "")
+                return;
+            if(RecordOperationGateway.DefacePackage(int.Parse(tb_packageid.Text)))
+            {
+                AutoClosingMessageBox.Show("                袋子销毁", "袋子销毁", 2000);
+                EmptyTextBox();
+                TextBoxCheckShow();
+                PackageTareWeightNoShow();
+            }
+                
             tb_packageid.Focus();
         }
     }

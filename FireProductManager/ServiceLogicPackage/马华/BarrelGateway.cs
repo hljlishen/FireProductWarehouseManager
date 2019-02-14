@@ -72,7 +72,7 @@ namespace FireProductManager.ServiceLogicPackage
             DataTable dt = Query(sql);
 
             foreach (DataRow dr in dt.Rows)
-                weigth += double.Parse(dr["pa_weight"].ToString());
+                 weigth += double.Parse(dr["pa_suttle"].ToString());
 
             return weigth;
         }

@@ -69,10 +69,10 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //还包
-        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountName,double consumption, double returnWeight)
+        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountName,double consumption, double returnWeight,double tareWeigh)
         {
             //增加皮重
-            PackageGateway.ReturnPackage(packageid, barrelid, returnWeight);
+            PackageGateway.ReturnPackage(packageid, barrelid, returnWeight, tareWeigh);
 
             InRecord inRecord = new InRecord();
             inRecord.ir_outid = outid;
@@ -84,16 +84,26 @@ namespace FireProductManager.ServiceLogicPackage
             inRecord.Insert();  
         }
 
-        //判断packageid是否销毁   
+        //判断packageid是否存在   
         public static bool IsPackageIdValid(int packageid)
         {
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_id", packageid));
             //增加未销毁0、1，销毁2
-            //maker.AddAndCondition(new IntEqual("",2));
             DataTable dt = Query(maker.MakeSelectSql());
             return dt.Rows.Count > 0;
         }
+
+        //判断袋子是否被销毁
+        public static bool IsPackageIdDeface(int packageid)
+        {
+            SelectSqlMaker maker = new SelectSqlMaker("package");
+            maker.AddAndCondition(new IntEqual("pa_id", packageid));
+            maker.AddAndCondition(new IntEqual("pa_isinWarehouse", 2));
+            DataTable dt = Query(maker.MakeSelectSql());
+            return dt.Rows.Count > 0;
+        }
+
 
         //出库条件搜索
         public static DataTable ConditionsSearchOutRecord(string packageId,string employeeId,string projectId,string direction,bool isChoiceTime,DateTime begintTime,DateTime endTime)
@@ -157,11 +167,13 @@ namespace FireProductManager.ServiceLogicPackage
             return Query(sql);
         }
 
-        //public static DataTable SelectInRecord()
-        //{
-        //    SelectSqlMaker maker = new SelectSqlMaker("inrecord");
-        //    string sql = maker.MakeSelectSql();
-        //    return Query(sql);
-        //}
+        public static bool DefacePackage(int packageId)
+        {
+            Package package = new Package();
+            package.pa_id = packageId;
+            package.pa_isinWarehouse = 2;
+            package.Update();
+            return true;
+        }
     }
 }

@@ -110,7 +110,7 @@ namespace FireProductManager.GuiPackage
 
         private string SelectPackageModel(int id) => SelcetInRecord(id)["pa_specifications"].ToString();
 
-        private double SelectPackageWeigth(int id) => (double)SelcetInRecord(id)["pa_weight"];
+        private double SelectPackageWeigth(int id) => (double)SelcetInRecord(id)["pa_suttle"];
 
         private string SelectProductionCompany(int id) => SelcetInRecord(id)["pa_productionCompany"].ToString();
 

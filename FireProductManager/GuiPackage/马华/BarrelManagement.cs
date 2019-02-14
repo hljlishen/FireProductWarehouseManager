@@ -104,7 +104,7 @@ namespace FireProductManager.GuiPackage
                 dgv_packageshow1.Rows[index].Cells[0].Value = dr["pa_id"];
                 dgv_packageshow1.Rows[index].Cells[1].Value = dr["pa_type"];
                 dgv_packageshow1.Rows[index].Cells[2].Value = dr["pa_specifications"];
-                dgv_packageshow1.Rows[index].Cells[3].Value = dr["pa_weight"] + "g";
+                dgv_packageshow1.Rows[index].Cells[3].Value = dr["pa_suttle"] + "g";
             }
         }
 
@@ -118,7 +118,7 @@ namespace FireProductManager.GuiPackage
                 dgv_packageshow2.Rows[index].Cells[0].Value = dr["pa_id"];
                 dgv_packageshow2.Rows[index].Cells[1].Value = dr["pa_type"];
                 dgv_packageshow2.Rows[index].Cells[2].Value = dr["pa_specifications"];
-                dgv_packageshow2.Rows[index].Cells[3].Value = dr["pa_weight"] + "g";
+                dgv_packageshow2.Rows[index].Cells[3].Value = dr["pa_suttle"] + "g";
             }
         }
 
