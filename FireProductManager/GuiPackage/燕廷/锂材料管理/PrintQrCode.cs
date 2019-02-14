@@ -15,7 +15,7 @@ namespace FireProductManager.GuiPackage
         private int _labelhigh = 111;
         private int _codeSizeInPixels;
 
-        public PrintQRCode(int packageid )
+        public PrintQRCode(int packageid)
         {
             InitializeComponent();
             _packageid = packageid;
@@ -117,7 +117,7 @@ namespace FireProductManager.GuiPackage
             la_name.Text = myDr["pa_type"].ToString();
             la_model.Text = myDr["pa_specifications"].ToString();
             la_purchaseTime.Text = myDr["pa_purchaseTime"].ToString();
-            string tagname = myDr["pa_type"].ToString() + "-" + myDr["pa_specifications"].ToString() + "-" + _packageid;
+            string tagname = _packageid + "-" + myDr["pa_barrelid"].ToString() + "-" + myDr["pa_specifications"].ToString();
             return tagname;
         }
     }

@@ -136,11 +136,11 @@ namespace FireProductManager.GuiPackage
             mainPage = new MainPage();
             GC.Collect();
 
-            try { mainPage.MdiParent = this; }
-            catch (Exception)
-            {
-                Application.Exit();
-            }
+            //try { mainPage.MdiParent = this; }
+            //catch (Exception)
+            //{
+            //    Application.Exit();
+            //}
 
             mainPage.Show();
             出入库登记ToolStripMenultem.BackColor = System.Drawing.Color.DodgerBlue;
