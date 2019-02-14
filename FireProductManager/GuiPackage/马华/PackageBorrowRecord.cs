@@ -172,7 +172,7 @@ namespace FireProductManager.GuiPackage
                 }
             }
 
-            dgv_PackageInAndOutrecord.Sort(dgv_PackageInAndOutrecord.Columns[5], ListSortDirection.Ascending);
+            dgv_PackageInAndOutrecord.Sort(dgv_PackageInAndOutrecord.Columns[5], ListSortDirection.Descending);
             tb_packageid.Text = "";
             tb_employeeid.Text = "";
             tb_projectid.Text = "";
