@@ -107,16 +107,11 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //找到的桶内存储数量不足的桶id
-        public static int SearchShortweightBarrrelId()
+        public static bool SearchShortweightBarrrelId(int barrelid)
         {
-            int barrelId = 0;
-            foreach (DataRow dr in NoRemoveBarrelId().Rows)
-            {
-                barrelId = (int)dr["ba_id"];
-                if (SelectBarrelidPackageNumber(barrelId) < SelectBarrelLoadingCapacit(barrelId))
-                    return barrelId;
-            }
-            return  -1;
+            if (SelectBarrelidPackageNumber(barrelid) < SelectBarrelLoadingCapacit(barrelid))
+                return false;
+            return  true;
         }
 
         //查询桶内袋子的数量

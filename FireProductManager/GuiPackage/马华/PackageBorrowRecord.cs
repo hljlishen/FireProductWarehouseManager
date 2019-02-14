@@ -18,6 +18,7 @@ namespace FireProductManager.GuiPackage
 
         string emid = "";
         string prid = "";
+        EventArgs en;
 
         public PackageBorrowRecord()
         {
@@ -113,7 +114,7 @@ namespace FireProductManager.GuiPackage
 
         private string SelectProductionCompany(int id) => SelcetInRecord(id)["pa_productionCompany"].ToString();
 
-        private string SelectPurchaseTime(int id) => SelcetInRecord(id)["pa_purchaseTime"].ToString();
+        private string SelectPurchaseTime(int id) => ((DateTime)SelcetInRecord(id)["pa_purchaseTime"]).ToString("yyyy-MM-dd");
 
         private string SelectPorjectPassword(int id)
         {
@@ -188,6 +189,7 @@ namespace FireProductManager.GuiPackage
             selectEmployees.EmployeesSelected += EmployeesSelected;
             selectEmployees.ShowDialog();
             selectEmployees.EmployeesSelected -= EmployeesSelected;
+            btn_search.Focus();
         }
 
         private void EmployeesSelected(int employeesId, string emNumbers,string name)
@@ -205,6 +207,7 @@ namespace FireProductManager.GuiPackage
             selectPackages.PackageIdSelected += PackagesSelected;
             selectPackages.ShowDialog();
             selectPackages.PackageIdSelected -= PackagesSelected;
+            btn_search.Focus();
         }
 
         //查询项目
@@ -215,6 +218,7 @@ namespace FireProductManager.GuiPackage
             selectProject.ProjectSelecteds += ProjectSelected;
             selectProject.ShowDialog();
             selectProject.ProjectSelecteds -= ProjectSelected;
+            btn_search.Focus();
         }
 
         private void ProjectSelected(int projectid,string projectPassword)
@@ -239,6 +243,8 @@ namespace FireProductManager.GuiPackage
                 Close();
             }
         }
+
+        private void cb_directquery_SelectedIndexChanged(object sender, EventArgs e) => btn_search.Focus();
 
         //右键菜单选择
         //private void dgv_PackageInAndOutrecord_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)

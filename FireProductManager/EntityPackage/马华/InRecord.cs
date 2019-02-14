@@ -12,7 +12,7 @@ namespace FireProductManager.EntityPackage
         public double? ir_consumption { get; set; } //消耗量
         public double? ir_returnWeight { get; set; } //归还重量
         public string ir_accountName { get; set; }
-        public double? ir_packageTare { get; set; }//袋子皮重
+        //public double? ir_packageTare { get; set; }//袋子皮重
 
         public InRecord() : base("inrecord", "ir_id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {

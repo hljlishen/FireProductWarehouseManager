@@ -69,8 +69,9 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //还包
-        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountName,double consumption, double returnWeight,double packageTare)
+        public static void ReturnPackage(int outid,int packageid,int barrelid, string accountName,double consumption, double returnWeight)
         {
+            //增加皮重
             PackageGateway.ReturnPackage(packageid, barrelid, returnWeight);
 
             InRecord inRecord = new InRecord();
@@ -80,15 +81,16 @@ namespace FireProductManager.ServiceLogicPackage
             inRecord.ir_timeStmp = DateTime.Now;
             inRecord.ir_consumption = consumption;
             inRecord.ir_returnWeight = returnWeight;
-            inRecord.ir_packageTare = packageTare;
             inRecord.Insert();  
         }
 
-        //判断packageid是否存在
+        //判断packageid是否销毁   
         public static bool IsPackageIdValid(int packageid)
         {
             SelectSqlMaker maker = new SelectSqlMaker("package");
             maker.AddAndCondition(new IntEqual("pa_id", packageid));
+            //增加未销毁0、1，销毁2
+            //maker.AddAndCondition(new IntEqual("",2));
             DataTable dt = Query(maker.MakeSelectSql());
             return dt.Rows.Count > 0;
         }
@@ -155,11 +157,11 @@ namespace FireProductManager.ServiceLogicPackage
             return Query(sql);
         }
 
-        public static DataTable SelectInRecord()
-        {
-            SelectSqlMaker maker = new SelectSqlMaker("inrecord");
-            string sql = maker.MakeSelectSql();
-            return Query(sql);
-        }
+        //public static DataTable SelectInRecord()
+        //{
+        //    SelectSqlMaker maker = new SelectSqlMaker("inrecord");
+        //    string sql = maker.MakeSelectSql();
+        //    return Query(sql);
+        //}
     }
 }

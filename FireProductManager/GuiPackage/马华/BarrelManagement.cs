@@ -31,7 +31,6 @@ namespace FireProductManager.GuiPackage
             }
             insertbarrelid = BarrelGateway.RecordNewBarrel();
             tb_showaddbarrelid.Text = insertbarrelid.ToString() + "号桶";
-            tb_barrelLoadingCapacity.Text = "0";
         }
 
         private void btn_removebarrel_Click(object sender, EventArgs e)
@@ -227,10 +226,9 @@ namespace FireProductManager.GuiPackage
         private void btn_barrelLoadingCapacity_Click(object sender, EventArgs e)
         {
             if (tb_barrelLoadingCapacity.Text == "")
-                return;
+                tb_barrelLoadingCapacity.Text = "0";
             BarrelGateway.UpdateLoadingCapacity(insertbarrelid,int.Parse(tb_barrelLoadingCapacity.Text));
             AutoClosingMessageBox.Show("                   设置成功", "设置成功", 1000);
-            tb_barrelLoadingCapacity.Text = "";
             tb_showaddbarrelid.Text = "";
         }
 
@@ -288,6 +286,7 @@ namespace FireProductManager.GuiPackage
             if (int.Parse(la_number1.Text) > int.Parse(tb_delectbarrelLoadingCapacity1.Text))
             {
                 AutoClosingMessageBox.Show("  修改失败，存储数量小于当前数量", "修改失败", 1000);
+                tb_delectbarrelLoadingCapacity1.Text = loadingCapacity1.ToString();
                 return;
             }
             BarrelGateway.UpdateLoadingCapacity(barrelid1,int.Parse(tb_delectbarrelLoadingCapacity1.Text));
@@ -302,6 +301,7 @@ namespace FireProductManager.GuiPackage
             if (int.Parse(la_number2.Text) > int.Parse(tb_delectbarrelLoadingCapacity2.Text))
             {
                 AutoClosingMessageBox.Show("  修改失败，存储数量小于当前数量", "修改失败", 1000);
+                tb_delectbarrelLoadingCapacity2.Text = loadingCapacity2.ToString();
                 return;
             }
             BarrelGateway.UpdateLoadingCapacity(barrelid2,int.Parse(tb_delectbarrelLoadingCapacity2.Text));

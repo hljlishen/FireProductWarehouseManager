@@ -68,7 +68,7 @@ namespace FireProductManager.ServiceLogicPackage
         private double GetWeight(string weightStr)
         {
             int gIndex = weightStr.IndexOf('g');
-            string weight = weightStr.Substring(3, gIndex - 4).Trim();
+            string weight = weightStr.Substring(2, gIndex - 4).Trim();
 
             return double.Parse(weight);
         }

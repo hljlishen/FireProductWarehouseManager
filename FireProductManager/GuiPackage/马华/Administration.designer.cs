@@ -46,6 +46,7 @@
             // 
             // 出入库登记ToolStripMenultem
             // 
+            this.出入库登记ToolStripMenultem.BackColor = System.Drawing.Color.White;
             this.出入库登记ToolStripMenultem.Name = "出入库登记ToolStripMenultem";
             this.出入库登记ToolStripMenultem.Size = new System.Drawing.Size(80, 21);
             this.出入库登记ToolStripMenultem.Text = "出入库登记";
@@ -54,6 +55,7 @@
             // 员工管理ToolStripMenuItem
             // 
             this.员工管理ToolStripMenuItem.AutoSize = false;
+            this.员工管理ToolStripMenuItem.BackColor = System.Drawing.Color.White;
             this.员工管理ToolStripMenuItem.Name = "员工管理ToolStripMenuItem";
             this.员工管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.员工管理ToolStripMenuItem.Text = "员工管理";
@@ -61,6 +63,7 @@
             // 
             // 项目令号ToolStripMenuItem
             // 
+            this.项目令号ToolStripMenuItem.BackColor = System.Drawing.Color.White;
             this.项目令号ToolStripMenuItem.Name = "项目令号ToolStripMenuItem";
             this.项目令号ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.项目令号ToolStripMenuItem.Text = "项目令号";
@@ -68,6 +71,7 @@
             // 
             // 仓库管理ToolStripMenuItem
             // 
+            this.仓库管理ToolStripMenuItem.BackColor = System.Drawing.Color.White;
             this.仓库管理ToolStripMenuItem.Name = "仓库管理ToolStripMenuItem";
             this.仓库管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.仓库管理ToolStripMenuItem.Text = "仓库管理";
@@ -75,6 +79,7 @@
             // 
             // 材料管理ToolStripMenuItem
             // 
+            this.材料管理ToolStripMenuItem.BackColor = System.Drawing.Color.White;
             this.材料管理ToolStripMenuItem.Name = "材料管理ToolStripMenuItem";
             this.材料管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.材料管理ToolStripMenuItem.Text = "材料管理";
@@ -82,6 +87,7 @@
             // 
             // 材料出入记录ToolStripMenuItem
             // 
+            this.材料出入记录ToolStripMenuItem.BackColor = System.Drawing.Color.White;
             this.材料出入记录ToolStripMenuItem.Name = "材料出入记录ToolStripMenuItem";
             this.材料出入记录ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.材料出入记录ToolStripMenuItem.Text = "材料出入记录";
@@ -89,6 +95,7 @@
             // 
             // 管理员ToolStripMenuItem
             // 
+            this.管理员ToolStripMenuItem.BackColor = System.Drawing.Color.White;
             this.管理员ToolStripMenuItem.Name = "管理员ToolStripMenuItem";
             this.管理员ToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
             this.管理员ToolStripMenuItem.Text = "管理员";
@@ -113,6 +120,7 @@
             // 
             // 仓库数据统计ToolStripMenuItem
             // 
+            this.仓库数据统计ToolStripMenuItem.BackColor = System.Drawing.Color.White;
             this.仓库数据统计ToolStripMenuItem.Name = "仓库数据统计ToolStripMenuItem";
             this.仓库数据统计ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.仓库数据统计ToolStripMenuItem.Text = "仓库数据统计";
