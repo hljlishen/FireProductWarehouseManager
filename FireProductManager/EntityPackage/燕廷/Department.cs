@@ -9,11 +9,9 @@ namespace FireProductManager.EntityPackage
 {
     public class Department : ActiveRecord
     {
-        //public uint? de_id { get; set; }
         public int? de_id { get; set; }
         public string de_name { get; set; }
         public int? de_belongId { get; set; }
-        private List<Department> departments;
 
         public Department() : base("department", "de_id", DbLinkManager.databaseType, DbLinkManager.connectString)
         {

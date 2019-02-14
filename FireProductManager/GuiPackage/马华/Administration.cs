@@ -48,12 +48,12 @@ namespace FireProductManager.GuiPackage
 
         private void Administration_Load(object sender, EventArgs e)
         {
-            try { connectFingerprint.GetIPConnect(); }
-            catch (Exception)
-            {
-                MessageBox.Show("无法连接到出库指纹设备");
-                Application.Exit();
-            }
+            //try { connectFingerprint.GetIPConnect(); }
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("无法连接到出库指纹设备");
+            //    Application.Exit();
+            //}
 
             connectFingerprint.AddDisplayer(this);
             ShowLoginWindow();
@@ -129,11 +129,11 @@ namespace FireProductManager.GuiPackage
             mainPage = new MainPage();
             GC.Collect();
 
-            try { mainPage.MdiParent = this; }
-            catch (Exception)
-            {
-                Application.Exit();
-            }
+            //try { mainPage.MdiParent = this; }
+            //catch (Exception)
+            //{
+            //    Application.Exit();
+            //}
 
             mainPage.Show();
             mainPage.Activate();

@@ -18,11 +18,13 @@ namespace FireProductManager.GuiPackage
         private int _id;
         private string _type;
         private string _specifications;
-        private double _weigth;
+        private double _suttle;
         private int _barrelId;
         private string _isinWarehouse;
         private string _productionCompany;
         private DateTime _purchaseTime;
+        private double _tareweight;
+        private string _note;
 
         private void AddOrModifyInstrument_Load(object sender, EventArgs e)
         {
@@ -53,8 +55,10 @@ namespace FireProductManager.GuiPackage
             _packagefrom = packageManagement;
 
             bt_addinstrument.Visible = false;
-            la_packageweight.Visible = false;
-            tb_packageweight.Visible = false;
+
+            la_weigth.Visible = false;
+            tb_weight.Visible = false;
+
             tb_beginningweight.ReadOnly = true;
 
             _id = packageid;
@@ -68,12 +72,14 @@ namespace FireProductManager.GuiPackage
             DataRow myDr = dataTable.Rows[0];
             tb_type.Text = myDr["pa_type"].ToString();
             tb_specifications.Text = myDr["pa_specifications"].ToString();
-            tb_weight.Text = myDr["pa_weight"].ToString();
+            tb_suttle.Text = myDr["pa_suttle"].ToString();
             tb_barrel.Text = myDr["pa_barrelId"].ToString();
             cb_isInWareHouse.Text = PackageGateway.IsinWarehouseDataTypeChangeString((int)myDr["pa_isinWarehouse"]);
             tb_productioncompany.Text = myDr["pa_productionCompany"].ToString();
             time_purchaseTime.Text = myDr["pa_purchaseTime"].ToString();
             tb_beginningweight.Text = myDr["pa_beginningweight"].ToString();
+            tb_tareweight.Text = myDr["pa_tareweight"].ToString();
+            tb_note.Text = myDr["pa_note"].ToString();
         }
 
         //取消按钮
@@ -98,7 +104,7 @@ namespace FireProductManager.GuiPackage
         {
             GetPackageInformation();
             if (!FormValidation()) return;
-            PackageGateway.NewPackage(_type,_specifications,_weigth, _barrelId, _isinWarehouse,_productionCompany,_purchaseTime);
+            PackageGateway.NewPackage(_type, _specifications, _suttle, _barrelId, _isinWarehouse, _productionCompany, _purchaseTime, _tareweight, _note);
             AutoClosingMessageBox.Show("材料信息保存成功", "仪器信息添加", 1000);
             ResetPageInformation();
             PrintQRCode printQRCode = new PrintQRCode(PackageGateway.GetLastPackage());
@@ -108,14 +114,8 @@ namespace FireProductManager.GuiPackage
         //重置页面信息
         private void ResetPageInformation()
         {
-            foreach (Control ctr in Controls)
-            {
-                if (ctr is TextBox)//考虑是文本框的话
-                {
-                    ((TextBox)ctr).Text = String.Empty;
-                }
-            }
-            cb_isInWareHouse.Text = "入库";
+            tb_suttle.Text = "";
+            tb_tareweight.Text = "";
         }
 
         //获取材料信息
@@ -123,16 +123,32 @@ namespace FireProductManager.GuiPackage
         {
             _type = tb_type.Text;
             _specifications = tb_specifications.Text;
-            if (tb_weight.Text.Equals("")) return;
             if (title.Text.Equals("修改材料基本信息"))
-                _weigth = Convert.ToDouble(tb_weight.Text);
+                _suttle = Convert.ToDouble(tb_suttle.Text);
             else
-                _weigth = Convert.ToDouble(tb_weight.Text) - Convert.ToDouble(tb_packageweight.Text);
-            if (tb_barrel.Text.Equals("")) return;
+                GetPackageWeight();
             _barrelId = Convert.ToInt32(tb_barrel.Text);
             _isinWarehouse = cb_isInWareHouse.Text;
             _productionCompany = tb_productioncompany.Text;
             _purchaseTime = Convert.ToDateTime(time_purchaseTime.Text);
+            _note = tb_note.Text;
+        }
+
+        //材料初始重量计算
+        private void GetPackageWeight()
+        {
+            if (tb_tareweight.Text.Trim().Equals("") && !tb_suttle.Text.Trim().Equals(""))
+            {
+                _tareweight = (Convert.ToDouble(tb_weight.Text) - Convert.ToDouble(tb_suttle.Text));
+                tb_tareweight.Text = _tareweight.ToString();
+                _suttle = Convert.ToDouble(tb_suttle.Text);
+            }
+            if (!tb_tareweight.Text.Trim().Equals("") && tb_suttle.Text.Trim().Equals(""))
+            {
+                tb_suttle.Text = (Convert.ToDouble(tb_weight.Text) - Convert.ToDouble(tb_tareweight.Text)).ToString();
+                _suttle = Convert.ToDouble(tb_weight.Text) - Convert.ToDouble(tb_tareweight.Text);
+                _tareweight = Convert.ToDouble(tb_tareweight.Text);
+            }
         }
 
         //材料信息修改
@@ -140,7 +156,7 @@ namespace FireProductManager.GuiPackage
         {
             GetPackageInformation();
             if (!FormValidation()) return;
-            PackageGateway.UpdatePackage(_id,_type, _specifications, _weigth, _barrelId, _isinWarehouse, _productionCompany, _purchaseTime);
+            PackageGateway.UpdatePackage(_id,_type, _specifications, _suttle, _barrelId, _isinWarehouse, _productionCompany, _purchaseTime, _tareweight, _note);
             AutoClosingMessageBox.Show("材料信息修改成功", "材料信息修改", 1000);
             _packagefrom.ShowAllPackage();
             Close();
@@ -167,14 +183,6 @@ namespace FireProductManager.GuiPackage
             }
             else la_errorspecifications.Visible = false;
 
-            if (tb_weight.Text.Trim().Equals(""))
-            {
-                la_errorweigth.Visible = true;
-                la_errorweigth.ForeColor = Color.Red;
-                validation = false;
-            }
-            else la_errorweigth.Visible = false;
-
             if (tb_barrel.Text.Trim().Equals(""))
             {
                 la_errorbarrel.Visible = true;
@@ -191,9 +199,17 @@ namespace FireProductManager.GuiPackage
             }
             else la_errorproductioncompany.Visible = false;
 
-            if(title.Text.Equals("修改材料基本信息")) return validation;
+            if (title.Text.Equals("修改材料基本信息")) return validation;
 
-            if (tb_packageweight.Text.Trim().Equals(""))
+            if (tb_weight.Text.Trim().Equals(""))
+            {
+                la_errorweigth.Visible = true;
+                la_errorweigth.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorweigth.Visible = false;
+
+            if (tb_tareweight.Text.Trim().Equals("") && tb_suttle.Text.Trim().Equals(""))
             {
                 la_errorpackageweightnull.Visible = true;
                 la_errorpackageweightnull.ForeColor = Color.Red;
@@ -226,7 +242,15 @@ namespace FireProductManager.GuiPackage
         }
 
         //设置文本框只能输入数字
-        private void tb_packageweight_KeyPress(object sender, KeyPressEventArgs e)
+        private void tb_tareweight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46) && (e.KeyChar != 127))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tb_suttle_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar < 48 || e.KeyChar > 57) && (e.KeyChar != 8) && (e.KeyChar != 46) && (e.KeyChar != 127))
             {

@@ -244,7 +244,7 @@ namespace FireProductManager.ServiceLogicPackage
             package.pa_id = packageid;
             package.pa_isinWarehouse = 0;
             package.pa_barrelId = barrelid;
-            package.pa_weight = weigth;
+            package.pa_suttle = weigth;
             package.Update();
         }
 
@@ -277,32 +277,36 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //添加材料 
-        public static void NewPackage(string type, string specifications, double weigth, int barrelId, string isinWarehouse, string productionCompany, DateTime purchaseTime)
+        public static void NewPackage(string type, string specifications, double suttle, int barrelId, string isinWarehouse, string productionCompany, DateTime purchaseTime,double tareweight,string note)
         {
             Package package = new Package();
             package.pa_type = type;
             package.pa_specifications = specifications;
-            package.pa_weight = weigth;
+            package.pa_suttle = suttle;
             package.pa_barrelId = barrelId;
             package.pa_isinWarehouse = IsinWarehouseDataTypeChangeInt(isinWarehouse);
             package.pa_productionCompany = productionCompany;
             package.pa_purchaseTime = purchaseTime;
-            package.pa_beginningweight = weigth;
+            package.pa_beginningweight = suttle;
+            package.pa_tareweight = tareweight;
+            package.pa_note = note;
             package.Insert();
         }
 
         //修改材料 
-        public static void UpdatePackage(int id ,string type, string specifications, double weigth, int barrelId, string isinWarehouse,string productionCompany, DateTime purchaseTime)
+        public static void UpdatePackage(int id ,string type, string specifications, double suttle, int barrelId, string isinWarehouse,string productionCompany, DateTime purchaseTime,double tareweight, string note)
         {
             Package package = new Package();
             package.pa_id = id;
             package.pa_type = type;
             package.pa_specifications = specifications;
-            package.pa_weight = weigth;
+            package.pa_suttle = suttle;
             package.pa_barrelId = barrelId;
             package.pa_isinWarehouse = IsinWarehouseDataTypeChangeInt(isinWarehouse);
             package.pa_productionCompany = productionCompany;
             package.pa_purchaseTime = purchaseTime;
+            package.pa_tareweight = tareweight;
+            package.pa_note = note;
             package.Update();
         }
 
@@ -335,14 +339,16 @@ namespace FireProductManager.ServiceLogicPackage
             int _isinWarehouse = -1;
             if (isinWarehouse.Equals("在库")) return 0;
             if (isinWarehouse.Equals("不在库")) return 1;
+            if (isinWarehouse.Equals("销毁")) return 2;
             return _isinWarehouse;
         }
 
-        //在库状态转化为
+        //在库状态转化为string
         public static string IsinWarehouseDataTypeChangeString(int isinWarehouse)
         {
             string _isinWarehouse = "不在库";
             if (isinWarehouse == 0) return "在库";
+            if (isinWarehouse == 2) return "销毁";
             return _isinWarehouse;
         }
 

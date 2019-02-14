@@ -45,15 +45,16 @@ namespace FireProductManager.GuiPackage
                 DataGridViewRow row = new DataGridViewRow();
                 int index = dgv_instrumentinformation.Rows.Add(row);
                 dgv_instrumentinformation.Rows[index].Cells[0].Value = dr["pa_id"];
-                dgv_instrumentinformation.Rows[index].Cells[1].Value = dr["pa_type"];
-                dgv_instrumentinformation.Rows[index].Cells[2].Value = dr["pa_specifications"];
-                dgv_instrumentinformation.Rows[index].Cells[3].Value = dr["pa_weight"];
-                dgv_instrumentinformation.Rows[index].Cells[4].Value = dr["pa_barrelid"];
+                dgv_instrumentinformation.Rows[index].Cells[1].Value = dr["pa_barrelid"];
+                dgv_instrumentinformation.Rows[index].Cells[2].Value = dr["pa_type"];
+                dgv_instrumentinformation.Rows[index].Cells[3].Value = dr["pa_specifications"];
+                dgv_instrumentinformation.Rows[index].Cells[4].Value = dr["pa_suttle"];
                 dgv_instrumentinformation.Rows[index].Cells[5].Value = PackageGateway.IsinWarehouseDataTypeChangeString((int)dr["pa_isinwarehouse"]);
                 dgv_instrumentinformation.Rows[index].Cells[6].Value = dr["pa_productionCompany"];
                 dgv_instrumentinformation.Rows[index].Cells[7].Value = ((DateTime)dr["pa_purchasetime"]).ToString("yyyy-MM-dd");
                 dgv_instrumentinformation.Rows[index].Cells[8].Value = dr["pa_beginningweight"];
-                
+                dgv_instrumentinformation.Rows[index].Cells[9].Value = dr["pa_tareweight"];
+                dgv_instrumentinformation.Rows[index].Cells[10].Value = dr["pa_note"];
             }
         }
 
@@ -90,7 +91,7 @@ namespace FireProductManager.GuiPackage
         }
         #endregion
 
-        #region 材料的增、删、改
+        #region 材料的增、删、改、打印二维码
         //右键单击表格数据
         private void dgv_instrumentinformation_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -155,6 +156,15 @@ namespace FireProductManager.GuiPackage
                 }
                 AutoClosingMessageBox.Show("该材料存在出入库记录，无法删除", "删除失败", 2000);
             }
+        }
+
+        private void tsm_printqrcode_Click(object sender, EventArgs e) => PrintQRCode();
+
+        //打印二维码
+        private void PrintQRCode()
+        {
+            int packageid = (int)dgv_instrumentinformation.CurrentRow.Cells[0].Value;
+            PrintQRCode printQRCode = new PrintQRCode(packageid);
         }
         #endregion
 
