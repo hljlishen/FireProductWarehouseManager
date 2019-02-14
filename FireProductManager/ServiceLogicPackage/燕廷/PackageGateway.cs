@@ -99,11 +99,11 @@ namespace FireProductManager.ServiceLogicPackage
                 string key = (string)dr["pa_type"];
                 if (keyValuePairs.Keys.Contains(key))
                 {
-                    keyValuePairs[key] += (double)dr["pa_weight"];
+                    keyValuePairs[key] += (double)dr["pa_suttle"];
                 }
                 else
                 {
-                    keyValuePairs.Add((string)dr["pa_type"], (double)dr["pa_weight"]);
+                    keyValuePairs.Add((string)dr["pa_type"], (double)dr["pa_suttle"]);
                 }
             }
             return keyValuePairs;
@@ -157,7 +157,7 @@ namespace FireProductManager.ServiceLogicPackage
                 {
                     if ((int)dr["pa_isinWarehouse"] == 0)
                     {
-                        keyValuePairs[key] += ((double)dr["pa_beginningweight"] - (double)dr["pa_weight"]);
+                        keyValuePairs[key] += ((double)dr["pa_beginningweight"] - (double)dr["pa_suttle"]);
                     }
                     else if ((int)dr["pa_isinWarehouse"] == 1)
                     {
@@ -168,7 +168,7 @@ namespace FireProductManager.ServiceLogicPackage
                 {
                     if ((int)dr["pa_isinWarehouse"] == 0)
                     {
-                        keyValuePairs.Add((string)dr["pa_type"], ((double)dr["pa_beginningweight"] - (double)dr["pa_weight"]));
+                        keyValuePairs.Add((string)dr["pa_type"], ((double)dr["pa_beginningweight"] - (double)dr["pa_suttle"]));
                     }
                     else if ((int)dr["pa_isinWarehouse"] == 1)
                     {
@@ -202,7 +202,7 @@ namespace FireProductManager.ServiceLogicPackage
                 {
                     if (GetInRecordInformation((int)dr["or_id"]) == -1)
                     {
-                        keyValuePairs[key] += (double)myDr["pa_weight"];
+                        keyValuePairs[key] += (double)myDr["pa_suttle"];
                     }
                     else
                     {
@@ -213,7 +213,7 @@ namespace FireProductManager.ServiceLogicPackage
                 {
                     if (GetInRecordInformation((int)dr["or_id"]) == -1)
                     {
-                        keyValuePairs.Add((string)myDr["pa_type"], (double)myDr["pa_weight"]);
+                        keyValuePairs.Add((string)myDr["pa_type"], (double)myDr["pa_suttle"]);
                     }
                     else
                     {
@@ -238,13 +238,14 @@ namespace FireProductManager.ServiceLogicPackage
             return consumption;
         }
 
-        internal static void ReturnPackage(int packageid, int barrelid , double weigth)
+        internal static void ReturnPackage(int packageid, int barrelid , double suttle, double tareweight)
         {
             Package package = new Package();
             package.pa_id = packageid;
             package.pa_isinWarehouse = 0;
             package.pa_barrelId = barrelid;
-            package.pa_suttle = weigth;
+            package.pa_suttle = suttle;
+            package.pa_tareweight = tareweight;
             package.Update();
         }
 

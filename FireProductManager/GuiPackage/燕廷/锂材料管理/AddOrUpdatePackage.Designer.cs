@@ -62,6 +62,7 @@
             this.la_suttle = new System.Windows.Forms.Label();
             this.tb_note = new System.Windows.Forms.TextBox();
             this.la_note = new System.Windows.Forms.Label();
+            this.la_errorfull = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // time_purchaseTime
@@ -398,11 +399,24 @@
             this.la_note.TabIndex = 125;
             this.la_note.Text = "材料备注：";
             // 
+            // la_errorfull
+            // 
+            this.la_errorfull.AutoSize = true;
+            this.la_errorfull.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_errorfull.ForeColor = System.Drawing.Color.Red;
+            this.la_errorfull.Location = new System.Drawing.Point(495, 213);
+            this.la_errorfull.Name = "la_errorfull";
+            this.la_errorfull.Size = new System.Drawing.Size(61, 17);
+            this.la_errorfull.TabIndex = 127;
+            this.la_errorfull.Text = "*该桶已满";
+            this.la_errorfull.Visible = false;
+            // 
             // AddOrUpdatePackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 538);
+            this.Controls.Add(this.la_errorfull);
             this.Controls.Add(this.tb_note);
             this.Controls.Add(this.la_note);
             this.Controls.Add(this.tb_suttle);
@@ -482,5 +496,6 @@
         private System.Windows.Forms.Label la_suttle;
         private System.Windows.Forms.TextBox tb_note;
         private System.Windows.Forms.Label la_note;
+        private System.Windows.Forms.Label la_errorfull;
     }
 }

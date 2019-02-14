@@ -25,6 +25,7 @@ namespace FireProductManager.GuiPackage
         private DateTime _purchaseTime;
         private double _tareweight;
         private string _note;
+        private int _packagenumber;
 
         private void AddOrModifyInstrument_Load(object sender, EventArgs e)
         {
@@ -48,6 +49,7 @@ namespace FireProductManager.GuiPackage
 
         //修改材料构造方法
         public AddOrUpdatePackage(int packageid, PackageManagement packageManagement)
+
         {
             InitializeComponent();
             title.Text = "修改材料基本信息";
@@ -58,8 +60,6 @@ namespace FireProductManager.GuiPackage
 
             la_weigth.Visible = false;
             tb_weight.Visible = false;
-
-            tb_beginningweight.ReadOnly = true;
 
             _id = packageid;
             InstrumentMessageDataTableShowTextBox();
@@ -217,6 +217,14 @@ namespace FireProductManager.GuiPackage
             }
             else la_errorpackageweightnull.Visible = false;
 
+            if (HasBarrelFull(_barrelId))
+            {
+                la_errorfull.Visible = true;
+                la_errorpackageweightnull.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorfull.Visible = false;
+
             return validation;
         }
 
@@ -233,12 +241,21 @@ namespace FireProductManager.GuiPackage
         //显示桶编号
         private void BarrelIdSelected(int barrelid,int packagenumber)
         {
-            if(BarrelGateway.SelectBarrelidPackageNumber(barrelid) + 1 <= packagenumber)
+            _packagenumber = packagenumber;
+            if (!(HasBarrelFull(barrelid)))
             {
                 tb_barrel.Text = barrelid.ToString();
+                la_errorfull.Visible = false;
                 return;
             }
-            AutoClosingMessageBox.Show("该桶存带数已达上限", "袋子已满", 2000);
+            la_errorfull.Visible = true;
+        }
+
+        //查询桶是否装满
+        private bool HasBarrelFull(int barrelid)
+        {
+            if (BarrelGateway.SelectBarrelidPackageNumber(barrelid) + 1 <= _packagenumber) return false;
+            return true;
         }
 
         //设置文本框只能输入数字
