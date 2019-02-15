@@ -149,7 +149,8 @@ namespace FireProductManager.GuiPackage
                 //皮重
                 tb_packagebackweigth.Text = dr["pa_tareweight"].ToString();
                 if (tb_packageweight.Text != "")
-                    consumption = (double)dr["pa_suttle"] - double.Parse(tb_packageweight.Text);
+                    //消耗量
+                    consumption = (double)dr["pa_suttle"] - (double.Parse(tb_packageweight.Text) - double.Parse(tb_packagebackweigth.Text));
             }
             tb_direction.Text = "入库";
 
