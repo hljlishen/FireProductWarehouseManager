@@ -81,6 +81,7 @@
             this.dgv_AllowanceRemind = new System.Windows.Forms.DataGridView();
             this.类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.余量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.la_barrel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -410,6 +411,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.la_barrel);
             this.groupBox1.Controls.Add(this.btn_destruction);
             this.groupBox1.Controls.Add(this.la_packageid);
             this.groupBox1.Controls.Add(this.la_errorpackageweight);
@@ -574,6 +576,17 @@
             this.余量.ReadOnly = true;
             this.余量.Width = 214;
             // 
+            // la_barrel
+            // 
+            this.la_barrel.AutoSize = true;
+            this.la_barrel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_barrel.ForeColor = System.Drawing.Color.Red;
+            this.la_barrel.Location = new System.Drawing.Point(554, 72);
+            this.la_barrel.Name = "la_barrel";
+            this.la_barrel.Size = new System.Drawing.Size(49, 17);
+            this.la_barrel.TabIndex = 122;
+            this.la_barrel.Text = "*桶已满";
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -651,5 +664,6 @@
         private System.Windows.Forms.Label la_errorpackageweight;
         private System.Windows.Forms.Label la_packageid;
         private System.Windows.Forms.Button btn_destruction;
+        private System.Windows.Forms.Label la_barrel;
     }
 }

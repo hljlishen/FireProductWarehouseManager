@@ -149,13 +149,15 @@ namespace FireProductManager.GuiPackage
                 //皮重
                 tb_packagebackweigth.Text = dr["pa_tareweight"].ToString();
                 if (tb_packageweight.Text != "")
-                    consumption = (double)dr["pa_suttle"] - double.Parse(tb_packageweight.Text);
+                    //消耗量
+                    consumption = (double)dr["pa_suttle"] - (double.Parse(tb_packageweight.Text) - double.Parse(tb_packagebackweigth.Text));
             }
             tb_direction.Text = "入库";
 
             foreach (DataRow dr in RecordOperationGateway.ThroughPackageIdQueryoutrecord(packageid).Rows)
             {
                 outid = (int)dr["or_id"];
+
                 tb_borrowName.Text = dr["or_borrowName"].ToString();
                 projectid = (int)dr["or_projectId"];
             }
@@ -165,10 +167,8 @@ namespace FireProductManager.GuiPackage
 
             if (BarrelGateway.SearchShortweightBarrrelId( int.Parse(tb_barrelid.Text)))
             {
-                AutoClosingMessageBox.Show("             该桶存袋数已达上限", "入库", 3000);
-                EmptyTextBox();
-                TextBoxCheckShow();
-                PackageTareWeightNoShow();
+                la_barrel.Visible = true;
+                la_borrow.Visible = false;
                 return;
             }
             scaleDevice.WeightGetted += Ahdr_WeightGetted;
@@ -214,7 +214,10 @@ namespace FireProductManager.GuiPackage
                 validation = false;
             }
             else la_errorpackageweight.Visible = false;
-                
+
+            if(la_barrel.Visible)
+                validation = false;
+
             return validation;
         }
 
@@ -224,6 +227,7 @@ namespace FireProductManager.GuiPackage
             la_borrow.Visible = false;
             la_errorpackageweight.Visible = false;
             la_packageid.Visible = false;
+            la_barrel.Visible = false;
             btn_destruction.Visible = false;
             btn_borrowemployee.Visible = false;
             btn_projectPassword.Visible = false;
