@@ -48,6 +48,19 @@ namespace FireProductManager.GuiPackage
             }
         }
 
+        //文本框按下键盘触发
+        private void tb_name_KeyDown(object sender, KeyEventArgs e) => hasEnter(sender, e);
+        private void tb_projectpassword_KeyDown(object sender, KeyEventArgs e) => hasEnter(sender, e);
+
+        //判断是否为确认键
+        private void hasEnter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)//如果输入的是回车键
+            {
+                bt_queryproject_Click(sender, e);//触发button事件
+            }
+        }
+
         //项目搜索
         private void bt_queryproject_Click(object sender, EventArgs e)
         {

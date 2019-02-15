@@ -51,18 +51,21 @@
             this.la_errorweigth = new System.Windows.Forms.Label();
             this.la_errorbarrel = new System.Windows.Forms.Label();
             this.la_errorproductioncompany = new System.Windows.Forms.Label();
-            this.tb_productioncompany = new System.Windows.Forms.TextBox();
             this.la_productioncompany = new System.Windows.Forms.Label();
             this.tb_beginningweight = new System.Windows.Forms.TextBox();
             this.la_beginningweight = new System.Windows.Forms.Label();
             this.tb_tareweight = new System.Windows.Forms.TextBox();
             this.la_tareweight = new System.Windows.Forms.Label();
-            this.la_errorpackageweightnull = new System.Windows.Forms.Label();
+            this.la_errorpackageweightnull_1 = new System.Windows.Forms.Label();
             this.tb_suttle = new System.Windows.Forms.TextBox();
             this.la_suttle = new System.Windows.Forms.Label();
             this.tb_note = new System.Windows.Forms.TextBox();
             this.la_note = new System.Windows.Forms.Label();
             this.la_errorfull = new System.Windows.Forms.Label();
+            this.la_errorpackageweightnull_2 = new System.Windows.Forms.Label();
+            this.la_towonlyone_1 = new System.Windows.Forms.Label();
+            this.la_towonlyone_2 = new System.Windows.Forms.Label();
+            this.tb_productioncompany = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // time_purchaseTime
@@ -288,20 +291,12 @@
             this.la_errorproductioncompany.AutoSize = true;
             this.la_errorproductioncompany.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.la_errorproductioncompany.ForeColor = System.Drawing.Color.Red;
-            this.la_errorproductioncompany.Location = new System.Drawing.Point(178, 291);
+            this.la_errorproductioncompany.Location = new System.Drawing.Point(178, 293);
             this.la_errorproductioncompany.Name = "la_errorproductioncompany";
             this.la_errorproductioncompany.Size = new System.Drawing.Size(109, 17);
             this.la_errorproductioncompany.TabIndex = 112;
             this.la_errorproductioncompany.Text = "*生产公司不能为空";
             this.la_errorproductioncompany.Visible = false;
-            // 
-            // tb_productioncompany
-            // 
-            this.tb_productioncompany.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tb_productioncompany.Location = new System.Drawing.Point(180, 262);
-            this.tb_productioncompany.Name = "tb_productioncompany";
-            this.tb_productioncompany.Size = new System.Drawing.Size(183, 26);
-            this.tb_productioncompany.TabIndex = 111;
             // 
             // la_productioncompany
             // 
@@ -350,17 +345,17 @@
             this.la_tareweight.TabIndex = 115;
             this.la_tareweight.Text = "袋子皮重（g）：";
             // 
-            // la_errorpackageweightnull
+            // la_errorpackageweightnull_1
             // 
-            this.la_errorpackageweightnull.AutoSize = true;
-            this.la_errorpackageweightnull.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.la_errorpackageweightnull.ForeColor = System.Drawing.Color.Red;
-            this.la_errorpackageweightnull.Location = new System.Drawing.Point(532, 371);
-            this.la_errorpackageweightnull.Name = "la_errorpackageweightnull";
-            this.la_errorpackageweightnull.Size = new System.Drawing.Size(145, 17);
-            this.la_errorpackageweightnull.TabIndex = 118;
-            this.la_errorpackageweightnull.Text = "*皮重与净重不能同时为空";
-            this.la_errorpackageweightnull.Visible = false;
+            this.la_errorpackageweightnull_1.AutoSize = true;
+            this.la_errorpackageweightnull_1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_errorpackageweightnull_1.ForeColor = System.Drawing.Color.Red;
+            this.la_errorpackageweightnull_1.Location = new System.Drawing.Point(532, 371);
+            this.la_errorpackageweightnull_1.Name = "la_errorpackageweightnull_1";
+            this.la_errorpackageweightnull_1.Size = new System.Drawing.Size(145, 17);
+            this.la_errorpackageweightnull_1.TabIndex = 118;
+            this.la_errorpackageweightnull_1.Text = "*皮重与净重不能同时为空";
+            this.la_errorpackageweightnull_1.Visible = false;
             // 
             // tb_suttle
             // 
@@ -411,23 +406,72 @@
             this.la_errorfull.Text = "*该桶已满";
             this.la_errorfull.Visible = false;
             // 
+            // la_errorpackageweightnull_2
+            // 
+            this.la_errorpackageweightnull_2.AutoSize = true;
+            this.la_errorpackageweightnull_2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_errorpackageweightnull_2.ForeColor = System.Drawing.Color.Red;
+            this.la_errorpackageweightnull_2.Location = new System.Drawing.Point(178, 213);
+            this.la_errorpackageweightnull_2.Name = "la_errorpackageweightnull_2";
+            this.la_errorpackageweightnull_2.Size = new System.Drawing.Size(145, 17);
+            this.la_errorpackageweightnull_2.TabIndex = 128;
+            this.la_errorpackageweightnull_2.Text = "*皮重与净重不能同时为空";
+            this.la_errorpackageweightnull_2.Visible = false;
+            // 
+            // la_towonlyone_1
+            // 
+            this.la_towonlyone_1.AutoSize = true;
+            this.la_towonlyone_1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_towonlyone_1.ForeColor = System.Drawing.Color.Red;
+            this.la_towonlyone_1.Location = new System.Drawing.Point(532, 371);
+            this.la_towonlyone_1.Name = "la_towonlyone_1";
+            this.la_towonlyone_1.Size = new System.Drawing.Size(145, 17);
+            this.la_towonlyone_1.TabIndex = 129;
+            this.la_towonlyone_1.Text = "*皮重与净重只可填写一个";
+            this.la_towonlyone_1.Visible = false;
+            // 
+            // la_towonlyone_2
+            // 
+            this.la_towonlyone_2.AutoSize = true;
+            this.la_towonlyone_2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.la_towonlyone_2.ForeColor = System.Drawing.Color.Red;
+            this.la_towonlyone_2.Location = new System.Drawing.Point(178, 213);
+            this.la_towonlyone_2.Name = "la_towonlyone_2";
+            this.la_towonlyone_2.Size = new System.Drawing.Size(145, 17);
+            this.la_towonlyone_2.TabIndex = 130;
+            this.la_towonlyone_2.Text = "*皮重与净重只可填写一个";
+            this.la_towonlyone_2.Visible = false;
+            // 
+            // tb_productioncompany
+            // 
+            this.tb_productioncompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tb_productioncompany.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_productioncompany.FormattingEnabled = true;
+            this.tb_productioncompany.Location = new System.Drawing.Point(180, 262);
+            this.tb_productioncompany.Name = "tb_productioncompany";
+            this.tb_productioncompany.Size = new System.Drawing.Size(183, 28);
+            this.tb_productioncompany.TabIndex = 131;
+            // 
             // AddOrUpdatePackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 538);
+            this.Controls.Add(this.tb_productioncompany);
+            this.Controls.Add(this.la_towonlyone_2);
+            this.Controls.Add(this.la_towonlyone_1);
+            this.Controls.Add(this.la_errorpackageweightnull_2);
             this.Controls.Add(this.la_errorfull);
             this.Controls.Add(this.tb_note);
             this.Controls.Add(this.la_note);
             this.Controls.Add(this.tb_suttle);
             this.Controls.Add(this.la_suttle);
-            this.Controls.Add(this.la_errorpackageweightnull);
+            this.Controls.Add(this.la_errorpackageweightnull_1);
             this.Controls.Add(this.tb_tareweight);
             this.Controls.Add(this.la_tareweight);
             this.Controls.Add(this.tb_beginningweight);
             this.Controls.Add(this.la_beginningweight);
             this.Controls.Add(this.la_errorproductioncompany);
-            this.Controls.Add(this.tb_productioncompany);
             this.Controls.Add(this.la_productioncompany);
             this.Controls.Add(this.la_errorbarrel);
             this.Controls.Add(this.la_errorweigth);
@@ -485,17 +529,20 @@
         private System.Windows.Forms.Label la_errorweigth;
         private System.Windows.Forms.Label la_errorbarrel;
         private System.Windows.Forms.Label la_errorproductioncompany;
-        private System.Windows.Forms.TextBox tb_productioncompany;
         private System.Windows.Forms.Label la_productioncompany;
         private System.Windows.Forms.TextBox tb_beginningweight;
         private System.Windows.Forms.Label la_beginningweight;
         private System.Windows.Forms.TextBox tb_tareweight;
         private System.Windows.Forms.Label la_tareweight;
-        private System.Windows.Forms.Label la_errorpackageweightnull;
+        private System.Windows.Forms.Label la_errorpackageweightnull_1;
         private System.Windows.Forms.TextBox tb_suttle;
         private System.Windows.Forms.Label la_suttle;
         private System.Windows.Forms.TextBox tb_note;
         private System.Windows.Forms.Label la_note;
         private System.Windows.Forms.Label la_errorfull;
+        private System.Windows.Forms.Label la_errorpackageweightnull_2;
+        private System.Windows.Forms.Label la_towonlyone_1;
+        private System.Windows.Forms.Label la_towonlyone_2;
+        private System.Windows.Forms.ComboBox tb_productioncompany;
     }
 }

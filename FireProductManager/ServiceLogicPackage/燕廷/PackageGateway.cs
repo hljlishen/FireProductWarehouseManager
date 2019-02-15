@@ -354,19 +354,21 @@ namespace FireProductManager.ServiceLogicPackage
         }
 
         //材料搜索
-        public static DataTable GetQueryPackage(string type, string specifications, string barrelId,string productioncompany, string isinWarehouse)
+        public static DataTable GetQueryPackage(string packageid,string type, string specifications, string barrelId,string productioncompany, string isinWarehouse , string note)
         {
             int _isInWareHouse = isinWarehouse.Equals("全部") ? -1 : IsinWarehouseDataTypeChangeInt(isinWarehouse);
             SelectSqlMaker maker = new SelectSqlMaker("package");
+            maker.AddAndCondition(new IntEqual("pa_id", packageid));
             maker.AddAndCondition(new StringLike("pa_type", type));
             maker.AddAndCondition(new StringLike("pa_specifications", specifications));
             maker.AddAndCondition(new IntEqual("pa_barrelId", barrelId));
             maker.AddAndCondition(new StringLike("pa_productioncompany", productioncompany));
+            maker.AddAndCondition(new StringLike("pa_note", note));
             if (_isInWareHouse !=-1) maker.AddAndCondition(new IntEqual("pa_isinWarehouse", _isInWareHouse));
             return Query(maker.MakeSelectSql()); 
         }
 
-        public DataTable GetPackagesInBarrel(string barrelId) => GetQueryPackage(null, null, barrelId, null, null);
+        public DataTable GetPackagesInBarrel(string barrelId) => GetQueryPackage(null,null, null, barrelId, null, null, null);
 
         //获取最新插入的数据
         public static int GetLastPackage()

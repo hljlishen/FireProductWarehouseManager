@@ -51,13 +51,13 @@ namespace FireProductManager.GuiPackage
         {
             InitializeComponent();
             liveDevice = Live.CreateInstance(Handle);
-            
-            //try { liveDevice.Open(); }
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("未连接指纹采集器");
-            //    Application.Exit();
-            //}
+
+            try { liveDevice.Open(); }
+            catch (Exception)
+            {
+                MessageBox.Show("未连接指纹采集器");
+                Application.Exit();
+            }
 
             TextBoxVisibleIsFalse();
             btn_add.Visible = true;

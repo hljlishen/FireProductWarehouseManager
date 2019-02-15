@@ -107,12 +107,19 @@
     <Compile Include="EntityPackage\燕廷\Employee.cs" />
     <Compile Include="EntityPackage\燕廷\Package.cs" />
     <Compile Include="EntityPackage\燕廷\Project.cs" />
+    <Compile Include="EntityPackage\燕廷\SystemDictionary.cs" />
     <Compile Include="EntityPackage\马华\Account.cs" />
     <Compile Include="EntityPackage\马华\Barrel.cs" />
     <Compile Include="EntityPackage\马华\EvirmentRecord.cs" />
     <Compile Include="EntityPackage\马华\Fingerprint.cs" />
     <Compile Include="EntityPackage\马华\InRecord.cs" />
     <Compile Include="EntityPackage\马华\OutRecord.cs" />
+    <Compile Include="GuiPackage\燕廷\锂材料管理\SystemDictionary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GuiPackage\燕廷\锂材料管理\SystemDictionary.Designer.cs">
+      <DependentUpon>SystemDictionary.cs</DependentUpon>
+    </Compile>
     <Compile Include="GuiPackage\燕廷\数据展示\WarehouseDataReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +236,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceLogicPackage\燕廷\SystemDictionaryGateway.cs" />
     <Compile Include="ServiceLogicPackage\燕廷\TwoDimensionalTable.cs" />
     <Compile Include="ServiceLogicPackage\燕廷\DepartmentGateway.cs" />
     <Compile Include="ServiceLogicPackage\燕廷\EmployeeGateway.cs" />
@@ -269,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\燕廷\锂材料管理\PrintQrCode.resx">
       <DependentUpon>PrintQrCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GuiPackage\燕廷\锂材料管理\SystemDictionary.resx">
+      <DependentUpon>SystemDictionary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GuiPackage\燕廷\项目管理\AddOrUpdateProject.resx">
       <DependentUpon>AddOrUpdateProject.cs</DependentUpon>
