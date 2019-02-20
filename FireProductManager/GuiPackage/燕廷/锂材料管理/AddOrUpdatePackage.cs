@@ -1,5 +1,6 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -14,6 +15,8 @@ namespace FireProductManager.GuiPackage
         private PackageManagement _packagefrom;
         ElectronicScaleDevice ScaleDevice;
         delegate void WeightGettedHandler(double weight);
+
+        private int _oldbarrelId;
 
         private int _id;
         private string _type;
@@ -38,6 +41,7 @@ namespace FireProductManager.GuiPackage
         {
             InitializeComponent();
             title.Text = "添加材料基本信息";
+            ShowManufacturer();
 
             _packagefrom = packageManagement;
 
@@ -45,6 +49,7 @@ namespace FireProductManager.GuiPackage
             bt_alterinstrument.Visible = false;
             la_beginningweight.Visible = false;
             tb_beginningweight.Visible = false;
+
         }
 
         //修改材料构造方法
@@ -53,6 +58,7 @@ namespace FireProductManager.GuiPackage
         {
             InitializeComponent();
             title.Text = "修改材料基本信息";
+            ShowManufacturer();
 
             _packagefrom = packageManagement;
 
@@ -65,6 +71,12 @@ namespace FireProductManager.GuiPackage
             InstrumentMessageDataTableShowTextBox();
         }
 
+        public void ShowManufacturer()
+        {
+            DataTable dataTable = SystemDictionaryGateway.GetQueryDictionaryTypeText("生产厂商");
+            tb_productioncompany.DataSource = SystemDictionaryGateway.DataTableChangeList(dataTable);
+        }
+
         //材料信息展示在页面组件中
         private void InstrumentMessageDataTableShowTextBox()
         {
@@ -74,6 +86,7 @@ namespace FireProductManager.GuiPackage
             tb_specifications.Text = myDr["pa_specifications"].ToString();
             tb_suttle.Text = myDr["pa_suttle"].ToString();
             tb_barrel.Text = myDr["pa_barrelId"].ToString();
+            _oldbarrelId = (int)myDr["pa_barrelId"];
             cb_isInWareHouse.Text = PackageGateway.IsinWarehouseDataTypeChangeString((int)myDr["pa_isinWarehouse"]);
             tb_productioncompany.Text = myDr["pa_productionCompany"].ToString();
             time_purchaseTime.Text = myDr["pa_purchaseTime"].ToString();
@@ -102,8 +115,8 @@ namespace FireProductManager.GuiPackage
         //材料信息添加
         private void bt_addinstrument_Click(object sender, EventArgs e)    
         {
-            GetPackageInformation();
             if (!FormValidation()) return;
+            GetPackageInformation();
             PackageGateway.NewPackage(_type, _specifications, _suttle, _barrelId, _isinWarehouse, _productionCompany, _purchaseTime, _tareweight, _note);
             AutoClosingMessageBox.Show("材料信息保存成功", "仪器信息添加", 1000);
             ResetPageInformation();
@@ -199,6 +212,14 @@ namespace FireProductManager.GuiPackage
             }
             else la_errorproductioncompany.Visible = false;
 
+            if (HasBarrelFull(_barrelId) && _barrelId != 0)
+            {
+                la_errorfull.Visible = true;
+                la_errorfull.ForeColor = Color.Red;
+                validation = false;
+            }
+            else la_errorfull.Visible = false;
+
             if (title.Text.Equals("修改材料基本信息")) return validation;
 
             if (tb_weight.Text.Trim().Equals(""))
@@ -211,19 +232,23 @@ namespace FireProductManager.GuiPackage
 
             if (tb_tareweight.Text.Trim().Equals("") && tb_suttle.Text.Trim().Equals(""))
             {
-                la_errorpackageweightnull.Visible = true;
-                la_errorpackageweightnull.ForeColor = Color.Red;
+                la_errorpackageweightnull_1.Visible = true;
+                la_errorpackageweightnull_1.ForeColor = Color.Red;
+                la_errorpackageweightnull_2.Visible = true;
+                la_errorpackageweightnull_2.ForeColor = Color.Red;
                 validation = false;
             }
-            else la_errorpackageweightnull.Visible = false;
+            else la_errorpackageweightnull_1.Visible = la_errorpackageweightnull_2.Visible = false;
 
-            if (HasBarrelFull(_barrelId))
+            if (!(tb_tareweight.Text.Trim().Equals("")) && !(tb_suttle.Text.Trim().Equals("")))
             {
-                la_errorfull.Visible = true;
-                la_errorpackageweightnull.ForeColor = Color.Red;
+                la_towonlyone_1.Visible = true;
+                la_towonlyone_1.ForeColor = Color.Red;
+                la_towonlyone_2.Visible = true;
+                la_towonlyone_2.ForeColor = Color.Red;
                 validation = false;
             }
-            else la_errorfull.Visible = false;
+            else la_towonlyone_1.Visible = la_towonlyone_2.Visible = false;
 
             return validation;
         }
@@ -242,18 +267,23 @@ namespace FireProductManager.GuiPackage
         private void BarrelIdSelected(int barrelid,int packagenumber)
         {
             _packagenumber = packagenumber;
+            _barrelId = barrelid;
             if (!(HasBarrelFull(barrelid)))
             {
                 tb_barrel.Text = barrelid.ToString();
                 la_errorfull.Visible = false;
+                la_errorbarrel.Visible = false;
                 return;
             }
+            tb_barrel.Text = barrelid.ToString();
             la_errorfull.Visible = true;
+            la_errorbarrel.Visible = false;
         }
 
         //查询桶是否装满
         private bool HasBarrelFull(int barrelid)
         {
+            if (_oldbarrelId == barrelid) return false;
             if (BarrelGateway.SelectBarrelidPackageNumber(barrelid) + 1 <= _packagenumber) return false;
             return true;
         }

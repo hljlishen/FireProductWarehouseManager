@@ -71,6 +71,7 @@
             // 
             resources.ApplyResources(this.tb_foundemployeeid, "tb_foundemployeeid");
             this.tb_foundemployeeid.Name = "tb_foundemployeeid";
+            this.tb_foundemployeeid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_foundemployeeid_KeyDown);
             // 
             // bt_foundnowgroup
             // 
@@ -156,6 +157,7 @@
             // 
             resources.ApplyResources(this.tb_foundname, "tb_foundname");
             this.tb_foundname.Name = "tb_foundname";
+            this.tb_foundname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_foundname_KeyDown);
             // 
             // cb_foundsex
             // 

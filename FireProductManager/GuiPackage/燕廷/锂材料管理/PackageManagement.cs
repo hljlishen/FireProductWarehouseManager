@@ -59,14 +59,32 @@ namespace FireProductManager.GuiPackage
         }
 
         #region 材料搜索
+        //文本框按下键盘触发
+        private void tb_type_KeyDown(object sender, KeyEventArgs e) => hasEnter(sender, e);
+        private void tb_model_KeyDown(object sender, KeyEventArgs e) => hasEnter(sender, e);
+        private void tb_productioncompany_KeyDown(object sender, KeyEventArgs e) => hasEnter(sender, e);
+        private void tb_packageid_KeyDown(object sender, KeyEventArgs e) => hasEnter(sender, e);
+        private void tb_note_KeyDown(object sender, KeyEventArgs e) => hasEnter(sender, e);
+
+        //判断是否为确认键
+        private void hasEnter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)//如果输入的是回车键
+            {
+                bt_querypackage_Click(sender, e);//触发button事件
+            }
+        }
+
         //搜索按钮
         private void bt_querypackage_Click(object sender, EventArgs e)
         {
+            string packageid = tb_packageid.Text;
             string type = tb_type.Text;
             string model = tb_model.Text;
             string productioncompany = tb_productioncompany.Text;
             string isInWareHouse = cb_IsInWareHouse.Text;
-            DataTable dataTable = PackageGateway.GetQueryPackage(type, model, _barrelid, productioncompany, isInWareHouse);
+            string note = tb_note.Text;
+            DataTable dataTable = PackageGateway.GetQueryPackage(packageid,type, model, _barrelid, productioncompany, isInWareHouse,note);
             ShowDataGridView(dataTable);
 
             tb_barrelid.Text = "";
@@ -115,6 +133,16 @@ namespace FireProductManager.GuiPackage
             {
                 cms_newpackage.Show(MousePosition);
             }
+        }
+
+        private void tsm_manufacturer_1_Click(object sender, EventArgs e) => NewManufacturer();
+        private void tsm_manufacturer_2_Click(object sender, EventArgs e) => NewManufacturer();
+
+        //添加厂商
+        private void NewManufacturer()
+        {
+            SystemDictionary systemDictionary = new SystemDictionary();
+            systemDictionary.ShowDialog();
         }
 
         private void tsm_newpackage_Click(object sender, EventArgs e) => NewPackage();
@@ -187,5 +215,6 @@ namespace FireProductManager.GuiPackage
             }
         }
         #endregion
+
     }
 }

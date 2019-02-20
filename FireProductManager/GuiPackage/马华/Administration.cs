@@ -50,14 +50,14 @@ namespace FireProductManager.GuiPackage
 
         private void Administration_Load(object sender, EventArgs e)
         {
-            //try { connectFingerprint.GetIPConnect(); }
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("无法连接到出库指纹设备");
-            //    Application.Exit();
-            //}
+            try { connectFingerprint.GetIPConnect(); }
+            catch (Exception)
+            {
+                MessageBox.Show("无法连接到出库指纹设备");
+                Application.Exit();
+            }
 
-            //connectFingerprint.AddDisplayer(this);
+            connectFingerprint.AddDisplayer(this);
             ShowLoginWindow();
             this.Text ="当前登录的管理员为：" + AccountManager.ReturnAccount() +"    "+ "锂带仓管1.0";
             出入库登记ToolStripMenultem_Click(sender, e);
@@ -121,18 +121,18 @@ namespace FireProductManager.GuiPackage
         private void 出入库登记ToolStripMenultem_Click(object sender, EventArgs e)
         {
             BackgroundNavigationBar();
-            //if (mainPage == null)
-            //{
-            //    mainPage = new MainPage();
-            //}
-            //else
-            //{
-            //    mainPage.Close();
-            //    mainPage.Dispose();
-            //    GC.Collect();
-            //    mainPage = new MainPage();
-            //}
-            //mainPage?.Dispose();
+            if (mainPage == null)
+            {
+                mainPage = new MainPage();
+            }
+            else
+            {
+                mainPage.Close();
+                mainPage.Dispose();
+                GC.Collect();
+                mainPage = new MainPage();
+            }
+            mainPage?.Dispose();
             mainPage = new MainPage();
             GC.Collect();
 

@@ -39,13 +39,13 @@ namespace FireProductManager.GuiPackage
             erg = new EvirmentRecordGateway(Apem5900.CreateInstance());
             erg.NewEvirmentData += NewEvirmentData;
             scaleDevice = Ahdr.CreateInstance();
-            
-            //try { scaleDevice.Open(); }
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("未连接电子秤设备");
-            //    Application.Exit();
-            //}
+
+            try { scaleDevice.Open(); }
+            catch (Exception)
+            {
+                MessageBox.Show("未连接电子秤设备");
+                Application.Exit();
+            }
 
             instanceCount++;
         }

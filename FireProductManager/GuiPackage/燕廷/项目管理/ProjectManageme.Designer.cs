@@ -137,6 +137,7 @@
             this.tb_projectpassword.Name = "tb_projectpassword";
             this.tb_projectpassword.Size = new System.Drawing.Size(150, 26);
             this.tb_projectpassword.TabIndex = 74;
+            this.tb_projectpassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_projectpassword_KeyDown);
             // 
             // la_name
             // 
@@ -155,6 +156,7 @@
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(150, 26);
             this.tb_name.TabIndex = 72;
+            this.tb_name.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_name_KeyDown);
             // 
             // bt_queryproject
             // 

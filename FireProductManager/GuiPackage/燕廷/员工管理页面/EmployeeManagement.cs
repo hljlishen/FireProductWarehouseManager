@@ -143,6 +143,19 @@ namespace FireProductManager.GuiPackage
         #endregion
 
         #region 员工搜索
+        //文本框按下键盘触发
+        private void tb_foundemployeeid_KeyDown(object sender, KeyEventArgs e) => hasEnter(sender, e);
+        private void tb_foundname_KeyDown(object sender, KeyEventArgs e) => hasEnter(sender, e);
+
+        //判断是否为确认键
+        private void hasEnter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)//如果输入的是回车键
+            {
+                bt_foundnowgroup_Click(sender, e);//触发button事件
+            }
+        }
+
         //员工搜索
         private void bt_foundnowgroup_Click(object sender, EventArgs e)
         {
@@ -326,6 +339,5 @@ namespace FireProductManager.GuiPackage
         }
 
         #endregion
-
     }
 }
