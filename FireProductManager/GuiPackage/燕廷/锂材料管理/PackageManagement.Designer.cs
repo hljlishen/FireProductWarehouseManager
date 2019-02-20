@@ -34,6 +34,17 @@
             this.tb_barrelid = new System.Windows.Forms.TextBox();
             this.bt_querypackage = new System.Windows.Forms.Button();
             this.dgv_instrumentinformation = new System.Windows.Forms.DataGridView();
+            this.在库状态 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.型号规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.材料类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.材料规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.当前重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.材料状态 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.生产公司 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.货架位置 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.初始重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.材料皮重 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.备注 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bt_changebarrel = new System.Windows.Forms.Button();
             this.la_productioncompany = new System.Windows.Forms.Label();
@@ -52,17 +63,6 @@
             this.tsm_printqrcode = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_newpackage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsm_new = new System.Windows.Forms.ToolStripMenuItem();
-            this.在库状态 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.型号规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.材料类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.材料规格 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.当前重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.材料状态 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.生产公司 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.货架位置 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.初始重量 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.材料皮重 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.备注 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_instrumentinformation)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.cms_packageoperation.SuspendLayout();
@@ -126,6 +126,78 @@
             this.dgv_instrumentinformation.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_instrumentinformation_CellMouseDoubleClick);
             this.dgv_instrumentinformation.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_instrumentinformation_CellMouseDown);
             this.dgv_instrumentinformation.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgv_instrumentinformation_MouseClick);
+            // 
+            // 在库状态
+            // 
+            this.在库状态.HeaderText = "编码";
+            this.在库状态.Name = "在库状态";
+            this.在库状态.ReadOnly = true;
+            this.在库状态.Width = 60;
+            // 
+            // 型号规格
+            // 
+            this.型号规格.HeaderText = "所在桶";
+            this.型号规格.Name = "型号规格";
+            this.型号规格.ReadOnly = true;
+            this.型号规格.Width = 70;
+            // 
+            // 材料类型
+            // 
+            this.材料类型.HeaderText = "材料类型";
+            this.材料类型.Name = "材料类型";
+            this.材料类型.ReadOnly = true;
+            // 
+            // 材料规格
+            // 
+            this.材料规格.HeaderText = "材料规格";
+            this.材料规格.Name = "材料规格";
+            this.材料规格.ReadOnly = true;
+            this.材料规格.Width = 150;
+            // 
+            // 当前重量
+            // 
+            this.当前重量.HeaderText = "当前重量(g)";
+            this.当前重量.Name = "当前重量";
+            this.当前重量.ReadOnly = true;
+            // 
+            // 材料状态
+            // 
+            this.材料状态.HeaderText = "材料状态";
+            this.材料状态.Name = "材料状态";
+            this.材料状态.ReadOnly = true;
+            // 
+            // 生产公司
+            // 
+            this.生产公司.HeaderText = "生产公司";
+            this.生产公司.Name = "生产公司";
+            this.生产公司.ReadOnly = true;
+            this.生产公司.Width = 190;
+            // 
+            // 货架位置
+            // 
+            this.货架位置.HeaderText = "生产日期";
+            this.货架位置.Name = "货架位置";
+            this.货架位置.ReadOnly = true;
+            this.货架位置.Width = 150;
+            // 
+            // 初始重量
+            // 
+            this.初始重量.HeaderText = "初始重量(g)";
+            this.初始重量.Name = "初始重量";
+            this.初始重量.ReadOnly = true;
+            // 
+            // 材料皮重
+            // 
+            this.材料皮重.HeaderText = "材料皮重(g)";
+            this.材料皮重.Name = "材料皮重";
+            this.材料皮重.ReadOnly = true;
+            // 
+            // 备注
+            // 
+            this.备注.HeaderText = "备注";
+            this.备注.Name = "备注";
+            this.备注.ReadOnly = true;
+            this.备注.Width = 110;
             // 
             // groupBox1
             // 
@@ -247,7 +319,6 @@
             this.bt_dgvchangeexcel.TabIndex = 6;
             this.bt_dgvchangeexcel.Text = "导出Excel";
             this.bt_dgvchangeexcel.UseVisualStyleBackColor = true;
-            this.bt_dgvchangeexcel.Visible = false;
             this.bt_dgvchangeexcel.Click += new System.EventHandler(this.bt_dgvchangeexcel_Click);
             // 
             // cms_packageoperation
@@ -301,78 +372,6 @@
             this.tsm_new.Size = new System.Drawing.Size(100, 22);
             this.tsm_new.Text = "添加";
             this.tsm_new.Click += new System.EventHandler(this.tsm_newpackage_Click);
-            // 
-            // 在库状态
-            // 
-            this.在库状态.HeaderText = "编码";
-            this.在库状态.Name = "在库状态";
-            this.在库状态.ReadOnly = true;
-            this.在库状态.Width = 60;
-            // 
-            // 型号规格
-            // 
-            this.型号规格.HeaderText = "所在桶";
-            this.型号规格.Name = "型号规格";
-            this.型号规格.ReadOnly = true;
-            this.型号规格.Width = 70;
-            // 
-            // 材料类型
-            // 
-            this.材料类型.HeaderText = "材料类型";
-            this.材料类型.Name = "材料类型";
-            this.材料类型.ReadOnly = true;
-            // 
-            // 材料规格
-            // 
-            this.材料规格.HeaderText = "材料规格";
-            this.材料规格.Name = "材料规格";
-            this.材料规格.ReadOnly = true;
-            this.材料规格.Width = 150;
-            // 
-            // 当前重量
-            // 
-            this.当前重量.HeaderText = "当前重量(g)";
-            this.当前重量.Name = "当前重量";
-            this.当前重量.ReadOnly = true;
-            // 
-            // 材料状态
-            // 
-            this.材料状态.HeaderText = "材料状态";
-            this.材料状态.Name = "材料状态";
-            this.材料状态.ReadOnly = true;
-            // 
-            // 生产公司
-            // 
-            this.生产公司.HeaderText = "生产公司";
-            this.生产公司.Name = "生产公司";
-            this.生产公司.ReadOnly = true;
-            this.生产公司.Width = 190;
-            // 
-            // 货架位置
-            // 
-            this.货架位置.HeaderText = "生产日期";
-            this.货架位置.Name = "货架位置";
-            this.货架位置.ReadOnly = true;
-            this.货架位置.Width = 150;
-            // 
-            // 初始重量
-            // 
-            this.初始重量.HeaderText = "初始重量(g)";
-            this.初始重量.Name = "初始重量";
-            this.初始重量.ReadOnly = true;
-            // 
-            // 材料皮重
-            // 
-            this.材料皮重.HeaderText = "材料皮重(g)";
-            this.材料皮重.Name = "材料皮重";
-            this.材料皮重.ReadOnly = true;
-            // 
-            // 备注
-            // 
-            this.备注.HeaderText = "备注";
-            this.备注.Name = "备注";
-            this.备注.ReadOnly = true;
-            this.备注.Width = 110;
             // 
             // PackageManagement
             // 

@@ -25,6 +25,7 @@ namespace FireProductManager.GuiPackage
         int outid = 0;
         double consumption = 0;
         bool isPrint = false;
+        double beginningweight = 0;
         string accountname = AccountManager.ReturnAccount();
 
         public MainPage()
@@ -86,6 +87,8 @@ namespace FireProductManager.GuiPackage
 
         private void UpdateWeight(double weight)
         {
+            if ((weight - double.Parse(tb_packagebackweigth.Text)) > beginningweight)
+                tb_packageweight.Text = beginningweight.ToString();
             tb_packageweight.Text = weight.ToString();
             RecordPackagePutInStorageInformation();
         }
@@ -148,6 +151,8 @@ namespace FireProductManager.GuiPackage
                 tb_barrelid.Text = dr["pa_barrelId"].ToString();
                 //皮重
                 tb_packagebackweigth.Text = dr["pa_tareweight"].ToString();
+                //初始重量
+                beginningweight = (double)dr["pa_beginningweight"];
                 if (tb_packageweight.Text != "")
                     //消耗量
                     consumption = (double)dr["pa_suttle"] - (double.Parse(tb_packageweight.Text) - double.Parse(tb_packagebackweigth.Text));
