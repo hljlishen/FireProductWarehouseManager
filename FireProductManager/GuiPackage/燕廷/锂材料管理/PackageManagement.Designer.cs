@@ -65,9 +65,9 @@
             this.tsm_updatepackage = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_deletepackage = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_printqrcode = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsm_manufacturer_1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_newpackage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsm_new = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsm_manufacturer_1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_manufacturer_2 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_instrumentinformation)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -351,6 +351,7 @@
             this.cb_IsInWareHouse.Name = "cb_IsInWareHouse";
             this.cb_IsInWareHouse.Size = new System.Drawing.Size(58, 20);
             this.cb_IsInWareHouse.TabIndex = 19;
+            this.cb_IsInWareHouse.SelectedIndexChanged += new System.EventHandler(this.cb_IsInWareHouse_SelectedIndexChanged);
             // 
             // la_IsInWareHouse
             // 
@@ -413,32 +414,32 @@
             this.tsm_printqrcode.Text = "打印二维码";
             this.tsm_printqrcode.Click += new System.EventHandler(this.tsm_printqrcode_Click);
             // 
+            // tsm_manufacturer_1
+            // 
+            this.tsm_manufacturer_1.Name = "tsm_manufacturer_1";
+            this.tsm_manufacturer_1.Size = new System.Drawing.Size(136, 22);
+            this.tsm_manufacturer_1.Text = "添加厂商";
+            this.tsm_manufacturer_1.Click += new System.EventHandler(this.tsm_manufacturer_1_Click);
+            // 
             // cms_newpackage
             // 
             this.cms_newpackage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsm_new,
             this.tsm_manufacturer_2});
             this.cms_newpackage.Name = "cms_newpackage";
-            this.cms_newpackage.Size = new System.Drawing.Size(181, 70);
+            this.cms_newpackage.Size = new System.Drawing.Size(125, 48);
             // 
             // tsm_new
             // 
             this.tsm_new.Name = "tsm_new";
-            this.tsm_new.Size = new System.Drawing.Size(180, 22);
+            this.tsm_new.Size = new System.Drawing.Size(124, 22);
             this.tsm_new.Text = "添加";
             this.tsm_new.Click += new System.EventHandler(this.tsm_newpackage_Click);
-            // 
-            // tsm_manufacturer_1
-            // 
-            this.tsm_manufacturer_1.Name = "tsm_manufacturer_1";
-            this.tsm_manufacturer_1.Size = new System.Drawing.Size(180, 22);
-            this.tsm_manufacturer_1.Text = "添加厂商";
-            this.tsm_manufacturer_1.Click += new System.EventHandler(this.tsm_manufacturer_1_Click);
             // 
             // tsm_manufacturer_2
             // 
             this.tsm_manufacturer_2.Name = "tsm_manufacturer_2";
-            this.tsm_manufacturer_2.Size = new System.Drawing.Size(180, 22);
+            this.tsm_manufacturer_2.Size = new System.Drawing.Size(124, 22);
             this.tsm_manufacturer_2.Text = "添加厂商";
             this.tsm_manufacturer_2.Click += new System.EventHandler(this.tsm_manufacturer_2_Click);
             // 

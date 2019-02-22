@@ -169,6 +169,7 @@
             resources.GetString("cb_foundsex.Items1"),
             resources.GetString("cb_foundsex.Items2")});
             this.cb_foundsex.Name = "cb_foundsex";
+            this.cb_foundsex.SelectedIndexChanged += new System.EventHandler(this.cb_foundsex_SelectedIndexChanged);
             // 
             // la_foundemployeeid
             // 

@@ -1,5 +1,6 @@
 ﻿using FireProductManager.ServiceLogicPackage;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -56,6 +57,7 @@ namespace FireProductManager.GuiPackage
                 dgv_instrumentinformation.Rows[index].Cells[9].Value = dr["pa_tareweight"];
                 dgv_instrumentinformation.Rows[index].Cells[10].Value = dr["pa_note"];
             }
+            dgv_instrumentinformation.Sort(dgv_instrumentinformation.Columns[7], ListSortDirection.Ascending);
         }
 
         #region 材料搜索
@@ -73,6 +75,12 @@ namespace FireProductManager.GuiPackage
             {
                 bt_querypackage_Click(sender, e);//触发button事件
             }
+        }
+
+        //文本发生变化
+        private void cb_IsInWareHouse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bt_querypackage.Focus();
         }
 
         //搜索按钮
@@ -99,6 +107,7 @@ namespace FireProductManager.GuiPackage
             queryBarrel.BarrelIdSelected += BarrelIdSelected;
             queryBarrel.ShowDialog();
             queryBarrel.BarrelIdSelected -= BarrelIdSelected;
+            bt_querypackage.Focus();
         }
 
         //显示桶编号
@@ -215,6 +224,7 @@ namespace FireProductManager.GuiPackage
             }
         }
         #endregion
+
 
     }
 }

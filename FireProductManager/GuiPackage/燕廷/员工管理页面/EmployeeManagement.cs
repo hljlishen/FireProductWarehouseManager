@@ -156,6 +156,12 @@ namespace FireProductManager.GuiPackage
             }
         }
 
+        //文本发生变化
+        private void cb_foundsex_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bt_foundnowgroup.Focus();
+        }
+
         //员工搜索
         private void bt_foundnowgroup_Click(object sender, EventArgs e)
         {
@@ -339,5 +345,6 @@ namespace FireProductManager.GuiPackage
         }
 
         #endregion
+
     }
 }
